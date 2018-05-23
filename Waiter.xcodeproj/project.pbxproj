@@ -18,6 +18,8 @@
 		9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */; };
 		9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845D20B5278B00C6DEE1 /* DashboardVC.swift */; };
 		9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845F20B5280300C6DEE1 /* LoginVC.swift */; };
+		9FEA846220B52CE700C6DEE1 /* AddItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA846120B52CE700C6DEE1 /* AddItemView.xib */; };
+		9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846320B52CF800C6DEE1 /* AddItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
 		9FEA845D20B5278B00C6DEE1 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		9FEA845F20B5280300C6DEE1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		9FEA846120B52CE700C6DEE1 /* AddItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddItemView.xib; sourceTree = "<group>"; };
+		9FEA846320B52CF800C6DEE1 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */,
 				9FEA845D20B5278B00C6DEE1 /* DashboardVC.swift */,
 				9FEA845F20B5280300C6DEE1 /* LoginVC.swift */,
+				9FEA846120B52CE700C6DEE1 /* AddItemView.xib */,
+				9FEA846320B52CF800C6DEE1 /* AddItemView.swift */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -143,6 +149,7 @@
 				9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */,
 				9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */,
 				9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */,
+				9FEA846220B52CE700C6DEE1 /* AddItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */,
+				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
