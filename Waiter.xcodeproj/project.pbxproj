@@ -25,6 +25,7 @@
 		9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846E20B5400700C6DEE1 /* GifExtension.swift */; };
 		9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */; };
 		9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847220B544B700C6DEE1 /* ordered-animation.gif */; };
+		9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		9FEA846E20B5400700C6DEE1 /* GifExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
 		9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessVC.swift; sourceTree = "<group>"; };
 		9FEA847220B544B700C6DEE1 /* ordered-animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ordered-animation.gif"; sourceTree = "<group>"; };
+		9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				9FEA846B20B537CF00C6DEE1 /* Controller */,
 				9FEA846C20B53A6A00C6DEE1 /* Add'l Resources */,
 				9F8EABF520AC74A60027EDFB /* Info.plist */,
+				9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
+				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
