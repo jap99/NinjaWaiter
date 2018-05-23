@@ -8,18 +8,60 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var cv1: UICollectionView!
+    @IBOutlet weak var cv2: UICollectionView!
+    @IBOutlet weak var tv: UITableView!
+    
+    @IBOutlet weak var confirmOrderButton: UIButton!
+    @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var fivePercentDiscountLabel: UILabel!
+    @IBOutlet weak var tenPercentChargeLabel: UILabel!
+    @IBOutlet weak var sixPercentGstLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        cv1.delegate = self; cv1.dataSource = self
+        cv2.delegate = self; cv2.dataSource = self
+        tv.delegate = self; tv.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+   
+
+    
+    // MARK: - TABLE VIEW
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+    }
+    
+    
+    // MARK: - COLLECTION VIEW
 
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+    }
 }
 
