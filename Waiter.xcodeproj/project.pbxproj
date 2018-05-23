@@ -22,6 +22,9 @@
 		9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846320B52CF800C6DEE1 /* AddItemView.swift */; };
 		9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */; };
 		9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846720B537A300C6DEE1 /* TableCell.swift */; };
+		9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846E20B5400700C6DEE1 /* GifExtension.swift */; };
+		9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */; };
+		9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847220B544B700C6DEE1 /* ordered-animation.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		9FEA846320B52CF800C6DEE1 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueOrderVC.swift; sourceTree = "<group>"; };
 		9FEA846720B537A300C6DEE1 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		9FEA846E20B5400700C6DEE1 /* GifExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
+		9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessVC.swift; sourceTree = "<group>"; };
+		9FEA847220B544B700C6DEE1 /* ordered-animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ordered-animation.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +80,12 @@
 		9F8EABE520AC74A50027EDFB /* Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				9FEA846D20B53FF300C6DEE1 /* Utilities */,
 				9FEA846A20B537CA00C6DEE1 /* Model */,
 				9FEA846920B537C600C6DEE1 /* View */,
 				9FEA846B20B537CF00C6DEE1 /* Controller */,
 				9FEA846C20B53A6A00C6DEE1 /* Add'l Resources */,
+				9F8EABF520AC74A60027EDFB /* Info.plist */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -109,6 +117,7 @@
 				9FEA845D20B5278B00C6DEE1 /* DashboardVC.swift */,
 				9FEA845F20B5280300C6DEE1 /* LoginVC.swift */,
 				9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */,
+				9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -119,11 +128,19 @@
 				9F8EABE620AC74A50027EDFB /* AppDelegate.swift */,
 				9F8EABEA20AC74A50027EDFB /* Main.storyboard */,
 				9F8EABF020AC74A60027EDFB /* Assets.xcassets */,
+				9FEA847220B544B700C6DEE1 /* ordered-animation.gif */,
 				9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */,
-				9F8EABF520AC74A60027EDFB /* Info.plist */,
 				9F8EABED20AC74A50027EDFB /* Waiter.xcdatamodeld */,
 			);
 			path = "Add'l Resources";
+			sourceTree = "<group>";
+		};
+		9FEA846D20B53FF300C6DEE1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9FEA846E20B5400700C6DEE1 /* GifExtension.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +205,7 @@
 				9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */,
 				9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */,
 				9FEA846220B52CE700C6DEE1 /* AddItemView.xib in Resources */,
+				9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,12 +220,14 @@
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
+				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
 				9F8EABEF20AC74A50027EDFB /* Waiter.xcdatamodeld in Sources */,
 				9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
+				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

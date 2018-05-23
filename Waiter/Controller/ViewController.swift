@@ -39,14 +39,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        return UITableViewCell()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        return 1
     }
     
     
@@ -54,14 +57,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        return UICollectionViewCell()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        return 1
     }
 }
 

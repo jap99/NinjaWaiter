@@ -19,10 +19,27 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
+        cv1.delegate = self; cv1.dataSource = self
     }
 
  
+    // MARK: - COLLECTION VIEW
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 1
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        return UICollectionViewCell()
+    }
+    
+    // MARK: - IBACTIONS
     
     @IBAction func backButtonPressed(_ sender: Any) {
     
