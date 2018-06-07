@@ -99,7 +99,7 @@ class AuthServices {
                 
                 onComplete?(nil, user)
                 IS_USER_LOGGED_IN = true
-                print(SUCCESSFUL_LOGIN)
+                RESTAURANT_UID = nil
                 
             }
             

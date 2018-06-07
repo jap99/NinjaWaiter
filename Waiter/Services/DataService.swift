@@ -73,10 +73,10 @@ class DataService {
     func saveToAdministratorsNode(adminUID: String, restaurantUID: String) {
         
         let adminData: Dictionary<String, AnyObject> = [
-            "restaurantUID": restaurantUID as AnyObject
+            adminUID: restaurantUID as AnyObject
         ]
         
-        mainRef.child(FIR_ADMINISTRATORS).child(adminUID).setValue(adminData)
+        mainRef.child(FIR_ADMINISTRATORS).updateChildValues(adminData)
     }
     
     func updateUserProfileData(username: String?, firstName: String?, lastName: String?, email: String?, uid: String, completionHandler: @escaping Completion ) {

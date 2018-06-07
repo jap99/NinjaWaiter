@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        StaffMember.getStaffList { (staffMembers, error) in
-            
-        }
+
         
         return true
     }

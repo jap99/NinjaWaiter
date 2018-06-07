@@ -24,11 +24,24 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButton_Pressed(_ sender: Any) {
-        if emailTextField.text! != nil && emailTextField.text! != "" && passwordTextField.text! != nil && passwordTextField.text! != "" {
+       
+        if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
             
             AuthServices.instance.restaurantLogin(email: emailTextField.text!, password: passwordTextField.text!) { (errMessage, success) in
+                
                 if let error = errMessage {
                     print(error)
+                    
+                } else if let success = success {
+                    print(success)
+                    
+                    StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print(staffArray)
+                        }
+                    })
                 }
             }
         }
