@@ -18,7 +18,8 @@ var IS_USER_LOGGED_IN = false
 // NODES
 
 let FIR_RESTAURANTS = "Restaurants"
-let FIR_STAFF_MEMBER = "Staff"
+let FIR_STAFF_MEMBERS = "Staff"
+let FIR_ADMINISTRATORS = "Administrators"
 let FIR_SECTIONS = "Sections"
 let FIR_DRINKS = "Drinks"
 let FIR_PRINTERS = "Printers"

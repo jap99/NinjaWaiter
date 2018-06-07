@@ -34,7 +34,7 @@ class AuthServices {
                 let restaurantUID = DataService.instance.mainRef.child(FIR_RESTAURANTS).childByAutoId().key
                 
                 RESTAURANT_UID = restaurantUID
-                
+                DataService.instance.saveToAdministratorsNode(adminUID: user.uid, restaurantUID: RESTAURANT_UID)
                 onComplete!(nil, user)
                 
                 DataService.instance.saveRestaurant(restaurantUID: restaurantUID, adminEmail: adminEmail, restaurantName: restaurantName)

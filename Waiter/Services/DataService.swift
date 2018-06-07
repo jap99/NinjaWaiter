@@ -65,7 +65,18 @@ class DataService {
             "staffEmail": lowercasedStaffEmail as AnyObject,
             "staffType": staffMemberType as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBER).child(staffMemberUID).updateChildValues(staffMemberData)   
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)   
+    }
+    
+    // SAVE TO ADMINISTRATORS NODE
+    
+    func saveToAdministratorsNode(adminUID: String, restaurantUID: String) {
+        
+        let adminData: Dictionary<String, AnyObject> = [
+            "restaurantUID": restaurantUID as AnyObject
+        ]
+        
+        mainRef.child(FIR_ADMINISTRATORS).child(adminUID).setValue(adminData)
     }
     
     func updateUserProfileData(username: String?, firstName: String?, lastName: String?, email: String?, uid: String, completionHandler: @escaping Completion ) {
