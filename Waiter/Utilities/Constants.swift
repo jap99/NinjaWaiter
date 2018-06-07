@@ -11,12 +11,12 @@ import Foundation
 
 typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 
-
+var RESTAURANT_UID: String!
 
 var IS_USER_LOGGED_IN = false
 
 // NODES
-var FIR_RESTAURANT_UID: String!
+
 let FIR_RESTAURANTS = "Restaurants"
 let FIR_STAFF_MEMBER = "Staff"
 let FIR_SECTIONS = "Sections"

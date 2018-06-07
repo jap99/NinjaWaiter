@@ -65,8 +65,7 @@ class DataService {
             "staffEmail": lowercasedStaffEmail as AnyObject,
             "staffType": staffMemberType as AnyObject
         ]
-        
-        mainRef.child(FIR_RESTAURANTS).child(FIR_RESTAURANT_UID).child(FIR_STAFF_MEMBER).child(staffMemberUID).setValue(staffMemberData)
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBER).child(staffMemberUID).updateChildValues(staffMemberData)   
     }
     
     func updateUserProfileData(username: String?, firstName: String?, lastName: String?, email: String?, uid: String, completionHandler: @escaping Completion ) {

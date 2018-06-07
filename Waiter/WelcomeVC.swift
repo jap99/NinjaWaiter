@@ -29,7 +29,8 @@ class WelcomeVC: UIViewController {
     }
     
     @objc func loginRestaurant() {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC-ID") as! LoginVC
         self.present(viewController, animated: true, completion: nil)
     }
     

@@ -29,25 +29,29 @@ class AuthServices {
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
                 onComplete?(DEFAULT_ERROR_MESSAGE, nil)
                 
-            } else if let restaurant = result?.user {
+            } else if let user = result?.user {
                 
-                FIR_RESTAURANT_UID = restaurant.uid
-                onComplete!(nil, restaurant)
+                let restaurantUID = DataService.instance.mainRef.child(FIR_RESTAURANTS).childByAutoId().key
                 
-                DataService.instance.saveRestaurant(restaurantUID: restaurant.uid, adminEmail: adminEmail, restaurantName: restaurantName)
+                RESTAURANT_UID = restaurantUID
+                
+                onComplete!(nil, user)
+                
+                DataService.instance.saveRestaurant(restaurantUID: restaurantUID, adminEmail: adminEmail, restaurantName: restaurantName)
                      
                     Auth.auth().signIn(withEmail: adminEmail, password: password, completion: { (result, error) in
                         
                         if error != nil {
                             
                             self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                            FIR_RESTAURANT_UID = nil
+                            RESTAURANT_UID = nil
                             
-                        } else if let restaurant = result?.user {
-                            DataService.instance.saveStaffMember(staffMemberUID: restaurant.uid, staffMemberEmail: adminEmail, staffMemberType: "Admin")
-                            onComplete?(nil, restaurant)
-                            IS_USER_LOGGED_IN = true
+                        } else if let user = result?.user {
+                            DataService.instance.saveStaffMember(staffMemberUID: user.uid, staffMemberEmail: adminEmail, staffMemberType: "Admin")
+                            onComplete?(nil, user)
+                            
                             print(SUCCESSFUL_LOGIN)
+                            IS_USER_LOGGED_IN = true
                         }
                     })
             }
@@ -71,7 +75,6 @@ class AuthServices {
                     
                     DataService.instance.saveStaffMember(staffMemberUID: staffMember.uid, staffMemberEmail: staffMember.email!, staffMemberType: "Staff")
                     onComplete?(nil, staffMember)
-                    print(staffMember)
                     
                 } else {
                     onComplete?(DEFAULT_ERROR_MESSAGE, nil)
@@ -88,21 +91,15 @@ class AuthServices {
             
             if error != nil {
                 
-                if let errorCode = AuthErrorCode(rawValue: error!._code) {
-                    if errorCode == .userNotFound {
-                        
-                    } else {
-                        self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                    }
-                    
-                } else {
-                    self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                }
-            } else {
+                self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
+                RESTAURANT_UID = nil
+                
+            } else if error == nil {
                 
                 onComplete?(nil, user)
                 IS_USER_LOGGED_IN = true
-                print("LOGGED IN!~~!!!")
+                print(SUCCESSFUL_LOGIN)
+                
             }
             
         })
@@ -113,13 +110,16 @@ class AuthServices {
     }
     
     func logout() {
-        FIR_RESTAURANT_UID = nil
+        RESTAURANT_UID = nil
     }
     
     func handleFirebaseError(error: NSError, onComplete: ((_ errMsg: String?, _ data: User?) -> Void)?) {
         print(error.debugDescription)
         if let errorCode = AuthErrorCode(rawValue: error.code) {
             switch (errorCode) {
+            case .userNotFound:
+                onComplete?("User Not Found", nil)
+                break
             case .invalidEmail:
                 onComplete?("Invalid email address", nil)
                 break
