@@ -128,22 +128,7 @@ class DataService {
                 print("ERROR CREATING VIDEO IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
                 
             } else {
-       //         let location: CLLocation = CLLocation(latitude: locationLattitude, longitude: locationLongitude)
-                
-//                if let geoFire = GeoFire(firebaseRef: DataService.instance.mainRef.child("videos-locations")) {
-//
-//                    geoFire.setLocation(location, forKey: "\(autoOrderId)") { (error) in
-//                        if (error != nil) {
-//                            debugPrint("An error occured: \(error)")
-//                        } else {
-//                            print("Saved location successfully!")
-//                        }
-//                    }
-//
-//                    print("\(geoFire.description)")
-//                } else {
-//                    print("FAIL TO INITIALIZE GEOFIRE")
-//                }
+ 
             }
         }
     }

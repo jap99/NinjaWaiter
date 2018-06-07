@@ -46,6 +46,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
+
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+        //vc.staffArray = staffArray
+        self.present(vc, animated: true, completion: {
+            
+        })
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {

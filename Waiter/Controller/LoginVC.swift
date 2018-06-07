@@ -29,17 +29,20 @@ class LoginVC: UIViewController {
             
             AuthServices.instance.restaurantLogin(email: emailTextField.text!, password: passwordTextField.text!) { (errMessage, success) in
                 
-                if let error = errMessage {
-                    print(error)
+                if errMessage != nil {
                     
-                } else if let success = success {
-                    print(success)
+                } else if success != nil {
                     
                     StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
-                        if let error = error {
-                            print(error)
+                        
+                        if error != nil {
+                            
                         } else {
-                            print(staffArray)
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+                            vc.staffArray = staffArray
+                            self.present(vc, animated: true, completion: {
+                                
+                            })
                         }
                     })
                 }

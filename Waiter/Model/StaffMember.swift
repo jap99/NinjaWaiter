@@ -41,8 +41,8 @@ class StaffMember {
                 return
             }
             
-            let restaurantAddress = snapshot.value as! String
-            Database.database().reference().child(FIR_RESTAURANTS).child(resturentAddress).observeSingleEvent(of: .value, with: { (snapshot) in
+            let restaurantUID = snapshot.value as! String
+            Database.database().reference().child(FIR_RESTAURANTS).child(restaurantUID).observeSingleEvent(of: .value, with: { (snapshot) in
                 if !snapshot.exists() {
                     callback?(nil, nil)
                     return
