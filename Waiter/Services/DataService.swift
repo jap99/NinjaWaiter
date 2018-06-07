@@ -44,21 +44,29 @@ class DataService {
         return mainStorageRef.child("images")
     }
     
+    // SAVE RESTAURANT
+    
     func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
         let restaurantData: Dictionary<String, AnyObject> = [
-        "restaurantName": restaurantName as AnyObject,
-        "adminEmail": adminEmail as AnyObject
+            "restaurantName": restaurantName as AnyObject,
+            "adminEmail": adminEmail as AnyObject
         ]
         
-        mainRef.child(FIR_RESTAURANTS).child(restaurantUID).setValue(restaurantData)
+        mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).setValue(restaurantData)
     }
     
-    func saveWaiter(uid: String, email: String) {
+    // SAVE STAFF MEMBER
+    
+    func saveStaffMember(staffMemberUID: String, staffMemberEmail: String, staffMemberType: String) {
         
-        let lowercasedEmail = email.lowercased()
+        let lowercasedStaffEmail = staffMemberEmail.lowercased()
         
-        let profile: Dictionary<String, AnyObject> = ["email": email as AnyObject]
-      //  mainRef.child(FIR_CHILD_USERS).child(uid).child("profile").setValue(profile)
+        let staffMemberData: Dictionary<String, AnyObject> = [
+            "staffEmail": lowercasedStaffEmail as AnyObject,
+            "staffType": staffMemberType as AnyObject
+        ]
+        
+        mainRef.child(FIR_RESTAURANTS).child(FIR_RESTAURANT_UID).child(FIR_STAFF_MEMBER).child(staffMemberUID).setValue(staffMemberData)
     }
     
     func updateUserProfileData(username: String?, firstName: String?, lastName: String?, email: String?, uid: String, completionHandler: @escaping Completion ) {

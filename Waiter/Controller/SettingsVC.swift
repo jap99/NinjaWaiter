@@ -68,10 +68,15 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func createButton_Pressed(_ sender: Any) {
         
         if emailTextField.text! != nil && emailTextField.text! != "" && passwordTextField.text! != nil && passwordTextField.text! != "" {
+            
             AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
+                
                 if let error = error {
+                  
                     print(error.debugDescription)
+                
                 } else {
+                   
                     print(user!)
                     self.addStaffView.isHidden = true
                 }
