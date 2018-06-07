@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nvF-1t-SNi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -262,17 +262,17 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="451" height="87.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOa-Pt-812">
-                                                            <rect key="frame" x="15" y="15" width="46" height="36"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOa-Pt-812">
+                                                            <rect key="frame" x="15" y="11" width="46" height="36"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="46" id="eLW-BN-d3I"/>
                                                                 <constraint firstAttribute="height" constant="36" id="nzw-mF-4vB"/>
                                                             </constraints>
-                                                            <state key="normal" title="X"/>
+                                                            <state key="normal" image="PlusSign"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19.90" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T44-Ug-1T5">
-                                                            <rect key="frame" x="266" y="23" width="43" height="21"/>
+                                                            <rect key="frame" x="379" y="19" width="43" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="j8A-uL-BH6"/>
                                                             </constraints>
@@ -281,7 +281,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grilled Dory with Pepper &amp; Olive" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tr-BO-8XW">
-                                                            <rect key="frame" x="76" y="24" width="171" height="40"/>
+                                                            <rect key="frame" x="76" y="20" width="284" height="48"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -927,6 +927,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MZ0-GF-t80" customClass="CreateRestaurantView" customModule="Waiter" customModuleProvider="target">
+                                <rect key="frame" x="394" y="219" width="579" height="586"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.20000000000000001" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -950,6 +954,8 @@
                             <constraint firstItem="nwK-W7-YhV" firstAttribute="centerX" secondItem="JLQ-mO-UTd" secondAttribute="centerX" id="qxX-Sn-oYy"/>
                             <constraint firstItem="2qN-IO-Ead" firstAttribute="bottom" secondItem="JLQ-mO-UTd" secondAttribute="bottom" constant="-20" id="sof-La-kMS"/>
                             <constraint firstItem="6tC-BU-f77" firstAttribute="trailing" secondItem="R9a-1o-bqi" secondAttribute="trailing" constant="-26" id="tqq-cb-SRK"/>
+                            <constraint firstItem="MZ0-GF-t80" firstAttribute="centerX" secondItem="ObP-Vt-BCr" secondAttribute="centerX" id="vaq-JX-TXm"/>
+                            <constraint firstItem="MZ0-GF-t80" firstAttribute="centerY" secondItem="ObP-Vt-BCr" secondAttribute="centerY" id="vyo-4H-fox"/>
                             <constraint firstItem="F5L-lw-3WH" firstAttribute="centerY" secondItem="6tC-BU-f77" secondAttribute="centerY" id="x05-J1-ZLI"/>
                             <constraint firstItem="R9a-1o-bqi" firstAttribute="centerX" secondItem="ObP-Vt-BCr" secondAttribute="centerX" constant="250" id="zBs-zl-Zgw"/>
                         </constraints>
@@ -971,6 +977,7 @@
     <resources>
         <image name="Group 2" width="448" height="508"/>
         <image name="Path 4" width="32" height="13"/>
+        <image name="PlusSign" width="19" height="20"/>
         <image name="RectangleSetup" width="391" height="98"/>
         <image name="iPad" width="327" height="178"/>
         <image name="oceanrestaurant-interior" width="448" height="508"/>

@@ -57,6 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let cell 
         return UICollectionViewCell()
     }
     

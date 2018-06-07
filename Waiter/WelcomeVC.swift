@@ -10,21 +10,21 @@ import UIKit
 
 class WelcomeVC: UIViewController {
 
-    
     @IBOutlet weak var createNewRestaurantLabel: UILabel!
     @IBOutlet weak var createNewRestaurantButton: UIButton!
-    
     @IBOutlet weak var loginRestaurantLabel: UILabel!
     @IBOutlet weak var loginRestaurantButton: UIButton!
     
+    let newRestaurantPopup: CreateRestaurantView = CreateRestaurantView.loadViewFromNib()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupGestureRecognizers()
     }
 
     @objc func createNewRestaurant() {
-        
+        newRestaurantPopup.center = view.center
+        self.view.addSubview(newRestaurantPopup)
     }
     
     @objc func loginRestaurant() {

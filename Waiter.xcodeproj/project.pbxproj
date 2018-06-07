@@ -26,6 +26,8 @@
 		9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */; };
 		9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847220B544B700C6DEE1 /* ordered-animation.gif */; };
 		9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */; };
+		9FEA847720B630AB00C6DEE1 /* CreateRestaurantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */; };
+		9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessVC.swift; sourceTree = "<group>"; };
 		9FEA847220B544B700C6DEE1 /* ordered-animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ordered-animation.gif"; sourceTree = "<group>"; };
 		9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateRestaurantView.xib; sourceTree = "<group>"; };
+		9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRestaurantView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				9FEA845720B519C800C6DEE1 /* FoodCell.swift */,
 				9FEA846320B52CF800C6DEE1 /* AddItemView.swift */,
 				9FEA846120B52CE700C6DEE1 /* AddItemView.xib */,
+				9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */,
+				9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */,
 				9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */,
 				9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */,
+				9FEA847720B630AB00C6DEE1 /* CreateRestaurantView.xib in Resources */,
 				9FEA846220B52CE700C6DEE1 /* AddItemView.xib in Resources */,
 				9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */,
 			);
@@ -233,6 +240,7 @@
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
+				9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
