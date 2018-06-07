@@ -24,7 +24,14 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButton_Pressed(_ sender: Any) {
-        
+        if emailTextField.text! != nil && emailTextField.text! != "" && passwordTextField.text! != nil && passwordTextField.text! != "" {
+            
+            AuthServices.instance.restaurantLogin(email: emailTextField.text!, password: passwordTextField.text!) { (errMessage, success) in
+                if let error = errMessage {
+                    print(error)
+                }
+            }
+        }
     }
     
 }

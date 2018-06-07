@@ -15,11 +15,12 @@ class WelcomeVC: UIViewController {
     @IBOutlet weak var loginRestaurantLabel: UILabel!
     @IBOutlet weak var loginRestaurantButton: UIButton!
     
-    let newRestaurantPopup: CreateRestaurantView = CreateRestaurantView.loadViewFromNib()
+    var newRestaurantPopup: CreateRestaurantView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGestureRecognizers()
+        self.newRestaurantPopup = CreateRestaurantView.loadViewFromNib(viewController: self)
     }
 
     @objc func createNewRestaurant() {
@@ -28,7 +29,8 @@ class WelcomeVC: UIViewController {
     }
     
     @objc func loginRestaurant() {
-        
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        self.present(viewController, animated: true, completion: nil)
     }
     
     func setupGestureRecognizers() {

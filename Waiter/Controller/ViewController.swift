@@ -22,8 +22,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var totalLabel: UILabel!
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +29,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cv2.delegate = self; cv2.dataSource = self
         tv.delegate = self; tv.dataSource = self
     }
-
-   
 
     
     // MARK: - TABLE VIEW
@@ -57,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell 
+        
         return UICollectionViewCell()
     }
     
