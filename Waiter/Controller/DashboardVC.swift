@@ -20,6 +20,7 @@ class DashboardVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          print(staffArray)
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewDidAppear(_ animated: Bool) {

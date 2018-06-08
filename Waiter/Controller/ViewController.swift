@@ -21,13 +21,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var sixPercentGstLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
+    @IBOutlet weak var exitButton: UIButton!
     var sectionsArray: [String]!
     var foodsArray: [String]!
     var checkoutDict: [String: AnyObject]!
     
     override func viewDidLoad() {
     super.viewDidLoad()
-        
+        hideKeyboardWhenTappedAround()
         cv1.delegate = self; cv1.dataSource = self
         cv1.register(SectionCell.self, forCellWithReuseIdentifier: "SectionCell")
         cv2.delegate = self; cv2.dataSource = self
@@ -36,7 +37,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
     }
             
+    @IBAction func goback(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+        self.present(vc, animated: true, completion: {
             
+        })
+    }
+    @IBAction func confirmOrder(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContinueOrderVC-ID") as! ContinueOrderVC
+        self.present(vc, animated: true, completion: {
+            
+        })
+    }
+    
         // MARK: - TABLE VIEW
             
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

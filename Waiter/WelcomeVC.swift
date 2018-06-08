@@ -12,6 +12,7 @@ class WelcomeVC: UIViewController {
 
     @IBOutlet weak var createNewRestaurantLabel: UILabel!
     @IBOutlet weak var createNewRestaurantButton: UIButton!
+    @IBOutlet weak var createNewRestButton2: UIButton!
     @IBOutlet weak var loginRestaurantLabel: UILabel!
     @IBOutlet weak var loginRestaurantButton: UIButton!
     
@@ -37,12 +38,15 @@ class WelcomeVC: UIViewController {
     func setupGestureRecognizers() {
         createNewRestaurantLabel.isUserInteractionEnabled = true
         loginRestaurantLabel.isUserInteractionEnabled = true
+        createNewRestButton2.isUserInteractionEnabled = true
         
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(self.createNewRestaurant))
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(self.loginRestaurant))
+        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(self.createNewRestaurant))
         
         createNewRestaurantLabel.addGestureRecognizer(tapGesture1)
         createNewRestaurantButton.addGestureRecognizer(tapGesture1)
+        createNewRestButton2.addGestureRecognizer(tapGesture3)
         
         loginRestaurantLabel.addGestureRecognizer(tapGesture2)
         loginRestaurantButton.addGestureRecognizer(tapGesture2)

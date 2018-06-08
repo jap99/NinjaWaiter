@@ -27,7 +27,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hideKeyboardWhenTappedAround()
         
     }
 
@@ -54,6 +54,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         })
     }
     
+    @IBAction func cancelAddNewStaff(_ sender: Any) {
+        addStaffView.isHidden = true
+    }
     @IBAction func settingsButton_Pressed(_ sender: Any) {
     }
     
@@ -62,12 +65,14 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) {
         addStaffView.isHidden = false
+        cancelButton.isHidden = false 
         self.view.bringSubview(toFront: addStaffView)
     }
     
     // FOR THE 'CREATE STAFF' POPUP VIEW
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
+        cancelButton.isHidden = true
     }
     
     

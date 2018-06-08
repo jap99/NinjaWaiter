@@ -27,15 +27,6 @@ class DataService {
         return Database.database().reference()
     }
     
-//    var usersRef: DatabaseReference {
-//        //return mainRef.child(FIR_CHILD_USERS).child((Auth.auth().currentUser?.uid)!).child("profile")
-//    }
-    
-//    var imagesRef: DatabaseReference {
-//        //return mainRef.child(FIR_CHILD_IMAGES)
-//        var one: Int = 1
-//    }
-    
     var mainStorageRef: StorageReference {
         return Storage.storage().reference(forURL: storageKey)
     }
