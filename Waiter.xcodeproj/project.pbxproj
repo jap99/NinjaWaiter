@@ -30,6 +30,7 @@
 		9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */; };
 		9FEA847720B630AB00C6DEE1 /* CreateRestaurantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */; };
 		9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */; };
+		9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEDA94620CBD55A00201775 /* PrinterVC.swift */; };
 		9FEEFDC620C8E3A900119A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FEEFDC520C8E3A900119A35 /* GoogleService-Info.plist */; };
 		9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDC720C8E51600119A35 /* Constants.swift */; };
 		9FEEFDCA20C8E5F100119A35 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDC920C8E5F000119A35 /* DataService.swift */; };
@@ -66,6 +67,7 @@
 		9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateRestaurantView.xib; sourceTree = "<group>"; };
 		9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRestaurantView.swift; sourceTree = "<group>"; };
+		9FEDA94620CBD55A00201775 /* PrinterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterVC.swift; sourceTree = "<group>"; };
 		9FEEFDC520C8E3A900119A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FEEFDC720C8E51600119A35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9FEEFDC920C8E5F000119A35 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */,
 				9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */,
 				9FEEFDD020C8FB3500119A35 /* SettingsVC.swift */,
+				9FEDA94620CBD55A00201775 /* PrinterVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
+				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
 				9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */,
 			);
