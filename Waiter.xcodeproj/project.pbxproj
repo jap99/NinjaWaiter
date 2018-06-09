@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		42EF28DD0DFD4B5810B75439 /* Pods_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F5E9CAF18424A74655CFD8 /* Pods_Waiter.framework */; };
+		9F67871220CC4CCD008E209F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* CategoryCell.swift */; };
+		9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871320CC4CEB008E209F /* MenuManagementVC.swift */; };
 		9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE620AC74A50027EDFB /* AppDelegate.swift */; };
 		9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE820AC74A50027EDFB /* ViewController.swift */; };
 		9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABEA20AC74A50027EDFB /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileReference section */
 		3162EDBDB3A6CEDEAB9670D3 /* Pods-Waiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waiter/Pods-Waiter.release.xcconfig"; sourceTree = "<group>"; };
 		67F5E9CAF18424A74655CFD8 /* Pods_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F67871120CC4CCD008E209F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		9F67871320CC4CEB008E209F /* MenuManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManagementVC.swift; sourceTree = "<group>"; };
 		9F8EABE320AC74A50027EDFB /* Waiter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waiter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8EABE620AC74A50027EDFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F8EABE820AC74A50027EDFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 				9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */,
 				9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */,
 				9FEEFDCE20C8FB1300119A35 /* WaiterCell.swift */,
+				9F67871120CC4CCD008E209F /* CategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */,
 				9FEEFDD020C8FB3500119A35 /* SettingsVC.swift */,
 				9FEDA94620CBD55A00201775 /* PrinterVC.swift */,
+				9F67871320CC4CEB008E209F /* MenuManagementVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
+				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
@@ -344,6 +351,7 @@
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */,
 				9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */,
+				9F67871220CC4CCD008E209F /* CategoryCell.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
