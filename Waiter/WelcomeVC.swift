@@ -15,6 +15,7 @@ class WelcomeVC: UIViewController {
     @IBOutlet weak var createNewRestButton2: UIButton!
     @IBOutlet weak var loginRestaurantLabel: UILabel!
     @IBOutlet weak var loginRestaurantButton: UIButton!
+    @IBOutlet weak var loginRestaurantButton2: UIButton!
     
     var newRestaurantPopup: CreateRestaurantView!
     
@@ -37,19 +38,21 @@ class WelcomeVC: UIViewController {
     
     func setupGestureRecognizers() {
         createNewRestaurantLabel.isUserInteractionEnabled = true
-        loginRestaurantLabel.isUserInteractionEnabled = true
         createNewRestButton2.isUserInteractionEnabled = true
+        loginRestaurantLabel.isUserInteractionEnabled = true
+        loginRestaurantButton2.isUserInteractionEnabled = true
+        loginRestaurantButton.isUserInteractionEnabled = true
         
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(self.createNewRestaurant))
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(self.loginRestaurant))
-        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(self.createNewRestaurant))
         
         createNewRestaurantLabel.addGestureRecognizer(tapGesture1)
         createNewRestaurantButton.addGestureRecognizer(tapGesture1)
-        createNewRestButton2.addGestureRecognizer(tapGesture3)
+        createNewRestButton2.addGestureRecognizer(tapGesture1)
         
         loginRestaurantLabel.addGestureRecognizer(tapGesture2)
         loginRestaurantButton.addGestureRecognizer(tapGesture2)
+        loginRestaurantButton2.addGestureRecognizer(tapGesture2)
     }
     
 }

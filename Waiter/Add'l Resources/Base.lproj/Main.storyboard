@@ -974,6 +974,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F51-kW-Dwg">
                                 <rect key="frame" x="275" y="606" width="314" height="80"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FA-af-29Z">
+                                <rect key="frame" x="778" y="603" width="309" height="79"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.20000000000000001" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -994,6 +998,7 @@
                             <constraint firstItem="x3B-EO-M69" firstAttribute="centerX" secondItem="2qN-IO-Ead" secondAttribute="centerX" id="afo-Qx-rk2"/>
                             <constraint firstItem="6tC-BU-f77" firstAttribute="top" secondItem="mbK-xj-PFe" secondAttribute="bottom" constant="34" id="c9A-56-Mvp"/>
                             <constraint firstItem="2qN-IO-Ead" firstAttribute="trailing" secondItem="JLQ-mO-UTd" secondAttribute="trailing" constant="-56" id="dEd-gi-2bH"/>
+                            <constraint firstItem="4FA-af-29Z" firstAttribute="width" secondItem="6tC-BU-f77" secondAttribute="width" id="evb-LX-E1d"/>
                             <constraint firstItem="F5L-lw-3WH" firstAttribute="centerX" secondItem="6tC-BU-f77" secondAttribute="centerX" id="f7R-lf-U0U"/>
                             <constraint firstItem="F51-kW-Dwg" firstAttribute="leading" secondItem="2qN-IO-Ead" secondAttribute="leading" id="fJ6-K6-8ea"/>
                             <constraint firstItem="mbK-xj-PFe" firstAttribute="centerX" secondItem="R9a-1o-bqi" secondAttribute="centerX" id="fYZ-3n-jnE"/>
@@ -1002,10 +1007,13 @@
                             <constraint firstItem="nwK-W7-YhV" firstAttribute="centerX" secondItem="JLQ-mO-UTd" secondAttribute="centerX" id="qxX-Sn-oYy"/>
                             <constraint firstItem="2qN-IO-Ead" firstAttribute="bottom" secondItem="JLQ-mO-UTd" secondAttribute="bottom" constant="-20" id="sof-La-kMS"/>
                             <constraint firstItem="6tC-BU-f77" firstAttribute="trailing" secondItem="R9a-1o-bqi" secondAttribute="trailing" constant="-26" id="tqq-cb-SRK"/>
+                            <constraint firstItem="4FA-af-29Z" firstAttribute="centerY" secondItem="6tC-BU-f77" secondAttribute="centerY" id="u7s-o7-Msl"/>
                             <constraint firstItem="F51-kW-Dwg" firstAttribute="height" secondItem="2qN-IO-Ead" secondAttribute="height" id="v5h-Ap-mYb"/>
                             <constraint firstItem="MZ0-GF-t80" firstAttribute="centerX" secondItem="ObP-Vt-BCr" secondAttribute="centerX" id="vaq-JX-TXm"/>
                             <constraint firstItem="MZ0-GF-t80" firstAttribute="centerY" secondItem="ObP-Vt-BCr" secondAttribute="centerY" id="vyo-4H-fox"/>
                             <constraint firstItem="F5L-lw-3WH" firstAttribute="centerY" secondItem="6tC-BU-f77" secondAttribute="centerY" id="x05-J1-ZLI"/>
+                            <constraint firstItem="6tC-BU-f77" firstAttribute="leading" secondItem="4FA-af-29Z" secondAttribute="trailing" constant="-309.5" id="yIJ-yY-vtg"/>
+                            <constraint firstItem="4FA-af-29Z" firstAttribute="height" secondItem="6tC-BU-f77" secondAttribute="height" id="yrx-bJ-FgD"/>
                             <constraint firstItem="R9a-1o-bqi" firstAttribute="centerX" secondItem="ObP-Vt-BCr" secondAttribute="centerX" constant="250" id="zBs-zl-Zgw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="57a-99-qo2"/>
@@ -1015,6 +1023,7 @@
                         <outlet property="createNewRestaurantButton" destination="2qN-IO-Ead" id="uA9-Lf-62N"/>
                         <outlet property="createNewRestaurantLabel" destination="x3B-EO-M69" id="NWx-2h-bYO"/>
                         <outlet property="loginRestaurantButton" destination="6tC-BU-f77" id="990-J6-X6A"/>
+                        <outlet property="loginRestaurantButton2" destination="4FA-af-29Z" id="1WR-Ag-iXa"/>
                         <outlet property="loginRestaurantLabel" destination="F5L-lw-3WH" id="99r-wh-t7Q"/>
                     </connections>
                 </viewController>
