@@ -538,12 +538,18 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yp1-k2-SXo">
-                                <rect key="frame" x="51" y="65" width="60" height="60"/>
+                                <rect key="frame" x="51" y="40" width="100" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="2WS-rG-dJi"/>
-                                    <constraint firstAttribute="width" constant="60" id="xcU-gZ-fN1"/>
+                                    <constraint firstAttribute="height" constant="80" id="2WS-rG-dJi"/>
+                                    <constraint firstAttribute="width" constant="100" id="xcU-gZ-fN1"/>
                                 </constraints>
-                                <state key="normal" title="Back"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButton_Pressed:" destination="BMm-si-VeN" eventType="touchUpInside" id="3rz-ms-uNO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.20000000000000001" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -556,7 +562,7 @@
                             <constraint firstItem="fKD-HF-rbc" firstAttribute="leading" secondItem="Kzv-A0-ec2" secondAttribute="leading" id="HUu-Tk-itp"/>
                             <constraint firstItem="Kzv-A0-ec2" firstAttribute="trailing" secondItem="jWp-ap-oAu" secondAttribute="trailing" id="Rbu-4I-bXW"/>
                             <constraint firstItem="XxF-JZ-R7l" firstAttribute="trailing" secondItem="fKD-HF-rbc" secondAttribute="trailing" id="flB-EZ-wzh"/>
-                            <constraint firstItem="yp1-k2-SXo" firstAttribute="top" secondItem="Lu2-Ee-RQB" secondAttribute="top" constant="45" id="j0o-k5-b0w"/>
+                            <constraint firstItem="yp1-k2-SXo" firstAttribute="top" secondItem="Lu2-Ee-RQB" secondAttribute="top" constant="20" id="j0o-k5-b0w"/>
                             <constraint firstItem="fKD-HF-rbc" firstAttribute="trailing" secondItem="Kzv-A0-ec2" secondAttribute="trailing" id="ogs-yC-CSi"/>
                             <constraint firstItem="fKD-HF-rbc" firstAttribute="height" secondItem="Kzv-A0-ec2" secondAttribute="height" id="pWD-FS-PTh"/>
                             <constraint firstItem="kO4-p8-mko" firstAttribute="top" secondItem="fKD-HF-rbc" secondAttribute="bottom" constant="31" id="sqM-eV-Owi"/>
@@ -962,7 +968,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For Existing Users" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbK-xj-PFe">
-                                <rect key="frame" x="850" y="542" width="166.5" height="27"/>
+                                <rect key="frame" x="850" y="533" width="166.5" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -976,7 +982,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FA-af-29Z">
                                 <rect key="frame" x="778" y="603" width="309" height="79"/>
-                                <state key="normal" title="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.20000000000000001" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -996,7 +1001,7 @@
                             <constraint firstItem="JLQ-mO-UTd" firstAttribute="top" secondItem="73t-qg-nY2" secondAttribute="bottom" constant="110.5" id="VHC-aR-tn2"/>
                             <constraint firstItem="JLQ-mO-UTd" firstAttribute="centerX" secondItem="ObP-Vt-BCr" secondAttribute="centerX" constant="-250" id="W4E-lD-zks"/>
                             <constraint firstItem="x3B-EO-M69" firstAttribute="centerX" secondItem="2qN-IO-Ead" secondAttribute="centerX" id="afo-Qx-rk2"/>
-                            <constraint firstItem="6tC-BU-f77" firstAttribute="top" secondItem="mbK-xj-PFe" secondAttribute="bottom" constant="34" id="c9A-56-Mvp"/>
+                            <constraint firstItem="6tC-BU-f77" firstAttribute="top" secondItem="mbK-xj-PFe" secondAttribute="bottom" constant="43" id="c9A-56-Mvp"/>
                             <constraint firstItem="2qN-IO-Ead" firstAttribute="trailing" secondItem="JLQ-mO-UTd" secondAttribute="trailing" constant="-56" id="dEd-gi-2bH"/>
                             <constraint firstItem="4FA-af-29Z" firstAttribute="width" secondItem="6tC-BU-f77" secondAttribute="width" id="evb-LX-E1d"/>
                             <constraint firstItem="F5L-lw-3WH" firstAttribute="centerX" secondItem="6tC-BU-f77" secondAttribute="centerX" id="f7R-lf-U0U"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
 
@@ -19,8 +20,47 @@ class LoginVC: UIViewController {
     }
 
   
+    @IBAction func backButton_Pressed(_ sender: Any) {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as? WelcomeVC {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func resetPasswordButton_Pressed(_ sender: Any) {
-        
+        if self.emailTextField.text == "" {
+            let alertController = UIAlertController(title: "Password Reset Error", message: "Please enter an email address and then try to reset your password again.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            Auth.auth().sendPasswordReset(withEmail: self.emailTextField.text!, completion: { (error) in
+                
+                var title = ""
+                var message = ""
+                
+                if error != nil {
+                    title = "Password Reset Error"
+                    message = (error?.localizedDescription)!
+                } else {
+                    title = "Success!"
+                    message = "Password reset email sent."
+                    self.emailTextField.text = ""
+                }
+                
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel) {
+                    UIAlertAction in
+                    DispatchQueue.main.async {
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as! WelcomeVC
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                }
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            })
+        }
     }
     
     @IBAction func loginButton_Pressed(_ sender: Any) {
