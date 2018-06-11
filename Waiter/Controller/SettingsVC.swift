@@ -27,6 +27,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tv.delegate = self
+        tv.dataSource = self
         hideKeyboardWhenTappedAround()
         
     }
@@ -47,11 +49,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func backButton_Pressed(_ sender: Any) {
 
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
-        //vc.staffArray = staffArray
-        self.present(vc, animated: true, completion: {
-            
-        })
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelAddNewStaff(_ sender: Any) {
@@ -105,6 +103,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let waiterCell =  cell as? WaiterCell {
+            waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

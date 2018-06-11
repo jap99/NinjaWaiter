@@ -50,6 +50,9 @@ class DashboardVC: UIViewController {
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        if let staff = staffArray {
+            vc.staffArray = staff
+        }
         self.present(vc, animated: true) { }
     }
     
