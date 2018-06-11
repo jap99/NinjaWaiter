@@ -15,11 +15,15 @@ class OrderSuccessVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hideKeyboardWhenTappedAround()
         gifView.loadGif(name: "ordered-animation")
     }
 
    
     
-
+    @IBAction func goback(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        self.present(vc, animated: true) { }
+    }
+    
 }

@@ -27,7 +27,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hideKeyboardWhenTappedAround()
         
     }
 
@@ -46,8 +46,17 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
+
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+        //vc.staffArray = staffArray
+        self.present(vc, animated: true, completion: {
+            
+        })
     }
     
+    @IBAction func cancelAddNewStaff(_ sender: Any) {
+        addStaffView.isHidden = true
+    }
     @IBAction func settingsButton_Pressed(_ sender: Any) {
     }
     
@@ -56,18 +65,20 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) {
         addStaffView.isHidden = false
+        cancelButton.isHidden = false 
         self.view.bringSubview(toFront: addStaffView)
     }
     
     // FOR THE 'CREATE STAFF' POPUP VIEW
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
+        cancelButton.isHidden = true
     }
     
     
     @IBAction func createButton_Pressed(_ sender: Any) {
         
-        if emailTextField.text! != nil && emailTextField.text! != "" && passwordTextField.text! != nil && passwordTextField.text! != "" {
+        if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
             
             AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
                 

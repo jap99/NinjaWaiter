@@ -35,6 +35,8 @@ class AuthServices {
                 
                 RESTAURANT_UID = restaurantUID
                 
+                DataService.instance.saveToAdministratorsNode(adminUID: user.uid, restaurantUID: RESTAURANT_UID)
+                DataService.instance.saveToStaffNode(staffMemberUID: user.uid, restaurantUID: RESTAURANT_UID)
                 onComplete!(nil, user)
                 
                 DataService.instance.saveRestaurant(restaurantUID: restaurantUID, adminEmail: adminEmail, restaurantName: restaurantName)
@@ -87,25 +89,30 @@ class AuthServices {
     
     func restaurantLogin(email: String, password: String, onComplete: Completion?) {
         
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (result, error) in
             
             if error != nil {
                 
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
                 RESTAURANT_UID = nil
                 
-            } else if error == nil {
+            } else if let result = result {
                 
-                onComplete?(nil, user)
-                IS_USER_LOGGED_IN = true
-                print(SUCCESSFUL_LOGIN)
-                
+                //guard let uid = result.user.uid else { return }
+                DataService.instance.getRestaurantUID(userUID: result.user.uid, completion: { (restID) in
+                    RESTAURANT_UID = restID
+                    IS_USER_LOGGED_IN = true
+                    onComplete?(nil, result.user)
+                })
             }
-            
         })
     }
     
     func staffMemberLogin() {
+        
+    }
+    
+    func checkIfUserIsAnAdmin() {
         
     }
     

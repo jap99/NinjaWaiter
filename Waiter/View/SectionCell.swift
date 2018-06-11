@@ -18,7 +18,9 @@ class SectionCell: UICollectionViewCell {
         
     }
     
-    
+    func configureCell() {
+        
+    }
     
     
     
