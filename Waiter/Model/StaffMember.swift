@@ -22,6 +22,7 @@ class StaffMember {
         self.type = type
     }
     
+    // only called to populate the table view in SettingsVC
     static func getStaffList(array: [[String: Any]]) -> [StaffMember] {
         var staffMembers: [StaffMember] = []
         for a in array {

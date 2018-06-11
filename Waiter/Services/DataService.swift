@@ -40,10 +40,11 @@ class DataService {
     func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
         let restaurantData: Dictionary<String, AnyObject> = [
             "restaurantName": restaurantName as AnyObject,
-            "adminEmail": adminEmail as AnyObject
+            "adminEmail": adminEmail as AnyObject   
         ]
         
         mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).setValue(restaurantData)
+      
     }
     
     // SAVE STAFF MEMBER
@@ -56,8 +57,22 @@ class DataService {
             "staffEmail": lowercasedStaffEmail as AnyObject,
             "staffType": staffMemberType as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)   
+       
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)
+        //saveToStaffNode(staffMemberUID: staffMemberUID, restaurantUID: RESTAURANT_UID)
     }
+    
+    // SAVE USER TO MAIN STAFF NODE
+    
+    func saveToStaffNode(staffMemberUID: String, restaurantUID: String) {
+   
+        let data: Dictionary<String, String> = [
+            staffMemberUID: restaurantUID
+        ]
+        
+        mainRef.child(FIR_STAFF_MEMBERS).updateChildValues(data)
+    }
+    
     
     // SAVE TO ADMINISTRATORS NODE
     
@@ -69,6 +84,26 @@ class DataService {
         
         mainRef.child(FIR_ADMINISTRATORS).updateChildValues(adminData)
     }
+    
+    func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String) -> ())) {
+        
+        //mainRef.child(FIR_STAFF_MEMBERS).child(userUID).observe(<#T##eventType: DataEventType##DataEventType#>, with: <#T##(DataSnapshot) -> Void#>)
+        mainRef.child(FIR_STAFF_MEMBERS).child(userUID).observe(.value) { (snapshot) in
+            
+            if snapshot.exists() {
+                if let restID = snapshot.value as? String {
+                    completion(restID)
+                }
+            }
+        }
+        // first get user's UID
+        // then compare it in the Staff node & find out which restaurant user is part of
+        
+    }
+    
+    
+    
+    
     
     func updateUserProfileData(username: String?, firstName: String?, lastName: String?, email: String?, uid: String, completionHandler: @escaping Completion ) {
         
