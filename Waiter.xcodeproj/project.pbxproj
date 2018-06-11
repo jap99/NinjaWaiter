@@ -122,7 +122,6 @@
 				9FEA846B20B537CF00C6DEE1 /* Controller */,
 				9FEA846C20B53A6A00C6DEE1 /* Add'l Resources */,
 				9F8EABF520AC74A60027EDFB /* Info.plist */,
-				9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -156,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				9F8EABE820AC74A50027EDFB /* ViewController.swift */,
+				9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */,
 				9FEA845D20B5278B00C6DEE1 /* DashboardVC.swift */,
 				9FEA845F20B5280300C6DEE1 /* LoginVC.swift */,
 				9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */,

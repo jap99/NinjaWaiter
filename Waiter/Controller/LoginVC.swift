@@ -9,17 +9,27 @@
 import UIKit
 import FirebaseAuth
 
+class LoginModel {
+    var username = ""
+    var password = ""
+}
+
 class LoginVC: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var loginModel = LoginModel()
     override func viewDidLoad() {
         super.viewDidLoad()
  
     }
-
-  
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+   
     @IBAction func backButton_Pressed(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as? WelcomeVC {
             self.present(vc, animated: true, completion: nil)
@@ -65,29 +75,50 @@ class LoginVC: UIViewController {
     
     @IBAction func loginButton_Pressed(_ sender: Any) {
        
+        
         if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
+            loginModel.username = emailTextField.text!
+            loginModel.password = passwordTextField.text!
+            loginAPI()
             
-            AuthServices.instance.restaurantLogin(email: emailTextField.text!, password: passwordTextField.text!) { (errMessage, success) in
+        }
+    }
+    
+}
+
+//MARK: api calling
+extension LoginVC {
+    
+    func loginAPI() {
+        if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
+            
+            AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, success) in
                 
                 if errMessage != nil {
                     
                 } else if success != nil {
-                    
-                    StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
-                        
-                        if error != nil {
-                            
-                        } else {
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
-                            vc.staffArray = staffArray
-                            self.present(vc, animated: true, completion: {
-                                
-                            })
-                        }
-                    })
+                    _userDefault.set(self.loginModel.username, forKey:kUsername)
+                    _userDefault.set(self.loginModel.password, forKey:kPassword)
+                    _userDefault.synchronize()
+                    self.staffListAPI()
                 }
             }
         }
     }
     
+    func staffListAPI() {
+        StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
+            
+            if error != nil {
+                
+            } else {
+
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+                vc.staffArray = staffArray
+                self.present(vc, animated: true, completion: {
+                    
+                })
+            }
+        })
+    }
 }

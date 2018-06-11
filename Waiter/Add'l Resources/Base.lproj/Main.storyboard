@@ -1484,12 +1484,18 @@
                                                     <action selector="addCategoryButton_Pressed:" destination="bJa-cx-TvK" eventType="touchUpInside" id="PSg-DC-uxE"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fue-fI-NCi">
+                                                <rect key="frame" x="660" y="1922" width="46" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ifL-ya-0L4" firstAttribute="top" secondItem="Qcz-BL-SRF" secondAttribute="top" constant="104" id="4la-cs-lSM"/>
                                             <constraint firstItem="fg8-DE-3iX" firstAttribute="leading" secondItem="yJr-zf-Cc6" secondAttribute="leading" id="Hmu-O0-HQH"/>
+                                            <constraint firstAttribute="bottom" secondItem="fue-fI-NCi" secondAttribute="bottom" constant="48" id="Ia7-kf-grw"/>
                                             <constraint firstItem="ifL-ya-0L4" firstAttribute="leading" secondItem="Qcz-BL-SRF" secondAttribute="leading" constant="127" id="Iuj-Jn-GW9"/>
+                                            <constraint firstItem="fue-fI-NCi" firstAttribute="centerX" secondItem="Qcz-BL-SRF" secondAttribute="centerX" id="X5q-u0-dVs"/>
                                             <constraint firstAttribute="height" constant="2000" id="h9j-6H-nuc"/>
                                             <constraint firstItem="yJr-zf-Cc6" firstAttribute="top" secondItem="ifL-ya-0L4" secondAttribute="bottom" constant="154" id="nri-ds-FMC"/>
                                             <constraint firstItem="fg8-DE-3iX" firstAttribute="top" secondItem="yJr-zf-Cc6" secondAttribute="bottom" constant="16" id="q5j-Tz-Hfa"/>

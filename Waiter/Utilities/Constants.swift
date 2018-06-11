@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 
+
+//Global user default
+let _userDefault = UserDefaults.standard
+let kUsername = "kUsername"
+let kPassword = "kPassword"
 typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 
 var RESTAURANT_UID: String!

@@ -18,12 +18,28 @@ class WelcomeVC: UIViewController {
     @IBOutlet weak var loginRestaurantButton2: UIButton!
     
     var newRestaurantPopup: CreateRestaurantView!
-    
+    var loginModel = LoginModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initModel()
         setupGestureRecognizers()
         self.newRestaurantPopup = CreateRestaurantView.loadViewFromNib(viewController: self)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loginAPI()
+    }
+    
+    func initModel() {
+        if let username = _userDefault.value(forKey: kUsername) as? String {
+            loginModel.username = username
+        }
+        if let password = _userDefault.value(forKey: kPassword) as? String {
+            loginModel.password = password
+        }
+    }
+
 
     @objc func createNewRestaurant() {
         newRestaurantPopup.center = view.center
@@ -56,3 +72,41 @@ class WelcomeVC: UIViewController {
     }
     
 }
+
+//MARK: api calling
+extension WelcomeVC {
+    
+    func loginAPI() {
+        if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
+            
+            AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, success) in
+                
+                if errMessage != nil {
+                    
+                } else if success != nil {
+                    _userDefault.set(self.loginModel.username, forKey:kUsername)
+                    _userDefault.set(self.loginModel.password, forKey:kPassword)
+                    _userDefault.synchronize()
+                    self.staffListAPI()
+                }
+            }
+        }
+    }
+    
+    func staffListAPI() {
+        StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
+            
+            if error != nil {
+                
+            } else {
+                
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+                vc.staffArray = staffArray
+                self.present(vc, animated: true, completion: {
+                    
+                })
+            }
+        })
+    }
+}
+
