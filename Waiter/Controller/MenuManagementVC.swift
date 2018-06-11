@@ -29,22 +29,29 @@ class MenuManagementVC: UIViewController {
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
     }
     
     @IBAction func addCategoryButton_Pressed(_ sender: Any) {
+          addCategoryView.isHidden = false
     }
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
+        foodTextField.text = ""
+        addCategoryView.isHidden = true
     }
 
     @IBAction func addButton_Pressed(_ sender: Any) {
     }
     
-
+ 
 }

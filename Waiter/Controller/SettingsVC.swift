@@ -55,12 +55,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func cancelAddNewStaff(_ sender: Any) {
+        emailTextField.text = ""
+        passwordTextField.text = ""
         addStaffView.isHidden = true
     }
     @IBAction func settingsButton_Pressed(_ sender: Any) {
     }
     
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuManagementVC-ID") as! MenuManagementVC
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) {
