@@ -48,17 +48,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
-
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelAddNewStaff(_ sender: Any) {
         addStaffView.isHidden = true
     }
-    @IBAction func settingsButton_Pressed(_ sender: Any) {
-    }
     
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuManagementVC-ID") as! MenuManagementVC
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) {
