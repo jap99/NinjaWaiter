@@ -8,7 +8,10 @@
 
 import UIKit
 
-class MenuManagementVC: UIViewController {
+class MenuManagementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    
+    
 
     @IBOutlet weak var menuManagementButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -77,5 +80,27 @@ class MenuManagementVC: UIViewController {
     @IBAction func addButton_Pressed(_ sender: Any) {
     }
     
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell:UITableViewCell = UITableViewCell()
+        if(self.categoryTV == tableView)
+        {
+            // create a new cell if needed or reuse an old one
+            cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL) as! UITableViewCell
+            
+            // set the text from the data model
+            cell.textLabel?.text = "cell lable categoryTV"
+        }else{
+            // create a new cell if needed or reuse an old one
+            cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL) as! UITableViewCell
+            
+            // set the text from the data model
+            cell.textLabel?.text = "cell lable itemTV"
+        }
+        
+        return cell
+    }
 }
