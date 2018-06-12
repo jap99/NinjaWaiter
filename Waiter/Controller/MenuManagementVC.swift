@@ -61,15 +61,18 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func setupVC() {
         categoryTV.delegate = self; categoryTV.dataSource = self
         self.mainScrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
-//        itemTV.delegate = self; itemTV.dataSource = self
     }
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func settingsButton_Pressed(_ sender: Any) {
-    }
+//    @IBAction func settingsButton_Pressed(_ sender: Any) {
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+//        present(vc, animated: true, completion: nil)
+//    }
     
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
     }
@@ -87,6 +90,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     @IBAction func addButton_Pressed(_ sender: Any) {
+        //add category button
     }
     
     // MARK: - TABLE VIEW

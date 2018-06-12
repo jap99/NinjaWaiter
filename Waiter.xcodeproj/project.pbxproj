@@ -45,6 +45,12 @@
 		9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDCE20C8FB1300119A35 /* WaiterCell.swift */; };
 		9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDD020C8FB3500119A35 /* SettingsVC.swift */; };
 		9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDD220C8FD8F00119A35 /* StaffMember.swift */; };
+		9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF418F920CFF7A000EB56B6 /* DefaultsKeys.swift */; };
+		9FF4190020CFF7A100EB56B6 /* Defaults+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF418FA20CFF7A000EB56B6 /* Defaults+Subscripts.swift */; };
+		9FF4190120CFF7A100EB56B6 /* DefaultsSerializable+BuiltIns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF418FB20CFF7A000EB56B6 /* DefaultsSerializable+BuiltIns.swift */; };
+		9FF4190220CFF7A100EB56B6 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF418FC20CFF7A000EB56B6 /* OptionalType.swift */; };
+		9FF4190320CFF7A100EB56B6 /* DefaultsSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF418FD20CFF7A000EB56B6 /* DefaultsSerializable.swift */; };
+		9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF418FE20CFF7A000EB56B6 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +95,12 @@
 		9FEEFDCE20C8FB1300119A35 /* WaiterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterCell.swift; sourceTree = "<group>"; };
 		9FEEFDD020C8FB3500119A35 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9FEEFDD220C8FD8F00119A35 /* StaffMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffMember.swift; sourceTree = "<group>"; };
+		9FF418F920CFF7A000EB56B6 /* DefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeys.swift; sourceTree = "<group>"; };
+		9FF418FA20CFF7A000EB56B6 /* Defaults+Subscripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Defaults+Subscripts.swift"; sourceTree = "<group>"; };
+		9FF418FB20CFF7A000EB56B6 /* DefaultsSerializable+BuiltIns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultsSerializable+BuiltIns.swift"; sourceTree = "<group>"; };
+		9FF418FC20CFF7A000EB56B6 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalType.swift; sourceTree = "<group>"; };
+		9FF418FD20CFF7A000EB56B6 /* DefaultsSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsSerializable.swift; sourceTree = "<group>"; };
+		9FF418FE20CFF7A000EB56B6 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		D073D3F3DE095CE468379ABA /* Pods-Waiter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waiter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Waiter/Pods-Waiter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +235,7 @@
 		9FEA846D20B53FF300C6DEE1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				9FF418F720CFF7A000EB56B6 /* Library */,
 				9FEA846E20B5400700C6DEE1 /* GifExtension.swift */,
 				9FEEFDC720C8E51600119A35 /* Constants.swift */,
 				9FCBC0F520CA6495000BF369 /* Extensions.swift */,
@@ -237,6 +250,27 @@
 				9FEEFDCC20C8EABF00119A35 /* AuthServices.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9FF418F720CFF7A000EB56B6 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				9FF418F820CFF7A000EB56B6 /* SwiftyUserDefaults */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		9FF418F820CFF7A000EB56B6 /* SwiftyUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				9FF418F920CFF7A000EB56B6 /* DefaultsKeys.swift */,
+				9FF418FA20CFF7A000EB56B6 /* Defaults+Subscripts.swift */,
+				9FF418FB20CFF7A000EB56B6 /* DefaultsSerializable+BuiltIns.swift */,
+				9FF418FC20CFF7A000EB56B6 /* OptionalType.swift */,
+				9FF418FD20CFF7A000EB56B6 /* DefaultsSerializable.swift */,
+				9FF418FE20CFF7A000EB56B6 /* Defaults.swift */,
+			);
+			path = SwiftyUserDefaults;
 			sourceTree = "<group>";
 		};
 		CAC09030DF52C0E91D6558F2 /* Pods */ = {
@@ -384,12 +418,14 @@
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
+				9FF4190120CFF7A100EB56B6 /* DefaultsSerializable+BuiltIns.swift in Sources */,
 				9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
 				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
+				9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */,
 				9FEEFDCA20C8E5F100119A35 /* DataService.swift in Sources */,
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */,
@@ -397,13 +433,17 @@
 				9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
+				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,
+				9FF4190320CFF7A100EB56B6 /* DefaultsSerializable.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
+				9FF4190220CFF7A100EB56B6 /* OptionalType.swift in Sources */,
 				9F8EABEF20AC74A50027EDFB /* Waiter.xcdatamodeld in Sources */,
 				9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */,
 				9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
+				9FF4190020CFF7A100EB56B6 /* Defaults+Subscripts.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,

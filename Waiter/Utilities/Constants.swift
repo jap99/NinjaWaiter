@@ -15,6 +15,8 @@ import UIKit
 let _userDefault = UserDefaults.standard
 let kUsername = "kUsername"
 let kPassword = "kPassword"
+let _appDel = UIApplication.shared.delegate as! AppDelegate
+
 typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 
 var RESTAURANT_UID: String!

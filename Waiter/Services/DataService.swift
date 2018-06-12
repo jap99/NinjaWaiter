@@ -83,14 +83,14 @@ class DataService {
     
     // GET RESTAURANT UID
     
-    func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String) -> ())) {
+    func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String?) -> ())) {
         
         mainRef.child(FIR_STAFF_MEMBERS).child(userUID).observe(.value) { (snapshot) in
             
-            if snapshot.exists() {
-                if let restID = snapshot.value as? String {
-                    completion(restID)
-                }
+            if snapshot.exists(),let restID = snapshot.value as? String {
+                completion(restID)
+            } else {
+                completion(nil)
             }
         }
         // To get user's UID to compare it in Staff node to identify which restaurant user's with

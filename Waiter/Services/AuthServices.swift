@@ -69,6 +69,7 @@ class AuthServices {
             if error != nil {
                 
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
+                
                 onComplete?(DEFAULT_ERROR_MESSAGE, nil)
                 
             } else if error == nil {
@@ -76,6 +77,7 @@ class AuthServices {
                 if let staffMember = result?.user {
                     
                     DataService.instance.saveStaffMember(staffMemberUID: staffMember.uid, staffMemberEmail: staffMember.email!, staffMemberType: "Staff")
+                    
                     onComplete?(nil, staffMember)
                     
                 } else {
@@ -91,14 +93,16 @@ class AuthServices {
         
         Auth.auth().signIn(withEmail: email, password: password, completion: { (result, error) in
             
-            if error != nil {
+            if error != nil {                         // error
                 
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
                 RESTAURANT_UID = nil
                 
-            } else if let result = result {
                 
-                //guard let uid = result.user.uid else { return }
+            } else if let result = result {          // no error
+                
+                // get restaurant uid
+                
                 DataService.instance.getRestaurantUID(userUID: result.user.uid, completion: { (restID) in
                     RESTAURANT_UID = restID
                     IS_USER_LOGGED_IN = true

@@ -83,20 +83,25 @@ class LoginVC: UIViewController {
             
         }
     }
-    
-}
 
-//MARK: api calling
-extension LoginVC {
+    //MARK: - API CALLING
     
     func loginAPI() {
         if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
             
-            AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, success) in
+            AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
                 
                 if errMessage != nil {
                     
-                } else if success != nil {
+                } else if let currentUser = user as? User {
+                    _currentUser = AppUser(user:currentUser)
+                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
+                        if let _ = obj.value as? String {
+                            _currentUser.type = .adamin
+                        } else {
+                            _currentUser.type = .staff
+                        }
+                    })
                     _userDefault.set(self.loginModel.username, forKey:kUsername)
                     _userDefault.set(self.loginModel.password, forKey:kPassword)
                     _userDefault.synchronize()
@@ -104,6 +109,25 @@ extension LoginVC {
                 }
             }
         }
+    }
+    
+    func login() {
+        
+        // In LoginVC, first take the user's email address & password
+        // and send it the Firebase's Auth API
+        // and get back a response.
+        
+        // Take response.user.uid &
+        // take it to Firebase database
+        // and query it in the main STAFF node
+      
+        // The key value in the STAFF node is the userUID; value is RESTAURANT_UID
+        
+        // Log user in with Firebase Auth API
+        
+        //
+        
+        
     }
     
     func staffListAPI() {

@@ -30,6 +30,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tv.delegate = self
         tv.dataSource = self
         hideKeyboardWhenTappedAround()
+        settingsButton.isUserInteractionEnabled = false 
         
     }
 
@@ -70,8 +71,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
         cancelButton.isHidden = true
-    }
-    
+    } 
     
     @IBAction func createButton_Pressed(_ sender: Any) {
         
