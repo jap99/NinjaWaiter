@@ -43,8 +43,8 @@ let APP_NAME = "Waiter App"
 
 // CELLS
 let WAITER_CELL = "waiterCell"
-let ADD_CATEGORY_CELL:String = "AddCategoryCell"
-let ADD_ITEM_CELL:String = "AddItemCell"
+let ADD_CATEGORY_CELL = "AddCategoryCell"
+let ADD_ITEM_CELL = "AddItemCell"
 
 // PATHS
 let databaseKey = "https://waiter-d1f30.firebaseio.com/"

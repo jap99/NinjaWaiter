@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryCell: UITableViewCell {
+class AddCategoryCell: UITableViewCell {
 
     @IBOutlet weak var categoryNumber: UIButton!
     @IBOutlet weak var categoryTitle: UILabel!
