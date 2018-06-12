@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="517" height="373"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Option 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1w-yM-LBW">
+                    <rect key="frame" x="144.5" y="30" width="228.5" height="50"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="42"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Item option and pricing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="4fc-oe-Fbb">
+                    <rect key="frame" x="144" y="84" width="229" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Option Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vAw-gK-qb5">
+                    <rect key="frame" x="20" y="141" width="477" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="yuS-vp-sXx"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Option Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TW4-SW-6nf">
+                    <rect key="frame" x="20" y="227" width="477" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="oTc-Sc-Jhb"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVw-jg-9p8">
+                    <rect key="frame" x="20" y="313" width="110" height="48"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6A-EF-Yon">
+                    <rect key="frame" x="387" y="313" width="110" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="LuC-4B-oex"/>
+                        <constraint firstAttribute="height" constant="48" id="NoU-tA-geP"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vAw-gK-qb5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="2TY-z3-YwZ"/>
+                <constraint firstItem="B6A-EF-Yon" firstAttribute="trailing" secondItem="TW4-SW-6nf" secondAttribute="trailing" id="2Xs-uO-ac1"/>
+                <constraint firstItem="QVw-jg-9p8" firstAttribute="leading" secondItem="TW4-SW-6nf" secondAttribute="leading" id="4a1-bj-iNy"/>
+                <constraint firstItem="4fc-oe-Fbb" firstAttribute="leading" secondItem="S1w-yM-LBW" secondAttribute="leading" id="7bO-52-xNz"/>
+                <constraint firstItem="TW4-SW-6nf" firstAttribute="height" secondItem="vAw-gK-qb5" secondAttribute="height" id="7eU-jx-iWf"/>
+                <constraint firstItem="vAw-gK-qb5" firstAttribute="top" secondItem="4fc-oe-Fbb" secondAttribute="bottom" constant="35.5" id="7mZ-E9-ieu"/>
+                <constraint firstItem="4fc-oe-Fbb" firstAttribute="trailing" secondItem="S1w-yM-LBW" secondAttribute="trailing" id="AIf-h9-USZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vAw-gK-qb5" secondAttribute="trailing" constant="20" id="CgP-Zw-PuU"/>
+                <constraint firstItem="TW4-SW-6nf" firstAttribute="leading" secondItem="vAw-gK-qb5" secondAttribute="leading" id="OS1-NP-hab"/>
+                <constraint firstItem="TW4-SW-6nf" firstAttribute="top" secondItem="vAw-gK-qb5" secondAttribute="bottom" constant="26" id="Rbq-U5-hde"/>
+                <constraint firstItem="QVw-jg-9p8" firstAttribute="top" secondItem="B6A-EF-Yon" secondAttribute="top" id="TqP-Oy-tdT"/>
+                <constraint firstItem="QVw-jg-9p8" firstAttribute="height" secondItem="B6A-EF-Yon" secondAttribute="height" id="VZ9-kq-3U8"/>
+                <constraint firstItem="S1w-yM-LBW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WVz-9w-PpQ"/>
+                <constraint firstItem="B6A-EF-Yon" firstAttribute="top" secondItem="TW4-SW-6nf" secondAttribute="bottom" constant="26" id="dOw-xs-6PB"/>
+                <constraint firstItem="S1w-yM-LBW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="eGb-p1-GUW"/>
+                <constraint firstItem="TW4-SW-6nf" firstAttribute="trailing" secondItem="vAw-gK-qb5" secondAttribute="trailing" id="kqq-SZ-qoO"/>
+                <constraint firstItem="QVw-jg-9p8" firstAttribute="width" secondItem="B6A-EF-Yon" secondAttribute="width" id="loG-ca-wH8"/>
+                <constraint firstItem="4fc-oe-Fbb" firstAttribute="top" secondItem="S1w-yM-LBW" secondAttribute="bottom" constant="4" id="tdv-ft-HAC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="199.5" y="-56.5"/>
+        </view>
+    </objects>
+</document>

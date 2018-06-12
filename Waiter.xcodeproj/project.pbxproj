@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		42EF28DD0DFD4B5810B75439 /* Pods_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F5E9CAF18424A74655CFD8 /* Pods_Waiter.framework */; };
-		9F67871220CC4CCD008E209F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* CategoryCell.swift */; };
+		9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825920CFCD1700CFE4B1 /* CreateItem.xib */; };
+		9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */; };
+		9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */; };
+		9F16826020CFD47B00CFE4B1 /* ItemOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */; };
+		9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16826220CFD66600CFE4B1 /* AddItemCell.swift */; };
+		9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* AddCategoryCell.swift */; };
 		9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871320CC4CEB008E209F /* MenuManagementVC.swift */; };
 		9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE620AC74A50027EDFB /* AppDelegate.swift */; };
 		9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE820AC74A50027EDFB /* ViewController.swift */; };
@@ -45,7 +50,12 @@
 /* Begin PBXFileReference section */
 		3162EDBDB3A6CEDEAB9670D3 /* Pods-Waiter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waiter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waiter/Pods-Waiter.release.xcconfig"; sourceTree = "<group>"; };
 		67F5E9CAF18424A74655CFD8 /* Pods_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F67871120CC4CCD008E209F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		9F16825920CFCD1700CFE4B1 /* CreateItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateItem.xib; sourceTree = "<group>"; };
+		9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItem.swift; sourceTree = "<group>"; };
+		9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionsView.swift; sourceTree = "<group>"; };
+		9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemOptionsView.xib; sourceTree = "<group>"; };
+		9F16826220CFD66600CFE4B1 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
+		9F67871120CC4CCD008E209F /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		9F67871320CC4CEB008E209F /* MenuManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManagementVC.swift; sourceTree = "<group>"; };
 		9F8EABE320AC74A50027EDFB /* Waiter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waiter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8EABE620AC74A50027EDFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +104,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F16825720CFCCBF00CFE4B1 /* AddItem-FromMainVC */ = {
+			isa = PBXGroup;
+			children = (
+				9FEA846320B52CF800C6DEE1 /* AddItemView.swift */,
+				9FEA846120B52CE700C6DEE1 /* AddItemView.xib */,
+			);
+			path = "AddItem-FromMainVC";
+			sourceTree = "<group>";
+		};
+		9F16825820CFCCD800CFE4B1 /* AddItem-FromMenuMgmtVC  */ = {
+			isa = PBXGroup;
+			children = (
+				9F16825920CFCD1700CFE4B1 /* CreateItem.xib */,
+				9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */,
+				9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */,
+				9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */,
+				9F16826220CFD66600CFE4B1 /* AddItemCell.swift */,
+			);
+			path = "AddItem-FromMenuMgmtVC ";
+			sourceTree = "<group>";
+		};
+		9F16826120CFD5D600CFE4B1 /* AddCategory-FromMenuMgmtVC  */ = {
+			isa = PBXGroup;
+			children = (
+				9F67871120CC4CCD008E209F /* AddCategoryCell.swift */,
+			);
+			path = "AddCategory-FromMenuMgmtVC ";
+			sourceTree = "<group>";
+		};
 		9F8EABDA20AC74A50027EDFB = {
 			isa = PBXGroup;
 			children = (
@@ -129,16 +168,16 @@
 		9FEA846920B537C600C6DEE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F16826120CFD5D600CFE4B1 /* AddCategory-FromMenuMgmtVC  */,
+				9F16825820CFCCD800CFE4B1 /* AddItem-FromMenuMgmtVC  */,
+				9F16825720CFCCBF00CFE4B1 /* AddItem-FromMainVC */,
 				9FEA845920B519DA00C6DEE1 /* SectionCell.swift */,
 				9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */,
 				9FEA846720B537A300C6DEE1 /* TableCell.swift */,
 				9FEA845720B519C800C6DEE1 /* FoodCell.swift */,
-				9FEA846320B52CF800C6DEE1 /* AddItemView.swift */,
-				9FEA846120B52CE700C6DEE1 /* AddItemView.xib */,
 				9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */,
 				9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */,
 				9FEEFDCE20C8FB1300119A35 /* WaiterCell.swift */,
-				9F67871120CC4CCD008E209F /* CategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,7 +318,9 @@
 			files = (
 				9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */,
 				9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */,
+				9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */,
 				9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */,
+				9F16826020CFD47B00CFE4B1 /* ItemOptionsView.xib in Resources */,
 				9FEA847720B630AB00C6DEE1 /* CreateRestaurantView.xib in Resources */,
 				9FEA846220B52CE700C6DEE1 /* AddItemView.xib in Resources */,
 				9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */,
@@ -341,7 +382,9 @@
 			files = (
 				9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */,
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
+				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
+				9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
 				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
@@ -351,13 +394,14 @@
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */,
 				9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */,
-				9F67871220CC4CCD008E209F /* CategoryCell.swift in Sources */,
+				9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
 				9F8EABEF20AC74A50027EDFB /* Waiter.xcdatamodeld in Sources */,
 				9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */,
+				9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
