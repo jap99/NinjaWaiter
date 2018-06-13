@@ -106,6 +106,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let waiterCell =  cell as? WaiterCell {
+            waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
         }
     }
@@ -114,6 +115,17 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return staffArray.count
     }
     
-    
+    @IBAction func btnDeteleAccountTap(sender:UIButton) {
+        print("Delete account tap\(sender.tag)")
+        let restNode = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS)
+        restNode.child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.staffArray.remove(at: sender.tag)
+                    self.tv.reloadData()
+                }
+            }
+        }
+    }
     
 }

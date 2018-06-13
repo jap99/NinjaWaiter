@@ -1267,6 +1267,7 @@
                                                     </constraints>
                                                     <state key="normal" title="Delete Account"/>
                                                     <connections>
+                                                        <action selector="btnDeteleAccountTapWithSender:" destination="ST4-oh-l6n" eventType="touchUpInside" id="Bj2-1m-Z3s"/>
                                                         <action selector="deleteAccountButton_Pressed:" destination="hub-sm-EWm" eventType="touchUpInside" id="nn7-JZ-5ck"/>
                                                     </connections>
                                                 </button>
