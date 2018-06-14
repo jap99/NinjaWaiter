@@ -96,39 +96,65 @@ class DataService {
         // To get user's UID to compare it in Staff node to identify which restaurant user's with
     }
     
-    // ADD CATEGORY - TO RESTAURANT NODE
+    // SAVE CATEGORY - TO RESTAURANT NODE
     
-    func addCategory() {
+    func saveCategory(categoryName: String, completion :@escaping (Bool) -> ()) {
         
-    }
-    
-    func addItemToCategory() {
-        
-    }
-    
-    func sendProductImage(senderUID: String, imageURL: URL, thumbnail: String, timeStamp: String, title: String, description: String) {
-        
-        let autoOrderId = mainRef.child("").childByAutoId().key
+        let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Categories").child(FIR_CATEGORY).childByAutoId().key
         
         let pr: Dictionary<String, AnyObject> = [
-            "mediaURL": imageURL.absoluteString as AnyObject,
-            "thumbnail": thumbnail as AnyObject,
-            "timeStamp": timeStamp as AnyObject,
-            "userID": senderUID as AnyObject,
-            "title": title as AnyObject,
-            "description": description as AnyObject,
+            "categoryName": categoryName as AnyObject,
+            "categoryID": categoryUID as AnyObject
         ]
-        
-        mainRef.child("").child(autoOrderId).setValue(pr) { (err, ref) in
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_CATEGORY).child(FIR_MENU).child(categoryUID).setValue(pr) { (err, ref) in
             
             if err != nil {
                 let error = err
                 print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
-                
+                completion(false)
             } else {
- 
+                completion(true)
+                
             }
         }
+    }
+    
+    func getCategories() {
+        let refFireMenu = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_CATEGORY).child(FIR_MENU)
+//        let recentPostsQuery = (ref?.child("posts").queryLimited(toFirst: 100))!
+        refFireMenu.observe(.value) { (snapshot) in
+             if let childs = snapshot.children, childs.count > 0 {
+            var  childObj = []
+            for child in childs {
+                print(child)
+            }
+        }
+        // To get user's UID to compare it in Staff node to identify which restaurant user's with
+    }
+    
+    func saveItemInCategory() {
+        
+    }
+    
+    func saveItemImage(itemUID: String, imageURL: URL) {
+        
+//        let autoOrderId = mainRef.child("").childByAutoId().key
+//        
+//        let pr: Dictionary<String, AnyObject> = [
+//            "imageURL": imageURL.absoluteString as AnyObject
+//            
+//        ]
+//        
+//        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child().child(autoOrderId).setValue(pr) { (err, ref) in
+//            
+//            if err != nil {
+//                let error = err
+//                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
+//                
+//            } else {
+// 
+//            }
+//        }
     }
     
     

@@ -49,11 +49,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemFiveButton: UIButton!
     @IBOutlet weak var itemSixButton: UIButton!
     
+//    let categories = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        DataService.instance.getCategories()
         setupVC()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.addCategoryView.isHidden = true
     }
 
     // MARK: - SETUP
@@ -78,19 +83,45 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func addCategoryButton_Pressed(_ sender: UIButton) {
-        if(sender.tag == 0)
-        {
-            self.addCategoryView.isHidden = false
-        }else{
-            self.addCategoryView.isHidden = true
-        }
+        
+        self.addCategoryView.isHidden = false
+//       if(sender.tag==0)
+//       {
+//        self.view
+//        sender.tag = 1
+//       }else{
+//        sender.tag = 0
+//        }
     }
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
     }
 
     @IBAction func addButton_Pressed(_ sender: Any) {
-        //add category button
+        
+        if let categoryName = foodTextField.text, categoryName.count > 0 {
+            
+            DataService.instance.saveCategory(categoryName: categoryName) { (success) in
+                if success {
+                     self.addCategoryView.isHidden = true
+                }
+            }
+            
+        } else {
+            // Handle Error Case
+            let alertController = UIAlertController(title: "Error", message: "There was an issue uploading your category. Please try again later.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+                self.addCategoryView.isHidden = true
+            })
+            
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+
+    func alertController(in title: String){
+        
     }
     
     // MARK: - TABLE VIEW
@@ -104,16 +135,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
-//        let cell:AddCategoryCell = self.categoryTV.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
 //
-//        return cell
-        
         if self.categoryTV == tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
 
-            // set the text from the data model
-//            cell.textLabel?.text = "cell lable categoryTV"
+            
             return cell
         }else{
             var cell:UITableViewCell = UITableViewCell()

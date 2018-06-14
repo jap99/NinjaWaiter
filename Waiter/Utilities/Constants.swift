@@ -21,6 +21,7 @@ typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 
 var RESTAURANT_UID: String!
 
+
 var IS_USER_LOGGED_IN = false
 
 // NODES
@@ -32,6 +33,8 @@ let FIR_SECTIONS = "Sections"
 let FIR_DRINKS = "Drinks"
 let FIR_PRINTERS = "Printers"
 let FIR_SETTINGS = "Settings"
+let FIR_CATEGORY = "Category"
+let FIR_MENU = "Menu"
 
 // PRINT STATEMENTS
 let SUCCESSFUL_LOGIN = "SUCCESSFULLY LOGGED INTO FIREBASE"

@@ -139,7 +139,7 @@ class LoginVC: UIViewController {
 
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
                 vc.staffArray = staffArray
-                self.present(vc, animated: true, completion: {
+                self.present(vc, animated: false, completion: {
                     
                 })
             }
