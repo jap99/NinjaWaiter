@@ -28,7 +28,7 @@ class StaffMember {
         for (index,a) in array.enumerated() {
             if let email = a["staffEmail"] as? String,
                 let type = a["staffType"] as? String {
-                var staff = StaffMember(email: email, type: type)
+                let staff = StaffMember(email: email, type: type)
                 staff.uid = arrKey[index]
                 staffMembers.append(staff)
             }

@@ -9,12 +9,12 @@
 import Foundation
 
 
-//class Item {
-//    
-//    let uid: String
-//    let title: String
-//    let price: String
-//    let imageURL: String?
-//    
-//    
-//}
+class Item {
+    
+    var uid: String!
+    var title: String!
+    var price: String!
+    var imageURL: String?
+    
+    
+}

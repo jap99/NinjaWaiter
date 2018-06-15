@@ -102,11 +102,37 @@ class DataService {
         
         let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Categories").child(FIR_CATEGORY).childByAutoId().key
         
-        let pr: Dictionary<String, AnyObject> = [
-            "categoryName": categoryName as AnyObject,
-            "categoryID": categoryUID as AnyObject
+        let category: Dictionary<String, AnyObject> = [
+            categoryUID: categoryName as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_CATEGORY).child(FIR_MENU).child(categoryUID).setValue(pr) { (err, ref) in
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).setValue(category) { (error, ref) in
+            
+            if let error = error {
+                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                completion(true)
+                
+            }
+        }
+    }
+    
+    func getCategories() {
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
+            print(snapshot)
+        }
+        
+    }
+    
+    func saveItem(inCategory categoryUID: String, itemName: String, itemPrice: String, itemImageURL: String?, completion: @escaping (Bool) -> ()) {
+        
+        let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).child(FIR_ITEMS).childByAutoId().key
+        
+        let item: Dictionary<String, AnyObject> = [
+            "itemName": itemName as AnyObject,
+            "itemPrice": itemPrice as AnyObject // HOW ABOUT itemImageURL
+        ]
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).child(FIR_ITEMS).child(itemUID).setValue(item) { (err, ref) in
             
             if err != nil {
                 let error = err
@@ -119,44 +145,45 @@ class DataService {
         }
     }
     
-    func getCategories() {
-        let refFireMenu = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_CATEGORY).child(FIR_MENU)
-//        let recentPostsQuery = (ref?.child("posts").queryLimited(toFirst: 100))!
-        refFireMenu.observe(.value) { (snapshot) in
-             if let childs = snapshot.children, childs.count > 0 {
-            var  childObj = []
-            for child in childs {
-                print(child)
-            }
+    func snapshotTaken(_ snapshotData: Data!) {
+        
+        if let snap = snapshotData {
+            
+            imagesStorageRef.child("\(NSUUID().uuidString).jpg").putData(snap, metadata: nil, completion: { meta, error in
+                
+                if let error = error {
+                    print("Error uploading snapshot: \(error.localizedDescription)")
+                } else {
+                    //_ = meta!.downloadURL()
+                    
+                }
+            })
         }
-        // To get user's UID to compare it in Staff node to identify which restaurant user's with
     }
+
     
-    func saveItemInCategory() {
-        
-    }
-    
-    func saveItemImage(itemUID: String, imageURL: URL) {
-        
+    //
+//    func saveItemImage(itemUID: String, imageURL: URL) {
+//
 //        let autoOrderId = mainRef.child("").childByAutoId().key
-//        
+//
 //        let pr: Dictionary<String, AnyObject> = [
 //            "imageURL": imageURL.absoluteString as AnyObject
-//            
+//
 //        ]
-//        
+//
 //        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child().child(autoOrderId).setValue(pr) { (err, ref) in
-//            
+//
 //            if err != nil {
 //                let error = err
 //                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
-//                
+//
 //            } else {
-// 
+//
 //            }
 //        }
-    }
-    
+//    }
+//
     
     
     

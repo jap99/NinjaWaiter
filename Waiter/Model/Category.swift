@@ -7,70 +7,65 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseDatabase
 
 
-class StaffMember {
+class Category {
     
-    var email: String!
-    var type: String!
-    var uid = ""
+    var uid: String!
+    var name: String!
+    
     init() {}
     
-    init(email: String, type: String) {
-        self.email = email
-        self.type = type
+    init(uid: String, name: String) {
+        self.uid = uid
+        self.name = name
     }
     
     // only called to populate the table view in SettingsVC
-    static func getStaffList(array: [[String: Any]],arrKey:[String]) -> [StaffMember] {
-        var staffMembers: [StaffMember] = []
+    static func getCategoryList(array: [[String: Any]], arrKey:[String]) -> [Category] {
+        var categories: [Category] = []
         for (index,a) in array.enumerated() {
-            if let email = a["staffEmail"] as? String,
-                let type = a["staffType"] as? String {
-                var staff = StaffMember(email: email, type: type)
-                staff.uid = arrKey[index]
-                staffMembers.append(staff)
+            if let uid = a["uid"] as? String,
+                let name = a["name"] as? String {
+                let category = Category(uid: uid, name: name)
+                categories.append(category)
             }
         }
-        return staffMembers
+        return categories
     }
     
-    static func getStaffList(adminEmail: String, callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
-        _ = Database.database().reference().child(FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+    static func getCategoryList(callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
+        _ = Database.database().reference().child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).observeSingleEvent(of: .value) { (snapshot) in
             
             if !snapshot.exists() {
                 callback?(nil, nil)
                 return
             }
             
-            let restaurantUID = snapshot.value as! String
-            Database.database().reference().child(FIR_RESTAURANTS).child(restaurantUID).observeSingleEvent(of: .value, with: { (snapshot) in
-                if !snapshot.exists() {
-                    callback?(nil, nil)
-                    return
-                }
-                var isSuccess = false
-                if let dictionary = snapshot.value as? [String: Any] {
-                    if let staffDictionary = dictionary["Staff"] as? [String: Any] {
-                        let keyList = staffDictionary.keys
-                        var allkeys = [String]()
-                        var staffDictionaryArray: [[String: Any]] = []
-                        for key in keyList {
-                            if let staffMemberDictionary = staffDictionary[key] as? [String: Any] {
-                                allkeys.append(key)
-                                staffDictionaryArray.append(staffMemberDictionary)
-                            }
+            var isSuccess = false
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let staffDictionary = dictionary["Staff"] as? [String: Any] {
+                    let keyList = staffDictionary.keys
+                    var allkeys = [String]()
+                    var staffDictionaryArray: [[String: Any]] = []
+                    for key in keyList {
+                        if let staffMemberDictionary = staffDictionary[key] as? [String: Any] {
+                            allkeys.append(key)
+                            staffDictionaryArray.append(staffMemberDictionary)
                         }
-                        let staffMembers = StaffMember.getStaffList(array:staffDictionaryArray , arrKey:allkeys)
-                        //let staffMembers = StaffMember.getStaffList(array: staffDictionaryArray,keyList)
-                        isSuccess = true
-                        callback?(staffMembers, nil)
                     }
+                    let staffMembers = StaffMember.getStaffList(array:staffDictionaryArray , arrKey:allkeys)
+                    //let staffMembers = StaffMember.getStaffList(array: staffDictionaryArray,keyList)
+                    isSuccess = true
+                    callback?(staffMembers, nil)
                 }
-                if(!isSuccess) {
-                    callback?(nil, nil)
-                }
-            })
+            }
+            if(!isSuccess) {
+                callback?(nil, nil)
+            }
         }
     }
+    
 }
