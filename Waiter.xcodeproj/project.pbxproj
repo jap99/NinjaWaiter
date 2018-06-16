@@ -10,6 +10,7 @@
 		42EF28DD0DFD4B5810B75439 /* Pods_Waiter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F5E9CAF18424A74655CFD8 /* Pods_Waiter.framework */; };
 		9F0228CC20D25C4F00550DAD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0228CB20D25C4F00550DAD /* Category.swift */; };
 		9F0228CE20D25C7600550DAD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0228CD20D25C7600550DAD /* Item.swift */; };
+		9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F05893C20D4B842001C176D /* RoundedButton.swift */; };
 		9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825920CFCD1700CFE4B1 /* CreateItem.xib */; };
 		9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */; };
 		9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */; };
@@ -60,6 +61,7 @@
 		67F5E9CAF18424A74655CFD8 /* Pods_Waiter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Waiter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0228CB20D25C4F00550DAD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9F0228CD20D25C7600550DAD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		9F05893C20D4B842001C176D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		9F16825920CFCD1700CFE4B1 /* CreateItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateItem.xib; sourceTree = "<group>"; };
 		9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItem.swift; sourceTree = "<group>"; };
 		9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionsView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */,
 				9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */,
 				9FEEFDCE20C8FB1300119A35 /* WaiterCell.swift */,
+				9F05893C20D4B842001C176D /* RoundedButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,
 				9FF4190320CFF7A100EB56B6 /* DefaultsSerializable.swift in Sources */,
+				9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
 				9FF4190220CFF7A100EB56B6 /* OptionalType.swift in Sources */,

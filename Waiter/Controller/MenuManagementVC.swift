@@ -70,7 +70,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
         present(vc, animated: true, completion: nil)
     }
     
