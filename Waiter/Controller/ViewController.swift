@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  Waiter
@@ -30,13 +31,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         cv1.delegate = self; cv1.dataSource = self
-        cv1.register(SectionCell.self, forCellWithReuseIdentifier: "SectionCell")
+//        cv1.register(SectionCell.self, forCellWithReuseIdentifier: "SectionCell")
         cv2.delegate = self; cv2.dataSource = self
         cv2.register(FoodCell.self, forCellWithReuseIdentifier: "FoodCell")
         tv.delegate = self; tv.dataSource = self
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
     }
-            
+    
     @IBAction func goback(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
         self.present(vc, animated: true, completion: {
@@ -73,40 +74,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-            var cell: UICollectionViewCell?
-            
             if collectionView == self.cv1 {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
+               let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
                 
-                //cell.foodNameLabel.text = "Food 1"
-                
-            }
+                cellCV1.foodNameLabel.setTitle(String(Singleton.sharedInstance.categoriesItems[indexPath.row].name), for: .normal)
+                return cellCV1
             
-            if collectionView == self.cv2 {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+            } else if collectionView == self.cv2 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
                 
+                return cell
+            } else {
+                var cell: UICollectionViewCell?
+                return cell!
             }
-            
-            return cell!
         }
-            
+    
         func numberOfSections(in collectionView: UICollectionView) -> Int {
-            
             return 1
         }
             
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//            var count: Int?
-//            
-//            if collectionView == self.cv1 {
-//                count = sectionsArray.count
-//            }
+            var count: Int?
+//
+            if collectionView == self.cv1 {
+                
+                count = Singleton.sharedInstance.categoriesItems.count
+            
+            } else {
+                count = 1
+            }
 //            if collectionView == self.cv2 {
 //                count = foodsArray.count
 //            }
-            
-            //return count!
-            return 1
+//
+            return count!
+//            return 1
         }
 }
 

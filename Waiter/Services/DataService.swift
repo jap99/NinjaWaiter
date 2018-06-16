@@ -128,6 +128,21 @@ class DataService {
                 return
             }
             callback?(Category.parseCategoryData(snapshot: snapshot),nil)
+            Singleton.sharedInstance.categoriesItems = Category.parseCategoryData(snapshot: snapshot)
+        }
+    }
+    
+    
+    func getCategoriesFromServer(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
+            
+            print(snapshot)
+            
+            if !snapshot.exists() {
+                callback?(nil, nil)
+                return
+            }
+            Singleton.sharedInstance.categoriesItems = Category.parseCategoryData(snapshot: snapshot)
         }
     }
     

@@ -21,6 +21,18 @@ class DashboardVC: UIViewController {
         super.viewDidLoad()
          settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
+        fetchCategoryFromServer()
+        
+    }
+    func  fetchCategoryFromServer(){
+        DispatchQueue.global(qos: .background).async {
+            //background code
+            DataService.instance.getCategoriesFromServer { (categories: [Category]?, error) in
+                guard let error = error else {
+                    return
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
