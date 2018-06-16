@@ -103,7 +103,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             DataService.instance.saveCategory(categoryName: categoryName) { (success) in
                 if success {
-                     self.addCategoryView.isHidden = true
+                    self.foodTextField.text = ""
+                    self.addCategoryView.isHidden = true
                 }
             }
             
@@ -119,10 +120,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             present(alertController, animated: true, completion: nil)
         }
     }
-
-    func alertController(in title: String){
-        
-    }
     
     // MARK: - TABLE VIEW
     
@@ -137,9 +134,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //
         if self.categoryTV == tableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
-
             
+            let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
+ 
             return cell
         }else{
             var cell:UITableViewCell = UITableViewCell()
