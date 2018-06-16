@@ -1971,7 +1971,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfG-9X-CO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1399.4143484626645" y="-1140.234375"/>
+            <point key="canvasLocation" x="1390" y="-1285"/>
         </scene>
         <!--Menu ManagementVC-->
         <scene sceneID="Czb-rF-es3">
@@ -2277,6 +2277,10 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="bJa-cx-TvK" id="CAU-dJ-SQP"/>
+                                                    <outlet property="delegate" destination="bJa-cx-TvK" id="BSQ-eu-703"/>
+                                                </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add / Edit Item Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKT-Sr-EVq" userLabel="Add / Edit Item OptionsLabel">
                                                 <rect key="frame" x="337" y="1901.5" width="176.5" height="20.5"/>
@@ -2702,6 +2706,7 @@
                         <outlet property="foodTextField" destination="tkf-hM-2Zm" id="Gus-Uc-5zj"/>
                         <outlet property="itemNameTextField" destination="36F-Ne-hzq" id="JS4-cE-wcC"/>
                         <outlet property="itemPriceTextField" destination="Bhh-9G-EtA" id="Hoc-4d-Zh6"/>
+                        <outlet property="itemTV" destination="ynY-Uh-gtp" id="WHf-pj-Kcr"/>
                         <outlet property="mainScrollview" destination="xpv-Fc-HCs" id="Ofp-mw-UY7"/>
                         <outlet property="menuManagementButton" destination="F6P-im-wau" id="I4G-JU-csQ"/>
                         <outlet property="saveCategoryButton" destination="2sl-lK-PWm" id="1N3-lA-guS"/>
@@ -2711,7 +2716,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDq-3p-nkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021.8155197657393" y="-788.0859375"/>
+            <point key="canvasLocation" x="2042" y="-934"/>
         </scene>
     </scenes>
     <resources>

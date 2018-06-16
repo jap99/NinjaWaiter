@@ -98,6 +98,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             guard let error = error else {
                 self.categories = categories!
                 self.categoryTV.reloadData()
+                self.itemTV.reloadData()
                 return
             }
             print(error)
@@ -131,7 +132,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         if self.categoryTV == tableView {
          return self.categories.count
         }else {
-        return 1
+        return self.categories.count
         }
     }
     
@@ -145,12 +146,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
             return cell
         }else{
-            var cell:UITableViewCell = UITableViewCell()
-            // create a new cell if needed or reuse an old one
-            cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL) as! UITableViewCell
-
-            // set the text from the data model
-            cell.textLabel?.text = "cell lable itemTV"
+            let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
+            if self.categories.count > 0 {
+                cell.categoryTitle.text = self.categories[indexPath.row].name
+                }
             return cell
         }
     }
