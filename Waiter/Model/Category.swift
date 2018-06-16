@@ -36,6 +36,24 @@ class Category {
         return categories
     }
     
+    /**
+     This method parse the data which is receive from Firbase response and set the Uid and Name of Category Item.
+     - parameter snapshot: Its a DataSnapshot type of object which contains response of categories data.
+     - returns [Category]: This method is return Category object.
+    */
+    static func parseCategoryData(snapshot : DataSnapshot) -> [Category]{
+        var arrCategory : [Category] = []
+        if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+            for snap in snapshot {
+                let categoryUID = snap.key
+                let categoryName = snap.value as! String
+                let category = Category(uid: categoryUID, name: categoryName)
+                arrCategory.append(category)
+            }
+        }
+        return arrCategory
+    }
+    
     static func getCategoryList(callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
         _ = Database.database().reference().child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).observeSingleEvent(of: .value) { (snapshot) in
             

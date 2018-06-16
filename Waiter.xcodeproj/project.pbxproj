@@ -16,6 +16,7 @@
 		9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */; };
 		9F16826020CFD47B00CFE4B1 /* ItemOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */; };
 		9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16826220CFD66600CFE4B1 /* AddItemCell.swift */; };
+		9F4D4ECD20D4D8F0004F4C8A /* practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D4ECC20D4D8F0004F4C8A /* practice.swift */; };
 		9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* AddCategoryCell.swift */; };
 		9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871320CC4CEB008E209F /* MenuManagementVC.swift */; };
 		9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE620AC74A50027EDFB /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionsView.swift; sourceTree = "<group>"; };
 		9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemOptionsView.xib; sourceTree = "<group>"; };
 		9F16826220CFD66600CFE4B1 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
+		9F4D4ECC20D4D8F0004F4C8A /* practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practice.swift; sourceTree = "<group>"; };
 		9F67871120CC4CCD008E209F /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		9F67871320CC4CEB008E209F /* MenuManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManagementVC.swift; sourceTree = "<group>"; };
 		9F8EABE320AC74A50027EDFB /* Waiter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waiter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +181,7 @@
 				9FEA846B20B537CF00C6DEE1 /* Controller */,
 				9FEA846C20B53A6A00C6DEE1 /* Add'l Resources */,
 				9F8EABF520AC74A60027EDFB /* Info.plist */,
+				9F4D4ECC20D4D8F0004F4C8A /* practice.swift */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
+				9F4D4ECD20D4D8F0004F4C8A /* practice.swift in Sources */,
 				9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

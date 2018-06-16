@@ -93,7 +93,6 @@ class DataService {
                 completion(nil)
             }
         }
-        // To get user's UID to compare it in Staff node to identify which restaurant user's with
     }
     
     // SAVE CATEGORY - TO RESTAURANT NODE
@@ -117,6 +116,8 @@ class DataService {
         }
     }
     
+    // GET CATEGORIES
+    
     func getCategories(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
             
@@ -126,11 +127,11 @@ class DataService {
                 callback?(nil, nil)
                 return
             }
-            
-            //let categoryUID = snapshot.value as! String
+            callback?(Category.parseCategoryData(snapshot: snapshot),nil)
         }
-        
     }
+    
+    // SAVE ITEM
     
     func saveItem(inCategory categoryUID: String, itemName: String, itemPrice: String, itemImageURL: String?, completion: @escaping (Bool) -> ()) {
         

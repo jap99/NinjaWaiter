@@ -97,6 +97,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         DataService.instance.getCategories { (categories: [Category]?, error) in
             guard let error = error else {
                 self.categories = categories!
+                self.categoryTV.reloadData()
                 return
             }
             print(error)
@@ -127,7 +128,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.categoryTV == tableView {
+         return self.categories.count
+        }else {
         return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,7 +140,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         if self.categoryTV == tableView {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
- 
+            if self.categories.count > 0 {
+                cell.categoryTitle.text = self.categories[indexPath.row].name
+            }
             return cell
         }else{
             var cell:UITableViewCell = UITableViewCell()

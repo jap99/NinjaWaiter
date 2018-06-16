@@ -19,16 +19,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var loginModel = LoginModel()
-    override func viewDidLoad() {
-        super.viewDidLoad()
- 
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
+    var loginModel = LoginModel() 
    
     @IBAction func backButton_Pressed(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as? WelcomeVC {

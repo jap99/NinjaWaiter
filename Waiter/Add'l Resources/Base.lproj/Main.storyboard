@@ -2054,6 +2054,9 @@
                                                                 <constraint firstItem="cCp-Qw-T2m" firstAttribute="width" secondItem="jE6-6T-G02" secondAttribute="width" id="p3x-Gm-pio"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="categoryTitle" destination="dmj-6K-1j5" id="VXV-g5-Dak"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
@@ -2590,6 +2593,7 @@
                                             <constraint firstItem="fg8-DE-3iX" firstAttribute="top" secondItem="jNX-7p-Bqe" secondAttribute="bottom" constant="-133.5" id="o9a-Tf-ocm"/>
                                             <constraint firstItem="jsU-Gc-mCi" firstAttribute="top" secondItem="14o-ev-ilj" secondAttribute="bottom" constant="16" id="pr1-rT-6Ut"/>
                                             <constraint firstItem="fg8-DE-3iX" firstAttribute="top" secondItem="yJr-zf-Cc6" secondAttribute="bottom" constant="16" id="q5j-Tz-Hfa"/>
+                                            <constraint firstItem="bqr-XO-sBE" firstAttribute="centerY" secondItem="36F-Ne-hzq" secondAttribute="centerY" id="sKI-uk-WaU"/>
                                             <constraint firstItem="ynY-Uh-gtp" firstAttribute="top" secondItem="irq-ex-yOE" secondAttribute="bottom" constant="-4" id="sng-gz-MD1"/>
                                             <constraint firstItem="XLQ-fC-KMO" firstAttribute="width" secondItem="fg8-DE-3iX" secondAttribute="width" id="tiz-10-Aqe"/>
                                             <constraint firstItem="jNX-7p-Bqe" firstAttribute="width" secondItem="fg8-DE-3iX" secondAttribute="width" id="u2v-wC-qi7"/>
