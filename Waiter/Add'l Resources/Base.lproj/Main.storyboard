@@ -2626,7 +2626,7 @@
                                             <color key="titleColor" red="0.69803921570000005" green="0.70196078429999997" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="backButton_Pressed:" destination="ST4-oh-l6n" eventType="touchUpInside" id="mFj-x4-mPE"/>
+                                            <action selector="backButton_Pressed:" destination="bJa-cx-TvK" eventType="touchUpInside" id="RuS-s0-YC4"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6P-im-wau">

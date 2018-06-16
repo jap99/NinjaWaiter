@@ -104,7 +104,7 @@ class DataService {
         let category: Dictionary<String, AnyObject> = [
             categoryUID: categoryName as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).setValue(category) { (error, ref) in
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(category) { (error, ref) in
             
             if let error = error {
                 print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")

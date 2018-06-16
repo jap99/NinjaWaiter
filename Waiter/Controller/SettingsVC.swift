@@ -30,16 +30,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tv.delegate = self
         tv.dataSource = self
         hideKeyboardWhenTappedAround()
-        settingsButton.isUserInteractionEnabled = false 
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+        settingsButton.isUserInteractionEnabled = false  
     }
     
     override func viewWillDisappear(_ animated: Bool) {

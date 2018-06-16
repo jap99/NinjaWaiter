@@ -25,14 +25,18 @@ class Category {
     
     // only called to populate the table view in SettingsVC
     static func getCategoryList(array: [[String: Any]], arrKey:[String]) -> [Category] {
+        
         var categories: [Category] = []
-        for (index,a) in array.enumerated() {
+        
+        for (_,a) in array.enumerated() {
+            
             if let uid = a["uid"] as? String,
                 let name = a["name"] as? String {
                 let category = Category(uid: uid, name: name)
                 categories.append(category)
             }
         }
+        //print(categories.count)
         return categories
     }
     
