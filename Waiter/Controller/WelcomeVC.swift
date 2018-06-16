@@ -24,9 +24,7 @@ class AppUser {
     var type = UserType.staff
     var uid = ""
     
-    init() {
-        
-    }
+    init() { }
     
     init(user:User) {
         if let email = user.email {

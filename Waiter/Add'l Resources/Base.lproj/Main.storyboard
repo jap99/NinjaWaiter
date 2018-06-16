@@ -1988,10 +1988,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1366" height="3118"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ffH-ho-ZL3">
-                                                <rect key="frame" x="389" y="330.5" width="891" height="555"/>
+                                                <rect key="frame" x="389" y="330.5" width="891" height="340"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.41067891725352113" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="555" id="G5e-rH-64P"/>
+                                                    <constraint firstAttribute="height" constant="340" id="G5e-rH-64P"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddCategoryCell" rowHeight="53" id="Z4i-Nv-E15" customClass="AddCategoryCell" customModule="Waiter" customModuleProvider="target">
@@ -2307,7 +2307,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugy-pV-KGu" userLabel="lineView">
-                                                <rect key="frame" x="80" y="988.5" width="1200" height="1"/>
+                                                <rect key="frame" x="80" y="773.5" width="1200" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="2hD-Wz-3PG"/>
@@ -2336,8 +2336,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bpa-D7-ClY" userLabel="successSavedView">
-                                                <rect key="frame" x="1033" y="904" width="247" height="77"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpa-D7-ClY" userLabel="successSavedView">
+                                                <rect key="frame" x="1033" y="862.5" width="247" height="77"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUK-IO-WbJ">
                                                         <rect key="frame" x="8" y="18.5" width="231" height="40"/>
@@ -2540,7 +2540,6 @@
                                             <constraint firstItem="ynY-Uh-gtp" firstAttribute="leading" secondItem="irq-ex-yOE" secondAttribute="leading" id="DTm-K3-gnC"/>
                                             <constraint firstItem="bqr-XO-sBE" firstAttribute="centerY" secondItem="Bhh-9G-EtA" secondAttribute="centerY" id="DUC-tw-Ion"/>
                                             <constraint firstItem="2sl-lK-PWm" firstAttribute="top" secondItem="fg8-DE-3iX" secondAttribute="bottom" constant="55" id="DkF-Ns-owZ"/>
-                                            <constraint firstItem="irq-ex-yOE" firstAttribute="top" secondItem="oUK-IO-WbJ" secondAttribute="bottom" constant="44" id="FWA-UG-vKd"/>
                                             <constraint firstItem="OCA-lT-GRP" firstAttribute="trailing" secondItem="bXX-57-fz7" secondAttribute="trailing" id="Fy4-4b-6K9"/>
                                             <constraint firstItem="dJU-V3-ddj" firstAttribute="top" secondItem="kKT-Sr-EVq" secondAttribute="bottom" constant="41.5" id="HS6-R4-JmG"/>
                                             <constraint firstItem="fg8-DE-3iX" firstAttribute="leading" secondItem="yJr-zf-Cc6" secondAttribute="leading" id="Hmu-O0-HQH"/>
@@ -2582,6 +2581,7 @@
                                             <constraint firstItem="hFn-U4-5a0" firstAttribute="leading" secondItem="e5h-IJ-BDz" secondAttribute="leading" id="fyt-OR-ahp"/>
                                             <constraint firstItem="Vcx-sw-Qol" firstAttribute="width" secondItem="jsU-Gc-mCi" secondAttribute="width" id="g4L-R6-QWa"/>
                                             <constraint firstItem="Ugy-pV-KGu" firstAttribute="trailing" secondItem="ffH-ho-ZL3" secondAttribute="trailing" id="g9i-Vi-NsS"/>
+                                            <constraint firstItem="irq-ex-yOE" firstAttribute="top" secondItem="Bpa-D7-ClY" secondAttribute="bottom" constant="143" id="gL2-Pb-bYt"/>
                                             <constraint firstAttribute="height" constant="3118" id="h9j-6H-nuc"/>
                                             <constraint firstItem="Vcx-sw-Qol" firstAttribute="top" secondItem="jsU-Gc-mCi" secondAttribute="bottom" constant="-50" id="ih3-ph-s4H"/>
                                             <constraint firstItem="kKT-Sr-EVq" firstAttribute="leading" secondItem="ynY-Uh-gtp" secondAttribute="leading" id="j40-xO-tfd"/>
@@ -2711,7 +2711,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDq-3p-nkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="-788"/>
+            <point key="canvasLocation" x="2021.8155197657393" y="-788.0859375"/>
         </scene>
     </scenes>
     <resources>
