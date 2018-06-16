@@ -49,16 +49,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemFiveButton: UIButton!
     @IBOutlet weak var itemSixButton: UIButton!
     
-//    let categories = []
+    var categories = [Category]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataService.instance.getCategories()
+        getCategories()
         setupVC()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.addCategoryView.isHidden = true
+        showAddCategoryView(false)
     }
 
     // MARK: - SETUP
@@ -74,51 +74,50 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(vc, animated: true, completion: nil)
     }
     
-//    @IBAction func settingsButton_Pressed(_ sender: Any) {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
-//        present(vc, animated: true, completion: nil)
-//    }
-    
-    @IBAction func menuManagementButton_Pressed(_ sender: Any) {
+    @IBAction func settingsButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func addCategoryButton_Pressed(_ sender: UIButton) {
-        
-        self.addCategoryView.isHidden = false
-//       if(sender.tag==0)
-//       {
-//        self.view
-//        sender.tag = 1
-//       }else{
-//        sender.tag = 0
-//        }
+        showAddCategoryView(true)
     }
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
+        showAddCategoryView(false)
     }
 
     @IBAction func addButton_Pressed(_ sender: Any) {
-        
+        saveCategory()
+    }
+    
+    // MARK: - ACTIONS
+    
+    func getCategories() {
+        DataService.instance.getCategories { (categories: [Category]?, error) in
+            guard let error = error else {
+                self.categories = categories!
+                return
+            }
+            print(error)
+        }
+    }
+    
+    func saveCategory() {
         if let categoryName = foodTextField.text, categoryName.count > 0 {
-            
             DataService.instance.saveCategory(categoryName: categoryName) { (success) in
                 if success {
                     self.foodTextField.text = ""
                     self.addCategoryView.isHidden = true
                 }
             }
-            
         } else {
-            // Handle Error Case
-            let alertController = UIAlertController(title: "Error", message: "There was an issue uploading your category. Please try again later.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
-                self.addCategoryView.isHidden = true
-            })
-            
-            alertController.addAction(okAction)
-            
-            present(alertController, animated: true, completion: nil)
+            showError_CategoryAddFailed()
         }
+    }
+    
+    func showAddCategoryView(_ value: Bool) {
+        self.addCategoryView.isHidden = !value
     }
     
     // MARK: - TABLE VIEW
@@ -147,7 +146,18 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             cell.textLabel?.text = "cell lable itemTV"
             return cell
         }
+    }
+    
+    // ALERT CONTROLLERS
+    
+    func showError_CategoryAddFailed() {
+        let alertController = UIAlertController(title: "Error", message: "There was an issue uploading your category. Please try again later.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+            self.addCategoryView.isHidden = true
+        })
         
+        alertController.addAction(okAction)
         
+        present(alertController, animated: true, completion: nil)
     }
 }
