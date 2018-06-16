@@ -19,7 +19,7 @@ class DashboardVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         print(staffArray)
+         settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
     }
     
@@ -49,8 +49,25 @@ class DashboardVC: UIViewController {
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
-        self.present(vc, animated: true) { }
+        if _currentUser.type == .adamin {
+         
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+            if let staff = staffArray {
+                vc.staffArray = staff
+            }
+            self.present(vc, animated: true) { }
+        }
     }
+    
+    
+    @IBAction func brnLogoutTap(_ sender: UIButton) {
+        _currentUser = AppUser()
+        _userDefault.set(nil, forKey: kPassword)
+        _userDefault.set(nil, forKey: kUsername)
+        _userDefault.synchronize()
+        let vc = self.storyboard?.instantiateViewController(withIdentifier:"WelcomeVC-ID")
+         _appDel.window?.rootViewController = vc
+    }
+    
     
 }

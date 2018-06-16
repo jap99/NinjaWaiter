@@ -35,7 +35,7 @@ class DataService {
         return mainStorageRef.child("images")
     }
     
-    // SAVE RESTAURANT
+    // SAVE RESTAURANT & ADMIN - TO RESTAURANT NODE
     
     func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
         let restaurantData: Dictionary<String, AnyObject> = [
@@ -44,37 +44,9 @@ class DataService {
         ]
         
         mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).setValue(restaurantData)
-      
     }
     
-    // SAVE STAFF MEMBER
-    
-    func saveStaffMember(staffMemberUID: String, staffMemberEmail: String, staffMemberType: String) {
-        
-        let lowercasedStaffEmail = staffMemberEmail.lowercased()
-        
-        let staffMemberData: Dictionary<String, AnyObject> = [
-            "staffEmail": lowercasedStaffEmail as AnyObject,
-            "staffType": staffMemberType as AnyObject
-        ]
-       
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)
-        //saveToStaffNode(staffMemberUID: staffMemberUID, restaurantUID: RESTAURANT_UID)
-    }
-    
-    // SAVE USER TO MAIN STAFF NODE
-    
-    func saveToStaffNode(staffMemberUID: String, restaurantUID: String) {
-   
-        let data: Dictionary<String, String> = [
-            staffMemberUID: restaurantUID
-        ]
-        
-        mainRef.child(FIR_STAFF_MEMBERS).updateChildValues(data)
-    }
-    
-    
-    // SAVE TO ADMINISTRATORS NODE
+    // SAVE ADMIN - TO ADMINISTRATORS NODE
     
     func saveToAdministratorsNode(adminUID: String, restaurantUID: String) {
         
@@ -85,80 +57,142 @@ class DataService {
         mainRef.child(FIR_ADMINISTRATORS).updateChildValues(adminData)
     }
     
-    func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String) -> ())) {
+    // SAVE STAFF - TO RESTAURANT NODE
+    
+    func saveStaffMember(staffMemberUID: String, staffMemberEmail: String, staffMemberType: String) {
         
-        //mainRef.child(FIR_STAFF_MEMBERS).child(userUID).observe(<#T##eventType: DataEventType##DataEventType#>, with: <#T##(DataSnapshot) -> Void#>)
+        let lowercasedStaffEmail = staffMemberEmail.lowercased()
+        
+        let staffMemberData: Dictionary<String, AnyObject> = [
+            "staffEmail": lowercasedStaffEmail as AnyObject,
+            "staffType": staffMemberType as AnyObject
+        ]
+         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)
+    }
+    
+    // SAVE STAFF - TO MAIN STAFF NODE
+    
+    func saveToStaffNode(staffMemberUID: String, restaurantUID: String) {
+   
+        let data: Dictionary<String, String> = [
+            staffMemberUID: restaurantUID
+        ]
+        
+        mainRef.child(FIR_STAFF_MEMBERS).updateChildValues(data)
+    }
+    
+    // GET RESTAURANT UID
+    
+    func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String?) -> ())) {
+        
         mainRef.child(FIR_STAFF_MEMBERS).child(userUID).observe(.value) { (snapshot) in
             
-            if snapshot.exists() {
-                if let restID = snapshot.value as? String {
-                    completion(restID)
-                }
+            if snapshot.exists(),let restID = snapshot.value as? String {
+                completion(restID)
+            } else {
+                completion(nil)
             }
         }
-        // first get user's UID
-        // then compare it in the Staff node & find out which restaurant user is part of
-        
     }
     
+    // SAVE CATEGORY - TO RESTAURANT NODE
     
-    
-    
-    
-    func updateUserProfileData(username: String?, firstName: String?, lastName: String?, email: String?, uid: String, completionHandler: @escaping Completion ) {
+    func saveCategory(categoryName: String, completion :@escaping (Bool) -> ()) {
         
-        let data: Dictionary<String, AnyObject> = [
-            "firstName": firstName as AnyObject,
-            "lastName": lastName as AnyObject,
-            "username": username as AnyObject,
-            "email": email as AnyObject
+        let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Categories").child(FIR_CATEGORY).childByAutoId().key
+        
+        let category: Dictionary<String, AnyObject> = [
+            categoryUID: categoryName as AnyObject
         ]
-        
-    //    mainRef.child(FIR_CHILD_USERS).child(uid).child("profile").updateChildValues(data) { (error, success) in
-//            if error != nil {
-//                completionHandler(nil, nil)
-//            } else {
-//                completionHandler(error?.localizedDescription, nil)
-//            }
-        
- //       }
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(category) { (error, ref) in
+            
+            if let error = error {
+                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                completion(true)
+                
+            }
+        }
     }
     
+    // GET CATEGORIES
     
-    func sendProductImage(senderUID: String, mediaURL: URL, thumbnail: String, locationCountry: String, locationRegion: String, locationState: String, locationLattitude: Double, locationLongitude: Double, timeStamp: String, title: String, description: String, hashtag: String) {
+    func getCategories(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
+            
+            print(snapshot)
+            
+            if !snapshot.exists() {
+                callback?(nil, nil)
+                return
+            }
+            callback?(Category.parseCategoryData(snapshot: snapshot),nil)
+        }
+    }
+    
+    // SAVE ITEM
+    
+    func saveItem(inCategory categoryUID: String, itemName: String, itemPrice: String, itemImageURL: String?, completion: @escaping (Bool) -> ()) {
         
-        let autoOrderId = mainRef.child("videos").childByAutoId().key
+        let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).child(FIR_ITEMS).childByAutoId().key
         
-        let pr: Dictionary<String, AnyObject> = [
-            "mediaURL": mediaURL.absoluteString as AnyObject,
-            "thumbnail": thumbnail as AnyObject,
-            "locationCountry": locationCountry as AnyObject,
-            "locationRegion": locationRegion as AnyObject,
-            "latitude": locationLattitude as AnyObject,
-            "longitude": locationLongitude as AnyObject,
-            "locationState": locationState as AnyObject,
-            "timeStamp": timeStamp as AnyObject,
-            "userID": senderUID as AnyObject,
-            "numberOfViews": 0 as AnyObject,
-            "openCount": 0 as AnyObject,
-            //"createdOn": NSDate.getPresentDate(),
-            "title": title as AnyObject,
-            "description": description as AnyObject,
-            "hashtag": hashtag as AnyObject
+        let item: Dictionary<String, AnyObject> = [
+            "itemName": itemName as AnyObject,
+            "itemPrice": itemPrice as AnyObject // HOW ABOUT itemImageURL
         ]
-        
-        mainRef.child("videos").child(autoOrderId).setValue(pr) { (err, ref) in
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).child(FIR_ITEMS).child(itemUID).setValue(item) { (err, ref) in
             
             if err != nil {
                 let error = err
-                print("ERROR CREATING VIDEO IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
-                
+                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
+                completion(false)
             } else {
- 
+                completion(true)
+                
             }
         }
     }
     
+    func snapshotTaken(_ snapshotData: Data!) {
+        
+        if let snap = snapshotData {
+            
+            imagesStorageRef.child("\(NSUUID().uuidString).jpg").putData(snap, metadata: nil, completion: { meta, error in
+                
+                if let error = error {
+                    print("Error uploading snapshot: \(error.localizedDescription)")
+                } else {
+                    //_ = meta!.downloadURL()
+                    
+                }
+            })
+        }
+    }
+
+    
+    //
+//    func saveItemImage(itemUID: String, imageURL: URL) {
+//
+//        let autoOrderId = mainRef.child("").childByAutoId().key
+//
+//        let pr: Dictionary<String, AnyObject> = [
+//            "imageURL": imageURL.absoluteString as AnyObject
+//
+//        ]
+//
+//        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child().child(autoOrderId).setValue(pr) { (err, ref) in
+//
+//            if err != nil {
+//                let error = err
+//                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
+//
+//            } else {
+//
+//            }
+//        }
+//    }
+//
     
     
     

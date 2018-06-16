@@ -21,6 +21,12 @@ class WaiterCell: UITableViewCell {
         super.awakeFromNib()
         
     }
+    
+    func setData(staff:StaffMember,indexPath:IndexPath) {
+        staffTypeLabel.text = staff.type
+        staffEmailLabel.text = staff.email
+        staffNumberLabel.text = "\(indexPath.row + 1)"
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

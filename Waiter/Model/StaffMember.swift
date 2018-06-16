@@ -14,7 +14,7 @@ class StaffMember {
     
     var email: String!
     var type: String!
-    
+    var uid = ""
     init() {}
     
     init(email: String, type: String) {
@@ -23,12 +23,14 @@ class StaffMember {
     }
     
     // only called to populate the table view in SettingsVC
-    static func getStaffList(array: [[String: Any]]) -> [StaffMember] {
+    static func getStaffList(array: [[String: Any]],arrKey:[String]) -> [StaffMember] {
         var staffMembers: [StaffMember] = []
-        for a in array {
+        for (index,a) in array.enumerated() {
             if let email = a["staffEmail"] as? String,
                 let type = a["staffType"] as? String {
-                staffMembers.append(StaffMember(email: email, type: type))
+                let staff = StaffMember(email: email, type: type)
+                staff.uid = arrKey[index]
+                staffMembers.append(staff)
             }
         }
         return staffMembers
@@ -52,13 +54,16 @@ class StaffMember {
                 if let dictionary = snapshot.value as? [String: Any] {
                     if let staffDictionary = dictionary["Staff"] as? [String: Any] {
                         let keyList = staffDictionary.keys
+                        var allkeys = [String]()
                         var staffDictionaryArray: [[String: Any]] = []
                         for key in keyList {
                             if let staffMemberDictionary = staffDictionary[key] as? [String: Any] {
+                                allkeys.append(key)
                                 staffDictionaryArray.append(staffMemberDictionary)
                             }
                         }
-                        let staffMembers = StaffMember.getStaffList(array: staffDictionaryArray)
+                        let staffMembers = StaffMember.getStaffList(array:staffDictionaryArray , arrKey:allkeys)
+                        //let staffMembers = StaffMember.getStaffList(array: staffDictionaryArray,keyList)
                         isSuccess = true
                         callback?(staffMembers, nil)
                     }

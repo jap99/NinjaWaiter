@@ -41,7 +41,19 @@ class CreateRestaurantView: UIView {
             
             AuthServices.instance.createRestaurant(adminEmail: emailTextField.text!, restaurantName: restaurantNameTextField.text!, password: passwordTextField.text!) { (errorMessage, user) in
                 
-                if let _ = user {
+                if let currentUser = user {
+                    
+                    _currentUser = AppUser(user:currentUser)
+                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
+                        if let _ = obj.value as? String {
+                            _currentUser.type = .adamin
+                        } else {
+                            _currentUser.type = .staff
+                        }
+                    })
+                    _userDefault.set(self.emailTextField.text!, forKey:kUsername)
+                    _userDefault.set(self.passwordTextField.text!, forKey:kPassword)
+                    _userDefault.synchronize()
                     
                     let alertController = UIAlertController(title: APP_NAME, message: CREATE_ACCOUNT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
                     
@@ -50,7 +62,7 @@ class CreateRestaurantView: UIView {
                             alertController.dismiss(animated: true, completion: {
                                 self?.removeFromSuperview()
                                 // Send user to SettingsVC
-                                let viewController = self?.viewController.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+                                let viewController = self?.viewController.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
                                 self?.viewController.present(viewController, animated: true, completion: nil)
                             })
                         })

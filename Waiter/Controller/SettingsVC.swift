@@ -27,16 +27,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tv.delegate = self
+        tv.dataSource = self
         hideKeyboardWhenTappedAround()
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+        settingsButton.isUserInteractionEnabled = false  
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,25 +40,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
-
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
-        //vc.staffArray = staffArray
-        self.present(vc, animated: true, completion: {
-            
-        })
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelAddNewStaff(_ sender: Any) {
-        emailTextField.text = ""
-        passwordTextField.text = ""
         addStaffView.isHidden = true
-    }
-    @IBAction func settingsButton_Pressed(_ sender: Any) {
     }
     
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuManagementVC-ID") as! MenuManagementVC
-        self.present(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) {
@@ -77,8 +62,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
         cancelButton.isHidden = true
-    }
-    
+    } 
     
     @IBAction func createButton_Pressed(_ sender: Any) {
         
@@ -111,10 +95,28 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let waiterCell =  cell as? WaiterCell {
+            waiterCell.deleteAccountButton.tag = indexPath.row
+            waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return staffArray.count
     }
     
-    
+    @IBAction func btnDeteleAccountTap(sender:UIButton) {
+        print("Delete account tap\(sender.tag)")
+        let restNode = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS)
+        restNode.child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.staffArray.remove(at: sender.tag)
+                    self.tv.reloadData()
+                }
+            }
+        }
+    }
     
 }
