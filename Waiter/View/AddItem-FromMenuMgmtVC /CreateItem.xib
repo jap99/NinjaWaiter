@@ -14,10 +14,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CreateItem" customModule="Waiter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="1091" height="993"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tug-7d-VhS">
+                    <rect key="frame" x="87" y="84" width="134" height="185"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xij-RV-sr7">
                     <rect key="frame" x="46" y="82" width="175" height="185"/>
                     <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -28,6 +31,9 @@
                     <state key="normal" title="ADD ITEM IMAGE">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="addItemButton_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="iAs-U4-4mN"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EDIT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UO2-i9-ENl">
                     <rect key="frame" x="46" y="30" width="67" height="44"/>
@@ -87,31 +93,49 @@
                                 <constraint firstAttribute="width" secondItem="IIt-oZ-PqJ" secondAttribute="height" multiplier="1:1" id="dG0-W5-kzL"/>
                             </constraints>
                             <state key="normal" title="1"/>
+                            <connections>
+                                <action selector="option1_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="A8D-yW-79K"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgV-oD-boL">
                             <rect key="frame" x="128.5" y="0.0" width="89" height="80"/>
                             <color key="backgroundColor" red="0.77867792420000004" green="0.77867792420000004" blue="0.77867792420000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="2"/>
+                            <connections>
+                                <action selector="option2_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="IMb-Cr-BfG"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKe-Nb-u5H">
                             <rect key="frame" x="257.5" y="0.0" width="89" height="80"/>
                             <color key="backgroundColor" red="0.77867792420000004" green="0.77867792420000004" blue="0.77867792420000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="3"/>
+                            <connections>
+                                <action selector="option3_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="6mu-xt-NxO"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SH-Bz-mb3">
                             <rect key="frame" x="386.5" y="0.0" width="88.5" height="80"/>
                             <color key="backgroundColor" red="0.77867792420000004" green="0.77867792420000004" blue="0.77867792420000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="4"/>
+                            <connections>
+                                <action selector="option4_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="rt7-fg-1LX"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrp-Kn-ad0">
                             <rect key="frame" x="515" y="0.0" width="89" height="80"/>
                             <color key="backgroundColor" red="0.77867792420000004" green="0.77867792420000004" blue="0.77867792420000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="5"/>
+                            <connections>
+                                <action selector="option5_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="2u7-PA-ht2"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QN2-zB-EdD">
                             <rect key="frame" x="644" y="0.0" width="89" height="80"/>
                             <color key="backgroundColor" red="0.77867792420000004" green="0.77867792420000004" blue="0.77867792420000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="6"/>
+                            <connections>
+                                <action selector="option6_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Hv2-8T-Urk"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -173,9 +197,6 @@
                         <constraint firstAttribute="height" constant="66" id="vzC-bh-Rfj"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tug-7d-VhS">
-                    <rect key="frame" x="46" y="84" width="175" height="185"/>
-                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="avj-zl-8ru">
                     <rect key="frame" x="46" y="432" width="953" height="466"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -226,10 +247,16 @@
                         <constraint firstAttribute="width" constant="142" id="GYa-YZ-08H"/>
                     </constraints>
                     <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancel_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="zAn-hu-HeO"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ql-aA-l2A">
                     <rect key="frame" x="857" y="920" width="142" height="73"/>
                     <state key="normal" title="SAVE"/>
+                    <connections>
+                        <action selector="save_Pressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RGB-qj-2q4"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -271,6 +298,21 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="addItemButton" destination="Xij-RV-sr7" id="Xvd-Yr-JFB"/>
+                <outlet property="cancelButton" destination="SQ9-Vi-akO" id="At8-ML-aFw"/>
+                <outlet property="itemImage" destination="Tug-7d-VhS" id="Z8S-Rs-3UL"/>
+                <outlet property="itemName" destination="mgP-lx-C0W" id="Mll-aP-Fyx"/>
+                <outlet property="itemPrice" destination="UX1-MD-wFW" id="Bkg-gZ-Rsl"/>
+                <outlet property="option1" destination="IIt-oZ-PqJ" id="xxz-BG-yDi"/>
+                <outlet property="option2" destination="DgV-oD-boL" id="gTh-lM-HgJ"/>
+                <outlet property="option3" destination="WKe-Nb-u5H" id="oPZ-A7-TjS"/>
+                <outlet property="option4" destination="1SH-Bz-mb3" id="Cvx-aY-Vtz"/>
+                <outlet property="option5" destination="Vrp-Kn-ad0" id="1gX-zx-dG5"/>
+                <outlet property="option6" destination="QN2-zB-EdD" id="tLP-xM-SEd"/>
+                <outlet property="saveButton" destination="2ql-aA-l2A" id="KKQ-nE-En2"/>
+                <outlet property="tv" destination="avj-zl-8ru" id="Cfl-tu-tSw"/>
+            </connections>
             <point key="canvasLocation" x="129.5" y="164.5"/>
         </view>
     </objects>

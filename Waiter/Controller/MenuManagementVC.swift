@@ -34,12 +34,14 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var foodTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var plusSignCategoryImageView: UIImageView!
     
     // ADD ITEM VIEW
-    
+    @IBOutlet weak var addItemView: CreateItem!
     @IBOutlet weak var itemNameTextField: UITextField!
     @IBOutlet weak var itemPriceTextField: UITextField!
-
+    @IBOutlet weak var plusSignItemImageView: UIImageView!
+    
     // ITEM OPTIONS
     
     @IBOutlet weak var itemOneButton: UIButton!
@@ -51,11 +53,18 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var categories = [Category]()
     
+    // VDL
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getCategories()
         setupVC()
+        
+        
+        
     }
+    
+    // VDA
     
     override func viewDidAppear(_ animated: Bool) {
         showAddCategoryView(false)
@@ -79,6 +88,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(vc, animated: true, completion: nil)
     }
     
+    // CATEGORIES SECTION
+    
     @IBAction func addCategoryButton_Pressed(_ sender: UIButton) {
         showAddCategoryView(true)
     }
@@ -90,6 +101,19 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func addButton_Pressed(_ sender: Any) {
         saveCategory()
     }
+    
+    // ITEM SECTION
+    
+    @IBAction func addItemButton_Pressed(_ sender: Any) {
+        self.addItemView = CreateItem.loadViewFromNib(viewController: self)
+        self.view.addSubview(addItemView)
+    }
+    
+    @IBAction func saveButton_Pressed(_ sender: Any) {
+        
+    }
+    
+    
     
     // MARK: - ACTIONS
     

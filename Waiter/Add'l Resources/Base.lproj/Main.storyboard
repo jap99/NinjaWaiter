@@ -687,7 +687,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-uk-NYs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Table" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-uk-NYs">
                                                     <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -789,7 +789,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKG-kG-caZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139.67789165446558" y="895.89843749999989"/>
+            <point key="canvasLocation" x="1390" y="-333"/>
         </scene>
         <!--Order SuccessVC-->
         <scene sceneID="Glo-aJ-ksY">
@@ -1616,6 +1616,9 @@
                                                 <state key="normal" title="SAVE">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="saveButton_Pressed:" destination="ST4-oh-l6n" eventType="touchUpInside" id="x1t-EK-ztw"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjX-g9-Cth">
                                                 <rect key="frame" x="0.0" y="1013" width="1366" height="400"/>
@@ -1681,6 +1684,9 @@
                                                         <state key="normal" title="SAVE">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="saveButtonTableNumbers_Pressed:" destination="ST4-oh-l6n" eventType="touchUpInside" id="yN7-dy-FYf"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yGK-Ps-v6v">
                                                         <rect key="frame" x="601" y="83" width="300" height="277"/>
@@ -1962,10 +1968,19 @@
                         <outlet property="backButton" destination="jWK-XH-Je4" id="LaR-hJ-2RE"/>
                         <outlet property="cancelButton" destination="RJ3-YZ-ePq" id="GNE-BV-QCn"/>
                         <outlet property="createButton" destination="6pZ-KF-AOm" id="mSx-ky-xBA"/>
+                        <outlet property="discountTextField" destination="jDp-yn-z0b" id="bUb-Ek-7P6"/>
                         <outlet property="emailTextField" destination="DQz-dF-c5O" id="C6M-Hp-9oa"/>
+                        <outlet property="endingTextField" destination="LHd-ox-tfM" id="UK1-hM-TGJ"/>
                         <outlet property="menuManagementButton" destination="cZM-zT-XN5" id="YnX-ph-TRv"/>
                         <outlet property="passwordTextField" destination="g7F-f6-y2F" id="hnU-EN-iHj"/>
+                        <outlet property="saveButton" destination="byF-Jr-nvg" id="bur-PW-guL"/>
+                        <outlet property="serviceChargeTextField" destination="QFy-WY-1AE" id="Q1s-Ug-NT3"/>
                         <outlet property="settingsButton" destination="55v-8q-Bts" id="MXf-NN-ZOL"/>
+                        <outlet property="startingTextField" destination="1KK-ag-z9f" id="9dC-Sb-gc6"/>
+                        <outlet property="taxName1TextField" destination="C5Z-Vg-l6T" id="61j-mb-zf0"/>
+                        <outlet property="taxName2TextField" destination="Bjl-TB-h9c" id="Ixv-cg-Ixw"/>
+                        <outlet property="taxPercentage1TextField" destination="rmj-8H-3O9" id="kWe-SM-loc"/>
+                        <outlet property="taxPercentage2TextField" destination="qXW-c4-Uo4" id="bYN-Bq-nnv"/>
                         <outlet property="tv" destination="9sA-q7-PQZ" id="Iy1-vb-4oJ"/>
                     </connections>
                 </viewController>
@@ -2124,6 +2139,9 @@
                                                 <state key="normal">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addItemButton_Pressed:" destination="bJa-cx-TvK" eventType="touchUpInside" id="h6H-vB-Hpm"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Plus Sign" translatesAutoresizingMaskIntoConstraints="NO" id="pxR-Sz-gIM">
                                                 <rect key="frame" x="80" y="1057.5" width="214" height="55"/>
@@ -2183,6 +2201,9 @@
                                                 <state key="normal" title="SAVE ITEM">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="saveButton_Pressed:" destination="bJa-cx-TvK" eventType="touchUpInside" id="Rav-sw-Qv1"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irq-ex-yOE" userLabel="topView">
                                                 <rect key="frame" x="337" y="1082.5" width="943" height="66"/>
@@ -2529,6 +2550,14 @@
                                                     <constraint firstAttribute="width" constant="247" id="Lch-Fe-p8I"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAs-6f-HYK" customClass="CreateItem" customModule="Waiter" customModuleProvider="target">
+                                                <rect key="frame" x="372" y="811" width="623" height="112"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="372" id="BS3-ty-1Bu"/>
+                                                    <constraint firstAttribute="width" constant="623" id="dFU-Wp-gC4"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -2541,6 +2570,7 @@
                                             <constraint firstItem="ifL-ya-0L4" firstAttribute="top" secondItem="Qcz-BL-SRF" secondAttribute="top" constant="40" id="4la-cs-lSM"/>
                                             <constraint firstItem="QCP-NP-aYN" firstAttribute="top" secondItem="jsU-Gc-mCi" secondAttribute="bottom" constant="23" id="5Ar-sy-JXn"/>
                                             <constraint firstItem="mvD-bb-uTh" firstAttribute="trailing" secondItem="dJU-V3-ddj" secondAttribute="trailing" id="8GU-sL-HLx"/>
+                                            <constraint firstItem="kAs-6f-HYK" firstAttribute="centerX" secondItem="Qcz-BL-SRF" secondAttribute="centerX" id="9Hc-BS-GzP"/>
                                             <constraint firstAttribute="trailing" secondItem="irq-ex-yOE" secondAttribute="trailing" constant="86" id="AcI-44-1XH"/>
                                             <constraint firstItem="ffH-ho-ZL3" firstAttribute="trailing" secondItem="irq-ex-yOE" secondAttribute="trailing" id="C0r-In-mb1"/>
                                             <constraint firstItem="ynY-Uh-gtp" firstAttribute="leading" secondItem="irq-ex-yOE" secondAttribute="leading" id="DTm-K3-gnC"/>
@@ -2556,6 +2586,7 @@
                                             <constraint firstItem="ffH-ho-ZL3" firstAttribute="top" secondItem="bXX-57-fz7" secondAttribute="bottom" constant="-1" id="JHE-td-mj4"/>
                                             <constraint firstItem="pxR-Sz-gIM" firstAttribute="width" secondItem="jsU-Gc-mCi" secondAttribute="width" id="JLv-s4-wvs"/>
                                             <constraint firstItem="Xtl-sg-nmQ" firstAttribute="top" secondItem="ynY-Uh-gtp" secondAttribute="bottom" constant="140" id="JTD-Qr-LQB"/>
+                                            <constraint firstItem="kAs-6f-HYK" firstAttribute="top" secondItem="Ugy-pV-KGu" secondAttribute="bottom" constant="36.5" id="K36-Js-rCq"/>
                                             <constraint firstItem="14o-ev-ilj" firstAttribute="leading" secondItem="yJr-zf-Cc6" secondAttribute="leading" id="Kvb-q6-Hnh"/>
                                             <constraint firstItem="XLQ-fC-KMO" firstAttribute="centerX" secondItem="fg8-DE-3iX" secondAttribute="centerX" id="LdT-6x-AY3"/>
                                             <constraint firstItem="jsU-Gc-mCi" firstAttribute="leading" secondItem="14o-ev-ilj" secondAttribute="leading" id="Lkz-C7-nY5"/>
@@ -2704,6 +2735,7 @@
                         <outlet property="addCategoryButton" destination="fg8-DE-3iX" id="oe3-B9-Ug7"/>
                         <outlet property="addCategoryView" destination="y4p-Ae-hc0" id="n8d-Ik-9Xo"/>
                         <outlet property="addImageButton" destination="jsU-Gc-mCi" id="hsw-Rj-ZGp"/>
+                        <outlet property="addItemView" destination="kAs-6f-HYK" id="HQY-xS-vYH"/>
                         <outlet property="backButton" destination="Otq-7e-uis" id="Bfr-5m-aYK"/>
                         <outlet property="cancelButton" destination="2Dn-OP-vy0" id="k3u-SK-cw4"/>
                         <outlet property="categoryTV" destination="ffH-ho-ZL3" id="wUQ-dq-HAB"/>
@@ -2713,6 +2745,8 @@
                         <outlet property="itemTV" destination="ynY-Uh-gtp" id="WHf-pj-Kcr"/>
                         <outlet property="mainScrollview" destination="xpv-Fc-HCs" id="Ofp-mw-UY7"/>
                         <outlet property="menuManagementButton" destination="F6P-im-wau" id="I4G-JU-csQ"/>
+                        <outlet property="plusSignCategoryImageView" destination="jNX-7p-Bqe" id="dxX-EW-FLf"/>
+                        <outlet property="plusSignItemImageView" destination="pxR-Sz-gIM" id="s72-oz-pSt"/>
                         <outlet property="saveCategoryButton" destination="2sl-lK-PWm" id="1N3-lA-guS"/>
                         <outlet property="saveItemButton" destination="QCP-NP-aYN" id="8PW-ft-Ar8"/>
                         <outlet property="settingsButton" destination="2pa-Hu-KfM" id="yb3-sU-z6h"/>
@@ -2720,7 +2754,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDq-3p-nkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2042" y="-934"/>
+            <point key="canvasLocation" x="2041.5812591508052" y="-934.57031249999989"/>
         </scene>
     </scenes>
     <resources>
@@ -2730,6 +2764,7 @@
         <image name="Plus Sign" width="56" height="56"/>
         <image name="PlusSign" width="19" height="20"/>
         <image name="RectangleSetup" width="391" height="98"/>
+        <image name="Table" width="188" height="168"/>
         <image name="iPad" width="327" height="178"/>
         <image name="oceanrestaurant-interior" width="448" height="508"/>
     </resources>

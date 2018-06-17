@@ -25,6 +25,20 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var addStaffView: UIView!
     
+    // GENERAL
+    @IBOutlet weak var discountTextField: UITextField!
+    @IBOutlet weak var serviceChargeTextField: UITextField!
+    @IBOutlet weak var taxName1TextField: UITextField!
+    @IBOutlet weak var taxPercentage1TextField: UITextField!
+    @IBOutlet weak var taxName2TextField: UITextField!
+    @IBOutlet weak var taxPercentage2TextField: UITextField!
+    @IBOutlet weak var saveButton: RoundedButton!
+    
+    // TABLE NUMBERS
+    
+    @IBOutlet weak var startingTextField: UITextField!
+    @IBOutlet weak var endingTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
@@ -57,6 +71,19 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cancelButton.isHidden = false 
         self.view.bringSubview(toFront: addStaffView)
     }
+    
+    // GENERAL
+    @IBAction func saveButton_Pressed(_ sender: Any) {
+    }
+    
+    // TABLE NUMBERS
+    @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
+        if let startingNumber = startingTextField.text, let endingNumber = endingTextField.text {
+            DataService.instance.saveNumberOfTables(tableStartNumber: startingNumber, tableEndNumber: endingNumber, restaurantUID: RESTAURANT_UID)
+        }
+    }
+    
+    
     
     // FOR THE 'CREATE STAFF' POPUP VIEW
     

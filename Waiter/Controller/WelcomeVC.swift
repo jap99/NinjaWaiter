@@ -11,12 +11,11 @@ import FirebaseAuth
 
 // ENUM
 
-enum UserType:String {
+enum UserType: String {
     case adamin = "adamin"
     case staff = "staff"
 }
 
-// CLASS
 
 class AppUser {
     var email = ""
@@ -26,7 +25,7 @@ class AppUser {
     
     init() { }
     
-    init(user:User) {
+    init(user: User) {
         if let email = user.email {
             self.email = email
         }
@@ -39,8 +38,6 @@ class AppUser {
         
     }
 }
-
-var _currentUser = AppUser()
 
 // CLASS
 

@@ -210,6 +210,20 @@ class DataService {
 //
     
     
+    // SAVE TABLE NUMBERS
+    
+    
+     func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String, restaurantUID: String) {
+     
+     let data: Dictionary<String, AnyObject> = [
+        "tableStartNumber": tableStartNumber as AnyObject,
+        "tableEndNumber": tableEndNumber as AnyObject
+     ]
+     
+     mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).updateChildValues(data)
+     }
+ 
+    
     
     
 }
