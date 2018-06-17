@@ -22,6 +22,8 @@ class DashboardVC: UIViewController {
          settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
         fetchCategoryFromServer()
+        DataService.instance.getSettingsData { (_, _) in
+        }
         
     }
     func  fetchCategoryFromServer(){

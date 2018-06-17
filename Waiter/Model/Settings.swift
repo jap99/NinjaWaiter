@@ -18,6 +18,7 @@ class Settings {
     var startingNumber : String!
     var endingNumber : String!
     var restaurantName: String!
+    var totalTable: Int!
     
     init() {}
     
@@ -26,6 +27,9 @@ class Settings {
         self.startingNumber = startingNumber
         self.endingNumber = endingNumber
         self.restaurantName = restaurantName
+        if let startingNumber : Int = Int(startingNumber), let endingNumber : Int = Int(endingNumber){
+            self.totalTable = endingNumber - startingNumber
+        }
     }
     
      static func parseSettingData(snapshot : DataSnapshot) -> [Settings] {

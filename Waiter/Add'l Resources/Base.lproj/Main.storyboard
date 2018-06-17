@@ -670,7 +670,7 @@
                                     <constraint firstItem="tdS-mr-AJK" firstAttribute="leading" secondItem="9TY-pk-tEo" secondAttribute="leading" constant="25" id="w04-OZ-MMz"/>
                                 </constraints>
                             </view>
-                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-lC-dis">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-lC-dis">
                                 <rect key="frame" x="0.0" y="101" width="895" height="923"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Q6F-AM-TYD">
@@ -702,6 +702,7 @@
                                             <constraint firstAttribute="trailing" secondItem="4hc-uk-NYs" secondAttribute="trailing" id="PKo-m3-zZy"/>
                                             <constraint firstItem="4hc-uk-NYs" firstAttribute="top" secondItem="hBV-Mb-oTg" secondAttribute="top" id="U74-vO-q4T"/>
                                         </constraints>
+                                        <size key="customSize" width="207" height="212"/>
                                         <connections>
                                             <outlet property="tableImageView" destination="4hc-uk-NYs" id="bjh-2G-HvE"/>
                                         </connections>

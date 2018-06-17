@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContinueOrderVC: UIViewController/*, UICollectionViewDataSource, UICollectionViewDelegate*/ {
+class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var cv1: UICollectionView!
 
@@ -19,25 +19,41 @@ class ContinueOrderVC: UIViewController/*, UICollectionViewDataSource, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-       // cv1.delegate = self; cv1.dataSource = self
+        cv1.delegate = self; cv1.dataSource = self
+        cv1.reloadData()
     }
 
  
     // MARK: - COLLECTION VIEW
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//        return 1
-//    }
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        return UICollectionViewCell()
-//    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == self.cv1 {
+            let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "TableCell", for: indexPath) as! TableCell
+
+            return cellCV1
+            
+        } else {
+            let cell = UICollectionViewCell()
+            return cell
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var count: Int?
+        
+        if collectionView == self.cv1 {
+            count = Singleton.sharedInstance.settingsData[0].totalTable
+        } else {
+            count = 1
+        }
+        return count!
+    }
+    
     
     // MARK: - IBACTIONS
     
