@@ -15,5 +15,6 @@ final class Singleton {
     private init () {}
     
     var categoriesItems: [Category] = [Category]()
+    var settingsData: [Settings] = [Settings]()
     
 }

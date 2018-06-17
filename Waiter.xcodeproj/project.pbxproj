@@ -17,6 +17,7 @@
 		9F16826020CFD47B00CFE4B1 /* ItemOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */; };
 		9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16826220CFD66600CFE4B1 /* AddItemCell.swift */; };
 		9F2546C820D62C9900162133 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2546C720D62C9900162133 /* AppUser.swift */; };
+		9F2546CA20D644E900162133 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2546C920D644E900162133 /* Settings.swift */; };
 		9F4D4ECD20D4D8F0004F4C8A /* practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D4ECC20D4D8F0004F4C8A /* practice.swift */; };
 		9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* AddCategoryCell.swift */; };
 		9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871320CC4CEB008E209F /* MenuManagementVC.swift */; };
@@ -71,6 +72,7 @@
 		9F16825F20CFD47B00CFE4B1 /* ItemOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemOptionsView.xib; sourceTree = "<group>"; };
 		9F16826220CFD66600CFE4B1 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
 		9F2546C720D62C9900162133 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		9F2546C920D644E900162133 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9F4D4ECC20D4D8F0004F4C8A /* practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practice.swift; sourceTree = "<group>"; };
 		9F67871120CC4CCD008E209F /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		9F67871320CC4CEB008E209F /* MenuManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManagementVC.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				9FEEFDD220C8FD8F00119A35 /* StaffMember.swift */,
 				9F0228CB20D25C4F00550DAD /* Category.swift */,
 				9F0228CD20D25C7600550DAD /* Item.swift */,
+				9F2546C920D644E900162133 /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				9F2546C820D62C9900162133 /* AppUser.swift in Sources */,
 				9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */,
 				9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */,
+				9F2546CA20D644E900162133 /* Settings.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,

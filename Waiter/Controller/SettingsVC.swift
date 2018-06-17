@@ -44,7 +44,14 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tv.delegate = self
         tv.dataSource = self
         hideKeyboardWhenTappedAround()
-        settingsButton.isUserInteractionEnabled = false  
+        settingsButton.isUserInteractionEnabled = false
+        DataService.instance.getSettingsData { (_, _) in
+            let dict = Singleton.sharedInstance.settingsData
+            print(dict)
+            self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
+            self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
+        }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,7 +81,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // GENERAL
     @IBAction func saveButton_Pressed(_ sender: Any) {
+       
     }
+    
     
     // TABLE NUMBERS
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
@@ -147,3 +156,5 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+

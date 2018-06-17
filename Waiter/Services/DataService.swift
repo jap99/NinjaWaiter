@@ -224,6 +224,22 @@ class DataService {
      }
  
     
-    
+    func getSettingsData(callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) { // Includes table numbers
+        
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).observe(.value) { (snapshot) in
+            
+            print(snapshot.value!)
+            
+            if !snapshot.exists() {
+                callback?(nil, nil)
+                return
+            } else {
+                
+                Singleton.sharedInstance.settingsData = Settings.parseSettingData(snapshot: snapshot)
+                callback?(snapshot.value as! [String : AnyObject], nil)
+            }
+        }
+    }
+ 
     
 }
