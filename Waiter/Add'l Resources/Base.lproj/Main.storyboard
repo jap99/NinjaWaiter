@@ -1363,7 +1363,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N9-CT-N0R" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
-                                                                    <rect key="frame" x="585" y="16" width="145" height="38"/>
+                                                                    <rect key="frame" x="585" y="19" width="145" height="32"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                                     <state key="normal" title="Delete Account">
@@ -1375,10 +1375,10 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-Ru-A8S" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
-                                                                    <rect key="frame" x="422" y="16" width="145" height="38"/>
+                                                                    <rect key="frame" x="422" y="19" width="145" height="32"/>
                                                                     <color key="backgroundColor" red="0.92800253629999996" green="0.2366536558" blue="0.39380952720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="38" id="Nro-X8-Yjy"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="Nro-X8-Yjy"/>
                                                                         <constraint firstAttribute="width" constant="145" id="TYm-PC-zcj"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
@@ -1873,7 +1873,7 @@
                                                     <constraint firstItem="6pZ-KF-AOm" firstAttribute="top" secondItem="g7F-f6-y2F" secondAttribute="bottom" constant="25" id="n3U-Os-oxH"/>
                                                     <constraint firstItem="RJ3-YZ-ePq" firstAttribute="leading" secondItem="g7F-f6-y2F" secondAttribute="leading" id="oOg-Vr-tEs"/>
                                                     <constraint firstItem="RJ3-YZ-ePq" firstAttribute="height" secondItem="6pZ-KF-AOm" secondAttribute="height" id="q1U-S2-2co"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="275" id="s3A-Xz-wJH"/>
+                                                    <constraint firstAttribute="height" constant="275" id="s3A-Xz-wJH"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -2058,19 +2058,19 @@
                                                                     <state key="normal" image="strips1"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jE6-6T-G02" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
-                                                                    <rect key="frame" x="377" y="7" width="167" height="38"/>
+                                                                    <rect key="frame" x="377" y="10" width="167" height="32"/>
                                                                     <color key="backgroundColor" red="0.92800253629684448" green="0.2366536557674408" blue="0.39380952715873718" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="167" id="aBT-wE-wRs"/>
-                                                                        <constraint firstAttribute="height" constant="38" id="fhg-zj-vPf"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="fhg-zj-vPf"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                                     <state key="normal" title="Rename">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-Qw-T2m" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
-                                                                    <rect key="frame" x="564" y="7" width="167" height="38"/>
+                                                                    <rect key="frame" x="564" y="10" width="167" height="32"/>
                                                                     <color key="backgroundColor" red="0.10301781445741653" green="0.12689891457557678" blue="0.19432967901229858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                                     <state key="normal" title="Delete">
