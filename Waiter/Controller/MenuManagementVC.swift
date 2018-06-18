@@ -52,6 +52,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemSixButton: UIButton!
     
     var categories = [Category]()
+    var dictOfArrays = [String: [String]]()
     var index = 0
     
     // VDL
@@ -128,6 +129,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         // save item data to firebase
         
         if let name = itemNameTextField.text, let price = itemPriceTextField.text {
+            
             
             // if >= 1 switch == on, use indexPath of switch to get uid of category ------ (key of the dict below)
             
@@ -241,7 +243,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
-            
+            cell.parentVC = self
+            cell.breakfastSwitch.tag = indexPath.row
+            cell.lunchSwitch.tag = indexPath.row
+            cell.dinnerSwitch.tag = indexPath.row
             if self.categories.count > 0 {
                 
                 cell.categoryTitle.text = self.categories[indexPath.row].name
@@ -266,8 +271,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if itemTV == tableView {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemCell", for: indexPath) as! AddItemCell
-
+            
+            let selectedIndexUID = Singleton.sharedInstance.categoriesItems[indexPath.row].uid
  
             var arrayOfAvailability = [String]()
 

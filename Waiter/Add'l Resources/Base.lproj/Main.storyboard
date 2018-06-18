@@ -2381,6 +2381,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="breakfastSwitch" destination="kzL-RP-r6G" id="g2E-bh-aH2"/>
                                                             <outlet property="categoryTitle" destination="PTP-oF-euz" id="qjz-s6-8Fd"/>
                                                             <outlet property="dinnerSwitch" destination="6PA-nH-j2b" id="FNF-XS-29T"/>
                                                             <outlet property="lunchSwitch" destination="BmO-Ny-aZh" id="ykr-X1-81u"/>
