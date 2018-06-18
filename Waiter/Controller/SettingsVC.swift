@@ -26,6 +26,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var addStaffView: UIView!
     
     // GENERAL
+    
     @IBOutlet weak var discountTextField: UITextField!
     @IBOutlet weak var serviceChargeTextField: UITextField!
     @IBOutlet weak var taxName1TextField: UITextField!
@@ -177,6 +178,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let waiterCell =  cell as? WaiterCell {
             waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
+            
+            if indexPath.row % 2 == 0 {
+                print(indexPath.row)
+            }
         }
     }
     
