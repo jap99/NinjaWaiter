@@ -38,6 +38,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var startingTextField: UITextField!
     @IBOutlet weak var endingTextField: UITextField!
+    @IBOutlet weak var waiterGif: UIImageView!
+    
+    // PRINTER
+    
+    @IBOutlet weak var cashierPrinterTextField: UITextField!
+    @IBOutlet weak var kitchenPrinterTextField: UITextField!
+    @IBOutlet weak var barPrinterTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +58,21 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
             self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
         }
+        
+        startingTextField.layer.borderColor = UIColor.lightGray.cgColor
+        startingTextField.layer.borderWidth = 1.0
+        
+        endingTextField.layer.borderColor = UIColor.lightGray.cgColor
+        endingTextField.layer.borderWidth = 1.0
+        
+        cashierPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
+        cashierPrinterTextField.layer.borderWidth = 1.0
+        
+        kitchenPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
+        kitchenPrinterTextField.layer.borderWidth = 1.0
+        
+        barPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
+        barPrinterTextField.layer.borderWidth = 1.0
 
     }
     

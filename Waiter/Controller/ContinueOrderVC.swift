@@ -15,12 +15,15 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     @IBOutlet weak var placeTakeAwayButton: UIButton!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var chooseTableView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         cv1.delegate = self; cv1.dataSource = self
         cv1.reloadData()
+        
+        chooseTableView.layer.cornerRadius = 7.0 
     }
 
  
