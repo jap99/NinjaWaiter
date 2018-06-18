@@ -52,6 +52,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemSixButton: UIButton!
     
     var categories = [Category]()
+    var index = 0
     
     // VDL
     
@@ -111,8 +112,32 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func saveButton_Pressed(_ sender: Any) {
         
+        // save item data to firebase
+        
+        if let name = itemNameTextField.text, let price = itemPriceTextField.text {
+            
+            // if >= 1 switch == on, use indexPath of switch to get uid of category ------ (key of the dict below)
+            
+                // the value of the dict is an array ---- (breakfast, lunch or dinner)
+           
+            // at least one switch must now be on, else return
+                    // then pass that data in as a dictionary of arrays
+            let categoryDictOfArrays = [String: [String]]()  
+            
+            // check for an image
+            if let itemImage = plusSignItemImageView.image {
+                // just do what you gotta do
+            }
+            
+            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImageURL: nil, categoryUIDs: categoryDictOfArrays) { (success) in
+                
+                if success {
+                    
+                    // after save is successfull, turn off all switches again, make text fields empty again, make itemImageView nil again
+                }
+            }
+        }
     }
-    
     
     
     // MARK: - ACTIONS
@@ -173,12 +198,53 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
             if self.categories.count > 0 {
                 cell.categoryTitle.text = self.categories[indexPath.row].name
+//                cell.breakfastSwitch.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
                 }
+            
             return cell
         }
     }
     
-    // ALERT CONTROLLERS
+    @objc func switchValueDidChange(_ sender: UISwitch) {
+        
+//        ...
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if itemTV == tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemCell", for: indexPath) as! AddItemCell
+
+
+            //Singleton.sharedInstance.categoriesItems[indexPath.row].uid
+
+            var arrayOfAvailability = [String]()
+
+//            if cell.breakfastSwitch.isOn {
+//                arrayOfAvailability.append("Breakfast")
+//            } else {
+//                //remove it from array
+//            }
+
+            if cell.lunchSwitch.isOn {
+                arrayOfAvailability.append("Lunch")
+            } else {
+                //remove it from array
+            }
+
+            if cell.dinnerSwitch.isOn {
+                arrayOfAvailability.append("Dinner")
+                cell.dinnerSwitch.isOn = true
+            } else {
+                //remove it from array
+            }
+
+            let dict = [String: [String]]()
+
+        }
+    }
+    
+    // MARK: - ALERT CONTROLLERS
     
     func showError_CategoryAddFailed() {
         let alertController = UIAlertController(title: "Error", message: "There was an issue uploading your category. Please try again later.", preferredStyle: .alert)

@@ -47,7 +47,7 @@ class Category {
     */
     static func parseCategoryData(snapshot : DataSnapshot) -> [Category]{
         
-        var arrCategory : [Category] = []
+        var arrCategory: [Category] = []
         if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
             for snap in snapshot {
                 let categoryUID = snap.key

@@ -148,15 +148,18 @@ class DataService {
     
     // SAVE ITEM
     
-    func saveItem(inCategory categoryUID: String, itemName: String, itemPrice: String, itemImageURL: String?, completion: @escaping (Bool) -> ()) {
+    func saveItem(itemName: String, itemPrice: String, itemImageURL: String?, categoryUIDs: [String: [String]], completion: @escaping (Bool) -> ()) {
         
-        let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).child(FIR_ITEMS).childByAutoId().key
+        // categoryUIDs shall contain the categoryUID selected in the key;
+            // the value will have an array of the availability selected - ie. [breakfast, lunch]
+        
+        let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
         
         let item: Dictionary<String, AnyObject> = [
             "itemName": itemName as AnyObject,
-            "itemPrice": itemPrice as AnyObject // HOW ABOUT itemImageURL
+            "itemPrice": itemPrice as AnyObject,  
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).child(FIR_ITEMS).child(itemUID).setValue(item) { (err, ref) in
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (err, ref) in
             
             if err != nil {
                 let error = err
@@ -223,6 +226,8 @@ class DataService {
      mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).updateChildValues(data)
      }
  
+    
+    // GET SETTINGS DATA
     
     func getSettingsData(callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) { // Includes table numbers
         
