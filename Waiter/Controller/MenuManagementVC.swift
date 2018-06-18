@@ -126,25 +126,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func saveButton_Pressed(_ sender: Any) {
         
-        // save item data to firebase
+       let notEmpty =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
-        if let name = itemNameTextField.text, let price = itemPriceTextField.text {
+        if let name = itemNameTextField.text, let price = itemPriceTextField.text, notEmpty {
             
-            
-            // if >= 1 switch == on, use indexPath of switch to get uid of category ------ (key of the dict below)
-            
-                // the value of the dict is an array ---- (breakfast, lunch or dinner)
-           
-            // at least one switch must now be on, else return
-                    // then pass that data in as a dictionary of arrays
-            let categoryDictOfArrays = [String: [String]]()  
-            
-            // check for an image
-            if let itemImage = plusSignItemImageView.image {
-                // just do what you gotta do
-            }
-            
-            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImageURL: nil, categoryUIDs: categoryDictOfArrays) { (success) in
+            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImageURL: nil, categoryDictOfArray:  dictOfArrays) { (success) in
                 
                 if success {
                     
