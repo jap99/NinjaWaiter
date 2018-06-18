@@ -22,7 +22,8 @@ class Settings {
     
     init() {}
     
-    init(adminEmail: String, startingNumber: String, endingNumber: String, restaurantName:String) {
+    init(adminEmail: String, startingNumber: String, endingNumber: String, restaurantName: String) {
+        
         self.adminEmail = adminEmail
         self.startingNumber = startingNumber
         self.endingNumber = endingNumber

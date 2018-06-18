@@ -22,8 +22,7 @@ class StaffMember {
         self.type = type
     }
     
-    // only called to populate the table view in SettingsVC
-    static func getStaffList(array: [[String: Any]],arrKey:[String]) -> [StaffMember] {
+    static func getStaffList(array: [[String: Any]], arrKey: [String]) -> [StaffMember] {
         var staffMembers: [StaffMember] = []
         for (index,a) in array.enumerated() {
             if let email = a["staffEmail"] as? String,
@@ -63,7 +62,6 @@ class StaffMember {
                             }
                         }
                         let staffMembers = StaffMember.getStaffList(array:staffDictionaryArray , arrKey:allkeys)
-                        //let staffMembers = StaffMember.getStaffList(array: staffDictionaryArray,keyList)
                         isSuccess = true
                         callback?(staffMembers, nil)
                     }

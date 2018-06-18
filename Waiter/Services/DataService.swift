@@ -119,6 +119,7 @@ class DataService {
     // GET CATEGORIES
     
     func getCategories(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
+        
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
             
             print(snapshot)

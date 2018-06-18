@@ -156,8 +156,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - ACTIONS
     
     func getCategories() {
+        
         DataService.instance.getCategories { (categories: [Category]?, error) in
+            
             guard let error = error else {
+                
                 self.categories = categories!
                 self.categoryTV.reloadData()
                 self.itemTV.reloadData()
@@ -168,33 +171,49 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func saveCategory() {
+        
         if let categoryName = foodTextField.text, categoryName.count > 0 {
+            
             DataService.instance.saveCategory(categoryName: categoryName) { (success) in
+                
                 if success {
+                    
                     self.foodTextField.text = ""
                     self.addCategoryView.isHidden = true
                 }
             }
+            
         } else {
+            
             showError_CategoryAddFailed()
         }
     }
     
     func showAddCategoryView(_ value: Bool) {
+       
         self.addCategoryView.isHidden = !value
+    }
+    
+    @objc func switchValueDidChange(_ sender: UISwitch) {
+        
     }
     
     // MARK: - TABLE VIEW
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if self.categoryTV == tableView {
-         return self.categories.count
-        }else {
-        return self.categories.count
+         
+            return self.categories.count
+        
+        } else {
+        
+            return self.categories.count
         }
     }
     
@@ -209,9 +228,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 cell.categoryTitle.text = self.categories[indexPath.row].name
             }
             
-            if indexPath.row % 2 == 0 {
+            if indexPath.row % 2 == 0 {     // For background color
+                
                 cell.backgroundColor = .white
             } else {
+                
                 cell.backgroundColor = customLightGray
             }
             
@@ -227,9 +248,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
             }
             
-            if indexPath.row % 2 == 0 {
+            if indexPath.row % 2 == 0 {     // For background color
+                
                 cell.backgroundColor = .white
+                
             } else {
+                
                 cell.backgroundColor = customLightGray
             }
             
@@ -237,19 +261,14 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    @objc func switchValueDidChange(_ sender: UISwitch) {
-        
-//        ...
-    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if itemTV == tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemCell", for: indexPath) as! AddItemCell
 
-
-            //Singleton.sharedInstance.categoriesItems[indexPath.row].uid
-
+ 
             var arrayOfAvailability = [String]()
 
 //            if cell.breakfastSwitch.isOn {
