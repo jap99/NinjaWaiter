@@ -73,6 +73,26 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         barPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
         barPrinterTextField.layer.borderWidth = 1.0
+        
+        discountTextField.layer.borderColor = UIColor.lightGray.cgColor
+        discountTextField.layer.borderWidth = 1.0
+        
+        serviceChargeTextField.layer.borderColor = UIColor.lightGray.cgColor
+        serviceChargeTextField.layer.borderWidth = 1.0
+        
+        taxName1TextField.layer.borderColor = UIColor.lightGray.cgColor
+        taxName1TextField.layer.borderWidth = 1.0
+        
+        taxName2TextField.layer.borderColor = UIColor.lightGray.cgColor
+        taxName2TextField.layer.borderWidth = 1.0
+        
+        taxPercentage1TextField.layer.borderColor = UIColor.lightGray.cgColor
+        taxPercentage1TextField.layer.borderWidth = 1.0
+        
+        taxPercentage2TextField.layer.borderColor = UIColor.lightGray.cgColor
+        taxPercentage2TextField.layer.borderWidth = 1.0
+        
+        tv.separatorStyle = .none
 
     }
     

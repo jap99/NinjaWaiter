@@ -76,6 +76,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func setupVC() {
         categoryTV.delegate = self; categoryTV.dataSource = self
         self.mainScrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+        
+        itemNameTextField.layer.borderWidth = 1.0
+        itemNameTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        itemPriceTextField.layer.borderWidth = 1.0
+        itemPriceTextField.layer.borderColor = UIColor.lightGray.cgColor
     }
     // MARK: - IBACTIONS
     
