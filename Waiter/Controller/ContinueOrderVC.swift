@@ -30,7 +30,8 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         
         if collectionView == self.cv1 {
             let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "TableCell", for: indexPath) as! TableCell
-
+            cellCV1.tableNumberLabel.text = String(indexPath.row + 1)
+            cellCV1.tableNumberLabel.tintColor = .black
             return cellCV1
             
         } else {
@@ -58,7 +59,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     // MARK: - IBACTIONS
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderSuccessVC-ID") as! OrderSuccessVC
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewControllerVC-ID") as! ViewController
         self.present(vc, animated: true, completion: {
             
         })

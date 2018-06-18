@@ -56,4 +56,5 @@ let storageKey = "gs://waiter-d1f30.appspot.com/"
 //    let customPink = UIColor(red: 252.0/255.0, green: 55.0/255.0, blue: 104.0/255.0, alpha: 1.0)
 //}
 
+let customBlue = UIColor(red: 26/255.0, green: 31/255.0, blue: 51/255.0, alpha: 1)
 

@@ -177,7 +177,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eef-QW-zFH">
                                 <rect key="frame" x="915" y="0.0" width="451" height="1024"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2z-ct-YEP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2z-ct-YEP" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
                                         <rect key="frame" x="25" y="22" width="401" height="50"/>
                                         <color key="backgroundColor" red="0.9882352941176471" green="0.21568627450980393" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -605,7 +605,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9TY-pk-tEo">
                                 <rect key="frame" x="915" y="0.0" width="451" height="1024"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdS-mr-AJK">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdS-mr-AJK" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
                                         <rect key="frame" x="25" y="22" width="401" height="50"/>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -672,7 +672,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-lC-dis">
                                 <rect key="frame" x="0.0" y="101" width="895" height="923"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Q6F-AM-TYD">
                                     <size key="itemSize" width="207" height="212"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -690,21 +690,32 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Table" translatesAutoresizingMaskIntoConstraints="NO" id="4hc-uk-NYs">
                                                     <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="207" id="8NI-tb-42h"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxu-s8-Woz">
+                                                    <rect key="frame" x="100" y="96" width="49" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
+                                                    <color key="textColor" red="0.1019607843" green="0.1215686275" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
+                                        <color key="tintColor" red="0.92800253629999996" green="0.2366536558" blue="0.39380952720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="4hc-uk-NYs" firstAttribute="leading" secondItem="hBV-Mb-oTg" secondAttribute="leading" id="1WO-8V-Y1y"/>
                                             <constraint firstAttribute="bottom" secondItem="4hc-uk-NYs" secondAttribute="bottom" id="P8h-GT-zqv"/>
                                             <constraint firstAttribute="trailing" secondItem="4hc-uk-NYs" secondAttribute="trailing" id="PKo-m3-zZy"/>
                                             <constraint firstItem="4hc-uk-NYs" firstAttribute="top" secondItem="hBV-Mb-oTg" secondAttribute="top" id="U74-vO-q4T"/>
+                                            <constraint firstItem="xxu-s8-Woz" firstAttribute="centerX" secondItem="hBV-Mb-oTg" secondAttribute="centerX" id="X0G-1r-KOz"/>
+                                            <constraint firstItem="xxu-s8-Woz" firstAttribute="centerY" secondItem="hBV-Mb-oTg" secondAttribute="centerY" id="tji-fG-tGV"/>
                                         </constraints>
                                         <size key="customSize" width="207" height="212"/>
                                         <connections>
                                             <outlet property="tableImageView" destination="4hc-uk-NYs" id="bjh-2G-HvE"/>
+                                            <outlet property="tableNumberLabel" destination="xxu-s8-Woz" id="pnc-Hr-UVV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -790,7 +801,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKG-kG-caZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1390" y="-333"/>
+            <point key="canvasLocation" x="1389.7510980966324" y="-333.3984375"/>
         </scene>
         <!--Order SuccessVC-->
         <scene sceneID="Glo-aJ-ksY">
