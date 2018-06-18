@@ -199,20 +199,39 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
+        
         if self.categoryTV == tableView {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
+            
             if self.categories.count > 0 {
+                
                 cell.categoryTitle.text = self.categories[indexPath.row].name
             }
+            
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = .white
+            } else {
+                cell.backgroundColor = customLightGray
+            }
+            
             return cell
-        }else{
+            
+        } else {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
+            
             if self.categories.count > 0 {
+                
                 cell.categoryTitle.text = self.categories[indexPath.row].name
-//                cell.breakfastSwitch.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
-                }
+                
+            }
+            
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = .white
+            } else {
+                cell.backgroundColor = customLightGray
+            }
             
             return cell
         }

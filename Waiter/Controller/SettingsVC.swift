@@ -180,7 +180,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
             
             if indexPath.row % 2 == 0 {
-                print(indexPath.row)
+                waiterCell.backgroundColor = .white
+                
+            } else {
+                waiterCell.backgroundColor = customLightGray
             }
         }
     }

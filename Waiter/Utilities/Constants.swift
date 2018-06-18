@@ -50,11 +50,6 @@ let databaseKey = "https://waiter-d1f30.firebaseio.com/"
 let storageKey = "gs://waiter-d1f30.appspot.com/"
 
 // COLORS
-//if #available(iOS 10.0, *) {
-//    let customPink = UIColor(displayP3Red: 252/255, green: 55/255, blue: 104/255, alpha: 1)
-//} else {
-//    let customPink = UIColor(red: 252.0/255.0, green: 55.0/255.0, blue: 104.0/255.0, alpha: 1.0)
-//}
 
 let customBlue = UIColor(red: 26/255.0, green: 31/255.0, blue: 51/255.0, alpha: 1)
-
+let customLightGray = UIColor(red: 242/255.0, green: 243/255.0, blue: 247/255.0, alpha: 1)

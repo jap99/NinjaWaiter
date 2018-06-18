@@ -1406,6 +1406,7 @@
                                                                 <constraint firstItem="HMx-vJ-Kxx" firstAttribute="leading" secondItem="j5g-Sh-41r" secondAttribute="trailing" constant="20" id="vIL-ud-9Tt"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <color key="backgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <outlet property="deleteAccountButton" destination="0N9-CT-N0R" id="iv3-B6-Pgv"/>
                                                             <outlet property="resetButton" destination="ApK-Ru-A8S" id="GRj-nA-cOk"/>
