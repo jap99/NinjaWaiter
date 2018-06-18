@@ -82,6 +82,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         itemPriceTextField.layer.borderWidth = 1.0
         itemPriceTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        categoryTV.backgroundColor = .white
+        itemTV.backgroundColor = .white
+        
+        categoryTV.separatorStyle = .none
+        itemTV.separatorStyle = .none
     }
     // MARK: - IBACTIONS
     
@@ -91,8 +97,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
-        present(vc, animated: true, completion: nil)
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+//        present(vc, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // CATEGORIES SECTION
