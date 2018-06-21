@@ -65,6 +65,31 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             print(dict)
             self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
             self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
+            
+            if let d = Singleton.sharedInstance.settingsData[0].discount {
+                self.discountTextField.text = String(d)
+            }
+            
+            if let s = Singleton.sharedInstance.settingsData[0].serviceCharge {
+                self.serviceChargeTextField.text = String(s)
+            }
+            
+            if let t1 = Singleton.sharedInstance.settingsData[0].tax1Name {
+                self.taxName1TextField.text = t1
+            }
+            
+            if let t1p = Singleton.sharedInstance.settingsData[0].tax1Percent {
+                self.taxPercentage1TextField.text = String(t1p)
+            }
+            
+            if let t2 = Singleton.sharedInstance.settingsData[0].tax2Name {
+                self.taxName2TextField.text = t2
+            }
+            
+            if let t2p = Singleton.sharedInstance.settingsData[0].tax2Percent {
+                self.taxPercentage2TextField.text = String(t2p)
+            }
+            
         }
         
         startingTextField.layer.borderColor = UIColor.lightGray.cgColor

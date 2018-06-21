@@ -262,7 +262,7 @@ class DataService {
                 return
             } else {
                 
-                Singleton.sharedInstance.settingsData = Settings.parseSettingData(snapshot: snapshot)
+                Singleton.sharedInstance.settingsData = Settings.shared.parseSettingData(snapshot: snapshot)
                 callback?((snapshot.value as! [String : AnyObject]), nil)
             }
         }
