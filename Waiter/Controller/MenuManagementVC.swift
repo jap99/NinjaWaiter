@@ -67,8 +67,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         getCategories()
         setupVC()
-        
-<<<<<<< HEAD
+         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.scrollDirection = .horizontal
@@ -82,19 +81,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
-        
-=======
-//        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: 100, height: 100)
-//        layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = 50
-//        layout.minimumInteritemSpacing = 20
-//
-//        itemCV.delegate = self; itemCV.dataSource = self
-//        itemCV.allowsSelection = true
-//        itemCV.allowsMultipleSelection = false
-//
->>>>>>> 37d13d80ff4e21b052b6cb2f2a0b79181361b98b
+
     }
     
     // VDA
