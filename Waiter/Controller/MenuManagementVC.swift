@@ -152,7 +152,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let notEmpty =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
-        
         let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
         let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
         let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
@@ -162,7 +161,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         print("breakFast: \(breakFast)")
         if let name = itemNameTextField.text, let price = itemPriceTextField.text, notEmpty {
             
-            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImage: nil, categoryDictOfArray:  dictOfArrays) { (success) in
+            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImage: self.addImageButton.currentBackgroundImage, categoryDictOfArray:  dictOfArrays) { (success) in
                 
                 if success {
                     

@@ -46,26 +46,29 @@ class DashboardVC: UIViewController {
 
     // MARK: - ACTIONS
     
-    func goToViewController() {
+    func goToViewController(_ categoryData: [CategoryData]) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ViewControllerVC-ID") as! ViewController
+        vc.categoryData = categoryData
         self.present(vc, animated: true) { }
     }
     
     // MARK: - IBACTIONS
     
     @IBAction func breakfastButton_Pressed(_ sender: Any) {
-        let dicBreakFast: [String: Dictionary] = Singleton.sharedInstance.availabitlityData[0].breakfast as [String : Dictionary]
-        goToViewController()
+        let breakfast :[CategoryData] = Singleton.sharedInstance.availabitlityData[0].breakfast
+        goToViewController(breakfast)
     }
     
     @IBAction func lunchButton_Pressed(_ sender: Any) {
-        let dicLunch: [String: Dictionary] = Singleton.sharedInstance.availabitlityData[0].lunch as [String : Dictionary]
-        goToViewController()
+        let lunch :[CategoryData] = Singleton.sharedInstance.availabitlityData[0].lunch
+        goToViewController(lunch)
     }
     
     @IBAction func dinnerButton_Pressed(_ sender: Any) {
-        let dicDinner: [String: Dictionary] = Singleton.sharedInstance.availabitlityData[0].dinner as [String : Dictionary]
-        goToViewController()
+        let dinner :[CategoryData] = Singleton.sharedInstance.availabitlityData[0].dinner
+        print(dinner[0].itemName)
+        print(dinner[0].itemPrice)
+        goToViewController(dinner)
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {

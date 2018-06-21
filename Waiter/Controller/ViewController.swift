@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var foodsArray: [Item]! // used in cv2
     var checkoutDict: [String: AnyObject]!
     
-//    var dicDataAvailability: [String: Dictionary]?? = nil
+    var categoryData: [CategoryData] = [CategoryData]()
     
     override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cv2.allowsMultipleSelection = false
         cv2.isUserInteractionEnabled = true
         
-        
+        print(categoryData.count)
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
     }
     
@@ -95,6 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             } else if collectionView == self.cv2 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+                cell.foodNameLabel.text = categoryData[indexPath.row].itemName
                 
                 return cell
             } else {
@@ -115,7 +116,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 count = Singleton.sharedInstance.categoriesItems.count
             
             } else if collectionView == self.cv2 {
-                count = 10
+                count = categoryData.count
                // count = foodsArray.count
             }
 
