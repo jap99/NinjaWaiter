@@ -25,6 +25,7 @@ class StaffMember {
     static func getStaffList(array: [[String: Any]], arrKey: [String]) -> [StaffMember] {
         var staffMembers: [StaffMember] = []
         for (index,a) in array.enumerated() {
+            print(a)
             if let email = a["staffEmail"] as? String,
                 let type = a["staffType"] as? String {
                 let staff = StaffMember(email: email, type: type)
