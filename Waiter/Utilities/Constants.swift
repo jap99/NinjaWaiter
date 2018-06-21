@@ -30,6 +30,7 @@ let FIR_DRINKS = "Drinks"
 let FIR_PRINTERS = "Printers"
 let FIR_SETTINGS = "Settings"
 let FIR_CATEGORY = "Category"
+let FIR_AVAILABILITY = "Availability"
 let FIR_ITEMS = "Items"
 let FIR_MENU = "Menu"
 

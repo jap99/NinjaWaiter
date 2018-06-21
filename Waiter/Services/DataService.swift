@@ -272,11 +272,21 @@ class DataService {
             } else {
                 
                 Singleton.sharedInstance.settingsData = Settings.parseSettingData(snapshot: snapshot)
-                callback?(snapshot.value as! [String : AnyObject], nil)
+                callback?((snapshot.value as! [String : AnyObject]), nil)
             }
         }
     }
     
- 
+    func getAvabilityFromServer() {
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
+            
+            print(snapshot)
+            
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+               let availability = Availability(dict:snapshot)
+            }
+            
+        }
+    }
     
 }

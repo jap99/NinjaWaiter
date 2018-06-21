@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource/*, UICollectionViewDelegate, UICollectionViewDataSource*/ {
     
     // NAVIGATION BAR BUTTONS
     
@@ -66,17 +66,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         getCategories()
         setupVC()
         
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 50
-        layout.minimumInteritemSpacing = 20
-        
-        itemCV.delegate = self; itemCV.dataSource = self
-        itemCV.allowsSelection = true
-        itemCV.allowsMultipleSelection = false
-        itemCV.isPrefetchingEnabled = false
-        
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: 100, height: 100)
+//        layout.scrollDirection = .horizontal
+//        layout.minimumLineSpacing = 50
+//        layout.minimumInteritemSpacing = 20
+//
+//        itemCV.delegate = self; itemCV.dataSource = self
+//        itemCV.allowsSelection = true
+//        itemCV.allowsMultipleSelection = false
+//
     }
     
     // VDA
@@ -313,13 +312,13 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     // MARK: - COLLECTION VIEW
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-    }
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 10
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        return UICollectionViewCell()
+//    }
     
     // MARK: - ALERT CONTROLLERS
     
