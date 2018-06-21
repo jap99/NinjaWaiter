@@ -27,6 +27,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var foodsArray: [Item]! // used in cv2
     var checkoutDict: [String: AnyObject]!
     
+//    var dicDataAvailability: [String: Dictionary]?? = nil
+    
     override func viewDidLoad() {
     super.viewDidLoad()
         

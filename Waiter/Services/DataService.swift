@@ -188,7 +188,6 @@ class DataService {
             "ItemDetails": itemDetails as AnyObject,
             "itemImageURL": itemImageUrlString as AnyObject
         ]
-        
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
             
             if let error = error {
@@ -301,12 +300,14 @@ class DataService {
 
   
     func getAvabilityFromServer() {
+      
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
             
             print(snapshot)
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                let availability = Availability(dict:snapshot)
+                Singleton.sharedInstance.availabitlityData = [availability]
             }
             
         }

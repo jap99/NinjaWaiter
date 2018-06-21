@@ -19,7 +19,8 @@ class DashboardVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         settingsButton.isEnabled = _currentUser.type == .adamin
+        
+        settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
         fetchCategoryFromServer()
         DataService.instance.getSettingsData { (_, _) in
@@ -27,6 +28,7 @@ class DashboardVC: UIViewController {
         DataService.instance.getAvabilityFromServer()
         
     }
+    
     func  fetchCategoryFromServer(){
         DispatchQueue.global(qos: .background).async {
             
@@ -52,14 +54,17 @@ class DashboardVC: UIViewController {
     // MARK: - IBACTIONS
     
     @IBAction func breakfastButton_Pressed(_ sender: Any) {
+        let dicBreakFast: [String: Dictionary] = Singleton.sharedInstance.availabitlityData[0].breakfast as [String : Dictionary]
         goToViewController()
     }
     
     @IBAction func lunchButton_Pressed(_ sender: Any) {
+        let dicLunch: [String: Dictionary] = Singleton.sharedInstance.availabitlityData[0].lunch as [String : Dictionary]
         goToViewController()
     }
     
     @IBAction func dinnerButton_Pressed(_ sender: Any) {
+        let dicDinner: [String: Dictionary] = Singleton.sharedInstance.availabitlityData[0].dinner as [String : Dictionary]
         goToViewController()
     }
     

@@ -17,15 +17,19 @@ class Availability {
     var dinner: [String: NSDictionary]!
      
     init(dict:[DataSnapshot]) {
+        
         for snap in dict {
-            if snap.key == "Dinner" , let value = snap.value as? NSDictionary  {
-                self.dinner = [snap.key:value]
+           
+            if snap.key == "Dinner", let value = snap.value as? NSDictionary  {
+                self.dinner = [snap.key: value]
             }
-            if snap.key == "Lunch" , let value = snap.value as? NSDictionary  {
-                self.dinner = [snap.key:value]
+            
+            if snap.key == "Lunch", let value = snap.value as? NSDictionary  {
+                self.dinner = [snap.key: value]
             }
-            if snap.key == "Breakfast" , let value = snap.value as? NSDictionary  {
-                self.dinner = [snap.key:value]
+            
+            if snap.key == "Breakfast", let value = snap.value as? NSDictionary  {
+                self.dinner = [snap.key: value]
             }
            
         }
