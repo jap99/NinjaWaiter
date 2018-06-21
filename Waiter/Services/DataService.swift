@@ -35,7 +35,7 @@ class DataService {
         return mainStorageRef.child("images")
     }
     
-    // SAVE RESTAURANT & ADMIN - TO RESTAURANT NODE
+    // SAVE RESTAURANT & ADMIN - TO RESTAURANT NODE & SETTINGS
     
     func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
         let restaurantData: Dictionary<String, AnyObject> = [
@@ -116,7 +116,7 @@ class DataService {
         }
     }
     
-    // GET CATEGORIES
+    // GET CATEGORIES (1/2)
     
     func getCategories(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
         
@@ -133,6 +133,7 @@ class DataService {
         }
     }
     
+    // GET CATEGORIES (2/2)
     
     func getCategoriesFromServer(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
@@ -148,6 +149,7 @@ class DataService {
     }
     
     // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
+    
     var itemImageUrlString: String?
     
     func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
@@ -228,18 +230,24 @@ class DataService {
 
     }
     
-    // SAVE TABLE NUMBERS
+    // SAVE TABLE NUMBERS - TO SETTINGS
     
-    func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String, restaurantUID: String) {
+    func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String) {
         
         let data: Dictionary<String, AnyObject> = [
             "tableStartNumber": tableStartNumber as AnyObject,
             "tableEndNumber": tableEndNumber as AnyObject
         ]
         
-        mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).updateChildValues(data)
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(data)
     }
     
+    // SAVE TAXES & DISCOUNT SETTINGS - TO SETTINGS
+    
+    func saveTaxesAndDiscounts(settings: [String: AnyObject]) {
+        
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(settings)
+    }
     
     // GET SETTINGS DATA
     
@@ -260,6 +268,7 @@ class DataService {
         }
     }
     
+    // GET AVAILABILITY - BREAKFAST, LUNCH, DINNER
     
     func getAvabilityFromServer() {
         

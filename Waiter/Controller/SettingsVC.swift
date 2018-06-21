@@ -123,16 +123,58 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.view.bringSubview(toFront: addStaffView)
     }
     
+    var discountText: String?
+    var serviceChargeText: String?
+    var tax1NameText: String?
+    var tax2NameText: String?
+    var taxPercentage1NameText: String?
+    var taxPercentage2NameText: String?
+    
+    
     // GENERAL
     @IBAction func saveButton_Pressed(_ sender: Any) {
        
+        if let discountText = discountTextField.text {
+            self.discountText = discountText
+        }
+        
+        if let serviceChargeText = serviceChargeTextField.text {
+            self.serviceChargeText = serviceChargeText
+        }
+        
+        if let tax1NameText = taxName1TextField.text {
+            self.tax1NameText = tax1NameText
+        }
+        
+        if let tax2NameText = taxName2TextField.text {
+            self.tax2NameText = tax2NameText
+        }
+        
+        if let taxPercentage1NameText = taxPercentage1TextField.text {
+            self.taxPercentage1NameText = taxPercentage1NameText
+        }
+        
+        if let taxPercentage2NameText = taxPercentage2TextField.text {
+            self.taxPercentage2NameText = taxPercentage2NameText
+        }
+        
+        let settings: [String: AnyObject] = [
+            "discountText": self.discountText as AnyObject,
+            "serviceChargeText": self.serviceChargeText as AnyObject,
+            "tax1NameText": self.tax1NameText as AnyObject,
+            "tax2NameText": self.tax2NameText as AnyObject,
+            "taxPercentage1NameText": self.taxPercentage1NameText as AnyObject,
+            "taxPercentage2NameText": self.taxPercentage2NameText as AnyObject
+        ]
+        
+        DataService.instance.saveTaxesAndDiscounts(settings: settings)
     }
     
     
     // TABLE NUMBERS
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
         if let startingNumber = startingTextField.text, let endingNumber = endingTextField.text {
-            DataService.instance.saveNumberOfTables(tableStartNumber: startingNumber, tableEndNumber: endingNumber, restaurantUID: RESTAURANT_UID)
+            DataService.instance.saveNumberOfTables(tableStartNumber: startingNumber, tableEndNumber: endingNumber)
         }
     }
     
