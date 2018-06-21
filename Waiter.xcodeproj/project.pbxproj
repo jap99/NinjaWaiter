@@ -22,6 +22,8 @@
 		9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* AddCategoryCell.swift */; };
 		9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871320CC4CEB008E209F /* MenuManagementVC.swift */; };
 		9F79DAB020D52B11002D1743 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79DAAF20D52B11002D1743 /* Singleton.swift */; };
+		9F84AA5020DB338000E6B2BB /* ItemOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84AA4F20DB338000E6B2BB /* ItemOptionCell.swift */; };
+		9F84AA5220DB3CFA00E6B2BB /* SubItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84AA5120DB3CFA00E6B2BB /* SubItem.swift */; };
 		9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE620AC74A50027EDFB /* AppDelegate.swift */; };
 		9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE820AC74A50027EDFB /* ViewController.swift */; };
 		9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABEA20AC74A50027EDFB /* Main.storyboard */; };
@@ -77,6 +79,8 @@
 		9F67871120CC4CCD008E209F /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		9F67871320CC4CEB008E209F /* MenuManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManagementVC.swift; sourceTree = "<group>"; };
 		9F79DAAF20D52B11002D1743 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		9F84AA4F20DB338000E6B2BB /* ItemOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionCell.swift; sourceTree = "<group>"; };
+		9F84AA5120DB3CFA00E6B2BB /* SubItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubItem.swift; sourceTree = "<group>"; };
 		9F8EABE320AC74A50027EDFB /* Waiter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waiter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F8EABE620AC74A50027EDFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F8EABE820AC74A50027EDFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +171,14 @@
 			path = Singleton;
 			sourceTree = "<group>";
 		};
+		9F84AA4E20DB333000E6B2BB /* ItemOptions-FromMenuMgmtVC */ = {
+			isa = PBXGroup;
+			children = (
+				9F84AA4F20DB338000E6B2BB /* ItemOptionCell.swift */,
+			);
+			path = "ItemOptions-FromMenuMgmtVC";
+			sourceTree = "<group>";
+		};
 		9F8EABDA20AC74A50027EDFB = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +216,7 @@
 		9FEA846920B537C600C6DEE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F84AA4E20DB333000E6B2BB /* ItemOptions-FromMenuMgmtVC */,
 				9F16826120CFD5D600CFE4B1 /* AddCategory-FromMenuMgmtVC  */,
 				9F16825820CFCCD800CFE4B1 /* AddItem-FromMenuMgmtVC  */,
 				9F16825720CFCCBF00CFE4B1 /* AddItem-FromMainVC */,
@@ -226,6 +239,7 @@
 				9F0228CB20D25C4F00550DAD /* Category.swift */,
 				9F0228CD20D25C7600550DAD /* Item.swift */,
 				9F2546C920D644E900162133 /* Settings.swift */,
+				9F84AA5120DB3CFA00E6B2BB /* SubItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -456,6 +470,7 @@
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
 				9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */,
+				9F84AA5020DB338000E6B2BB /* ItemOptionCell.swift in Sources */,
 				9FEEFDCA20C8E5F100119A35 /* DataService.swift in Sources */,
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
 				9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */,
@@ -475,6 +490,7 @@
 				9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */,
 				9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */,
 				9F0228CE20D25C7600550DAD /* Item.swift in Sources */,
+				9F84AA5220DB3CFA00E6B2BB /* SubItem.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9F79DAB020D52B11002D1743 /* Singleton.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,

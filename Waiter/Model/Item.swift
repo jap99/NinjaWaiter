@@ -15,6 +15,11 @@ class Item {
     var title: String!
     var price: String!
     var imageURL: String?
+    var availability: [String]! // ie. breakfast, lunch, dinner
+    
+    // an item belongs to a category
+    
+    // an item can have multiple subitems (optional)
     
     
 }

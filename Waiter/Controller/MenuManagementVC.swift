@@ -8,27 +8,34 @@
 
 import UIKit
 
-class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // NAVIGATION BAR BUTTONS
     
     @IBOutlet weak var menuManagementButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    // (ADD) CATEGORY BUTTON & ITEM BUTTON
+    
     @IBOutlet weak var addCategoryButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
     
-    // TABLE VIEW
+    // TABLE VIEWS
+    
     @IBOutlet weak var categoryTV: UITableView!
     @IBOutlet weak var itemTV: UITableView!
     
-    // SCROLL VIEW
+    // THE SCROLL VIEW
     
     @IBOutlet weak var mainScrollview: UIScrollView!
+    
+    // (SAVE) CATEGORY BUTTON & ITEM BUTTON
     
     @IBOutlet weak var saveCategoryButton: UIButton!
     @IBOutlet weak var saveItemButton: UIButton!
     
-    // ADD CATEGORY VIEW
+    // THE 'ADD CATEGORY' POPOUP VIEW
     
     @IBOutlet weak var addCategoryView: UIView!
     @IBOutlet weak var foodTextField: UITextField!
@@ -36,20 +43,17 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var plusSignCategoryImageView: UIImageView!
     
-    // ADD ITEM VIEW
+    // THE 'ADD ITEM' VIEW
     @IBOutlet weak var addItemView: CreateItem!
     @IBOutlet weak var itemNameTextField: UITextField!
     @IBOutlet weak var itemPriceTextField: UITextField!
     @IBOutlet weak var plusSignItemImageView: UIImageView!
     
-    // ITEM OPTIONS
+    // THE 'ITEM OPTIONS' COLLECTION VIEW
     
-    @IBOutlet weak var itemOneButton: UIButton!
-    @IBOutlet weak var itemTwoButton: UIButton!
-    @IBOutlet weak var itemThreeButton: UIButton!
-    @IBOutlet weak var itemFourButton: UIButton!
-    @IBOutlet weak var itemFiveButton: UIButton!
-    @IBOutlet weak var itemSixButton: UIButton!
+    @IBOutlet weak var itemCV: UICollectionView!
+    
+    // VARIABLES
     
     var categories = [Category]()
     var dictOfArrays = [String: [String]]()
@@ -62,7 +66,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         getCategories()
         setupVC()
         
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 50
+        layout.minimumInteritemSpacing = 20
         
+        itemCV.delegate = self; itemCV.dataSource = self
+        itemCV.allowsSelection = true
+        itemCV.allowsMultipleSelection = false
+        itemCV.isPrefetchingEnabled = false
         
     }
     
@@ -70,6 +83,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidAppear(_ animated: Bool) {
         showAddCategoryView(false)
+        
+        itemCV.reloadData()
+        itemTV.reloadData()
     }
 
     // MARK: - SETUP
@@ -261,8 +277,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if itemTV == tableView {
@@ -295,6 +309,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             let dict = [String: [String]]()
 
         }
+    }
+    
+    // MARK: - COLLECTION VIEW
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
     }
     
     // MARK: - ALERT CONTROLLERS

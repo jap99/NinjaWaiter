@@ -24,17 +24,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var exitButton: UIButton!
     var sectionsArray: [String]!
-    var foodsArray: [String]!
+    var foodsArray: [Item]! // used in cv2
     var checkoutDict: [String: AnyObject]!
     
     override func viewDidLoad() {
     super.viewDidLoad()
+        
         hideKeyboardWhenTappedAround()
-        cv1.delegate = self; cv1.dataSource = self
-//        cv1.register(SectionCell.self, forCellWithReuseIdentifier: "SectionCell")
-        cv2.delegate = self; cv2.dataSource = self
-        cv2.register(FoodCell.self, forCellWithReuseIdentifier: "FoodCell")
+        
         tv.delegate = self; tv.dataSource = self
+        cv1.delegate = self; cv1.dataSource = self
+        cv2.delegate = self; cv2.dataSource = self
+        //cv2.register(FoodCell.self, forCellWithReuseIdentifier: "FoodCell")
+        
+        let layoutCV2 = UICollectionViewFlowLayout()
+        layoutCV2.scrollDirection = .vertical
+        layoutCV2.minimumInteritemSpacing = 20
+        layoutCV2.minimumLineSpacing = 60
+        cv2.isPrefetchingEnabled = false
+        cv2.allowsMultipleSelection = false
+        cv2.isUserInteractionEnabled = true
+        
+        
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
     }
     
@@ -96,20 +107,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             var count: Int?
-//
+
             if collectionView == self.cv1 {
                 
                 count = Singleton.sharedInstance.categoriesItems.count
             
-            } else {
-                count = 1
+            }  if collectionView == self.cv2 {
+                
+                count = foodsArray.count
             }
-//            if collectionView == self.cv2 {
-//                count = foodsArray.count
-//            }
-//
+
             return count!
-//            return 1
+
         }
     
 }
