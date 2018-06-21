@@ -24,6 +24,7 @@ class DashboardVC: UIViewController {
         fetchCategoryFromServer()
         DataService.instance.getSettingsData { (_, _) in
         }
+        fetchAvailabilityDataFromServer()
         
     }
     func  fetchCategoryFromServer(){
@@ -35,6 +36,10 @@ class DashboardVC: UIViewController {
                 }
             }
         }
+    }
+    
+    func fetchAvailabilityDataFromServer() {
+        DataService.instance.getAvabilityFromServer()
     }
     
     override func viewDidAppear(_ animated: Bool) {

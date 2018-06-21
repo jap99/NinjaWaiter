@@ -426,6 +426,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="4sp-gb-Tfq"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Hqh-lv-ESq"/>
+                                </connections>
                             </collectionView>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OMC-SU-SXT">
                                 <rect key="frame" x="20" y="91" width="875" height="933"/>

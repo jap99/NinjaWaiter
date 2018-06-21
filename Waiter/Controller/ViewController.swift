@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         layoutCV2.scrollDirection = .vertical
         layoutCV2.minimumInteritemSpacing = 20
         layoutCV2.minimumLineSpacing = 60
-        cv2.isPrefetchingEnabled = false
+        
         cv2.allowsMultipleSelection = false
         cv2.isUserInteractionEnabled = true
         
@@ -96,8 +96,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 return cell
             } else {
-                var cell: UICollectionViewCell?
-                return cell!
+                let cell = UICollectionViewCell()
+                return cell
             }
         }
     
@@ -112,14 +112,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 count = Singleton.sharedInstance.categoriesItems.count
             
-            }  if collectionView == self.cv2 {
-                
-                count = foodsArray.count
+            } else if collectionView == self.cv2 {
+                count = 10
+               // count = foodsArray.count
             }
 
             return count!
 
         }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == cv1 {
+            let category  = Singleton.sharedInstance.categoriesItems[indexPath.row]
+            print(category)
+        }
+    }
     
 }
 
