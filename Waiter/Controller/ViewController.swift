@@ -96,7 +96,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else if collectionView == self.cv2 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
                 cell.foodNameLabel.text = categoryData[indexPath.row].itemName
-                
+                let url = URL(string: categoryData[indexPath.row].itemImageURL)
+                if categoryData[indexPath.row].itemImageURL != "" {
+                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                cell.foodImageView.image = UIImage(data: data!)
+                }
                 return cell
             } else {
                 let cell = UICollectionViewCell()
