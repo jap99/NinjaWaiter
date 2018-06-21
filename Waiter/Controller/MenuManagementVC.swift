@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseStorage
 
-class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource/*, UICollectionViewDelegate, UICollectionViewDataSource*/ {
+class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate/*, UICollectionViewDelegate, UICollectionViewDataSource*/ {
     
     // NAVIGATION BAR BUTTONS
     
@@ -74,10 +74,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         layout.minimumLineSpacing = 50
         layout.minimumInteritemSpacing = 20
         
-        itemCV.delegate = self; itemCV.dataSource = self
-        itemCV.allowsSelection = true
-        itemCV.allowsMultipleSelection = false
-        itemCV.isPrefetchingEnabled = false
+//        itemCV.delegate = self; itemCV.dataSource = self
+//        itemCV.allowsSelection = true
+//        itemCV.allowsMultipleSelection = false
+//        itemCV.isPrefetchingEnabled = false
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
@@ -162,7 +162,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         print("breakFast: \(breakFast)")
         if let name = itemNameTextField.text, let price = itemPriceTextField.text, notEmpty {
             
-            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImageURL: nil, categoryDictOfArray:  dictOfArrays) { (success) in
+            DataService.instance.saveItem(itemName: name, itemPrice: price, itemImage: nil, categoryDictOfArray:  dictOfArrays) { (success) in
                 
                 if success {
                     

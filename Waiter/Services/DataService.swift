@@ -149,21 +149,45 @@ class DataService {
     
     // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
     
-    func saveItem(itemName: String, itemPrice: String, itemImageURL: String?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
+    func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
         
         let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
+    
+        var itemImageUrlString: String?
+        
+        if let imageData = UIImageJPEGRepresentation(itemImage!, 0.7) {
+            
+            let imageName = NSUUID().uuidString
+            
+            let storageRef = imagesStorageRef.child("\(imageName).jpeg")
+            
+            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                
+                if let error = error {
+                    print("PRINTING ERROR UPLOADING PROFILE IMAGE TO FIREBASE - ERROR DESCRIPTION: \(error.localizedDescription)")
+                    return
+                }
+                
+                print(metadata!)
+//                if let itemImageURLString = metadata?.downloadURL()?.absoluteString {
+//
+//                    self.itemImageUrlString = itemImageURLString
+//                        //["itemImageURL": itemImageURL as AnyObject]
+//                }
+            })
+        }
         
         let itemDetails: Dictionary<String, AnyObject> = [
             "itemName": itemName as AnyObject,
             "itemPrice": itemPrice as AnyObject,
+            "itemImageURL": itemImageUrlString as AnyObject
         ]
         
         let item: Dictionary<String, AnyObject> = [
             "Categories": categoryDictOfArray as AnyObject,
-            "ItemDetails": itemDetails as AnyObject
+            "ItemDetails": itemDetails as AnyObject,
+            "itemImageURL": itemImageUrlString as AnyObject
         ]
-        
-        
         
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
             
@@ -218,31 +242,29 @@ class DataService {
             })
         }
     }
-
+ 
     
-    //
-//    func saveItemImage(itemUID: String, imageURL: URL) {
+    func saveItemImage(img: UIImage, value: [String: AnyObject], completion: (Bool) -> ()) {
+        
+//        let imageName = NSUUID().uuidString
 //
-//        let autoOrderId = mainRef.child("").childByAutoId().key
+//        let storageRef = imagesStorageRef.child("\(imageName).jpeg")
 //
-//        let pr: Dictionary<String, AnyObject> = [
-//            "imageURL": imageURL.absoluteString as AnyObject
+//        storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
 //
-//        ]
-//
-//        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child().child(autoOrderId).setValue(pr) { (err, ref) in
-//
-//            if err != nil {
-//                let error = err
-//                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
-//
-//            } else {
-//
+//            if let error = error {
+//                print("PRINTING ERROR UPLOADING PROFILE IMAGE TO FIREBASE - ERROR DESCRIPTION: \(error.debugDescription)")
+//                return
 //            }
-//        }
-//    }
 //
-    
+//            if let itemImageURL = metadata?.downloadURL()?.absoluteString {
+//
+//                let imageValue: [String: AnyObject] = ["itemImageURL": itemImageURL as AnyObject]
+//            }
+//        })
+//
+        
+    }
     
     // SAVE TABLE NUMBERS
     
@@ -276,29 +298,7 @@ class DataService {
             }
         }
     }
-     
-    func saveItemImage(img: UIImage, value: [String: AnyObject], completion: (Bool) -> ()) {
-        
-        let imageName = NSUUID().uuidString
-        let imageData = img.jpeg(.lowest)
-        
-        let storageRef = imagesStorageRef.child("\(imageName).jpeg")
-        
-        storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-            
-            if let error = error {
-                print("PRINTING ERROR UPLOADING PROFILE IMAGE TO FIREBASE - ERROR DESCRIPTION: \(error.debugDescription)")
-                return
-            }
-            
-            if let itemImageURL = metadata?.downloadURL()?.absoluteString {
-                
-                let imageValue: [String: AnyObject] = ["itemImageURL": itemImageURL as AnyObject]
-            }
-        })
-        
-        
-    }
+
   
     func getAvabilityFromServer() {
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
