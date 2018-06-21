@@ -15,7 +15,7 @@ class Item {
     var title: String!
     var price: String!
     var imageURL: String?
-    var availability: [Availability]! // ie. breakfast, lunch, dinner
+    var availability: [Availability]!  
     
     // an item belongs to a category
     

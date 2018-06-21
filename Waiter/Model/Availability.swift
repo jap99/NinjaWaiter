@@ -12,14 +12,10 @@ import FirebaseStorage
 
 class Availability {
     
-    // either Breakfast, lunch, or dinner
     var lunch: [String: NSDictionary]!
     var breakfast: [String: NSDictionary]!
     var dinner: [String: NSDictionary]!
-   
-    
-    // [Dinner: [Categories: [
-
+     
     init(dict:[DataSnapshot]) {
         for snap in dict {
             if snap.key == "Dinner" , let value = snap.value as? NSDictionary  {

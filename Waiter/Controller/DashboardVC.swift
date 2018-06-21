@@ -24,26 +24,22 @@ class DashboardVC: UIViewController {
         fetchCategoryFromServer()
         DataService.instance.getSettingsData { (_, _) in
         }
-        fetchAvailabilityDataFromServer()
+        DataService.instance.getAvabilityFromServer()
         
     }
     func  fetchCategoryFromServer(){
         DispatchQueue.global(qos: .background).async {
-            //background code
+            
             DataService.instance.getCategoriesFromServer { (categories: [Category]?, error) in
-                guard let error = error else {
+                guard let _ = error else {
                     return
                 }
             }
         }
     }
     
-    func fetchAvailabilityDataFromServer() {
-        DataService.instance.getAvabilityFromServer()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        print(staffArray)
+        print(staffArray as Any)
     }
 
     // MARK: - ACTIONS
