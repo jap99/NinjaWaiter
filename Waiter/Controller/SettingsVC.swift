@@ -35,6 +35,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var taxPercentage2TextField: UITextField!
     @IBOutlet weak var saveButton: RoundedButton!
     
+    var discountText: String?
+    var serviceChargeText: String?
+    var tax1NameText: String?
+    var tax2NameText: String?
+    var taxPercentage1NameText: String?
+    var taxPercentage2NameText: String?
+    
     // TABLE NUMBERS
     
     @IBOutlet weak var startingTextField: UITextField!
@@ -123,15 +130,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.view.bringSubview(toFront: addStaffView)
     }
     
-    var discountText: String?
-    var serviceChargeText: String?
-    var tax1NameText: String?
-    var tax2NameText: String?
-    var taxPercentage1NameText: String?
-    var taxPercentage2NameText: String?
+    // SAVE TAXES & DISCOUNTS
     
-    
-    // GENERAL
     @IBAction func saveButton_Pressed(_ sender: Any) {
        
         if let discountText = discountTextField.text {
@@ -170,21 +170,21 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         DataService.instance.saveTaxesAndDiscounts(settings: settings)
     }
     
+    // SAVE TABLE NUMBERS
     
-    // TABLE NUMBERS
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
         if let startingNumber = startingTextField.text, let endingNumber = endingTextField.text {
             DataService.instance.saveNumberOfTables(tableStartNumber: startingNumber, tableEndNumber: endingNumber)
         }
     }
     
-    
-    
     // FOR THE 'CREATE STAFF' POPUP VIEW
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
         cancelButton.isHidden = true
     } 
+    
+    // CREATE STAFF MEMBER
     
     @IBAction func createButton_Pressed(_ sender: Any) {
         
@@ -206,7 +206,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    // MARK: - TABLE VIEW
+    // MARK: - TABLE VIEW (STAFF)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath)
