@@ -147,7 +147,7 @@ class DataService {
         }
     }
     
-    // SAVE ITEM
+    // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
     
     func saveItem(itemName: String, itemPrice: String, itemImageURL: String?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
         
@@ -163,18 +163,52 @@ class DataService {
             "ItemDetails": itemDetails as AnyObject
         ]
         
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (err, ref) in
+        
+        
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
             
-            if err != nil {
-                let error = err
-                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.debugDescription)")
+            if let error = error {
+                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
                 completion(false)
             } else {
-                completion(true)
+                // Need to find out all the categories that were turned on, whether they were turned of for breakfast/lunch/dinner, and pass it in along with the itemUID
+                //let categories =
+                print(categoryDictOfArray)
                 
+                let itemDetailsNode: Dictionary<String, AnyObject> = [
+                    "ItemDetails": itemDetails as AnyObject
+                ]
+                
+                let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
+                let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
+                let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
+
+                var arrBreakFast: [String: Any?]
+                var arrlunch: [String: Any?]
+                var arrDinner: [String: Any?]
+                var arrAllType: [String: Any] = [:]
+                
+                if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
+                    arrBreakFast = [itemUID: itemDetailsNode]
+                   // arrAllType["Breakfast"] = arrBreakFast
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Breakfast").child("Categories").child(breakfastCategoryUIDsKey).child("Items").updateChildValues(arrBreakFast)
+                }
+                if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
+                    arrlunch = [itemUID: itemDetailsNode]
+                    //arrAllType["Lunch"] = arrlunch
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Lunch").child("Categories").child(lunchCategoryUIDsKey).child("Items").updateChildValues(arrlunch)
+                }
+                if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
+                    arrDinner = [itemUID: itemDetailsNode]
+                    //arrAllType["Dinner"] = arrDinner
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Dinner").child("Categories").child(dinnerCategoryUIDsKey).child("Items").updateChildValues(arrDinner)
+                }
+                
+                completion(true)
             }
         }
     }
+    
     
     func snapshotTaken(_ snapshotData: Data!) {
         

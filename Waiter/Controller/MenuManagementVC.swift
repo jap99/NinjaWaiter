@@ -126,8 +126,17 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func saveButton_Pressed(_ sender: Any) {
         
-       let notEmpty =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
+        let notEmpty =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
+        
+        let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
+        let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
+        let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
+        
+
+        print("lunch: \(lunch)")
+        print("dinner: \(dinner)")
+        print("breakFast: \(breakFast)")
         if let name = itemNameTextField.text, let price = itemPriceTextField.text, notEmpty {
             
             DataService.instance.saveItem(itemName: name, itemPrice: price, itemImageURL: nil, categoryDictOfArray:  dictOfArrays) { (success) in

@@ -104,7 +104,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func cancelAddNewStaff(_ sender: Any) {
