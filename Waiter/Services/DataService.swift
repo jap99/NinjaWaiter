@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
- 
+
 class DataService {
     
     private static let _instance = DataService()
@@ -67,13 +67,13 @@ class DataService {
             "staffEmail": lowercasedStaffEmail as AnyObject,
             "staffType": staffMemberType as AnyObject
         ]
-         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)
     }
     
     // SAVE STAFF - TO MAIN STAFF NODE
     
     func saveToStaffNode(staffMemberUID: String, restaurantUID: String) {
-   
+        
         let data: Dictionary<String, String> = [
             staffMemberUID: restaurantUID
         ]
@@ -148,14 +148,13 @@ class DataService {
     }
     
     // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
+    var itemImageUrlString: String?
     
     func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
         
         let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
-    
-        var itemImageUrlString: String?
         
-        if let imageData = UIImageJPEGRepresentation(itemImage!, 0.7) {
+        if let imageData = UIImageJPEGRepresentation(itemImage!, 0.3) {
             
             let imageName = NSUUID().uuidString
             
@@ -168,116 +167,79 @@ class DataService {
                     return
                 }
                 
-                print(metadata!)
-//                if let itemImageURLString = metadata?.downloadURL()?.absoluteString {
-//
-//                    self.itemImageUrlString = itemImageURLString
-//                        //["itemImageURL": itemImageURL as AnyObject]
-//                }
-            })
-        }
-        
-        let itemDetails: Dictionary<String, AnyObject> = [
-            "itemName": itemName as AnyObject,
-            "itemPrice": itemPrice as AnyObject,
-            "itemImageURL": itemImageUrlString as AnyObject
-        ]
-        
-        let item: Dictionary<String, AnyObject> = [
-            "Categories": categoryDictOfArray as AnyObject,
-            "ItemDetails": itemDetails as AnyObject,
-            "itemImageURL": itemImageUrlString as AnyObject
-        ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
-            
-            if let error = error {
-                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
-                completion(false)
-            } else {
-                
-                let itemDetailsNode: Dictionary<String, AnyObject> = [
-                    "ItemDetails": itemDetails as AnyObject
-                ]
-                
-                let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
-                let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
-                let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
-
-                var arrBreakFast: [String: Any]
-                var arrlunch: [String: Any]
-                var arrDinner: [String: Any]
-                
-                if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
-                    arrBreakFast = [itemUID: itemDetailsNode]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Breakfast").child("Categories").child(breakfastCategoryUIDsKey).child("Items").updateChildValues(arrBreakFast)
-                }
-                if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
-                    arrlunch = [itemUID: itemDetailsNode]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Lunch").child("Categories").child(lunchCategoryUIDsKey).child("Items").updateChildValues(arrlunch)
-                }
-                if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
-                    arrDinner = [itemUID: itemDetailsNode]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Dinner").child("Categories").child(dinnerCategoryUIDsKey).child("Items").updateChildValues(arrDinner)
-                }
-                
-                completion(true)
-            }
-        }
-    }
-    
-    
-    func snapshotTaken(_ snapshotData: Data!) {
-        
-        if let snap = snapshotData {
-            
-            imagesStorageRef.child("\(NSUUID().uuidString).jpg").putData(snap, metadata: nil, completion: { meta, error in
-                
-                if let error = error {
-                    print("Error uploading snapshot: \(error.localizedDescription)")
-                } else {
-                    //_ = meta!.downloadURL()
+                storageRef.downloadURL(completion: { (url, error) in
+                    if let downloadURL = url {
+                        self.itemImageUrlString = downloadURL.description
+                    }
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
                     
-                }
+                    
+                    let itemDetails: Dictionary<String, AnyObject> = [
+                        "itemName": itemName as AnyObject,
+                        "itemPrice": itemPrice as AnyObject,
+                        "itemImageURL": self.itemImageUrlString as AnyObject
+                    ]
+                    
+                    let item: Dictionary<String, AnyObject> = [
+                        "Categories": categoryDictOfArray as AnyObject,
+                        "ItemDetails": itemDetails as AnyObject,
+                        "itemImageURL": self.itemImageUrlString as AnyObject
+                    ]
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
+                        
+                        if let error = error {
+                            print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
+                            completion(false)
+                        } else {
+                            
+                            let itemDetailsNode: Dictionary<String, AnyObject> = [
+                                "ItemDetails": itemDetails as AnyObject
+                            ]
+                            
+                            let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
+                            let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
+                            let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
+                            
+                            var arrBreakFast: [String: Any]
+                            var arrlunch: [String: Any]
+                            var arrDinner: [String: Any]
+                            
+                            if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
+                                arrBreakFast = [itemUID: itemDetailsNode]
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Breakfast").child("Categories").child(breakfastCategoryUIDsKey).child("Items").updateChildValues(arrBreakFast)
+                            }
+                            if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
+                                arrlunch = [itemUID: itemDetailsNode]
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Lunch").child("Categories").child(lunchCategoryUIDsKey).child("Items").updateChildValues(arrlunch)
+                            }
+                            if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
+                                arrDinner = [itemUID: itemDetailsNode]
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Dinner").child("Categories").child(dinnerCategoryUIDsKey).child("Items").updateChildValues(arrDinner)
+                            }
+                            
+                            completion(true)
+                        }
+                    }
+                })
             })
         }
-    }
- 
-    
-    func saveItemImage(img: UIImage, value: [String: AnyObject], completion: (Bool) -> ()) {
-        
-//        let imageName = NSUUID().uuidString
-//
-//        let storageRef = imagesStorageRef.child("\(imageName).jpeg")
-//
-//        storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-//
-//            if let error = error {
-//                print("PRINTING ERROR UPLOADING PROFILE IMAGE TO FIREBASE - ERROR DESCRIPTION: \(error.debugDescription)")
-//                return
-//            }
-//
-//            if let itemImageURL = metadata?.downloadURL()?.absoluteString {
-//
-//                let imageValue: [String: AnyObject] = ["itemImageURL": itemImageURL as AnyObject]
-//            }
-//        })
-//
-        
+
     }
     
     // SAVE TABLE NUMBERS
     
+    func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String, restaurantUID: String) {
+        
+        let data: Dictionary<String, AnyObject> = [
+            "tableStartNumber": tableStartNumber as AnyObject,
+            "tableEndNumber": tableEndNumber as AnyObject
+        ]
+        
+        mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).updateChildValues(data)
+    }
     
-     func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String, restaurantUID: String) {
-     
-     let data: Dictionary<String, AnyObject> = [
-        "tableStartNumber": tableStartNumber as AnyObject,
-        "tableEndNumber": tableEndNumber as AnyObject
-     ]
-     
-     mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).updateChildValues(data)
-     }
- 
     
     // GET SETTINGS DATA
     
@@ -297,21 +259,21 @@ class DataService {
             }
         }
     }
-
-  
+    
+    
     func getAvabilityFromServer() {
-      
+        
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
             
             print(snapshot)
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-               let availability = Availability(dict:snapshot)
+                let availability = Availability(dict:snapshot)
                 Singleton.sharedInstance.availabitlityData = [availability]
             }
             
         }
     }
-
+    
     
 }
