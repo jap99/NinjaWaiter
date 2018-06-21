@@ -277,6 +277,29 @@ class DataService {
         }
     }
     
+    
+    func saveItemImage(img: UIImage, value: [String: AnyObject], completion: (Bool) -> ()) {
+        
+        let imageName = NSUUID().uuidString
+        let imageData = img.jpeg(.lowest)
+        
+        let storageRef = imagesStorageRef.child("\(imageName).jpeg")
+        
+        storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+            
+            if let error = error {
+                print("PRINTING ERROR UPLOADING PROFILE IMAGE TO FIREBASE - ERROR DESCRIPTION: \(error.debugDescription)")
+                return
+            }
+            
+            if let itemImageURL = metadata?.downloadURL()?.absoluteString {
+                
+                let imageValue: [String: AnyObject] = ["itemImageURL": itemImageURL as AnyObject]
+            }
+        })
+        
+        
+    }
  
     
 }

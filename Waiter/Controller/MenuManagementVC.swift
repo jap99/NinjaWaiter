@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseStorage
 
-class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate {
     
     // NAVIGATION BAR BUTTONS
     
@@ -58,6 +59,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var categories = [Category]()
     var dictOfArrays = [String: [String]]()
     var index = 0
+    var imagePicker: UIImagePickerController?
     
     // VDL
     
@@ -76,6 +78,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         itemCV.allowsSelection = true
         itemCV.allowsMultipleSelection = false
         itemCV.isPrefetchingEnabled = false
+        
+        imagePicker = UIImagePickerController()
+        imagePicker?.delegate = self
         
     }
     
@@ -136,11 +141,14 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // ITEM SECTION
     
     @IBAction func addItemButton_Pressed(_ sender: Any) {
-        self.addItemView = CreateItem.loadViewFromNib(viewController: self)
-        self.view.addSubview(addItemView)
+//        self.addItemView = CreateItem.loadViewFromNib(viewController: self)
+//        self.view.addSubview(addItemView)
+        
+        present(imagePicker!, animated: true, completion: nil)
+        
     }
     
-    @IBAction func saveButton_Pressed(_ sender: Any) {
+    @IBAction func saveButton_Pressed(_ sender: Any) { // save item
         
         let notEmpty =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
@@ -149,7 +157,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
         let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
         
-
         print("lunch: \(lunch)")
         print("dinner: \(dinner)")
         print("breakFast: \(breakFast)")
@@ -210,6 +217,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @objc func switchValueDidChange(_ sender: UISwitch) {
         
     }
+    
+ 
     
     // MARK: - TABLE VIEW
     
@@ -321,6 +330,18 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
+    // MARK: - IMAGE PICKER
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if picker == imagePicker, let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            self.addImageButton.isEnabled = true
+            self.addImageButton.backgroundColor = .clear
+            self.addImageButton.setBackgroundImage(img, for: .normal)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
     // MARK: - ALERT CONTROLLERS
     
     func showError_CategoryAddFailed() {
