@@ -16,6 +16,6 @@ final class Singleton {
     
     var categoriesItems: [Category] = [Category]()
     var settingsData: [Settings] = [Settings]()
-    var availabitlityData: [Availability] = [Availability]()
+    var availabilityData: [Availability] = [Availability]()
     
 }

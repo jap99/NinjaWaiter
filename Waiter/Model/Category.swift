@@ -23,7 +23,7 @@ class Category {
         self.name = name
     }
     
-    static func getCategoryList(array: [[String: Any]], arrKey:[String]) -> [Category] {
+    static func getCategoryList(array: [[String: Any]], arrKey: [String]) -> [Category] {
         
         var categories: [Category] = []
         
@@ -52,5 +52,31 @@ class Category {
         }
         return arrCategory
     }
-     
+}
+
+class CategoryData: NSObject {
+    
+  //static var arrayOfDictionaries = [[String: [String: AnyObject]]]()
+    
+    var itemPrice = "", itemName = "", itemImageURL = "", availabilityType = ""
+   
+  //  init(object: [String: [String: AnyObject]], availabilityType: String) {
+        init(object:  [String: [String: [String: [String: AnyObject]]]]) {
+    
+   //     self.availabilityType = availabilityType
+        
+//        for (categoryUID, _) in object {
+//            
+//            for (itemUID, itemDetails) in (object[categoryUID])! {
+//                
+//                let data: [String: Item] = [
+//                    categoryUID: Item(dictionary: itemDetails, itemId: itemUID)
+//                ]
+//                
+//                CategoryData.arrayOfDictionaries.append(data)
+//            }
+//        }
+        
+        super.init()
+    }
 }

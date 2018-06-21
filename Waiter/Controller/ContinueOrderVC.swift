@@ -51,7 +51,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         var count: Int?
         
         if collectionView == self.cv1 {
-            count = Singleton.sharedInstance.settingsData[0].totalTable
+          count = 10 //  count = Singleton.sharedInstance.settingsData[0].totalTable
         } else {
             count = 1
         }

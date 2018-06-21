@@ -225,7 +225,6 @@ class DataService {
                 })
             })
         }
-
     }
     
     // SAVE TABLE NUMBERS
@@ -261,15 +260,14 @@ class DataService {
     }
     
     
-    func getAvabilityFromServer() {
-        
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
-            
-            print(snapshot)
+    func getAvailabilityDataFromServer() {
+          mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                
                 let availability = Availability(dict:snapshot)
-                Singleton.sharedInstance.availabitlityData = [availability]
+                print(availability)
+                Singleton.sharedInstance.availabilityData = [availability]
             }
             
         }

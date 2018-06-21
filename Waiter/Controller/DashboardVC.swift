@@ -25,11 +25,11 @@ class DashboardVC: UIViewController {
         fetchCategoryFromServer()
         DataService.instance.getSettingsData { (_, _) in
         }
-        DataService.instance.getAvabilityFromServer()
+        //DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
         
     }
     
-    func  fetchCategoryFromServer(){
+    func  fetchCategoryFromServer() { // won't need this in the future
         DispatchQueue.global(qos: .background).async {
             
             DataService.instance.getCategoriesFromServer { (categories: [Category]?, error) in
@@ -41,34 +41,36 @@ class DashboardVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(staffArray as Any)
     }
 
     // MARK: - ACTIONS
     
-    func goToViewController(_ categoryData: [CategoryData]) {
+    func goToViewController(menuData: [[String: [[String: [String: AnyObject]]]]]) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ViewControllerVC-ID") as! ViewController
-        vc.categoryData = categoryData
+        vc.menuData = menuData
         self.present(vc, animated: true) { }
     }
     
     // MARK: - IBACTIONS
     
     @IBAction func breakfastButton_Pressed(_ sender: Any) {
-        let breakfast :[CategoryData] = Singleton.sharedInstance.availabitlityData[0].breakfast
-        goToViewController(breakfast)
+        let breakfast = Singleton.sharedInstance.availabilityData[0].breakfast
+        print(breakfast)
+        goToViewController(menuData: breakfast)
     }
     
     @IBAction func lunchButton_Pressed(_ sender: Any) {
-        let lunch :[CategoryData] = Singleton.sharedInstance.availabitlityData[0].lunch
-        goToViewController(lunch)
+       // let lunch: [CategoryData] = Singleton.sharedInstance.availabilityData[0].lunch
+         let lunch = Singleton.sharedInstance.availabilityData[0].lunch
+        print(lunch)
+        //goToViewController(lunch)
     }
     
     @IBAction func dinnerButton_Pressed(_ sender: Any) {
-        let dinner :[CategoryData] = Singleton.sharedInstance.availabitlityData[0].dinner
-        print(dinner[0].itemName)
-        print(dinner[0].itemPrice)
-        goToViewController(dinner)
+        let dinner = Singleton.sharedInstance.availabilityData[0].dinner
+//        let dinner: [CategoryData] = Singleton.sharedInstance.availabilityData[0].dinner
+//        goToViewController(dinner)
+        print(dinner)
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {

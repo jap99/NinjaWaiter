@@ -24,6 +24,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var addStaffView: UIView!
+    @IBOutlet weak var threeOutoTenLabel: UILabel!
     
     // GENERAL
     
@@ -49,17 +50,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tv.delegate = self
-        tv.dataSource = self
+        tv.delegate = self; tv.dataSource = self;
         hideKeyboardWhenTappedAround()
         settingsButton.isUserInteractionEnabled = false
         DataService.instance.getSettingsData { (_, _) in
             let dict = Singleton.sharedInstance.settingsData
-            print(dict)
             self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
             self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
         }
         
+        waiterGif.loadGif(name: "waiter")
         startingTextField.layer.borderColor = UIColor.lightGray.cgColor
         startingTextField.layer.borderWidth = 1.0
         

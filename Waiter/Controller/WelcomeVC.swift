@@ -123,6 +123,8 @@ class WelcomeVC: UIViewController {
                     
                 } else if let currentUser = user as? User {
                    
+                    DataService.instance.getAvailabilityDataFromServer()
+                    
                     _currentUser = AppUser(user:currentUser)
                     
                     DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
