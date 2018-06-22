@@ -32,8 +32,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var sectionsArray: [String]!
     var foodsArray: [Item]! // used in cv2
     var checkoutDict: [String: AnyObject]!
-    
+    var tag = 0
     var menuData = [[String: [[String: [String: AnyObject]]]]]()
+    var arrCategory = [CategoryDetail]()
+    var currIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +52,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         layoutCV2.minimumInteritemSpacing = 20
         layoutCV2.minimumLineSpacing = 60
         
+        cv1.isUserInteractionEnabled = true
         cv2.allowsMultipleSelection = false
         cv2.isUserInteractionEnabled = true
+        
+        var order = "Breakfast"
+        
+        if tag == 1 {
+            
+            order = "Lunch"
+        }
+        else if tag == 2 {
+            
+            order = "Dinner"
+        }
+        
+        DataManager.shared().getCategoryList(order: order) { (arycategory) in
+            
+            print(arycategory.count)
+            self.arrCategory = arycategory
+            self.cv1.reloadData()
+            self.cv2.reloadData()
+//            print(arrcategory.count)
+//            print(arrcategory[0].categoryName)
+        }
         
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
     }
@@ -95,18 +119,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if collectionView == self.cv1 {
             let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
             
-            cellCV1.foodNameLabel.setTitle(String(Singleton.sharedInstance.categoriesItems[indexPath.row].name), for: .normal)
+            cellCV1.foodNameLabel.tag = indexPath.row
+            cellCV1.foodNameLabel.addTarget(self, action: #selector(catClick(sender:)), for: .touchUpInside)
+            cellCV1.foodNameLabel.setTitle(arrCategory[indexPath.row].categoryName, for: .normal)
             return cellCV1
             
         } else if collectionView == self.cv2 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
-//            cell.foodNameLabel.text = categoryData[indexPath.row].itemName
-//            let url = URL(string: categoryData[indexPath.row].itemImageURL)
-//            if categoryData[indexPath.row].itemImageURL != "" {
-//                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//                cell.foodImageView.image = UIImage(data: data!)
-//            }
+            
+            let data = arrCategory[currIndex].categoryItemList
+            
+            cell.foodNameLabel.text = data[indexPath.row].itemName
+            if data[indexPath.row].itemImage != "" {
+               
+                let data = try? Data(contentsOf: URL(string: data[indexPath.row].itemImage)!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                cell.foodImageView.image = UIImage(data: data!)
+            }
             return cell
         } else {
             let cell = UICollectionViewCell()
@@ -123,10 +152,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if collectionView == self.cv1 {
             
-            count = Singleton.sharedInstance.categoriesItems.count
+            count = arrCategory.count
             
         } else if collectionView == self.cv2 {
-            count = menuData.count
+            
+            if arrCategory.count > 0 {
+             
+                count = arrCategory[currIndex].categoryItemList.count
+            }
+            else {
+                
+                return 0
+            }
+            
+            
             // count = foodsArray.count
         }
         
@@ -136,8 +175,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == cv1 {
-            let category  = Singleton.sharedInstance.categoriesItems[indexPath.row] 
+            
         }
+    }
+    
+   @objc func catClick(sender:UIButton) {
+        
+        currIndex = sender.tag
+        cv2.reloadData()
     }
     
 }

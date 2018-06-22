@@ -28,6 +28,131 @@ class CategoryDetail {
     
 }
 
+class DataManager : NSObject {
+    
+    var ref : DatabaseReference!
+    
+    override init() {
+        self.ref = Database.database().reference()
+    }
+    
+    
+    //object allocation
+    private static var sharedManager : DataManager = {
+        let manager = DataManager()
+        return manager
+    }()
+    
+    class func shared() -> DataManager {
+        return sharedManager
+    }
+    
+    func getCategoryList(order: String,completion: @escaping ([CategoryDetail]) -> Void) {
+        
+        // YOU SHOULD GET RIDE OF THIS child("-LFabTDx_abAY83Brzrq") .... it's going to be used for multiple restaurants
+        
+        self.ref.child("Restaurants").child(RESTAURANT_UID).child("Menu").child("Availability").child(order).child("Categories").observe(.value) { (snapshot) in
+            
+            let response = snapshot.value as? [String:Any] ?? [:]
+            
+            var arrCategory = [CategoryDetail] ()
+            
+             for data in response {
+                
+                let Category = CategoryDetail()
+                
+                self.getCatName(key: data.key, completion: { (name) in
+                
+//                let name = self.ref.child("Restaurants").child("-LFabTDx_abAY83Brzrq").child("Menu").child("Category").value(forKey: data.key) as! String
+                
+                    Category.categoryId = data.key
+                    Category.categoryName = name
+                    
+                    if let cat_dict = data.value as? [String:Any] {
+                        
+                        for items in cat_dict {
+                            
+                            if let itemobj = items.value as? [String:Any] {
+                                
+                                print(itemobj)
+                                
+                                var arrDetail = [CategoryItems]()
+                                
+                                for item in itemobj {
+                                    
+                                    if let itemDetail = item.value as? [String:Any] {
+                                        
+                                        if let Detail = itemDetail["ItemDetails"] as? [String:Any] {
+                                            
+                                            let CatDetail = CategoryItems()
+                                            
+                                            if let img_url = Detail["itemImageURL"] as? String {
+                                                
+                                                CatDetail.itemImage = img_url
+                                                
+                                            }
+                                            if let name = Detail["itemName"] as? String {
+                                                
+                                                CatDetail.itemName = name
+                                                
+                                            }
+                                            
+                                            if let price = Detail["itemPrice"] as? String {
+                                                
+                                                CatDetail.itemPrice = price
+                                                
+                                            }
+                                           
+                                            arrDetail.append(CatDetail)
+                                        }
+
+                                    }
+                                    
+                                }
+                                Category.categoryItemList = arrDetail
+                            }
+                        }
+                    }
+                    
+                    arrCategory.append(Category)
+                    
+                    if arrCategory.count == response.count {
+                        
+                        completion(arrCategory)
+                    }
+
+                })
+                
+                print(arrCategory)
+            }
+            
+            print(arrCategory)
+            
+        }
+        
+//        let query = refe.
+    }
+    
+    func getCatName(key:String,completion: @escaping(String) -> Void) {
+        
+        var catName = ""
+        
+        self.ref.child("Restaurants").child("-LFabTDx_abAY83Brzrq").child("Menu").child("Category").child(key).observe(.value) { (snapshot) in
+            
+            let response = snapshot.value as? String
+            
+            if let cat = response {
+                
+                catName = cat
+            }
+            
+            completion(catName)
+        }
+    }
+    
+}
+
+
 
 class Availability {
     

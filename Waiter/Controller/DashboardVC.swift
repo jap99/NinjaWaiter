@@ -45,9 +45,9 @@ class DashboardVC: UIViewController {
 
     // MARK: - ACTIONS
     
-    func goToViewController(menuData: [[String: [[String: [String: AnyObject]]]]]) {
+    func goToViewController(menuData: Int) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ViewControllerVC-ID") as! ViewController
-        vc.menuData = menuData
+        vc.tag = menuData
         self.present(vc, animated: true) { }
     }
     
@@ -56,13 +56,16 @@ class DashboardVC: UIViewController {
     @IBAction func breakfastButton_Pressed(_ sender: Any) {
         let breakfast = Singleton.sharedInstance.availabilityData[0].breakfast
         print(breakfast)
-        goToViewController(menuData: breakfast)
+       
+//        DataManager.shared().getCategoryList(order: "Breakfast")
+        goToViewController(menuData: 0)
     }
     
     @IBAction func lunchButton_Pressed(_ sender: Any) {
        // let lunch: [CategoryData] = Singleton.sharedInstance.availabilityData[0].lunch
          let lunch = Singleton.sharedInstance.availabilityData[0].lunch
         print(lunch)
+        goToViewController(menuData: 1)
         //goToViewController(lunch)
     }
     
@@ -71,6 +74,7 @@ class DashboardVC: UIViewController {
 //        let dinner: [CategoryData] = Singleton.sharedInstance.availabilityData[0].dinner
 //        goToViewController(dinner)
         print(dinner)
+        goToViewController(menuData: 2)
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {

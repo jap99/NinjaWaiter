@@ -442,7 +442,7 @@
                                             <constraint firstItem="GMO-Il-5Mc" firstAttribute="leading" secondItem="gBQ-ky-I2V" secondAttribute="leading" id="xHY-HE-sPy"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="foodNameLabel" destination="GMO-Il-5Mc" id="fJE-BK-xz6"/>
+                                            <outlet property="foodNameLabel" destination="GMO-Il-5Mc" id="fNz-VY-B5T"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

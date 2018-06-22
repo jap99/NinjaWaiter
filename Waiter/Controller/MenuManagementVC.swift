@@ -199,9 +199,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             guard let error = error else {
                 
-                self.categories = categories!
-                self.categoryTV.reloadData()
-                self.itemTV.reloadData()
+                if let c = categories {
+                    self.categories = c
+                    self.categoryTV.reloadData()
+                    self.itemTV.reloadData()
+                    return
+                }
                 return
             }
             print(error)
