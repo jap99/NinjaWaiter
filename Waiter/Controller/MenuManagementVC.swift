@@ -44,15 +44,23 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var plusSignCategoryImageView: UIImageView!
     
-    // THE 'ADD ITEM' VIEW
+    // ADD ITEM - VIEW
     @IBOutlet weak var addItemView: CreateItem!
     @IBOutlet weak var itemNameTextField: UITextField!
     @IBOutlet weak var itemPriceTextField: UITextField!
     @IBOutlet weak var plusSignItemImageView: UIImageView!
     
-    // THE 'ITEM OPTIONS' COLLECTION VIEW
+    // COLLECTION VIEW
     
     @IBOutlet weak var itemCV: UICollectionView!
+    
+    // EDIT MENU ITEMS
+    @IBOutlet weak var allButton: UIButton!
+    @IBOutlet weak var allView: UIView!
+    @IBOutlet weak var byCategoryButton: UIButton!
+    @IBOutlet weak var byCategoryView: UIView!
+    @IBOutlet weak var byCategoryImageView: UIImageView!
+    @IBOutlet weak var editMenuItemsCV: UICollectionView!
     
     // VARIABLES
     
@@ -169,6 +177,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
+    }
+    
+    // ADD / EDIT MENU ITEMS
+    
+    @IBAction func allButton_Pressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func byCategoryButton_Pressed(_ sender: Any) {
+        
     }
     
     

@@ -13,7 +13,7 @@ class ItemOptionCell: UICollectionViewCell {
     // Identifier is ItemOptionCell
         // Located in MenuManagemntVC
     
-    @IBOutlet weak var itemOptionsImageView: UIImageView!
+    @IBOutlet weak var addEditItemOptionsButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
