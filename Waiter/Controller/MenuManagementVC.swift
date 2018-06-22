@@ -55,6 +55,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemCV: UICollectionView!
     
     // EDIT MENU ITEMS
+        // ItemOptionCell
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var allView: UIView!
     @IBOutlet weak var byCategoryButton: UIButton!

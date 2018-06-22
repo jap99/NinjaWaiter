@@ -10,7 +10,28 @@ import Foundation
 import FirebaseDatabase
 import FirebaseStorage
 
+
+class CategoryItems {
+    var itemId = ""
+    var itemName = ""
+    var itemImage = ""
+    var itemPrice = ""
+    
+}
+
+class CategoryDetail {
+    var categoryId = ""
+    var categoryName = ""
+    var categoryItemList: [CategoryItems] = [CategoryItems]()
+    
+  //  init(id: String, value: String, )
+    
+}
+
+
 class Availability {
+    
+    
     
     
     //    var categoryArray: [[String: [Item]]]
@@ -54,14 +75,17 @@ class Availability {
                                 print(itemDetailsObject)
                                 
                                 // ie. ["Breakfast": [categoryUID: [itemUID: itemDetails]]]
-                                let availabilityTypeData: [[String: [[String: [String: AnyObject]]]]] = [[
+                                var availabilityTypeData: [[String: [[String: [String: AnyObject]]]]] = [[String: [[String: [String: AnyObject]]]]]()
+                                availabilityTypeData = [[
                                     categoryUID: [[itemUID: itemNamePriceURL as! [String: AnyObject]]]
                                 ]]
                                 
                                 if availabilityType == "Breakfast" {
                                     self.breakfast = availabilityTypeData
+                                
                                 } else if availabilityType == "Lunch" {
                                     self.lunch = availabilityTypeData
+                                
                                 } else {
                                     self.dinner = availabilityTypeData
                                 }

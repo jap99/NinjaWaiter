@@ -18,11 +18,11 @@ class ItemOptionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        itemOptionsImageView.isUserInteractionEnabled = true
+       
     }
     
     @IBAction func addEditItemButton_Pressed(_ sender: Any) {
-    
+        
     }
     
 }
