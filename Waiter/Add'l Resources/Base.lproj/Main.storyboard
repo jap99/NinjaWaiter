@@ -1891,7 +1891,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g7F-f6-y2F">
                                                         <rect key="frame" x="62" y="139" width="259" height="30"/>
@@ -1901,7 +1901,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pZ-KF-AOm">
                                                         <rect key="frame" x="247" y="194" width="74" height="41"/>
@@ -1918,7 +1918,6 @@
                                                         <rect key="frame" x="62" y="194" width="74" height="41"/>
                                                         <state key="normal" title="Cancel"/>
                                                         <connections>
-                                                            <action selector="cancelAddNewStaff:" destination="ST4-oh-l6n" eventType="touchUpInside" id="0xD-K3-BGl"/>
                                                             <action selector="cancelButton_Pressed:" destination="ST4-oh-l6n" eventType="touchUpInside" id="rfh-QW-eAR"/>
                                                         </connections>
                                                     </button>

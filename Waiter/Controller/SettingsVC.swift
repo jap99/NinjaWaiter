@@ -129,6 +129,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         addStaffView.isHidden = true
     }
@@ -140,16 +144,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func cancelAddNewStaff(_ sender: Any) {
-        addStaffView.isHidden = true
-    }
-    
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuManagementVC-ID") as! MenuManagementVC
         present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func addStaffButton_Pressed(_ sender: Any) {
+    @IBAction func addStaffButton_Pressed(_ sender: Any) { // show popup
+        
         addStaffView.isHidden = false
         cancelButton.isHidden = false 
         self.view.bringSubview(toFront: addStaffView)
@@ -157,7 +158,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // SAVE TAXES & DISCOUNTS
     
-    @IBAction func saveButton_Pressed(_ sender: Any) {
+    @IBAction func saveButton_Pressed(_ sender: Any) { 
        
         if let discountText = discountTextField.text {
             self.discountText = discountText
@@ -206,7 +207,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // FOR THE 'CREATE STAFF' POPUP VIEW
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
-        cancelButton.isHidden = true
+        addStaffView.isHidden = true
+        emailTextField.text = ""
+        passwordTextField.text = ""
     } 
     
     // CREATE STAFF MEMBER
@@ -221,15 +224,54 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                   
                     print(error.debugDescription)
                 
-                } else {
-                   
-                    print(user!)
+                } else { // success
+                    self.successfullyAddedStaff_Alert()
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
+                    self.tv.reloadData() 
                     self.addStaffView.isHidden = true
                 }
             }
+        } else {
+            
+            enterEmailAndPassword_Alert()
         }
+        
     }
     
+    // MARK: - ALERTS
+    
+    func enterEmailAndPassword_Alert() {
+        let ac = UIAlertController(title: "Data Error", message: "Please make sure you enter both an email address and password for the user you are creating.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        
+        present(ac, animated: true, completion: { [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                
+                ac.dismiss(animated: true, completion: {
+                    //self?.removeFromSuperview()
+                })
+            })
+        })
+    }
+    
+    func successfullyAddedStaff_Alert() {
+        let ac = UIAlertController(title: "Success", message: "Staff member added successfully.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        
+        present(ac, animated: true, completion: { [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                ac.dismiss(animated: true, completion: {
+                    //self?.removeFromSuperview()
+                })
+            })
+        })
+    }
     
     // MARK: - TABLE VIEW (STAFF)
     

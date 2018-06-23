@@ -55,12 +55,15 @@ class CreateRestaurantView: UIView {
                     _userDefault.set(self.passwordTextField.text!, forKey:kPassword)
                     _userDefault.synchronize()
                     
-                    let alertController = UIAlertController(title: APP_NAME, message: CREATE_ACCOUNT_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+                    let ac = UIAlertController(title: APP_NAME, message: CREATE_ACCOUNT_MESSAGE, preferredStyle: .alert)
                     
-                    self.viewController.present(alertController, animated: true, completion: { [weak self] in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                            alertController.dismiss(animated: true, completion: {
+                    self.viewController.present(ac, animated: true, completion: { [weak self] in
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                           
+                            ac.dismiss(animated: true, completion: {
                                 self?.removeFromSuperview()
+                                
                                 // Send user to SettingsVC
                                 let viewController = self?.viewController.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
                                 self?.viewController.present(viewController, animated: true, completion: nil)

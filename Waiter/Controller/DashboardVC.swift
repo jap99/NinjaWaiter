@@ -22,10 +22,15 @@ class DashboardVC: UIViewController {
         
         settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
-        fetchCategoryFromServer()
-        DataService.instance.getSettingsData { (_, _) in
+  //      fetchCategoryFromServer()
+        
+        if RESTAURANT_UID != nil {
+            DataService.instance.getSettingsData { (_, _) in
+            }
+            DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
         }
-        //DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
+        
+        
         
     }
     

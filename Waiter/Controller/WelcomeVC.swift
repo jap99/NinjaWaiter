@@ -123,7 +123,7 @@ class WelcomeVC: UIViewController {
                     
                 } else if let currentUser = user as? User {
                    
-                    DataService.instance.getAvailabilityDataFromServer()
+                   // DataService.instance.getAvailabilityDataFromServer()
                     
                     _currentUser = AppUser(user:currentUser)
                     
