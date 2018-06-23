@@ -228,7 +228,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.successfullyAddedStaff_Alert()
                     self.emailTextField.text = ""
                     self.passwordTextField.text = ""
-                    self.tv.reloadData() 
+                    self.tv.reloadData()
                     self.addStaffView.isHidden = true
                 }
             }
@@ -246,7 +246,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         
-        present(ac, animated: true, completion: { [weak self] in
+        present(ac, animated: true, completion: { //[weak self] in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 
@@ -264,8 +264,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         present(ac, animated: true, completion: { [weak self] in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self?.tv.reloadData()
+                self?.loadViewIfNeeded()
                 ac.dismiss(animated: true, completion: {
                     //self?.removeFromSuperview()
                 })

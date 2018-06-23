@@ -59,7 +59,7 @@ class CreateRestaurantView: UIView {
                     
                     self.viewController.present(ac, animated: true, completion: { [weak self] in
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                            
                             ac.dismiss(animated: true, completion: {
                                 self?.removeFromSuperview()
