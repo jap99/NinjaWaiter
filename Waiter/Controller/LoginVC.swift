@@ -68,26 +68,22 @@ class LoginVC: UIViewController {
        
         
         if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
+            
             loginModel.username = emailTextField.text!
             loginModel.password = passwordTextField.text!
-            loginAPI()
-            
-        }
-    }
-
-    //MARK: - API CALLING
-    
-    func loginAPI() {
-        if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
-            
+           
             AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
                 
                 if errMessage != nil {
-                    
+                    print("Error logging in")
+                
                 } else if let currentUser = user as? User {
+                    
                     _currentUser = AppUser(user:currentUser)
-                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
-                        if let _ = obj.value as? String {
+                   
+                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
+                        
+                        if let _ = admin.value as? String {
                             _currentUser.type = .adamin
                         } else {
                             _currentUser.type = .staff
@@ -99,6 +95,7 @@ class LoginVC: UIViewController {
                     self.staffListAPI()
                 }
             }
+            
         }
     }
     

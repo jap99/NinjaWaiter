@@ -44,6 +44,7 @@ class CreateRestaurantView: UIView {
                 if let currentUser = user {
                     
                     _currentUser = AppUser(user:currentUser)
+                    
                     DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
                         if let _ = obj.value as? String {
                             _currentUser.type = .adamin
