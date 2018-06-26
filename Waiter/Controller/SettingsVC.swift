@@ -158,35 +158,29 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.startingTextField.text = "\(startingNumberTable)"
                     self.endingTextField.text = "\(endingNumberTable)"
                 }
-//                if let startingNumberTable = Singleton.sharedInstance.settingsData.first?.startingNumber,
-//                    let endingNumberTable = Singleton.sharedInstance.settingsData.first?.endingNumber {
-//
-//                    self.startingTextField.text = "\(startingNumberTable)"
-//                    self.endingTextField.text = "\(endingNumberTable)"
-//                }
                 
-                if let discount = Singleton.sharedInstance.settingsData[0].discount {
-                    self.discountTextField.text = String(discount)
+                if let discount = dict["discountText"] {
+                    self.discountTextField.text = discount as? String
                 }
                 
-                if let s = Singleton.sharedInstance.settingsData[0].serviceCharge {
-                    self.serviceChargeTextField.text = String(s)
+                if let s = dict["serviceChargeText"] {
+                    self.serviceChargeTextField.text = s as? String
                 }
                 
-                if let t1 = Singleton.sharedInstance.settingsData[0].tax1Name {
-                    self.taxName1TextField.text = t1
+                if let t1 = dict["tax1NameText"] {
+                    self.taxName1TextField.text = t1 as? String
                 }
                 
-                if let t1p = Singleton.sharedInstance.settingsData[0].tax1Percent {
-                    self.taxPercentage1TextField.text = String(t1p)
+                if let t1p = dict["taxPercentage1NameText"] {
+                    self.taxPercentage1TextField.text = t1p as? String
                 }
-                
-                if let t2 = Singleton.sharedInstance.settingsData[0].tax2Name {
-                    self.taxName2TextField.text = t2
+
+                if let t2 = dict["tax2NameText"] {
+                    self.taxName2TextField.text = t2 as? String
                 }
-                
-                if let t2p = Singleton.sharedInstance.settingsData[0].tax2Percent {
-                    self.taxPercentage2TextField.text = String(t2p)
+
+                if let t2p = dict["taxPercentage2NameText"] {
+                    self.taxPercentage2TextField.text = t2p as? String
                 }
             }
         }
