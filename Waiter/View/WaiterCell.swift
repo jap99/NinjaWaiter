@@ -16,11 +16,13 @@ class WaiterCell: UITableViewCell {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
     
-    func setData(staff: StaffMember, indexPath: IndexPath) {
+    func setData(staff: StaffMember?, indexPath: IndexPath) {
         
-        staffTypeLabel.text = staff.type
-        staffEmailLabel.text = staff.email
-        staffNumberLabel.text = "\(indexPath.row + 1)"
+        if staff != nil {
+            staffTypeLabel.text = staff?.type
+            staffEmailLabel.text = staff?.email
+            staffNumberLabel.text = "\(indexPath.row + 1)"
+        } 
     }
    
 }

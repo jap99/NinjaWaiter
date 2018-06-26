@@ -58,41 +58,55 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tv.delegate = self; tv.dataSource = self;
-        hideKeyboardWhenTappedAround()
-        settingsButton.isUserInteractionEnabled = false
-  //      DataService.instance.getSettingsData { (_, _) in
-            let dict = Singleton.sharedInstance.settingsData
-        print(dict)
-//                        self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
-//                        self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
-//
-//                        if let d = Singleton.sharedInstance.settingsData[0].discount {
-//                            self.discountTextField.text = String(d)
-//                        }
-//
-//                        if let s = Singleton.sharedInstance.settingsData[0].serviceCharge {
-//                            self.serviceChargeTextField.text = String(s)
-//                        }
-//
-//                        if let t1 = Singleton.sharedInstance.settingsData[0].tax1Name {
-//                            self.taxName1TextField.text = t1
-//                        }
-//
-//                        if let t1p = Singleton.sharedInstance.settingsData[0].tax1Percent {
-//                            self.taxPercentage1TextField.text = String(t1p)
-//                        }
-//
-//                        if let t2 = Singleton.sharedInstance.settingsData[0].tax2Name {
-//                            self.taxName2TextField.text = t2
-//                        }
-//
-//                        if let t2p = Singleton.sharedInstance.settingsData[0].tax2Percent {
-//                            self.taxPercentage2TextField.text = String(t2p)
-//                        }
-//
-    //    }
         
+        tv.delegate = self; tv.dataSource = self
+        
+        hideKeyboardWhenTappedAround()
+        
+        settingsButton.isUserInteractionEnabled = false
+ 
+        
+        
+        setup()
+        
+        StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if staffMemberArray != nil {
+                    self.staffArray = staffMemberArray!
+                    print(staffMemberArray!)
+                }
+                
+            }
+        }
+        
+        tv.beginUpdates()
+        tv.reloadData()
+        tv.endUpdates()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        addStaffView.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        setupObjectsWithData()
+        tv.reloadData() 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("VIEW DID APPEAR")
+    }
+    
+    // MARK: - SETUP
+    
+    func setup() {
         waiterGif.loadGif(name: "waiter")
         startingTextField.layer.borderColor = UIColor.lightGray.cgColor
         startingTextField.layer.borderWidth = 1.0
@@ -128,31 +142,58 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         taxPercentage2TextField.layer.borderWidth = 1.0
         
         tv.separatorStyle = .none
+    }
+    
+    func setupObjectsWithData() {
         
-        StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in
-            
+        DataService.instance.getSettingsData { (dict, error) in
             if let error = error {
                 print(error.localizedDescription)
-            } else {
-                self.staffArray = staffMemberArray!
-                print(staffMemberArray!)
+            } else if let dict = dict {
+                print(dict)
+                
+                if let startingNumberTable = dict["tableStartNumber"],
+                    let endingNumberTable = dict["tableEndNumber"] {
+                    
+                    self.startingTextField.text = "\(startingNumberTable)"
+                    self.endingTextField.text = "\(endingNumberTable)"
+                }
+//                if let startingNumberTable = Singleton.sharedInstance.settingsData.first?.startingNumber,
+//                    let endingNumberTable = Singleton.sharedInstance.settingsData.first?.endingNumber {
+//
+//                    self.startingTextField.text = "\(startingNumberTable)"
+//                    self.endingTextField.text = "\(endingNumberTable)"
+//                }
+                
+                if let discount = Singleton.sharedInstance.settingsData[0].discount {
+                    self.discountTextField.text = String(discount)
+                }
+                
+                if let s = Singleton.sharedInstance.settingsData[0].serviceCharge {
+                    self.serviceChargeTextField.text = String(s)
+                }
+                
+                if let t1 = Singleton.sharedInstance.settingsData[0].tax1Name {
+                    self.taxName1TextField.text = t1
+                }
+                
+                if let t1p = Singleton.sharedInstance.settingsData[0].tax1Percent {
+                    self.taxPercentage1TextField.text = String(t1p)
+                }
+                
+                if let t2 = Singleton.sharedInstance.settingsData[0].tax2Name {
+                    self.taxName2TextField.text = t2
+                }
+                
+                if let t2p = Singleton.sharedInstance.settingsData[0].tax2Percent {
+                    self.taxPercentage2TextField.text = String(t2p)
+                }
             }
         }
         
-        tv.beginUpdates()
-        tv.reloadData()
-        tv.endUpdates()
-        
+       
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        addStaffView.isHidden = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tv.reloadData()
-    }
-
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
@@ -215,7 +256,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // SAVE TABLE NUMBERS
     
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
+        
         if let startingNumber = startingTextField.text, let endingNumber = endingTextField.text {
+            
             DataService.instance.saveNumberOfTables(tableStartNumber: startingNumber, tableEndNumber: endingNumber)
         }
     }
@@ -249,7 +292,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             
                         } else {
                             //self.staffArray = []
-                           // self.staffArray = staffArray!
+                            // self.staffArray = staffArray!
                             
                             DispatchQueue.main.async {
                                 //self.staffArray.append()
@@ -311,19 +354,25 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - TABLE VIEW (STAFF)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath)
-        return cell 
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let waiterCell =  cell as? WaiterCell {
+        
+        if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
             
             waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
+            
+            //            for x in 0..<staffArray.count {
+            //
+            //                print(staffArray.count)
+            //
+            //                if x < 8 {
+            //
+            //                    if staffArray.count <= x {
+            //                        waiterCell.deleteAccountButton.tag = indexPath.row
+            //                        waiterCell.setData(staff: staffArray[x], indexPath: indexPath)
+            //
+            //                    }
+            //                }
+            //            }
             
             if indexPath.row % 2 == 0 {
                 waiterCell.backgroundColor = .white
@@ -331,11 +380,43 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 waiterCell.backgroundColor = customLightGray
             }
+            
+            return waiterCell
+        } else {
+            
+            let cell = UITableViewCell()
+            
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = .white
+                
+            } else {
+                cell.backgroundColor = customLightGray
+            }
+            
+            return cell
         }
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return staffArray.count
+        
+        //        var count = 0
+        //
+        //        if staffArray.count <= 8 {
+        //            count = 8
+        //        } else {
+        //            count = staffArray.count
+        //        }
+        return staffArray.count //count
     }
     
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
@@ -350,8 +431,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.tv.reloadData()
                 }
             } else if let error = error {
-                    self.errorDeletingStaff_Alert()
-                    print(error.localizedDescription)
+                self.errorDeletingStaff_Alert()
+                print(error.localizedDescription)
             }
         }
     }

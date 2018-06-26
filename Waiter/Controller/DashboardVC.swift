@@ -25,6 +25,7 @@ class DashboardVC: UIViewController {
   //      fetchCategoryFromServer()
         
         if RESTAURANT_UID != nil {
+            
             DataService.instance.getSettingsData { (dict, error) in
                 if let error = error {
                     print(error.localizedDescription)

@@ -335,7 +335,7 @@ class DataService {
             "tableEndNumber": tableEndNumber as AnyObject
         ]
         
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).child("Tables").updateChildValues(data)
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(data)
     }
     
     // SAVE TAXES & DISCOUNT SETTINGS - TO SETTINGS
@@ -367,6 +367,7 @@ class DataService {
     // GET AVAILABILITY - BREAKFAST, LUNCH, DINNER
     
     func getAvailabilityDataFromServer() {
+        
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
