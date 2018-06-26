@@ -248,7 +248,7 @@ class DataService {
                     ]
                     
                     let item: Dictionary<String, AnyObject> = [
-                        "Categories": categoryDictOfArray as AnyObject,
+                      //  "Categories": categoryDictOfArray as AnyObject,
                         "ItemDetails": itemDetails as AnyObject,
                         "itemImageURL": self.itemImageUrlString as AnyObject
                     ]
