@@ -271,7 +271,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 cell.categoryTitle.text = self.categories[indexPath.row].name
                 cell.renameButton.tag = indexPath.row
-                cell.renameButton.addTarget(self, action: #selector(renameFunc), for: .allEvents)
+                cell.deleteButton.tag = indexPath.row 
+                cell.renameButton.addTarget(self, action: #selector(renameCategoryFunc), for: .allEvents)
+                cell.deleteButton.addTarget(self, action: #selector(deleteCategoryFunc), for: .allEvents)
             }
             
             if indexPath.row % 2 == 0 {     // For background color
@@ -379,7 +381,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func renameFunc(sender: UIButton) {
+    @objc func renameCategoryFunc(sender: UIButton) {
         
         let  ac = UIAlertController(title: "Rename Category", message: "", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -396,6 +398,50 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         ac.addAction(cancelAction)
         self.present(ac, animated: true, completion: nil)
         
+    }
+    
+    @objc func deleteCategoryFunc(sender: UIButton) {
+        
+        DataService.instance.deleteCategory(categoryUID: (self.categories[sender.tag].uid)!) { (success) in
+            
+            if success {
+                
+                self.successfullyDeletedCategory_Alert()
+            
+            } else {
+                
+                self.errorDeletingCategory_Alert()
+            }
+        }
+        
+    }
+    
+    func successfullyDeletedCategory_Alert() {
+        
+        let ac = UIAlertController(title: "Success", message: "You have successfully deleted a category from the database.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        present(ac, animated: true) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                ac.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
+    
+    func errorDeletingCategory_Alert() {
+        
+        let ac = UIAlertController(title: "Error", message: "There was an error deleting the category from the database. Please try again.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        present(ac, animated: true) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                ac.dismiss(animated: true, completion: nil)
+            })
+        }
     }
     
     

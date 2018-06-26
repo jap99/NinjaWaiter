@@ -70,6 +70,7 @@ class Settings {
         var arrSetting: [Settings] = []
         
         if let snap = snapshot.value as? [String: AnyObject] {
+           
             if let restAdminEmail = snap["adminEmail"] as? String,
             let restaurantName = snap["restaurantName"] as? String,
             let tableStartNumber = snap["tableStartNumber"] as? String,

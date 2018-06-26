@@ -2234,7 +2234,9 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="categoryNumber" destination="flj-7r-yA5" id="jac-d9-wLp"/>
                                                             <outlet property="categoryTitle" destination="dmj-6K-1j5" id="VXV-g5-Dak"/>
+                                                            <outlet property="deleteButton" destination="cCp-Qw-T2m" id="Bp2-vs-9Az"/>
                                                             <outlet property="renameButton" destination="jE6-6T-G02" id="Ot1-f9-Qqg"/>
                                                         </connections>
                                                     </tableViewCell>

@@ -25,21 +25,26 @@ class DashboardVC: UIViewController {
   //      fetchCategoryFromServer()
         
         if RESTAURANT_UID != nil {
-            DataService.instance.getSettingsData { (_, _) in
+            DataService.instance.getSettingsData { (dict, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print(dict!)
+                }
             }
             DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
         }
         
-        DataManager.shared().getCategoryList(order: "Breakfast") { (arrayCategory) in
-            
-            for cat in arrayCategory {
-                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
-                category.updateWith(cat: cat, type: .breakfast)
-            }
-        }
-        
+//        DataManager.shared().getCategoryList(order: "Breakfast") { (arrayCategory) in
+//
+//            for cat in arrayCategory {
+//                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+//                category.updateWith(cat: cat, type: .breakfast)
+//            }
+//        }
+//
 
-        let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
+       // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
         
         
         
