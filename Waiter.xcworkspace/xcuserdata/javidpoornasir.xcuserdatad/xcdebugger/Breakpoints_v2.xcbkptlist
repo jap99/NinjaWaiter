@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Services/DataService.swift"
-            timestampString = "551724949.160699"
+            timestampString = "551724663.88714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "saveItem(itemName:itemPrice:itemImage:categoryDictOfArray:completion:)"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "saveTaxesAndDiscounts(settings:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/ViewController.swift"
-            timestampString = "551461463.749684"
+            timestampString = "551732647.720971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/ViewController.swift"
-            timestampString = "551461463.7501709"
+            timestampString = "551732647.721036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Services/DataService.swift"
-            timestampString = "551724949.161652"
+            timestampString = "551724663.887266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
-            landmarkName = "saveItem(itemName:itemPrice:itemImage:categoryDictOfArray:completion:)"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "getSettingsData(callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Services/DataService.swift"
-            timestampString = "551724949.1622"
+            timestampString = "551724663.88732"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "saveItem(itemName:itemPrice:itemImage:categoryDictOfArray:completion:)"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "getSettingsData(callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/Availability.swift"
-            timestampString = "551724949.1626821"
+            timestampString = "551732647.721113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -202,11 +202,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/Availability.swift"
-            timestampString = "551724949.162784"
+            timestampString = "551732647.721158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "DataManager"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Model/Availability.swift"
+            timestampString = "551732647.721198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "init(dict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.450919"
+            timestampString = "551728129.39294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -278,15 +294,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/Availability.swift"
-            timestampString = "551724949.163094"
+            timestampString = "551732647.721288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "init(dict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/Availability.swift"
-            timestampString = "551724949.163192"
+            timestampString = "551732647.72133"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "getCategoryList(order:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/DashboardVC.swift"
-            timestampString = "551461511.47659"
+            timestampString = "551732647.721383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "breakfastButton_Pressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/ViewController.swift"
-            timestampString = "551461463.750524"
+            timestampString = "551732647.721807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/ViewController.swift"
-            timestampString = "551461463.75077"
+            timestampString = "551732647.721857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/ViewController.swift"
-            timestampString = "551461463.750989"
+            timestampString = "551732647.7219011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,7 +394,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/DashboardVC.swift"
-            timestampString = "551461511.477023"
+            timestampString = "551732647.721945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -426,13 +442,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.451125"
+            timestampString = "551728129.393199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "222"
             endingLineNumber = "222"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -442,13 +458,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.451526"
+            timestampString = "551728129.393716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "221"
             endingLineNumber = "221"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -458,13 +474,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.451835"
+            timestampString = "551728129.394045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "228"
             endingLineNumber = "228"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -474,13 +490,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.452106"
+            timestampString = "551728129.394362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "226"
             endingLineNumber = "226"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -490,7 +506,7 @@
                   moduleName = "Waiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/javidpoornasir/Desktop/Waiter/Waiter/Controller/SettingsVC.swift"
-                  timestampString = "551707897.915632"
+                  timestampString = "551732647.958756"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "226"
@@ -505,7 +521,7 @@
                   moduleName = "Waiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/javidpoornasir/Desktop/Waiter/Waiter/Controller/SettingsVC.swift"
-                  timestampString = "551707897.91757"
+                  timestampString = "551732647.96068"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "228"
@@ -522,13 +538,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.452376"
+            timestampString = "551728129.394679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"
             endingLineNumber = "239"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -538,13 +554,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.452647"
+            timestampString = "551728129.39501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "235"
             endingLineNumber = "235"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -554,13 +570,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.452935"
+            timestampString = "551728129.395321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "233"
             endingLineNumber = "233"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -570,23 +586,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.453195"
+            timestampString = "551728129.395624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "229"
             endingLineNumber = "229"
-            landmarkName = "createButton_Pressed(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.453503"
+            timestampString = "551728129.395943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -595,14 +611,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static Waiter.StaffMember.getStaffList(adminEmail: Swift.String, callback: Swift.Optional&lt;(Swift.Optional&lt;Swift.Array&lt;Waiter.StaffMember&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()&gt;) -&gt; ()"
                   moduleName = "Waiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/javidpoornasir/Desktop/Waiter/Waiter/Model/StaffMember.swift"
-                  timestampString = "551707897.937202"
+                  timestampString = "551722669.080681"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -610,14 +626,14 @@
                   offsetFromSymbolStart = "36">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in static Waiter.StaffMember.getStaffList(adminEmail: Swift.String, callback: Swift.Optional&lt;(Swift.Optional&lt;Swift.Array&lt;Waiter.StaffMember&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()&gt;) -&gt; ()"
                   moduleName = "Waiter"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/javidpoornasir/Desktop/Waiter/Waiter/Model/StaffMember.swift"
-                  timestampString = "551707897.9389679"
+                  timestampString = "551722669.082546"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
@@ -630,11 +646,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.453552"
+            timestampString = "551728129.396011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -646,11 +662,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.4535969"
+            timestampString = "551728129.396059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -662,11 +678,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.4536411"
+            timestampString = "551728129.396107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -678,11 +694,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.453684"
+            timestampString = "551728129.396152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -694,11 +710,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.4537261"
+            timestampString = "551728129.396199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -710,11 +726,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.453766"
+            timestampString = "551728129.396244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -726,11 +742,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.453809"
+            timestampString = "551728129.396289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -742,11 +758,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.453849"
+            timestampString = "551728129.396333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -758,11 +774,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.45389"
+            timestampString = "551728129.396374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
@@ -774,11 +790,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Model/StaffMember.swift"
-            timestampString = "551712069.45393"
+            timestampString = "551728129.3964159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -794,12 +810,172 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Waiter/Controller/SettingsVC.swift"
-            timestampString = "551712069.45397"
+            timestampString = "551728129.3964601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "232"
             endingLineNumber = "232"
-            landmarkName = "createButton_Pressed(_:)"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Controller/MenuManagementVC.swift"
+            timestampString = "551728129.396764"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Controller/MenuManagementVC.swift"
+            timestampString = "551728129.397137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waiter.MenuManagementVC.renameFunc(sender: __ObjC.UIButton) -&gt; ()"
+                  moduleName = "Waiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/javidpoornasir/Desktop/Waiter/Waiter/Controller/MenuManagementVC.swift"
+                  timestampString = "551721033.237465"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "388"
+                  endingLineNumber = "388"
+                  offsetFromSymbolStart = "235">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.UIAlertAction) -&gt; () in Waiter.MenuManagementVC.renameFunc(sender: __ObjC.UIButton) -&gt; ()"
+                  moduleName = "Waiter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/javidpoornasir/Desktop/Waiter/Waiter/Controller/MenuManagementVC.swift"
+                  timestampString = "551721033.2392091"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "389"
+                  endingLineNumber = "389"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Controller/MenuManagementVC.swift"
+            timestampString = "551728129.39746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Controller/MenuManagementVC.swift"
+            timestampString = "551728129.397768"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Services/DataService.swift"
+            timestampString = "551724663.893519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "renameCategory(categoryUID:updatedName:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Services/DataService.swift"
+            timestampString = "551724663.893581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "renameCategory(categoryUID:updatedName:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Controller/LoginVC.swift"
+            timestampString = "551732647.722514"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "loginButton_Pressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waiter/Controller/DashboardVC.swift"
+            timestampString = "551732647.722564"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

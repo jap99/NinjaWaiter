@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
         FirebaseApp.configure()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
 //            self.fetchCategoryFromServer()
@@ -27,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-     
+    
     func applicationWillResignActive(_ application: UIApplication) {
     }
 
@@ -46,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
+    /*lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -71,12 +72,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         return container
+    }() */
+    
+    // MARK: - Core Data stack
+    
+    lazy var applicationDocumentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls[urls.count-1]
     }()
-
+    
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        let modelURL = Bundle.main.url(forResource: "Waiter", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
+    }()
+    
+    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator =
+        {
+            let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+            let url = self.applicationDocumentsDirectory.appendingPathComponent("Waiter.sqlite")
+            
+            do {
+                try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+            } catch {
+                let dict : [String : Any] = [NSLocalizedDescriptionKey        : "Failed to initialize the application's saved data" as NSString,
+                                             NSLocalizedFailureReasonErrorKey : "There was an error creating or loading the application's saved data." as NSString,
+                                             NSUnderlyingErrorKey             : error as NSError]
+                let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+                print("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+                abort()
+            }
+            
+            return coordinator
+    }()
+    
+    lazy var managedObjectContext: NSManagedObjectContext = {
+        let coordinator = self.persistentStoreCoordinator
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        return managedObjectContext
+    }()
+    
     // MARK: - Core Data Saving support
 
     func saveContext () {
-        let context = persistentContainer.viewContext
+        let context = managedObjectContext
         if context.hasChanges {
             do {
                 try context.save()

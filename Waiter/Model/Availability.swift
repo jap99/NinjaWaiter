@@ -16,26 +16,24 @@ class CategoryItems {
     var itemName = ""
     var itemImage = ""
     var itemPrice = ""
-    
 }
 
 class CategoryDetail {
+    
     var categoryId = ""
     var categoryName = ""
     var categoryItemList: [CategoryItems] = [CategoryItems]()  
 }
 
-class DataManager : NSObject {
+class DataManager: NSObject {
     
-    var ref : DatabaseReference!
+    var ref: DatabaseReference!
     
     override init() {
         self.ref = Database.database().reference()
     }
     
-    
-    //object allocation
-    private static var sharedManager : DataManager = {
+    private static var sharedManager: DataManager = {
         let manager = DataManager()
         return manager
     }()
@@ -48,7 +46,7 @@ class DataManager : NSObject {
         
         self.ref.child("Restaurants").child(RESTAURANT_UID).child("Menu").child("Availability").child(order).child("Categories").observe(.value) { (snapshot) in
             
-            let response = snapshot.value as? [String:Any] ?? [:]
+            let response = snapshot.value as? [String: Any] ?? [:]
             
             var arrCategory = [CategoryDetail] ()
             
@@ -68,8 +66,6 @@ class DataManager : NSObject {
                         for items in cat_dict {
                             
                             if let itemobj = items.value as? [String:Any] {
-                                
-                                print(itemobj)
                                 
                                 var arrDetail = [CategoryItems]()
                                 
@@ -97,12 +93,9 @@ class DataManager : NSObject {
                                                 CatDetail.itemPrice = price
                                                 
                                             }
-                                           
                                             arrDetail.append(CatDetail)
-                                        }
-
+                                        } 
                                     }
-                                    
                                 }
                                 Category.categoryItemList = arrDetail
                             }
@@ -115,24 +108,16 @@ class DataManager : NSObject {
                         
                         completion(arrCategory)
                     }
-
                 })
-                
-                print(arrCategory)
             }
-            
-            print(arrCategory)
-            
         }
-        
-//        let query = refe.
     }
     
     func getCatName(key:String,completion: @escaping(String) -> Void) {
         
         var catName = ""
         
-        self.ref.child("Restaurants").child("-LFabTDx_abAY83Brzrq").child("Menu").child("Category").child(key).observe(.value) { (snapshot) in
+        self.ref.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(key).observe(.value) { (snapshot) in
             
             let response = snapshot.value as? String
             

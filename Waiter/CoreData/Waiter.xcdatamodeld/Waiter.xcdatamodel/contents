@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Breakfast" representedClassName="Breakfast" syncable="YES" codeGenerationType="class">
-        <relationship name="breakfastRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="breakfastRelationship" inverseEntity="Category" syncable="YES"/>
+    <entity name="Breakfast" representedClassName=".Breakfast" syncable="YES">
+        <relationship name="breakfastRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="breakfastRelationship" inverseEntity="CategoryEntity" syncable="YES"/>
     </entity>
-    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+    <entity name="CategoryEntity" representedClassName=".CategoryEntity" syncable="YES">
+        <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryUID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categroyType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemUID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="breakfastRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Breakfast" inverseName="breakfastRelationship" inverseEntity="Breakfast" syncable="YES"/>
         <relationship name="dinnerRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dinner" inverseName="dinnerRelationship" inverseEntity="Dinner" syncable="YES"/>
         <relationship name="lunchRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lunch" inverseName="lunchRelationship" inverseEntity="Lunch" syncable="YES"/>
     </entity>
-    <entity name="Dinner" representedClassName="Dinner" syncable="YES" codeGenerationType="class">
-        <relationship name="dinnerRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="dinnerRelationship" inverseEntity="Category" syncable="YES"/>
+    <entity name="Dinner" representedClassName=".Dinner" syncable="YES">
+        <relationship name="dinnerRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="dinnerRelationship" inverseEntity="CategoryEntity" syncable="YES"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+    <entity name="ItemCoreData" representedClassName=".ItemCoreData" syncable="YES">
         <attribute name="categoryUID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="itemUID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Lunch" representedClassName="Lunch" syncable="YES" codeGenerationType="class">
-        <relationship name="lunchRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="lunchRelationship" inverseEntity="Category" syncable="YES"/>
+    <entity name="Lunch" representedClassName=".Lunch" syncable="YES">
+        <relationship name="lunchRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="lunchRelationship" inverseEntity="CategoryEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="Breakfast" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="Lunch" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="CategoryEntity" positionX="-18" positionY="27" width="128" height="150"/>
         <element name="Dinner" positionX="-36" positionY="9" width="128" height="60"/>
-        <element name="Category" positionX="-18" positionY="27" width="128" height="105"/>
-        <element name="Item" positionX="0" positionY="45" width="128" height="120"/>
+        <element name="ItemCoreData" positionX="0" positionY="45" width="128" height="120"/>
+        <element name="Lunch" positionX="-54" positionY="-9" width="128" height="60"/>
     </elements>
 </model>

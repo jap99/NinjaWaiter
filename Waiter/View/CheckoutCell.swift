@@ -17,7 +17,6 @@ class CheckoutCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     

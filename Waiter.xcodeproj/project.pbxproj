@@ -34,6 +34,12 @@
 		9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */; };
 		9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBC0F520CA6495000BF369 /* Extensions.swift */; };
 		9FD1DAC220E283B600F6AD0D /* RenameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1DAC120E283B500F6AD0D /* RenameViewController.swift */; };
+		9FD1DAC420E2B0E000F6AD0D /* kPParentManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */; };
+		9FD36FD920E2B58C00B700D4 /* Dinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FD820E2B58C00B700D4 /* Dinner.swift */; };
+		9FD36FDB20E2B62600B700D4 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FDA20E2B62600B700D4 /* CategoryEntity.swift */; };
+		9FD36FDD20E2B65900B700D4 /* Breakfast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FDC20E2B65900B700D4 /* Breakfast.swift */; };
+		9FD36FDF20E2B67F00B700D4 /* ItemCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FDE20E2B67F00B700D4 /* ItemCoreData.swift */; };
+		9FD36FE120E2B6B700B700D4 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FE020E2B6B700B700D4 /* Lunch.swift */; };
 		9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845720B519C800C6DEE1 /* FoodCell.swift */; };
 		9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845920B519DA00C6DEE1 /* SectionCell.swift */; };
 		9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */; };
@@ -96,6 +102,12 @@
 		9F8EABF520AC74A60027EDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FCBC0F520CA6495000BF369 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9FD1DAC120E283B500F6AD0D /* RenameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameViewController.swift; sourceTree = "<group>"; };
+		9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kPParentManagedObject.swift; sourceTree = "<group>"; };
+		9FD36FD820E2B58C00B700D4 /* Dinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dinner.swift; sourceTree = "<group>"; };
+		9FD36FDA20E2B62600B700D4 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
+		9FD36FDC20E2B65900B700D4 /* Breakfast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breakfast.swift; sourceTree = "<group>"; };
+		9FD36FDE20E2B67F00B700D4 /* ItemCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCoreData.swift; sourceTree = "<group>"; };
+		9FD36FE020E2B6B700B700D4 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
 		9FEA845720B519C800C6DEE1 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		9FEA845920B519DA00C6DEE1 /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
 		9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
@@ -206,6 +218,7 @@
 		9F8EABE520AC74A50027EDFB /* Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				9FD36FD720E2B57F00B700D4 /* CoreData */,
 				9F79DAAE20D52AF8002D1743 /* Singleton */,
 				9FEEFDCB20C8EAB000119A35 /* Services */,
 				9FEA846D20B53FF300C6DEE1 /* Utilities */,
@@ -217,6 +230,19 @@
 				9F4D4ECC20D4D8F0004F4C8A /* practice.swift */,
 			);
 			path = Waiter;
+			sourceTree = "<group>";
+		};
+		9FD36FD720E2B57F00B700D4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9F8EABED20AC74A50027EDFB /* Waiter.xcdatamodeld */,
+				9FD36FE020E2B6B700B700D4 /* Lunch.swift */,
+				9FD36FDC20E2B65900B700D4 /* Breakfast.swift */,
+				9FD36FD820E2B58C00B700D4 /* Dinner.swift */,
+				9FD36FDA20E2B62600B700D4 /* CategoryEntity.swift */,
+				9FD36FDE20E2B67F00B700D4 /* ItemCoreData.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		9FEA846920B537C600C6DEE1 /* View */ = {
@@ -278,7 +304,6 @@
 				9F8EABF020AC74A60027EDFB /* Assets.xcassets */,
 				9FEA847220B544B700C6DEE1 /* ordered-animation.gif */,
 				9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */,
-				9F8EABED20AC74A50027EDFB /* Waiter.xcdatamodeld */,
 			);
 			path = "Add'l Resources";
 			sourceTree = "<group>";
@@ -291,6 +316,7 @@
 				9FEEFDC720C8E51600119A35 /* Constants.swift */,
 				9FCBC0F520CA6495000BF369 /* Extensions.swift */,
 				9F2546C720D62C9900162133 /* AppUser.swift */,
+				9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -469,6 +495,7 @@
 			files = (
 				9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */,
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
+				9FD36FDD20E2B65900B700D4 /* Breakfast.swift in Sources */,
 				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FF4190120CFF7A100EB56B6 /* DefaultsSerializable+BuiltIns.swift in Sources */,
@@ -479,6 +506,7 @@
 				9F84AA5420DB46A600E6B2BB /* Availability.swift in Sources */,
 				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
+				9FD36FD920E2B58C00B700D4 /* Dinner.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
 				9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */,
@@ -489,11 +517,13 @@
 				9F2546C820D62C9900162133 /* AppUser.swift in Sources */,
 				9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */,
 				9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */,
+				9FD36FDB20E2B62600B700D4 /* CategoryEntity.swift in Sources */,
 				9F2546CA20D644E900162133 /* Settings.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,
 				9FF4190320CFF7A100EB56B6 /* DefaultsSerializable.swift in Sources */,
+				9FD36FDF20E2B67F00B700D4 /* ItemCoreData.swift in Sources */,
 				9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
@@ -503,9 +533,11 @@
 				9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */,
 				9F0228CE20D25C7600550DAD /* Item.swift in Sources */,
 				9F84AA5220DB3CFA00E6B2BB /* SubItem.swift in Sources */,
+				9FD36FE120E2B6B700B700D4 /* Lunch.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9F79DAB020D52B11002D1743 /* Singleton.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
+				9FD1DAC420E2B0E000F6AD0D /* kPParentManagedObject.swift in Sources */,
 				9FF4190020CFF7A100EB56B6 /* Defaults+Subscripts.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,

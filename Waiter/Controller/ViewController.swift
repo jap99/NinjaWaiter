@@ -69,12 +69,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         DataManager.shared().getCategoryList(order: order) { (arycategory) in
             
-            print(arycategory.count)
             self.arrCategory = arycategory
             self.cv1.reloadData()
             self.cv2.reloadData()
-//            print(arrcategory.count)
-//            print(arrcategory[0].categoryName)
         }
         
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
@@ -117,6 +114,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.cv1 {
+           
             let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
             
             cellCV1.foodNameLabel.tag = indexPath.row

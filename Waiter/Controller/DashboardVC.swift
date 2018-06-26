@@ -30,6 +30,18 @@ class DashboardVC: UIViewController {
             DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
         }
         
+        DataManager.shared().getCategoryList(order: "Breakfast") { (arrayCategory) in
+            
+            for cat in arrayCategory {
+                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+                category.updateWith(cat: cat, type: .breakfast)
+            }
+        }
+        
+
+        let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
+        
+        
         
         
     }
