@@ -129,10 +129,28 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tv.separatorStyle = .none
         
+        StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.staffArray = staffMemberArray!
+                print(staffMemberArray!)
+            }
+        }
+        
+        tv.beginUpdates()
+        tv.reloadData()
+        tv.endUpdates()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         addStaffView.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tv.reloadData()
     }
 
     // MARK: - IBACTIONS

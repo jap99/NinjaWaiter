@@ -45,10 +45,7 @@ class DashboardVC: UIViewController {
 //
 
        // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
-        
-        
-        
-        
+         
     }
     
     func  fetchCategoryFromServer() { // won't need this in the future

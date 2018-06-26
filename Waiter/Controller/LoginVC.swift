@@ -10,19 +10,20 @@ import UIKit
 import FirebaseAuth
 
 class LoginModel {
+    
+    static var instance = LoginModel()
+    
     var username = ""
     var password = ""
 }
 
 class LoginVC: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var loginModel = LoginModel()
-    
     static var shared = LoginVC()
-   
+    
     @IBAction func backButton_Pressed(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as? WelcomeVC {
             self.present(vc, animated: true, completion: nil)
@@ -53,10 +54,11 @@ class LoginVC: UIViewController {
                 
                 let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel) {
-                    UIAlertAction in
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel) { UIAlertAction in
+                    
                     DispatchQueue.main.async {
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as! WelcomeVC
+                        
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as! WelcomeVC
                         self.present(vc, animated: true, completion: nil)
                     }
                 }
@@ -70,19 +72,18 @@ class LoginVC: UIViewController {
         
         if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
             
-            loginModel.username = emailTextField.text!
-            loginModel.password = passwordTextField.text!
-           
-            AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
+            LoginModel.instance.username = emailTextField.text!
+            LoginModel.instance.password = passwordTextField.text!
+            
+            AuthServices.instance.restaurantLogin(email: LoginModel.instance.username, password: LoginModel.instance.password) { (errMessage, user) in
                 
                 if errMessage != nil {
                     print("Error logging in")
-                
+                    
                 } else if let currentUser = user as? User {
                     
                     _currentUser = AppUser(user:currentUser)
-                   
-                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
+                      DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
                         
                         if let _ = admin.value as? String {
                             _currentUser.type = .adamin
@@ -90,8 +91,8 @@ class LoginVC: UIViewController {
                             _currentUser.type = .staff
                         }
                     })
-                    _userDefault.set(self.loginModel.username, forKey:kUsername)
-                    _userDefault.set(self.loginModel.password, forKey:kPassword)
+                    _userDefault.set(LoginModel.instance.username, forKey: kUsername)
+                    _userDefault.set(LoginModel.instance.password, forKey: kPassword)
                     _userDefault.synchronize()
                     LoginVC.shared.staffListAPI()
                 }
@@ -109,7 +110,7 @@ class LoginVC: UIViewController {
         // Take response.user.uid &
         // take it to Firebase database
         // and query it in the main STAFF node
-      
+        
         // The key value in the STAFF node is the userUID; value is RESTAURANT_UID
         
         // Log user in with Firebase Auth API
@@ -120,12 +121,12 @@ class LoginVC: UIViewController {
     }
     
     func staffListAPI() {
-        StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
+        StaffMember.getStaffList(adminEmail: LoginModel.instance.username, callback: { (staffArray, error) in
             
             if error != nil {
                 
             } else {
-
+                
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
                 vc.staffArray = staffArray
                 self.present(vc, animated: false, completion: {

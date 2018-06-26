@@ -67,7 +67,14 @@ class DataService {
             "staffEmail": lowercasedStaffEmail as AnyObject,
             "staffType": staffMemberType as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData)
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData) { (error, ref) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.saveToStaffNode(staffMemberUID: staffMemberUID, restaurantUID: RESTAURANT_UID)
+            }
+        }
     }
     
     // SAVE STAFF - TO MAIN STAFF NODE
