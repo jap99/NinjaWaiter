@@ -127,7 +127,18 @@ class DataService {
     // RENAME CATEGORY
     func renameCategory(categoryUID: String, updatedName: String, completion: @escaping (Bool) -> ()) {
         
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).setValue(updatedName, forKey: categoryUID)
+        let categoryData: Dictionary<String, AnyObject> = [
+            categoryUID: updatedName as AnyObject
+        ]
+        
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(categoryData) { (error, ref) in
+            
+            if error != nil {
+                print(error?.localizedDescription ?? "ERROR RENAMING CATEGORY")
+            } else {
+                print(ref)
+            }
+        } 
     }
     
     

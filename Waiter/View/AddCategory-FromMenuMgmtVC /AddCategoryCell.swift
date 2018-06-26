@@ -12,7 +12,7 @@ class AddCategoryCell: UITableViewCell {
 
     @IBOutlet weak var categoryNumber: UIButton!
     @IBOutlet weak var categoryTitle: UILabel!
-    
+    @IBOutlet weak var renameButton : UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

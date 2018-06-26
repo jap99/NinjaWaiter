@@ -69,6 +69,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var dictOfArrays = [String: [String]]()
     var index = 0
     var imagePicker: UIImagePickerController?
+    var textField : UITextField?
     
     // VDL
     
@@ -266,9 +267,13 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
             
+            
             if self.categories.count > 0 {
                 
+                
                 cell.categoryTitle.text = self.categories[indexPath.row].name
+                cell.renameButton.tag = indexPath.row
+                cell.renameButton.addTarget(self, action: #selector(renameFunc), for: .allEvents)
             }
             
             if indexPath.row % 2 == 0 {     // For background color
@@ -375,4 +380,26 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    @objc func renameFunc(sender:UIButton) {
+
+        let  renameVC = UIAlertController(title: "RENAME", message: "add rename title", preferredStyle: .alert)
+
+        let  okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            print("*****************")
+            
+            DataService.instance.renameCategory(categoryUID: (self.categories[sender.tag].uid)!, updatedName: renameVC.textFields![0].text!, completion: { (updaet) in
+                print(updaet)
+            })
+        }
+        renameVC.addTextField { (textfield) in
+            textfield.text = self.categories[sender.tag].name
+            print(self.categories[sender.tag].uid)
+        }
+        renameVC.addAction(okAction)
+        self.present(renameVC, animated: true, completion: nil)
+        
+    }
+    
+    
 }
