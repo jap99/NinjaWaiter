@@ -266,7 +266,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         if self.categoryTV == tableView {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
-             
+            
             if self.categories.count > 0 {
                 
                 cell.categoryTitle.text = self.categories[indexPath.row].name
