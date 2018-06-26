@@ -22,10 +22,7 @@ class CategoryItems {
 class CategoryDetail {
     var categoryId = ""
     var categoryName = ""
-    var categoryItemList: [CategoryItems] = [CategoryItems]()
-    
-  //  init(id: String, value: String, )
-    
+    var categoryItemList: [CategoryItems] = [CategoryItems]()  
 }
 
 class DataManager : NSObject {
@@ -48,8 +45,6 @@ class DataManager : NSObject {
     }
     
     func getCategoryList(order: String,completion: @escaping ([CategoryDetail]) -> Void) {
-        
-        // YOU SHOULD GET RIDE OF THIS child("-LFabTDx_abAY83Brzrq") .... it's going to be used for multiple restaurants
         
         self.ref.child("Restaurants").child(RESTAURANT_UID).child("Menu").child("Availability").child(order).child("Categories").observe(.value) { (snapshot) in
             
@@ -156,10 +151,6 @@ class DataManager : NSObject {
 
 class Availability {
     
-    
-    
-    
-    //    var categoryArray: [[String: [Item]]]
         var dinner = [[String: [[String: [String: AnyObject]]]]]()
         var lunch = [[String: [[String: [String: AnyObject]]]]]()
         var breakfast = [[String: [[String: [String: AnyObject]]]]]()
@@ -221,58 +212,7 @@ class Availability {
                     }
                 }
             }
-            
-            //            if snap.key == "Lunch", let value = snap.value as? NSDictionary, let category = value.value(forKey: "Categories") as? NSDictionary {
-            //                for cate in category {
-            //                    let categoryUID = cate.key as! String
-            //                    if let category1 = cate.value as? NSDictionary, let items = category1.value(forKey: "Items") as? NSDictionary {
-            //
-            //                        for item  in items {
-            //                            let itemUID = item.key as! String
-            //                            if let itemValues = item.value as? NSDictionary, let itemDetails = itemValues.value(forKey: "ItemDetails") as? NSDictionary {
-            //
-            //                                let itemData: [String: AnyObject] = [
-            //                                    itemUID: itemDetails as AnyObject
-            //                                ]
-            //
-            //                                let lunchData: [String: [String: AnyObject]] = [
-            //                                    categoryUID: itemData
-            //                                ]
-            //
-            //                                let _ = CategoryData(object: lunchData, availabilityType: "Lunch")
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //
-            //            if snap.key == "Breakfast", let value = snap.value as? NSDictionary, let category = value.value(forKey: "Categories") as? NSDictionary {
-            //
-            //                for cate in category {
-            //
-            //                    let categoryUID = cate.key as! String
-            //
-            //                    if let category1 = cate.value as? NSDictionary, let items = category1.value(forKey: "Items") as? NSDictionary {
-            //
-            //                        for item  in items {
-            //                            let itemUID = item.key as! String
-            //                            if let itemValues = item.value as? NSDictionary, let itemDetails = itemValues.value(forKey: "ItemDetails") as? NSDictionary {
-            //
-            //                                let itemData: [String: AnyObject] = [
-            //                                    itemUID: itemDetails as AnyObject
-            //                                ]
-            //
-            //                                let breakfastData: [String: [String: AnyObject]] = [
-            //                                    categoryUID: itemData
-            //                                ]
-            //
-            //                                let _ = CategoryData(object: breakfastData, availabilityType: "Breakfast")
-            //
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
+        
         }
     }
 }
