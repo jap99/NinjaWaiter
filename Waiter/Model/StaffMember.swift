@@ -40,7 +40,7 @@ class StaffMember {
     
     // should only be used for checking if admin is trying to get into SettingsVC from DashboardVC
     static func getStaffList(adminEmail: String, callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
-        _ = Database.database().reference().child(FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        _ = Database.database().reference().child(FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observe(.value) { (snapshot) in
            
             if !snapshot.exists() {
                 callback?(nil, nil)
@@ -48,7 +48,7 @@ class StaffMember {
             }
             
             let restaurantUID = snapshot.value as! String
-            Database.database().reference().child(FIR_RESTAURANTS).child(restaurantUID).observeSingleEvent(of: .value, with: { (snapshot) in
+            Database.database().reference().child(FIR_RESTAURANTS).child(restaurantUID).observe(.value, with: { (snapshot) in
                 if !snapshot.exists() {
                     callback?(nil, nil)
                     return

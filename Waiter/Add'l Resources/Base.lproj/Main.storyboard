@@ -1452,7 +1452,6 @@
                                                                     </state>
                                                                     <connections>
                                                                         <action selector="btnDeteleAccountTapWithSender:" destination="ST4-oh-l6n" eventType="touchUpInside" id="Bj2-1m-Z3s"/>
-                                                                        <action selector="deleteAccountButton_Pressed:" destination="hub-sm-EWm" eventType="touchUpInside" id="nn7-JZ-5ck"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-Ru-A8S" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">

@@ -219,25 +219,25 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
                 
                 if let error = error {
-                    print("error saving staff")
-                    print(error.debugDescription)
+                    
+                    print("ERROR SAVING STAFF\(error.debugDescription)")
                     
                 } else { // success
                     
                     StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
                         
                         if let error = error {
-                            print("error saving staff")
-                            print(error)
+                            print(error.localizedDescription)
+                            
                         } else {
                             //self.staffArray = []
                            // self.staffArray = staffArray!
-                            self.successfullyAddedStaff_Alert()
-                            self.emailTextField.text = ""
-                            self.passwordTextField.text = ""
-                            self.tv.reloadData()
-                            self.addStaffView.isHidden = true
-                            print("got it")
+                            
+                            DispatchQueue.main.async {
+                                //self.staffArray.append()
+                                self.tv.reloadData()
+                            }
+                            self.successfullyAddedStaff_Alert(user: self.emailTextField.text!)
                         }
                     })
                     
@@ -268,8 +268,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         })
     }
     
-    func successfullyAddedStaff_Alert() {
-        let ac = UIAlertController(title: "Success", message: "Staff member added successfully.", preferredStyle: .alert)
+    func successfullyAddedStaff_Alert(user: String) {
+        
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
+        self.addStaffView.isHidden = true
+        
+        let ac = UIAlertController(title: "Success", message: "Staff member, \(user), added successfully.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         
@@ -315,22 +320,53 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return staffArray.count
     }
     
-    @IBAction func btnDeteleAccountTap(sender:UIButton) {
+    @IBAction func btnDeteleAccountTap(sender: UIButton) {
         print("Delete account tap\(sender.tag)")
         
-        let restNode = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS)
-        
-        restNode.child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+        let _ = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             
             if error == nil {
                 DispatchQueue.main.async {
                     self.staffArray.remove(at: sender.tag)
+                    self.successfullyDeletedStaff_Alert()
                     self.tv.reloadData()
                 }
+            } else if let error = error {
+                    self.errorDeletingStaff_Alert()
+                    print(error.localizedDescription)
             }
         }
     }
     
+    // MARK: - ALERTS
+    
+    func successfullyDeletedStaff_Alert() {
+        
+        let ac = UIAlertController(title: "Success", message: "You have successfully deleted a staff member from the database.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        present(ac, animated: true) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                ac.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
+    
+    func errorDeletingStaff_Alert() {
+        
+        let ac = UIAlertController(title: "Error", message: "There was an error deleting the staff member from the database. Please try again.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        present(ac, animated: true) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                
+                ac.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
 }
 
 
