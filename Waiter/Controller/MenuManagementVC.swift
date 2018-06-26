@@ -55,7 +55,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemCV: UICollectionView!
     
     // EDIT MENU ITEMS
-        // ItemOptionCell
+    // ItemOptionCell
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var allView: UIView!
     @IBOutlet weak var byCategoryButton: UIButton!
@@ -77,21 +77,21 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         getCategories()
         setupVC()
-         
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 50
         layout.minimumInteritemSpacing = 20
         
-//        itemCV.delegate = self; itemCV.dataSource = self
-//        itemCV.allowsSelection = true
-//        itemCV.allowsMultipleSelection = false
-//        itemCV.isPrefetchingEnabled = false
+        //        itemCV.delegate = self; itemCV.dataSource = self
+        //        itemCV.allowsSelection = true
+        //        itemCV.allowsMultipleSelection = false
+        //        itemCV.isPrefetchingEnabled = false
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
-
+        
     }
     
     // VDA
@@ -102,7 +102,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         itemCV.reloadData()
         itemTV.reloadData()
     }
-
+    
     // MARK: - SETUP
     
     func setupVC() {
@@ -129,8 +129,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
-//        present(vc, animated: true, completion: nil)
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
+        //        present(vc, animated: true, completion: nil)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -143,7 +143,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func cancelButton_Pressed(_ sender: Any) {
         showAddCategoryView(false)
     }
-
+    
     @IBAction func addButton_Pressed(_ sender: Any) {
         saveCategory()
     }
@@ -151,8 +151,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // ITEM SECTION
     
     @IBAction func addItemButton_Pressed(_ sender: Any) {
-//        self.addItemView = CreateItem.loadViewFromNib(viewController: self)
-//        self.view.addSubview(addItemView)
+        //        self.addItemView = CreateItem.loadViewFromNib(viewController: self)
+        //        self.view.addSubview(addItemView)
         
         present(imagePicker!, animated: true, completion: nil)
         
@@ -208,7 +208,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
                 return
             }
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
@@ -232,7 +232,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func showAddCategoryView(_ value: Bool) {
-       
+        
         self.addCategoryView.isHidden = !value
     }
     
@@ -240,7 +240,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
- 
+    
     
     // MARK: - TABLE VIEW
     
@@ -252,11 +252,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if self.categoryTV == tableView {
-         
+            
             return self.categories.count
-        
+            
         } else {
-        
+            
             return self.categories.count
         }
     }
@@ -266,10 +266,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         if self.categoryTV == tableView {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
-            
-            
+             
             if self.categories.count > 0 {
-                
                 
                 cell.categoryTitle.text = self.categories[indexPath.row].name
                 cell.renameButton.tag = indexPath.row
@@ -313,48 +311,48 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         if itemTV == tableView {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemCell", for: indexPath) as! AddItemCell
             
             let selectedIndexUID = Singleton.sharedInstance.categoriesItems[indexPath.row].uid
- 
+            
             var arrayOfAvailability = [String]()
-
-//            if cell.breakfastSwitch.isOn {
-//                arrayOfAvailability.append("Breakfast")
-//            } else {
-//                //remove it from array
-//            }
-
+            
+            //            if cell.breakfastSwitch.isOn {
+            //                arrayOfAvailability.append("Breakfast")
+            //            } else {
+            //                //remove it from array
+            //            }
+            
             if cell.lunchSwitch.isOn {
                 arrayOfAvailability.append("Lunch")
             } else {
                 //remove it from array
             }
-
+            
             if cell.dinnerSwitch.isOn {
                 arrayOfAvailability.append("Dinner")
                 cell.dinnerSwitch.isOn = true
             } else {
                 //remove it from array
             }
-
+            
             let dict = [String: [String]]()
-
+            
         }
     }
     
     // MARK: - COLLECTION VIEW
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        return UICollectionViewCell()
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //        return 10
+    //    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    //        return UICollectionViewCell()
+    //    }
     
     // MARK: - IMAGE PICKER
     
@@ -381,23 +379,22 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func renameFunc(sender:UIButton) {
-
-        let  renameVC = UIAlertController(title: "RENAME", message: "add rename title", preferredStyle: .alert)
-
-        let  okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            print("*****************")
+    @objc func renameFunc(sender: UIButton) {
+        
+        let  ac = UIAlertController(title: "Rename Category", message: "", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let  okAction = UIAlertAction(title: "Okay", style: .default) { (action) in
             
-            DataService.instance.renameCategory(categoryUID: (self.categories[sender.tag].uid)!, updatedName: renameVC.textFields![0].text!, completion: { (updaet) in
-                print(updaet)
+            DataService.instance.renameCategory(categoryUID: (self.categories[sender.tag].uid)!, updatedName: ac.textFields![0].text!, completion: { (update) in
             })
         }
-        renameVC.addTextField { (textfield) in
+        ac.addTextField { (textfield) in
             textfield.text = self.categories[sender.tag].name
             print(self.categories[sender.tag].uid)
         }
-        renameVC.addAction(okAction)
-        self.present(renameVC, animated: true, completion: nil)
+        ac.addAction(okAction)
+        ac.addAction(cancelAction)
+        self.present(ac, animated: true, completion: nil)
         
     }
     
