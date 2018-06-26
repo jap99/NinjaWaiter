@@ -61,7 +61,7 @@ class CreateRestaurantView: UIView {
 
                 } else {
                     // Handle Error Case
-                    retry_Alert()
+                    self.retry_Alert(errorMessage: errorMessage)
                 }
             }
         }
@@ -77,7 +77,7 @@ class CreateRestaurantView: UIView {
     
     // MARK: - ALERTS
     
-    func retry_Alert() {
+    func retry_Alert(errorMessage: String?) {
         
         let alertController = UIAlertController(title: APP_NAME, message: errorMessage ?? DEFAULT_ERROR_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction) in

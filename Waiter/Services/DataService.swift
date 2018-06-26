@@ -81,6 +81,35 @@ class DataService {
         mainRef.child(FIR_STAFF_MEMBERS).updateChildValues(data)
     }
     
+//    func getStaff(callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
+//
+//        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).observeSingleEvent(of: .value) { (snapshot) in
+//
+//            if let dict = snapshot.value as? [String: Any] {
+//
+//                if let staffDict = dict["Staff"] as? [String: Any] {
+//
+//                    let keysList = staffDict.keys
+//
+//                    var allKeys = [String]()
+//
+//                    var staffDictionaryArray: [[String: Any]] = []
+//
+//                    for key in keyList {
+//                        
+//                        if let staffMemberDictionary = staffDict[key] as? [String: Any] {
+//
+//                            allKeys.append(key)
+//
+//                            staffDictionaryArray.append(staffMemberDictionary)
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
+    
     // GET RESTAURANT UID
     
     func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String?) -> ())) {
@@ -95,11 +124,34 @@ class DataService {
         }
     }
     
+    // RENAME CATEGORY
+    func renameCategory(categoryUID: String, updatedName: String, completion: @escaping (Bool) -> ()) {
+        
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).setValue(updatedName, forKey: categoryUID)
+    }
+    
+    
+    // DELETE CATEGORY
+    
+    func deleteCategory(categoryUID: String, completion: @escaping (Bool) -> ()) {
+        
+        // Delete from 'Category' node under restaurant
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).removeValue { (error, reference) in
+            
+        }
+        
+        // Delete from 'Categories' node underneath the 'Availability' node
+            // check if it exists in any of these and delete from there
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(categoryUID).removeValue()
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_LUNCH).child(FIR_CATEGORIES).child(categoryUID).removeValue()
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_DINNER).child(FIR_CATEGORIES).child(categoryUID).removeValue()
+    }
+    
     // SAVE CATEGORY - TO RESTAURANT NODE
     
-    func saveCategory(categoryName: String, completion :@escaping (Bool) -> ()) {
+    func saveCategory(categoryName: String, completion: @escaping (Bool) -> ()) {
         
-        let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Categories").child(FIR_CATEGORY).childByAutoId().key
+        let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORIES).child(FIR_CATEGORY).childByAutoId().key
         
         let category: Dictionary<String, AnyObject> = [
             categoryUID: categoryName as AnyObject
@@ -210,15 +262,15 @@ class DataService {
                             
                             if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
                                 arrBreakFast = [itemUID: itemDetailsNode]
-                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Breakfast").child("Categories").child(breakfastCategoryUIDsKey).child("Items").updateChildValues(arrBreakFast)
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrBreakFast)
                             }
                             if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
                                 arrlunch = [itemUID: itemDetailsNode]
-                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Lunch").child("Categories").child(lunchCategoryUIDsKey).child("Items").updateChildValues(arrlunch)
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_LUNCH).child(FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrlunch)
                             }
                             if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
                                 arrDinner = [itemUID: itemDetailsNode]
-                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Availability").child("Dinner").child("Categories").child(dinnerCategoryUIDsKey).child("Items").updateChildValues(arrDinner)
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_DINNER).child(FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrDinner)
                             }
                             
                             completion(true)

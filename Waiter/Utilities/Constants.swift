@@ -30,9 +30,13 @@ let FIR_DRINKS = "Drinks"
 let FIR_PRINTERS = "Printers"
 let FIR_SETTINGS = "Settings"
 let FIR_CATEGORY = "Category"
+let FIR_CATEGORIES = "Categories"
 let FIR_AVAILABILITY = "Availability"
 let FIR_ITEMS = "Items"
 let FIR_MENU = "Menu"
+let FIR_BREAKFAST = "Breakfast"
+let FIR_LUNCH = "Lunch"
+let FIR_DINNER = "Dinner"
 
 // PRINT STATEMENTS
 let SUCCESSFUL_LOGIN = "SUCCESSFULLY LOGGED INTO FIREBASE"

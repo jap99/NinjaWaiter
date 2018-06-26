@@ -17,25 +17,12 @@ class WaiterCell: UITableViewCell {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     
     func setData(staff:StaffMember,indexPath:IndexPath) {
         staffTypeLabel.text = staff.type
         staffEmailLabel.text = staff.email
         staffNumberLabel.text = "\(indexPath.row + 1)"
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
-    @IBAction func resetPasswordButton_Pressed(_ sender: Any) {
-    }
-    
-    @IBAction func deleteAccountButton_Pressed(_ sender: Any) {
-    }
+  
     
 }

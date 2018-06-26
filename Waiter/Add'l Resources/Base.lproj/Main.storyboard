@@ -651,7 +651,7 @@
                                 <rect key="frame" x="915" y="0.0" width="451" height="1024"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdS-mr-AJK" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="22" width="401" height="55"/>
+                                        <rect key="frame" x="35" y="22" width="391" height="55"/>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="w63-L8-7Va"/>
@@ -668,13 +668,13 @@
                                         <rect key="frame" x="0.0" y="132" width="451" height="892"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insert your phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y5-RW-KNk">
-                                                <rect key="frame" x="25" y="25" width="203" height="20.5"/>
+                                                <rect key="frame" x="35" y="25" width="203" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkM-E2-MNR">
-                                                <rect key="frame" x="25" y="65.5" width="401" height="55"/>
+                                                <rect key="frame" x="35" y="65.5" width="381" height="55"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -731,7 +731,7 @@
                                             <constraint firstItem="6y5-RW-KNk" firstAttribute="top" secondItem="VOv-gF-nJW" secondAttribute="top" constant="25" id="f1w-TI-f4a"/>
                                             <constraint firstItem="kkM-E2-MNR" firstAttribute="leading" secondItem="6y5-RW-KNk" secondAttribute="leading" id="iuf-fv-RbD"/>
                                             <constraint firstItem="EEU-E7-Tjr" firstAttribute="leading" secondItem="VOv-gF-nJW" secondAttribute="leading" constant="8" id="iyk-lr-iGU"/>
-                                            <constraint firstAttribute="trailing" secondItem="kkM-E2-MNR" secondAttribute="trailing" constant="25" id="liS-jU-QI4"/>
+                                            <constraint firstAttribute="trailing" secondItem="kkM-E2-MNR" secondAttribute="trailing" constant="35" id="liS-jU-QI4"/>
                                             <constraint firstAttribute="trailing" secondItem="EEU-E7-Tjr" secondAttribute="trailing" constant="8" id="wl4-Us-cwY"/>
                                         </constraints>
                                     </view>
@@ -746,7 +746,7 @@
                                     <constraint firstItem="6y5-RW-KNk" firstAttribute="leading" secondItem="tdS-mr-AJK" secondAttribute="leading" id="dlu-1e-iEh"/>
                                     <constraint firstItem="kkM-E2-MNR" firstAttribute="height" secondItem="tdS-mr-AJK" secondAttribute="height" id="esN-pr-IrT"/>
                                     <constraint firstAttribute="trailing" secondItem="tdS-mr-AJK" secondAttribute="trailing" constant="25" id="vfc-Ln-KRo"/>
-                                    <constraint firstItem="tdS-mr-AJK" firstAttribute="leading" secondItem="9TY-pk-tEo" secondAttribute="leading" constant="25" id="w04-OZ-MMz"/>
+                                    <constraint firstItem="tdS-mr-AJK" firstAttribute="leading" secondItem="9TY-pk-tEo" secondAttribute="leading" constant="35" id="w04-OZ-MMz"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-lC-dis">

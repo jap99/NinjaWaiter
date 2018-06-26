@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     var staffArray = [StaffMember]()
     
     @IBOutlet weak var tv: UITableView!
@@ -62,32 +63,32 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         settingsButton.isUserInteractionEnabled = false
         DataService.instance.getSettingsData { (_, _) in
             let dict = Singleton.sharedInstance.settingsData
-//            self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
-//            self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
+            //            self.startingTextField.text = Singleton.sharedInstance.settingsData[0].startingNumber
+            //            self.endingTextField.text = Singleton.sharedInstance.settingsData[0].endingNumber
             
-//            if let d = Singleton.sharedInstance.settingsData[0].discount {
-//                self.discountTextField.text = String(d)
-//            }
-//
-//            if let s = Singleton.sharedInstance.settingsData[0].serviceCharge {
-//                self.serviceChargeTextField.text = String(s)
-//            }
-//
-//            if let t1 = Singleton.sharedInstance.settingsData[0].tax1Name {
-//                self.taxName1TextField.text = t1
-//            }
-//
-//            if let t1p = Singleton.sharedInstance.settingsData[0].tax1Percent {
-//                self.taxPercentage1TextField.text = String(t1p)
-//            }
+            //            if let d = Singleton.sharedInstance.settingsData[0].discount {
+            //                self.discountTextField.text = String(d)
+            //            }
+            //
+            //            if let s = Singleton.sharedInstance.settingsData[0].serviceCharge {
+            //                self.serviceChargeTextField.text = String(s)
+            //            }
+            //
+            //            if let t1 = Singleton.sharedInstance.settingsData[0].tax1Name {
+            //                self.taxName1TextField.text = t1
+            //            }
+            //
+            //            if let t1p = Singleton.sharedInstance.settingsData[0].tax1Percent {
+            //                self.taxPercentage1TextField.text = String(t1p)
+            //            }
             
-//            if let t2 = Singleton.sharedInstance.settingsData[0].tax2Name {
-//                self.taxName2TextField.text = t2
-//            }
-//            
-//            if let t2p = Singleton.sharedInstance.settingsData[0].tax2Percent {
-//                self.taxPercentage2TextField.text = String(t2p)
-//            }
+            //            if let t2 = Singleton.sharedInstance.settingsData[0].tax2Name {
+            //                self.taxName2TextField.text = t2
+            //            }
+            //
+            //            if let t2p = Singleton.sharedInstance.settingsData[0].tax2Percent {
+            //                self.taxPercentage2TextField.text = String(t2p)
+            //            }
             
         }
         
@@ -126,10 +127,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         taxPercentage2TextField.layer.borderWidth = 1.0
         
         tv.separatorStyle = .none
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
     }
     
@@ -149,7 +146,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func addStaffButton_Pressed(_ sender: Any) { // show popup
+    @IBAction func addStaffButton_Pressed(_ sender: Any) { // only for showing the popup view; not for saving to firebase
         
         addStaffView.isHidden = false
         cancelButton.isHidden = false 
@@ -159,7 +156,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // SAVE TAXES & DISCOUNTS
     
     @IBAction func saveButton_Pressed(_ sender: Any) { 
-       
+        
         if let discountText = discountTextField.text {
             self.discountText = discountText
         }
@@ -221,15 +218,28 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
                 
                 if let error = error {
-                  
+                    print("error saving staff")
                     print(error.debugDescription)
-                
+                    
                 } else { // success
-                    self.successfullyAddedStaff_Alert()
-                    self.emailTextField.text = ""
-                    self.passwordTextField.text = ""
-                    self.tv.reloadData()
-                    self.addStaffView.isHidden = true
+                    
+                    StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
+                        
+                        if let error = error {
+                            print("error saving staff")
+                            print(error)
+                        } else {
+                            //self.staffArray = []
+                           // self.staffArray = staffArray!
+                            self.successfullyAddedStaff_Alert()
+                            self.emailTextField.text = ""
+                            self.passwordTextField.text = ""
+                            self.tv.reloadData()
+                            self.addStaffView.isHidden = true
+                            print("got it")
+                        }
+                    })
+                    
                 }
             }
         } else {
@@ -262,11 +272,11 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         
-        present(ac, animated: true, completion: { [weak self] in
+        present(ac, animated: true, completion: {// [weak self] in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                self?.tv.reloadData()
-                self?.loadViewIfNeeded()
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                self.tv.reloadData()
+                self.loadViewIfNeeded()
                 ac.dismiss(animated: true, completion: {
                     //self?.removeFromSuperview()
                 })
@@ -287,6 +297,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let waiterCell =  cell as? WaiterCell {
+            
             waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
             
@@ -305,8 +316,11 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func btnDeteleAccountTap(sender:UIButton) {
         print("Delete account tap\(sender.tag)")
+        
         let restNode = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS)
+        
         restNode.child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+            
             if error == nil {
                 DispatchQueue.main.async {
                     self.staffArray.remove(at: sender.tag)

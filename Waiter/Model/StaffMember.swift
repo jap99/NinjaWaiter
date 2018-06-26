@@ -23,9 +23,11 @@ class StaffMember {
     }
     
     static func getStaffList(array: [[String: Any]], arrKey: [String]) -> [StaffMember] {
+        
         var staffMembers: [StaffMember] = []
+        
         for (index,a) in array.enumerated() {
-            print(a)
+            
             if let email = a["staffEmail"] as? String,
                 let type = a["staffType"] as? String {
                 let staff = StaffMember(email: email, type: type)
@@ -36,6 +38,7 @@ class StaffMember {
         return staffMembers
     }
     
+    // should only be used for checking if admin is trying to get into SettingsVC from DashboardVC
     static func getStaffList(adminEmail: String, callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
         _ = Database.database().reference().child(FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
            

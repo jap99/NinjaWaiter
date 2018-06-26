@@ -19,7 +19,9 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var loginModel = LoginModel() 
+    var loginModel = LoginModel()
+    
+    static var shared = LoginVC()
    
     @IBAction func backButton_Pressed(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as? WelcomeVC {
@@ -92,7 +94,7 @@ class LoginVC: UIViewController {
                     _userDefault.set(self.loginModel.username, forKey:kUsername)
                     _userDefault.set(self.loginModel.password, forKey:kPassword)
                     _userDefault.synchronize()
-                    self.staffListAPI()
+                    LoginVC.shared.staffListAPI()
                 }
             }
             
