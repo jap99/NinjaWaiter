@@ -233,7 +233,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: - ALERTS
     
     func noItemsInCart_Alert() {
-        let ac = UIAlertController(title: "Sorry", message: "No items have been added to the cart. Please add at least one item to the cart to checkout.", preferredStyle: .alert)
+        let ac = UIAlertController(title: "No Items In Cart", message: "No items have been added to the cart. Please add at least one item to the cart to checkout.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         
