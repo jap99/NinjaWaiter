@@ -19,6 +19,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var menuManagementButton: UIButton!
     @IBOutlet weak var addStaffButton: UIButton!
+    @IBOutlet weak var staffSavedSuccessful_View: UIView!
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -93,7 +94,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         
         setupObjectsWithData()
-        tv.reloadData() 
+        tv.reloadData()
+        staffSavedSuccessful_View.isHidden = true 
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -284,17 +286,20 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                 } else { // success
                     
+                    self.staffSavedSuccessful_View.isHidden = false
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        self.staffSavedSuccessful_View.isHidden = true
+                    })
+                    
                     StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
                         
                         if let error = error {
                             print(error.localizedDescription)
                             
                         } else {
-                            //self.staffArray = []
-                            // self.staffArray = staffArray!
                             
                             DispatchQueue.main.async {
-                                //self.staffArray.append()
                                 self.tv.reloadData()
                             }
                             self.successfullyAddedStaff_Alert(user: self.emailTextField.text!)

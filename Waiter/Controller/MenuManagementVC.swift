@@ -17,6 +17,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    // SAVE SUCCESSFUL VIEWS - popups
+    @IBOutlet weak var categorySavedSuccess_View: UIView!
+    @IBOutlet weak var itemSavedSuccess_View: UIView!
+    @IBOutlet weak var itemEditedSuccessfully_View: UIView!
+    
+    
     // (ADD) CATEGORY BUTTON & ITEM BUTTON
     
     @IBOutlet weak var addCategoryButton: UIButton!
@@ -101,6 +107,13 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         itemCV.reloadData()
         itemTV.reloadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        itemSavedSuccess_View.isHidden = true
+        categorySavedSuccess_View.isHidden = true
+        itemEditedSuccessfully_View.isHidden = true 
     }
     
     // MARK: - SETUP
@@ -120,6 +133,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         categoryTV.separatorStyle = .none
         itemTV.separatorStyle = .none
+        
+        byCategoryView.layer.cornerRadius = 7
+        allView.layer.cornerRadius = 7
     }
     // MARK: - IBACTIONS
     
@@ -129,8 +145,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
-        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
-        //        present(vc, animated: true, completion: nil)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -175,6 +189,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 if success {
                     
+                    self.itemSavedSuccess_View.isHidden = false
+                    self.itemNameTextField.text = ""
+                    self.itemPriceTextField.text = ""
+                    self.addImageButton.setBackgroundImage(nil, for: .normal)
+                    self.addImageButton.backgroundColor = customRed
+                    self.itemTV.reloadData()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        self.itemSavedSuccess_View.isHidden = true
+                    })
                     // after save is successfull, turn off all switches again, make text fields empty again, make itemImageView nil again
                 }
             }
@@ -222,6 +246,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     
                     self.foodTextField.text = ""
                     self.addCategoryView.isHidden = true
+                    self.categorySavedSuccess_View.isHidden = false
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        self.categorySavedSuccess_View.isHidden = true
+                    })
+                    
                 }
             }
             
