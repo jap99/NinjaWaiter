@@ -253,7 +253,7 @@ class DataService {
         
         let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
         
-        if let imageData = UIImageJPEGRepresentation(itemImage!, 0.3) {
+        if let imageData = UIImageJPEGRepresentation(itemImage!, 0.5) {
             
             let imageName = NSUUID().uuidString
             

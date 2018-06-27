@@ -17,6 +17,19 @@ class FoodCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.contentView.layer.masksToBounds = true
+        
+    }
+    
+    func giveBorder(selected: Bool) {
+        
+        if selected {
+            self.contentView.layer.backgroundColor = UIColor.black.cgColor
+            
+        } else {
+            
+            self.contentView.layer.backgroundColor = UIColor.white.cgColor
+        }
     }
     
     

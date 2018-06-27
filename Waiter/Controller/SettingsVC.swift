@@ -64,9 +64,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         hideKeyboardWhenTappedAround()
         
         settingsButton.isUserInteractionEnabled = false
-        
-        
-        
+         
         setup()
         
         StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in

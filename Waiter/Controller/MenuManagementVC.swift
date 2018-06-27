@@ -91,7 +91,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
-        
+        hideKeyboardWhenTappedAround()
     }
     
     // VDA

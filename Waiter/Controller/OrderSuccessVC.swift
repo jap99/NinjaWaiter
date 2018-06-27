@@ -57,7 +57,7 @@ class OrderSuccessVC: UIViewController {
             }
             
         } else {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "ViewControllerVC-ID") as! ViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
             self.present(vc, animated: true) { }
         }
         

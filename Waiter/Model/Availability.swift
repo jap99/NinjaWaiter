@@ -16,6 +16,7 @@ class CategoryItems {
     var itemName = ""
     var itemImage = ""
     var itemPrice = ""
+    var isSelected = false 
 }
 
 class CategoryDetail {

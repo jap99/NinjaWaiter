@@ -19,6 +19,14 @@ class CheckoutCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    func configureCell(cartDictionaries: [[String: AnyObject]]) {
+        
+        for dict in cartDictionaries {
+            
+            print(dict)
+        }
+        
+    }
     
     
     

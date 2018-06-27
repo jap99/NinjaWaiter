@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bac-4U-pto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="-775"/>
+            <point key="canvasLocation" x="-714" y="-2021"/>
         </scene>
         <!--Rename View Controller-->
         <scene sceneID="HIv-EI-ccG">
@@ -194,13 +194,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="05b-qT-Qkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-818" y="-529"/>
+            <point key="canvasLocation" x="-2230" y="-1385"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="ViewControllerVC-ID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -327,7 +327,7 @@
                                                                 <constraint firstAttribute="width" constant="46" id="eLW-BN-d3I"/>
                                                                 <constraint firstAttribute="height" constant="36" id="nzw-mF-4vB"/>
                                                             </constraints>
-                                                            <state key="normal" image="PlusSign"/>
+                                                            <state key="normal" image="removeButton"/>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19.90" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T44-Ug-1T5">
                                                             <rect key="frame" x="370" y="19" width="52" height="21"/>
@@ -483,12 +483,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GWx-H0-tZV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
+                                                <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GWx-H0-tZV">
+                                                    <rect key="frame" x="5" y="5" width="197" height="202"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grilled Dory with Pepper &amp; Olive" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiU-aA-rgK">
-                                                    <rect key="frame" x="10.5" y="138.5" width="186" height="63.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grilled Dory with Pepper &amp; Olive" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiU-aA-rgK">
+                                                    <rect key="frame" x="10.5" y="141.5" width="186" height="60.5"/>
                                                     <color key="backgroundColor" red="0.27450980392156865" green="0.25882352941176473" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -497,12 +497,12 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="GWx-H0-tZV" secondAttribute="bottom" id="4gR-wr-u7a"/>
-                                            <constraint firstItem="GWx-H0-tZV" firstAttribute="top" secondItem="WWq-Sw-BCX" secondAttribute="top" id="6t2-NT-rQD"/>
+                                            <constraint firstAttribute="bottom" secondItem="GWx-H0-tZV" secondAttribute="bottom" constant="5" id="4gR-wr-u7a"/>
+                                            <constraint firstItem="GWx-H0-tZV" firstAttribute="top" secondItem="WWq-Sw-BCX" secondAttribute="top" constant="5" id="6t2-NT-rQD"/>
                                             <constraint firstItem="RiU-aA-rgK" firstAttribute="leading" secondItem="WWq-Sw-BCX" secondAttribute="leadingMargin" constant="2.5" id="6vN-kv-RmA"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="RiU-aA-rgK" secondAttribute="trailing" constant="2.5" id="7n1-B0-v2E"/>
-                                            <constraint firstItem="GWx-H0-tZV" firstAttribute="leading" secondItem="WWq-Sw-BCX" secondAttribute="leading" id="cdN-14-cg6"/>
-                                            <constraint firstAttribute="trailing" secondItem="GWx-H0-tZV" secondAttribute="trailing" id="xoB-EW-9Rp"/>
+                                            <constraint firstItem="GWx-H0-tZV" firstAttribute="leading" secondItem="WWq-Sw-BCX" secondAttribute="leading" constant="5" id="cdN-14-cg6"/>
+                                            <constraint firstAttribute="trailing" secondItem="GWx-H0-tZV" secondAttribute="trailing" constant="5" id="xoB-EW-9Rp"/>
                                             <constraint firstItem="RiU-aA-rgK" firstAttribute="height" secondItem="GWx-H0-tZV" secondAttribute="height" multiplier="0.3" id="y6k-tq-4r4"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="RiU-aA-rgK" secondAttribute="bottom" constant="2" id="zyk-3Y-Num"/>
                                         </constraints>
@@ -512,6 +512,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="dZ2-iA-ve6"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="98F-vH-xwj"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -551,7 +555,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116.83748169838945" y="-120.11718749999999"/>
+            <point key="canvasLocation" x="2396" y="-3058"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="kE8-BR-a1b">
@@ -652,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57o-Q0-lt8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.62589928057554" y="-1432.3741007194246"/>
+            <point key="canvasLocation" x="-714" y="-3149"/>
         </scene>
         <!--Continue OrderVC-->
         <scene sceneID="aAn-XU-m6Y">
@@ -898,7 +902,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKG-kG-caZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1389.7510980966324" y="-231.44531249999997"/>
+            <point key="canvasLocation" x="755" y="-715"/>
         </scene>
         <!--Order SuccessVC-->
         <scene sceneID="Glo-aJ-ksY">
@@ -1020,7 +1024,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S66-dU-4k0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="755" y="-120"/>
+            <point key="canvasLocation" x="-714" y="-841"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="oGp-4O-NQr">
@@ -1160,7 +1164,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FX3-fX-4At" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="EDo-Ue-uNz"/>
             </objects>
-            <point key="canvasLocation" x="763" y="-1433"/>
+            <point key="canvasLocation" x="911" y="-3102"/>
         </scene>
         <!--PrinterVC-->
         <scene sceneID="XWW-lD-0Ec">
@@ -1175,7 +1179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4a-Iy-9HM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="-775"/>
+            <point key="canvasLocation" x="755" y="-1891"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="CJt-aS-HZO">
@@ -2151,7 +2155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfG-9X-CO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1389.7510980966324" y="-1285.546875"/>
+            <point key="canvasLocation" x="2293" y="-1303"/>
         </scene>
         <!--Menu ManagementVC-->
         <scene sceneID="Czb-rF-es3">
@@ -3166,7 +3170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDq-3p-nkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2061.7862371888723" y="-989.06249999999989"/>
+            <point key="canvasLocation" x="3711" y="-841"/>
         </scene>
     </scenes>
     <resources>
@@ -3174,12 +3178,12 @@
         <image name="Group 2" width="448" height="508"/>
         <image name="Path 4" width="32" height="13"/>
         <image name="Plus Sign" width="56" height="56"/>
-        <image name="PlusSign" width="19" height="20"/>
         <image name="Rectangle 11" width="230" height="68"/>
         <image name="RectangleSetup" width="391" height="98"/>
         <image name="checkmark1" width="18" height="18"/>
         <image name="iPad" width="327" height="178"/>
         <image name="oceanrestaurant-interior" width="448" height="508"/>
+        <image name="removeButton" width="19" height="20"/>
         <image name="strips1" width="18" height="12"/>
         <image name="tables1" width="188" height="168"/>
     </resources>

@@ -29,30 +29,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var totalLabel: UILabel!
     
     @IBOutlet weak var exitButton: UIButton!
+    
     var sectionsArray: [String]!
     var foodsArray: [Item]! // used in cv2
-    var checkoutDict: [String: AnyObject]!
+    //var checkoutDict: [String: AnyObject]!
     var tag = 0
     var menuData = [[String: [[String: [String: AnyObject]]]]]()
     var arrCategory = [CategoryDetail]()
     var currIndex = 0
+    var cart = [[String: AnyObject]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        hideKeyboardWhenTappedAround()
-        
         tv.delegate = self; tv.dataSource = self
         cv1.delegate = self; cv1.dataSource = self
         cv2.delegate = self; cv2.dataSource = self
-        
-        let layoutCV2 = UICollectionViewFlowLayout()
-        layoutCV2.scrollDirection = .vertical
-        layoutCV2.minimumInteritemSpacing = 20
-        layoutCV2.minimumLineSpacing = 60
+//        
+//        let layoutCV2 = UICollectionViewFlowLayout()
+//        layoutCV2.scrollDirection = .vertical
+//        layoutCV2.minimumInteritemSpacing = 20
+//        layoutCV2.minimumLineSpacing = 60
         
         cv1.isUserInteractionEnabled = true
-        cv2.allowsMultipleSelection = false
+        cv1.allowsMultipleSelection = false
+        cv2.allowsMultipleSelection = true
         cv2.isUserInteractionEnabled = true
         
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
@@ -61,7 +62,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-
         getMenuData()
         setupObjectsWithSettingsData()
     }
@@ -86,6 +86,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let checkoutCell = tableView.dequeueReusableCell(withIdentifier: "CheckoutCell", for: indexPath) as! CheckoutCell
         
+        checkoutCell.configureCell(cartDictionaries: cart)
+        
         return checkoutCell
     }
     
@@ -94,37 +96,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return checkoutDict.count
-        return 3
+        
+        return cart.count
     }
     
     
     // MARK: - COLLECTION VIEW
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == self.cv1 {
-           
+
             let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
-            
+
             cellCV1.foodNameLabel.tag = indexPath.row
             cellCV1.foodNameLabel.addTarget(self, action: #selector(catClick(sender:)), for: .touchUpInside)
             cellCV1.foodNameLabel.setTitle(arrCategory[indexPath.row].categoryName, for: .normal)
             return cellCV1
-            
+
         } else if collectionView == self.cv2 {
-            
+
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
-            
+
             let data = arrCategory[currIndex].categoryItemList
-            
+
             cell.foodNameLabel.text = data[indexPath.row].itemName
+            cell.giveBorder(selected: data[indexPath.row].isSelected)
+
             if data[indexPath.row].itemImage != "" {
-               
+
                 let data = try? Data(contentsOf: URL(string: data[indexPath.row].itemImage)!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
                 cell.foodImageView.image = UIImage(data: data!)
             }
             return cell
+
         } else {
             let cell = UICollectionViewCell()
             return cell
@@ -136,6 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         var count: Int?
         
         if collectionView == self.cv1 {
@@ -152,17 +157,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 return 0
             }
-            // count = foodsArray.count
         }
         
         return count!
-        
     }
     
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
         if collectionView == cv1 {
             
+            print("PRINTING CV1 PRESSED")
+        } else if collectionView == cv2 {
+            
+            arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
+            let itemPrice = arrCategory[currIndex].categoryItemList[indexPath.row].itemPrice
+            let itemName = arrCategory[currIndex].categoryItemList[indexPath.row].itemName
+            
+            
+            let itemData: Dictionary<String, AnyObject> = [
+                itemName: itemPrice as AnyObject
+            ]
+            
+            cart.append(itemData)
+            cv2.reloadData()
         }
+        
     }
     
     
@@ -207,7 +227,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    @objc func catClick(sender:UIButton) {
+    @objc func catClick(sender: UIButton) {
         
         currIndex = sender.tag
         cv2.reloadData()

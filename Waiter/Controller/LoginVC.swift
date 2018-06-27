@@ -22,7 +22,19 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    static var shared = LoginVC()
+    //static var shared = LoginVC()
+    
+    static var shared: LoginVC {
+        get {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "LoginVC-ID") as! LoginVC
+            return vc
+        }
+    }
+    
+    override func viewDidLoad() {
+        hideKeyboardWhenTappedAround()
+    }
     
     @IBAction func backButton_Pressed(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC-ID") as? WelcomeVC {
@@ -31,12 +43,15 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func resetPasswordButton_Pressed(_ sender: Any) {
+        
         if self.emailTextField.text == "" {
+            
             let alertController = UIAlertController(title: "Password Reset Error", message: "Please enter an email address and then try to reset your password again.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
             self.present(alertController, animated: true, completion: nil)
+            
         } else {
             Auth.auth().sendPasswordReset(withEmail: self.emailTextField.text!, completion: { (error) in
                 
@@ -83,7 +98,7 @@ class LoginVC: UIViewController {
                 } else if let currentUser = user as? User {
                     
                     _currentUser = AppUser(user:currentUser)
-                      DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
+                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
                         
                         if let _ = admin.value as? String {
                             _currentUser.type = .adamin
@@ -116,22 +131,22 @@ class LoginVC: UIViewController {
         // Log user in with Firebase Auth API
         
         //
-        
-        
     }
     
     func staffListAPI() {
+        
         StaffMember.getStaffList(adminEmail: LoginModel.instance.username, callback: { (staffArray, error) in
             
             if error != nil {
                 
             } else {
                 
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                //sb.instantiateViewController(withIdentifier: "DashboardVC-ID") as DashboardVC
+                let vc = sb.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
                 vc.staffArray = staffArray
-                self.present(vc, animated: false, completion: {
-                    
-                })
+                
+                UIApplication.shared.windows[0].rootViewController = vc 
             }
         })
     }
