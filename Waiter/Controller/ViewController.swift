@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tv.delegate = self; tv.dataSource = self
         cv1.delegate = self; cv1.dataSource = self
         cv2.delegate = self; cv2.dataSource = self
-//        
+        
 //        let layoutCV2 = UICollectionViewFlowLayout()
 //        layoutCV2.scrollDirection = .vertical
 //        layoutCV2.minimumInteritemSpacing = 20
@@ -55,8 +55,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cv1.allowsMultipleSelection = false
         cv2.allowsMultipleSelection = true
         cv2.isUserInteractionEnabled = true
-        
-        tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +62,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         getMenuData()
         setupObjectsWithSettingsData()
+        self.tv.isHidden = false
+        tv.separatorStyle = .none
     }
     
     @IBAction func goback(_ sender: Any) {
@@ -82,24 +82,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - TABLE VIEW
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let checkoutCell = tableView.dequeueReusableCell(withIdentifier: "CheckoutCell", for: indexPath) as! CheckoutCell
-        
-        checkoutCell.configureCell(cartDictionaries: cart)
-        
-        return checkoutCell
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return cart.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let checkoutCell = tableView.dequeueReusableCell(withIdentifier: "CheckoutCell", for: indexPath) as! CheckoutCell
+        
+        checkoutCell.configureCell(indexPath: indexPath, cartDictionaries: cart)
+        return checkoutCell
+    }
     
     // MARK: - COLLECTION VIEW
     
@@ -135,9 +132,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    // number of sections
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    // number of items
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -162,27 +163,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return count!
     }
     
-
+    // did select item
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
         if collectionView == cv1 {
-            
             print("PRINTING CV1 PRESSED")
         } else if collectionView == cv2 {
-            
             arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
             let itemPrice = arrCategory[currIndex].categoryItemList[indexPath.row].itemPrice
             let itemName = arrCategory[currIndex].categoryItemList[indexPath.row].itemName
-            
-            
             let itemData: Dictionary<String, AnyObject> = [
                 itemName: itemPrice as AnyObject
             ]
-            
             cart.append(itemData)
+            print("PRINTING CART ARRAY DATA: \(cart)")
             cv2.reloadData()
+            tv.reloadData()
         }
-        
     }
     
     
