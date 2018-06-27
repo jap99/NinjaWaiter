@@ -929,7 +929,7 @@
                                             <constraint firstItem="2aA-bc-Xn8" firstAttribute="centerY" secondItem="bxQ-2q-N0q" secondAttribute="centerY" id="hsQ-dH-4HN"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBt-4d-SK2">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBt-4d-SK2">
                                         <rect key="frame" x="43" y="12" width="66" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SOl-wP-jC7"/>
@@ -958,7 +958,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="83U-c3-A5q">
-                                <rect key="frame" x="0.0" y="317" width="1366" height="481.5"/>
+                                <rect key="frame" x="0.0" y="317" width="1366" height="498"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order has been placed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mes-Z8-Dx7">
                                 <rect key="frame" x="521" y="160" width="324" height="30"/>
@@ -973,14 +973,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-n7-Ab6">
-                                <rect key="frame" x="555.5" y="846.5" width="255" height="63.5"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="55"/>
+                                <rect key="frame" x="549" y="863" width="269" height="67"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="58"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this screen will automatically close in 5 seconds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpT-th-US8">
-                                <rect key="frame" x="501.5" y="917.5" width="363.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpT-th-US8">
+                                <rect key="frame" x="20" y="937.5" width="1326" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1000,7 +1000,9 @@
                             <constraint firstItem="Qsh-YQ-2cU" firstAttribute="top" secondItem="bxQ-2q-N0q" secondAttribute="bottom" id="ByN-sN-3C6"/>
                             <constraint firstItem="q5R-H6-aWz" firstAttribute="leading" secondItem="DIF-Js-Jxu" secondAttribute="leading" id="FLQ-Ig-WYC"/>
                             <constraint firstItem="Mes-Z8-Dx7" firstAttribute="top" secondItem="q5R-H6-aWz" secondAttribute="bottom" constant="73" id="Gpw-Tz-OWA"/>
+                            <constraint firstAttribute="trailing" secondItem="YpT-th-US8" secondAttribute="trailing" constant="20" id="MG5-gl-xhZ"/>
                             <constraint firstItem="DIF-Js-Jxu" firstAttribute="trailing" secondItem="83U-c3-A5q" secondAttribute="trailing" id="NSV-az-ueT"/>
+                            <constraint firstItem="YpT-th-US8" firstAttribute="leading" secondItem="woV-Mw-Nq7" secondAttribute="leading" constant="20" id="OMw-E3-3Dz"/>
                             <constraint firstItem="lR4-n7-Ab6" firstAttribute="centerX" secondItem="woV-Mw-Nq7" secondAttribute="centerX" id="SjY-rv-egK"/>
                             <constraint firstItem="M0n-xs-3Wl" firstAttribute="top" secondItem="Mes-Z8-Dx7" secondAttribute="bottom" constant="7.5" id="aac-gM-Emw"/>
                             <constraint firstItem="Mes-Z8-Dx7" firstAttribute="centerX" secondItem="woV-Mw-Nq7" secondAttribute="centerX" id="civ-8F-rxf"/>
@@ -1012,6 +1014,7 @@
                         <viewLayoutGuide key="safeArea" id="DIF-Js-Jxu"/>
                     </view>
                     <connections>
+                        <outlet property="countdownTextField" destination="YpT-th-US8" id="irX-hb-QF1"/>
                         <outlet property="gifView" destination="83U-c3-A5q" id="MbU-nn-6Ed"/>
                     </connections>
                 </viewController>
