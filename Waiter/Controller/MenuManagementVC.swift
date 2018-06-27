@@ -11,6 +11,8 @@ import FirebaseStorage
 
 class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var isFromSave = false
+    
     // NAVIGATION BAR BUTTONS
     
     @IBOutlet weak var menuManagementButton: UIButton!
@@ -105,7 +107,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - SETUP
     
     func setupVC() {
-        
         mainScrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
         
         // category tv
@@ -124,7 +125,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         layout.minimumInteritemSpacing = 20
         
         // item cv
-        
         itemCV.delegate = self; itemCV.dataSource = self
         itemCV.allowsSelection = true
         itemCV.allowsMultipleSelection = false
@@ -178,10 +178,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         //        self.view.addSubview(addItemView)
         
         present(imagePicker!, animated: true, completion: nil)
-        
     }
     
     @IBAction func saveButton_Pressed(_ sender: Any) { // save item
+        isFromSave = true 
         
         let dictOfArraysIsNotEmpty: Bool =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
@@ -208,8 +208,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                         self.itemSavedSuccess_View.isHidden = true
-                    })
-                    // after save is successfull, turn off all switches again, make text fields empty again, make itemImageView nil again
+                    }) 
                 }
             }
         }
@@ -218,18 +217,21 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // ADD / EDIT MENU ITEMS
     
     @IBAction func allButton_Pressed(_ sender: Any) {
-        
     }
     
     @IBAction func byCategoryButton_Pressed(_ sender: Any) {
-        
     }
     
     
     // MARK: - ACTIONS
     
+    @objc func addItemButtonAction() {
+        let optionView = Bundle.main.loadNibNamed("ItemOptionsView", owner: self, options: nil)?.first as! UIView
+        optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
+        self.view.addSubview(optionView)
+    }
+    
     func getCategories() {
-        
         DataService.instance.getCategories { (categories: [Category]?, error) in
             
             guard let error = error else {
@@ -247,7 +249,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func saveCategory() {
-        
         if let categoryName = foodTextField.text, categoryName.count > 0 {
             
             DataService.instance.saveCategory(categoryName: categoryName) { (success) in
@@ -261,23 +262,27 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                         self.categorySavedSuccess_View.isHidden = true
                     })
-                    
                 }
             }
             
         } else {
-            
             showError_CategoryAddFailed()
         }
     }
     
     func showAddCategoryView(_ value: Bool) {
-        
         self.addCategoryView.isHidden = !value
     }
     
     @objc func switchValueDidChange(_ sender: UISwitch) {
-        
+    }
+    
+    func showWhiteGrayCells(indexPath: IndexPath, cell: UITableViewCell) {
+        if indexPath.row % 2 == 0 {     // For background color
+            cell.backgroundColor = .white
+        } else {
+            cell.backgroundColor = customLightGray
+        }
     }
     
     
@@ -316,13 +321,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 cell.deleteButton.addTarget(self, action: #selector(deleteCategoryFunc), for: .allEvents)
             }
             
-            if indexPath.row % 2 == 0 {     // For background color
-                
-                cell.backgroundColor = .white
-            } else {
-                
-                cell.backgroundColor = customLightGray
-            }
+            showWhiteGrayCells(indexPath: indexPath, cell: cell)
             
             return cell
             
@@ -330,23 +329,23 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
             cell.parentVC = self
+            
+            if isFromSave {
+                self.isFromSave = false
+                cell.breakfastSwitch.isOn = false
+                cell.lunchSwitch.isOn = false
+                cell.dinnerSwitch.isOn = false
+            }
+            
             cell.breakfastSwitch.tag = indexPath.row
             cell.lunchSwitch.tag = indexPath.row
             cell.dinnerSwitch.tag = indexPath.row
             if self.categories.count > 0 {
                 
                 cell.categoryTitle.text = self.categories[indexPath.row].name
-                
             }
             
-            if indexPath.row % 2 == 0 {     // For background color
-                
-                cell.backgroundColor = .white
-                
-            } else {
-                
-                cell.backgroundColor = customLightGray
-            }
+            showWhiteGrayCells(indexPath: indexPath, cell: cell)
             
             return cell
         }
@@ -385,40 +384,34 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     // MARK: - COLLECTION VIEW
     
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            
-            if collectionView == itemCV {
-                return 6
-            } else {
-                return 0
-            }
-            
-        }
-    
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            if collectionView == itemCV {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
-                
-                cell.configureCell(indexPath: indexPath)
-                cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
-
-                return cell
-            } else {
-                return UICollectionViewCell()
-            }
-            
-        }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("************* C=heck *")
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == itemCV {
-            
-            // show the ItemOptionsView.xib
+            return 6
+        } else {
+            return 0
+        }
+    }
+    
+    // cell for
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == itemCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
             
+            cell.configureCell(indexPath: indexPath)
+            cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
             
-           
-
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
+    }
+    
+    // did select
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == itemCV {
+            
+            // show ItemOptionsView.xib
+            _ = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
         } else {
             
         }
@@ -427,7 +420,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - IMAGE PICKER
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         if picker == imagePicker, let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
             self.addImageButton.isEnabled = true
@@ -436,6 +428,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         picker.dismiss(animated: true, completion: nil)
     }
+    
     // MARK: - ALERT CONTROLLERS
     
     func showError_CategoryAddFailed() {
@@ -445,7 +438,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         })
         
         alertController.addAction(okAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -475,7 +467,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if success {
                 
                 self.successfullyDeletedCategory_Alert()
-            
+                
             } else {
                 
                 self.errorDeletingCategory_Alert()
@@ -485,7 +477,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func successfullyDeletedCategory_Alert() {
-        
         let ac = UIAlertController(title: "Success", message: "You have successfully deleted a category from the database.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
@@ -499,7 +490,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func errorDeletingCategory_Alert() {
-        
         let ac = UIAlertController(title: "Error", message: "There was an error deleting the category from the database. Please try again.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
@@ -511,12 +501,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             })
         }
     }
-   @objc func addItemButtonAction()
-    {
-        let optionView = Bundle.main.loadNibNamed("ItemOptionsView", owner: self, options: nil)?.first as! UIView
-        optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
-        self.view.addSubview(optionView)
-        
-    }
+    
+   
     
 }

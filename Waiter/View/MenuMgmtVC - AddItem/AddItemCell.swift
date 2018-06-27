@@ -38,7 +38,6 @@ class AddItemCell: UITableViewCell {
         } else {
             parentVC.dictOfArrays[categoryUID]  = [catName]
         }
-        print(parentVC.dictOfArrays)
     }
     
     // MARK: - IBACTIONS

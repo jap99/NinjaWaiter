@@ -19,16 +19,12 @@ class CheckoutCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureCell(cartDictionaries: [[String: AnyObject]]) {
-        
-        for dict in cartDictionaries {
-            
-            print(dict)
+    func configureCell(indexPath: IndexPath, cartDictionaries: [[String: AnyObject]]) {
+        for (key, value) in cartDictionaries[indexPath.row] {
+            let name = key
+            let price = value
+            self.itemDescriptionLabel?.text = name
+            self.itemPriceLabel?.text = "\(price)"
         }
-        
     }
-    
-    
-    
-    
 }
