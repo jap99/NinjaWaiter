@@ -329,43 +329,49 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - TABLE VIEW (STAFF)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
             
-            if indexPath.row < staffArray.count {
-                
+            if indexPath.section == 0 {
                 waiterCell.deleteAccountButton.tag = indexPath.row
                 print(indexPath.row)
                 print(staffArray.count)
                 print("----------------------")
-                waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
-                
-                if indexPath.row % 2 == 0 {
-                    waiterCell.backgroundColor = .white
-                    
-                } else {
-                    waiterCell.backgroundColor = customLightGray
-                }
+                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
                 
                 return waiterCell
+            } else if indexPath.section == 1 { // empty cells
                 
-            } else { // empty cells
-                
-                //let cell = UITableViewCell()
-                waiterCell.deleteAccountButton.isHidden = true
-                waiterCell.resetButton.isHidden = true
-                waiterCell.staffEmailLabel.isHidden = true
-                waiterCell.staffTypeLabel.isHidden = true
-                
-                if indexPath.row % 2 == 0 {
-                    waiterCell.backgroundColor = .white
-                    
-                } else {
-                    waiterCell.backgroundColor = customLightGray
-                }
+                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
                 
                 return waiterCell
             }
+//            if indexPath.row < staffArray.count {
+//                waiterCell.deleteAccountButton.tag = indexPath.row
+//                print(indexPath.row)
+//                print(staffArray.count)
+//                print("----------------------")
+//                waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
+//
+//                if indexPath.row % 2 == 0 { waiterCell.backgroundColor = .white } else { waiterCell.backgroundColor = customLightGray }
+//
+//                return waiterCell
+//
+//            } else { // empty cells
+//
+//                waiterCell.deleteAccountButton.isHidden = true
+//                waiterCell.resetButton.isHidden = true
+//                waiterCell.staffEmailLabel.isHidden = true
+//                waiterCell.staffTypeLabel.isHidden = true
+//
+//                if indexPath.row % 2 == 0 {
+//                    waiterCell.backgroundColor = .white
+//
+//                } else {
+//                    waiterCell.backgroundColor = customLightGray
+//                }
+//
+//                return waiterCell
+//            }
         }
         return UITableViewCell()
     }
@@ -376,11 +382,11 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 1 {
+        if section == 0 {
             
             return staffArray.count
             
-        } else {
+        } else if section == 1 {
             
             var count = 0
             
@@ -388,9 +394,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 count = 10 - staffArray.count
             }
-            
-            return count
+  
+            if count >= 0 {
+                return count
+            }
+            //return count
         }
+        return 0
     }
     
     // MARK: - ALERTS

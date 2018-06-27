@@ -16,13 +16,37 @@ class WaiterCell: UITableViewCell {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
     
-    func setData(staff: StaffMember?, indexPath: IndexPath) {
+    func setData(staffList: [StaffMember]?, indexPath: IndexPath) {
         
-        if staff != nil {
-            staffTypeLabel.text = staff?.type
-            staffEmailLabel.text = staff?.email
-            staffNumberLabel.text = "\(indexPath.row + 1)"
-        } 
+        if indexPath.section == 0 {
+            
+            if let staffList = staffList {
+                
+                let staff = staffList[indexPath.row]
+                self.deleteAccountButton.isHidden = false
+                self.resetButton.isHidden = false
+                self.staffEmailLabel.isHidden = false
+                self.staffTypeLabel.isHidden = false
+                
+                staffTypeLabel.text = staff.type
+                staffEmailLabel.text = staff.email
+                staffNumberLabel.text = "\(indexPath.row + 1)"
+            }
+        } else if indexPath.section == 1 {
+            
+            self.deleteAccountButton.isHidden = true
+            self.resetButton.isHidden = true
+            self.staffEmailLabel.isHidden = true
+            self.staffTypeLabel.isHidden = true
+            
+            staffTypeLabel.text = ""
+            staffEmailLabel.text = ""
+            staffNumberLabel.text = "\(indexPath.row + 1 + (staffList?.count)!)"
+        }
+        
+          if indexPath.row % 2 == 0 { self.backgroundColor = .white } else { self.backgroundColor = customLightGray }
+        
+        
     }
    
 }
