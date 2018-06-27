@@ -2535,10 +2535,13 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe4-kq-iYb">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe4-kq-iYb">
                                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="122" id="330-zE-ZDi"/>
+                                                                        <constraint firstAttribute="height" constant="122" id="LDv-H1-FQE"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="38"/>
                                                                     <state key="normal" title="1">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2549,12 +2552,23 @@
                                                                 </button>
                                                             </subviews>
                                                         </view>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Pe4-kq-iYb" secondAttribute="trailing" id="FIf-Cw-Kj6"/>
+                                                            <constraint firstItem="Pe4-kq-iYb" firstAttribute="top" secondItem="QG5-w1-igF" secondAttribute="top" id="FoV-A9-p9w"/>
+                                                            <constraint firstItem="Pe4-kq-iYb" firstAttribute="leading" secondItem="QG5-w1-igF" secondAttribute="leading" id="jSG-69-WNH"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Pe4-kq-iYb" secondAttribute="bottom" id="v2J-vA-iYF"/>
+                                                        </constraints>
                                                         <size key="customSize" width="122" height="122"/>
                                                         <connections>
                                                             <outlet property="addEditItemOptionsButton" destination="Pe4-kq-iYb" id="oJN-Eb-IVj"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="bJa-cx-TvK" id="cbg-Sz-Mfr"/>
+                                                    <outlet property="delegate" destination="bJa-cx-TvK" id="SIb-FC-0PA"/>
+                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD CATEGORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLQ-fC-KMO" userLabel="ADD CATEGORYlabelonbutton">
                                                 <rect key="frame" x="80" y="521" width="214" height="50"/>

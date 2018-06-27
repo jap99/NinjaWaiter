@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseStorage
 
-class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate/*, UICollectionViewDelegate, UICollectionViewDataSource*/ {
+class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // NAVIGATION BAR BUTTONS
     
@@ -77,38 +77,24 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var imagePicker: UIImagePickerController?
     var textField : UITextField?
     
-    // VDL
+    // V D L
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         getCategories()
         setupVC()
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 50
-        layout.minimumInteritemSpacing = 20
-        
-        //        itemCV.delegate = self; itemCV.dataSource = self
-        //        itemCV.allowsSelection = true
-        //        itemCV.allowsMultipleSelection = false
-        //        itemCV.isPrefetchingEnabled = false
-        
-        imagePicker = UIImagePickerController()
-        imagePicker?.delegate = self
-        hideKeyboardWhenTappedAround()
     }
     
-    // VDA
+    // V D A
     
     override func viewDidAppear(_ animated: Bool) {
         showAddCategoryView(false)
         
-        itemCV.reloadData()
-        itemTV.reloadData()
-        
+        itemCV.reloadData();  itemTV.reloadData()
     }
+    
+    // V W A
     
     override func viewWillAppear(_ animated: Bool) {
         itemSavedSuccess_View.isHidden = true
@@ -119,23 +105,44 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - SETUP
     
     func setupVC() {
-        categoryTV.delegate = self; categoryTV.dataSource = self
-        self.mainScrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
         
+        mainScrollview.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+        
+        // category tv
+        categoryTV.delegate = self; categoryTV.dataSource = self
+        categoryTV.backgroundColor = .white
+        categoryTV.separatorStyle = .none
+        
+        // item tv
+        itemTV.backgroundColor = .white
+        itemTV.separatorStyle = .none
+        
+        // item cv
+        itemCV.delegate = self; itemCV.dataSource = self
+        itemCV.allowsSelection = true
+        itemCV.allowsMultipleSelection = false
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 50
+        layout.minimumInteritemSpacing = 20
+        
+        // create item - section
         itemNameTextField.layer.borderWidth = 1.0
         itemNameTextField.layer.borderColor = UIColor.lightGray.cgColor
-        
         itemPriceTextField.layer.borderWidth = 1.0
         itemPriceTextField.layer.borderColor = UIColor.lightGray.cgColor
         
-        categoryTV.backgroundColor = .white
-        itemTV.backgroundColor = .white
-        
-        categoryTV.separatorStyle = .none
-        itemTV.separatorStyle = .none
-        
+        // add - edit section
         byCategoryView.layer.cornerRadius = 7
         allView.layer.cornerRadius = 7
+        
+        // item - image picker
+        imagePicker = UIImagePickerController()
+        imagePicker?.delegate = self
+        
+        hideKeyboardWhenTappedAround()
     }
     // MARK: - IBACTIONS
     
@@ -174,7 +181,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func saveButton_Pressed(_ sender: Any) { // save item
         
-        let notEmpty =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
+        let dictOfArraysIsNotEmpty: Bool =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
         let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
         let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
@@ -183,7 +190,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         print("lunch: \(lunch)")
         print("dinner: \(dinner)")
         print("breakFast: \(breakFast)")
-        if let name = itemNameTextField.text, let price = itemPriceTextField.text, notEmpty {
+        
+        if let name = itemNameTextField.text, let price = itemPriceTextField.text, dictOfArraysIsNotEmpty {
             
             DataService.instance.saveItem(itemName: name, itemPrice: price, itemImage: self.addImageButton.currentBackgroundImage, categoryDictOfArray:  dictOfArrays) { (success) in
                 
@@ -352,11 +360,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             var arrayOfAvailability = [String]()
             
-            //            if cell.breakfastSwitch.isOn {
-            //                arrayOfAvailability.append("Breakfast")
-            //            } else {
-            //                //remove it from array
-            //            }
+            if cell.breakfastSwitch.isOn {
+                arrayOfAvailability.append("Breakfast")
+            } else {
+                //remove it from array
+            }
             
             if cell.lunchSwitch.isOn {
                 arrayOfAvailability.append("Lunch")
@@ -370,21 +378,23 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else {
                 //remove it from array
             }
-            
-            let dict = [String: [String]]()
-            
         }
     }
     
     // MARK: - COLLECTION VIEW
     
-    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        return 10
-    //    }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //        return UICollectionViewCell()
-    //    }
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return 6
+        }
+    
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
+            
+            cell.configureCell(indexPath: indexPath)
+            
+            return cell
+        }
     
     // MARK: - IMAGE PICKER
     

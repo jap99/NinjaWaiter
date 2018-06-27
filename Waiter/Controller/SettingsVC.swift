@@ -338,9 +338,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             if indexPath.section == 0 {
                 waiterCell.deleteAccountButton.tag = indexPath.row
-                print(indexPath.row)
-                print(staffArray.count)
-                print("----------------------")
                 waiterCell.setData(staffList: staffArray, indexPath: indexPath)
                 
                 return waiterCell
@@ -350,33 +347,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 return waiterCell
             }
-//            if indexPath.row < staffArray.count {
-//                waiterCell.deleteAccountButton.tag = indexPath.row
-//                print(indexPath.row)
-//                print(staffArray.count)
-//                print("----------------------")
-//                waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
-//
-//                if indexPath.row % 2 == 0 { waiterCell.backgroundColor = .white } else { waiterCell.backgroundColor = customLightGray }
-//
-//                return waiterCell
-//
-//            } else { // empty cells
-//
-//                waiterCell.deleteAccountButton.isHidden = true
-//                waiterCell.resetButton.isHidden = true
-//                waiterCell.staffEmailLabel.isHidden = true
-//                waiterCell.staffTypeLabel.isHidden = true
-//
-//                if indexPath.row % 2 == 0 {
-//                    waiterCell.backgroundColor = .white
-//
-//                } else {
-//                    waiterCell.backgroundColor = customLightGray
-//                }
-//
-//                return waiterCell
-//            }
         }
         return UITableViewCell()
     }
@@ -402,8 +372,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
             if count >= 0 {
                 return count
-            }
-            //return count
+            } 
         }
         return 0
     }

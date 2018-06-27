@@ -10,19 +10,35 @@ import UIKit
 
 class ItemOptionCell: UICollectionViewCell {
     
-    // Identifier is ItemOptionCell
-        // Located in MenuManagemntVC
-    
     @IBOutlet weak var addEditItemOptionsButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-       
+        self.contentView.bounds.size = CGSize(width: 122, height: 122)
     }
     
-    @IBAction func addEditItemButton_Pressed(_ sender: Any) {
+    //MARK: - ACTIONS
+    
+    func configureCell(indexPath: IndexPath) {
+        
+        self.addEditItemOptionsButton.setTitle("\(indexPath.row + 1)", for: .normal)
         
     }
+    
+    
+    //            if isEmpty {
+    //                cell.addEditItemOptionsButton.setTitleColor(customRed, for: .normal)
+    //            } else {
+    //                cell.addEditItemOptionsButton.setTitleColor(.white, for: .normal)
+    //            }
+    
+    
+    //MARK: - IBACTIONS
+    
+    @IBAction func addEditItemButton_Pressed(_ sender: Any) { 
+    }
+    
+    
     
 }
