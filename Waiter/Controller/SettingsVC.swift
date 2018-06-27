@@ -185,8 +185,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-        
-        
     }
     
     // MARK: - IBACTIONS

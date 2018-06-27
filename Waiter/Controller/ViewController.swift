@@ -40,7 +40,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(menuData)
         hideKeyboardWhenTappedAround()
         
         tv.delegate = self; tv.dataSource = self
@@ -56,25 +55,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cv2.allowsMultipleSelection = false
         cv2.isUserInteractionEnabled = true
         
-        var order = "Breakfast"
-        
-        if tag == 1 {
-            
-            order = "Lunch"
-        }
-        else if tag == 2 {
-            
-            order = "Dinner"
-        }
-        
-        DataManager.shared().getCategoryList(order: order) { (arycategory) in
-            
-            self.arrCategory = arycategory
-            self.cv1.reloadData()
-            self.cv2.reloadData()
-        }
-        
         tv.register(CheckoutCell.self, forCellReuseIdentifier: "CheckoutCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+
+        getMenuData()
+        setupObjectsWithSettingsData()
     }
     
     @IBAction func goback(_ sender: Any) {
@@ -83,6 +72,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         })
     }
+    
     @IBAction func confirmOrder(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContinueOrderVC-ID") as! ContinueOrderVC
         self.present(vc, animated: true, completion: {
@@ -157,13 +147,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if arrCategory.count > 0 {
              
                 count = arrCategory[currIndex].categoryItemList.count
-            }
-            else {
+            
+            } else {
                 
                 return 0
             }
-            
-            
             // count = foodsArray.count
         }
         
@@ -177,11 +165,52 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-   @objc func catClick(sender:UIButton) {
+    
+    // MARK: - ACTIONS
+    
+    func setupObjectsWithSettingsData() {
+        
+        DataService.instance.getSettingsData { (dict, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let dict = dict {
+                print(dict)
+                
+                if let discount = dict["discountText"] {
+                    self.discountLabel_Left.text = "\(discount as! String)% Discount"
+                }
+                
+                if let s = dict["serviceChargeText"] {
+                    self.serviceChargeLabel_Left.text =  "\(s as! String)% Service Charge"
+                }
+                
+                if let t1 = dict["tax1NameText"], let t1p = dict["taxPercentage1NameText"] {
+                    self.tax1Label_Left.text = "\(t1p as! String)% \(t1 as! String)"
+                }
+                
+                if let t2 = dict["tax2NameText"], let t2p = dict["taxPercentage2NameText"] {
+                    self.tax2Label_Left.text = "\(t2p as! String)% \(t2 as! String)"
+                }
+            }
+        }
+    }
+    
+    func getMenuData() {
+        var order = "Breakfast"
+        if tag == 1 { order = "Lunch" } else if tag == 2 { order = "Dinner" }
+        
+        DataManager.shared().getCategoryList(order: order) { (arycategory) in
+            
+            self.arrCategory = arycategory
+            self.cv1.reloadData()
+            self.cv2.reloadData()
+        }
+    }
+    
+    @objc func catClick(sender:UIButton) {
         
         currIndex = sender.tag
         cv2.reloadData()
     }
-    
 }
 
