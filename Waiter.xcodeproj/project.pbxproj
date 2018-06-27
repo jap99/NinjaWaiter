@@ -35,11 +35,8 @@
 		9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBC0F520CA6495000BF369 /* Extensions.swift */; };
 		9FD1DAC220E283B600F6AD0D /* RenameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1DAC120E283B500F6AD0D /* RenameViewController.swift */; };
 		9FD1DAC420E2B0E000F6AD0D /* kPParentManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */; };
-		9FD36FD920E2B58C00B700D4 /* Dinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FD820E2B58C00B700D4 /* Dinner.swift */; };
 		9FD36FDB20E2B62600B700D4 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FDA20E2B62600B700D4 /* CategoryEntity.swift */; };
-		9FD36FDD20E2B65900B700D4 /* Breakfast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FDC20E2B65900B700D4 /* Breakfast.swift */; };
 		9FD36FDF20E2B67F00B700D4 /* ItemCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FDE20E2B67F00B700D4 /* ItemCoreData.swift */; };
-		9FD36FE120E2B6B700B700D4 /* Lunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD36FE020E2B6B700B700D4 /* Lunch.swift */; };
 		9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845720B519C800C6DEE1 /* FoodCell.swift */; };
 		9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845920B519DA00C6DEE1 /* SectionCell.swift */; };
 		9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */; };
@@ -103,11 +100,8 @@
 		9FCBC0F520CA6495000BF369 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9FD1DAC120E283B500F6AD0D /* RenameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameViewController.swift; sourceTree = "<group>"; };
 		9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kPParentManagedObject.swift; sourceTree = "<group>"; };
-		9FD36FD820E2B58C00B700D4 /* Dinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dinner.swift; sourceTree = "<group>"; };
 		9FD36FDA20E2B62600B700D4 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
-		9FD36FDC20E2B65900B700D4 /* Breakfast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breakfast.swift; sourceTree = "<group>"; };
 		9FD36FDE20E2B67F00B700D4 /* ItemCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCoreData.swift; sourceTree = "<group>"; };
-		9FD36FE020E2B6B700B700D4 /* Lunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lunch.swift; sourceTree = "<group>"; };
 		9FEA845720B519C800C6DEE1 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		9FEA845920B519DA00C6DEE1 /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
 		9FEA845B20B51ABF00C6DEE1 /* CheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
@@ -236,9 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				9F8EABED20AC74A50027EDFB /* Waiter.xcdatamodeld */,
-				9FD36FE020E2B6B700B700D4 /* Lunch.swift */,
-				9FD36FDC20E2B65900B700D4 /* Breakfast.swift */,
-				9FD36FD820E2B58C00B700D4 /* Dinner.swift */,
 				9FD36FDA20E2B62600B700D4 /* CategoryEntity.swift */,
 				9FD36FDE20E2B67F00B700D4 /* ItemCoreData.swift */,
 			);
@@ -471,6 +462,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Waiter/Pods-Waiter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -478,6 +470,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -495,7 +488,6 @@
 			files = (
 				9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */,
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
-				9FD36FDD20E2B65900B700D4 /* Breakfast.swift in Sources */,
 				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FF4190120CFF7A100EB56B6 /* DefaultsSerializable+BuiltIns.swift in Sources */,
@@ -506,7 +498,6 @@
 				9F84AA5420DB46A600E6B2BB /* Availability.swift in Sources */,
 				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
-				9FD36FD920E2B58C00B700D4 /* Dinner.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
 				9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */,
@@ -533,7 +524,6 @@
 				9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */,
 				9F0228CE20D25C7600550DAD /* Item.swift in Sources */,
 				9F84AA5220DB3CFA00E6B2BB /* SubItem.swift in Sources */,
-				9FD36FE120E2B6B700B700D4 /* Lunch.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
 				9F79DAB020D52B11002D1743 /* Singleton.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,

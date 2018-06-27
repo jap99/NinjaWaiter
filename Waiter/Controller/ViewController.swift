@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -38,6 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var arrCategory = [CategoryDetail]()
     var currIndex = 0
     var cart = [[String: AnyObject]]()
+    var categoryType = CategoryType.none
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,20 +117,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return cellCV1
 
         } else if collectionView == self.cv2 {
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
-            DispatchQueue.main.async {
-                
-                let data = self.arrCategory[self.currIndex].categoryItemList
-                
-                cell.foodNameLabel.text = data[indexPath.row].itemName
-                cell.giveBorder(selected: data[indexPath.row].isSelected)
-                if data[indexPath.row].itemImage != "" {
-                    
-                    let data = try? Data(contentsOf: URL(string: data[indexPath.row].itemImage)!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                    cell.foodImageView.image = UIImage(data: data!)
-                }
-            }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+            let data = self.arrCategory[self.currIndex].categoryItemList
             
+            cell.foodNameLabel.text = data[indexPath.row].itemName
+            cell.giveBorder(selected: data[indexPath.row].isSelected)
+            let  imgURL =  data[indexPath.row].itemImage
+            if imgURL.isEmpty == false {
+                cell.foodImageView.kf.setImage(with:URL(string:imgURL))
+            }
             return cell
         } else {
             let cell = UICollectionViewCell()
@@ -211,7 +208,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func getMenuData() {
-        var order = "Breakfast"
+        /*var order = "Breakfast"
         if tag == 1 { order = "Lunch" } else if tag == 2 { order = "Dinner" }
         
         DataManager.shared().getCategoryList(order: order) { (arycategory) in
@@ -220,7 +217,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.cv1.reloadData()
                 self.cv2.reloadData()
             }
+        } */
+        var arrCat = [CategoryDetail]()
+        let predicate = NSPredicate(format: "categroyType == %@", argumentArray:[categoryType.rawValue])
+        let arrCategory = CategoryEntity.fetchDataFromEntity(predicate:predicate, sortDescs:nil)
+        for cate in arrCategory {
+            let cateDetails = CategoryDetail()
+            cateDetails.converFrom(cat:cate)
+            arrCat.append(cateDetails)
         }
+        self.arrCategory = arrCat
+        _appDel.saveContext()
+        self.cv1.reloadData()
+        self.cv2.reloadData()
+        
     }
     
     @objc func catClick(sender: UIButton) {

@@ -16,5 +16,18 @@ class ItemCoreData: NSManagedObject, ParentManagedObject {
     @NSManaged var itemName:String
     @NSManaged var itemUID:String
     @NSManaged var itemPrice:Double
+    @NSManaged var category:CategoryEntity
+    
+    
+    var strPrice : String {
+        return "\(itemPrice)"
+    }
+    
+    func updateWith(item:CategoryItems) {
+        itemUID = item.itemId
+        itemName = item.itemName
+        itemImageURL = item.itemImage 
+        itemPrice = (item.itemPrice as NSString).doubleValue
+    }
     
 }

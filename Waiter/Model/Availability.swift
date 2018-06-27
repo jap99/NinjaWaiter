@@ -16,14 +16,37 @@ class CategoryItems {
     var itemName = ""
     var itemImage = ""
     var itemPrice = ""
-    var isSelected = false 
+    var isSelected = false
+    
+    func convertFrom(item:ItemCoreData) {
+        itemId = item.itemUID
+        itemName = item.itemName
+        itemImage = item.itemImageURL
+        itemPrice = item.strPrice
+        
+    }
 }
 
 class CategoryDetail {
     
     var categoryId = ""
     var categoryName = ""
-    var categoryItemList: [CategoryItems] = [CategoryItems]()  
+    var categoryItemList: [CategoryItems] = [CategoryItems]()
+    
+    func converFrom(cat:CategoryEntity) {
+        categoryId = cat.categoryUID
+        categoryName = cat.categoryName
+        
+        var arrItems = [CategoryItems]()
+        for item in cat.itemList {
+            if item is ItemCoreData {
+                let itemObj =  CategoryItems()
+                itemObj.convertFrom(item:item as! ItemCoreData)
+                arrItems.append(itemObj)
+            }
+        }
+        categoryItemList = arrItems
+    }
 }
 
 class DataManager: NSObject {
@@ -77,7 +100,7 @@ class DataManager: NSObject {
                                         if let Detail = itemDetail["ItemDetails"] as? [String:Any] {
                                             
                                             let CatDetail = CategoryItems()
-                                            
+                                            CatDetail.itemId = item.key
                                             if let img_url = Detail["itemImageURL"] as? String {
                                                 
                                                 CatDetail.itemImage = img_url
