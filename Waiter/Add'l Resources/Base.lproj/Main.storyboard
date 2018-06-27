@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bac-4U-pto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-714" y="-2021"/>
+            <point key="canvasLocation" x="730" y="-1784"/>
         </scene>
         <!--Rename View Controller-->
         <scene sceneID="HIv-EI-ccG">
@@ -555,7 +555,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2396" y="-3058"/>
+            <point key="canvasLocation" x="2191" y="-2539"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="kE8-BR-a1b">
@@ -656,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57o-Q0-lt8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-714" y="-3149"/>
+            <point key="canvasLocation" x="705" y="-2539"/>
         </scene>
         <!--Continue OrderVC-->
         <scene sceneID="aAn-XU-m6Y">
@@ -902,7 +902,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKG-kG-caZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="755" y="-715"/>
+            <point key="canvasLocation" x="1494" y="-1499"/>
         </scene>
         <!--Order SuccessVC-->
         <scene sceneID="Glo-aJ-ksY">
@@ -1024,7 +1024,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S66-dU-4k0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-714" y="-841"/>
+            <point key="canvasLocation" x="755" y="-1049"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="oGp-4O-NQr">
@@ -1164,7 +1164,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FX3-fX-4At" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="EDo-Ue-uNz"/>
             </objects>
-            <point key="canvasLocation" x="911" y="-3102"/>
+            <point key="canvasLocation" x="1494" y="-2501"/>
         </scene>
         <!--PrinterVC-->
         <scene sceneID="XWW-lD-0Ec">
@@ -2516,10 +2516,10 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dJU-V3-ddj">
-                                                <rect key="frame" x="374" y="1745" width="906" height="140"/>
+                                                <rect key="frame" x="374" y="1745" width="906" height="300"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="140" id="ysJ-qm-1NN"/>
+                                                    <constraint firstAttribute="height" constant="300" id="ysJ-qm-1NN"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fQK-mO-KVo">
                                                     <size key="itemSize" width="122" height="122"/>
@@ -2535,7 +2535,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe4-kq-iYb">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe4-kq-iYb" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                                                     <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
@@ -2565,10 +2565,6 @@
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="bJa-cx-TvK" id="cbg-Sz-Mfr"/>
-                                                    <outlet property="delegate" destination="bJa-cx-TvK" id="SIb-FC-0PA"/>
-                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD CATEGORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLQ-fC-KMO" userLabel="ADD CATEGORYlabelonbutton">
                                                 <rect key="frame" x="80" y="521" width="214" height="50"/>
@@ -2636,7 +2632,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvD-bb-uTh" userLabel="lineView">
-                                                <rect key="frame" x="80" y="1986.5" width="1200" height="1"/>
+                                                <rect key="frame" x="80" y="2146.5" width="1200" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="dS4-Na-7Tv"/>
@@ -2843,7 +2839,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Menu Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taX-ke-Lqh">
-                                                <rect key="frame" x="80" y="2097.5" width="600" height="100"/>
+                                                <rect key="frame" x="80" y="2257.5" width="600" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="600" id="KfK-mj-Lsm"/>
                                                     <constraint firstAttribute="height" constant="100" id="j8z-eu-QQ1"/>
@@ -2853,7 +2849,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Category &amp; Click on Items to Edit" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21p-9z-rA7">
-                                                <rect key="frame" x="680" y="2097.5" width="600" height="100"/>
+                                                <rect key="frame" x="680" y="2257.5" width="600" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="600" id="Q6b-ct-mNL"/>
                                                     <constraint firstAttribute="height" constant="100" id="jgF-sd-MHs"/>
@@ -2863,7 +2859,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWD-z6-1iG">
-                                                <rect key="frame" x="80" y="2202.5" width="190" height="41"/>
+                                                <rect key="frame" x="80" y="2362.5" width="190" height="41"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fI8-nk-qHq">
                                                         <rect key="frame" x="0.0" y="0.0" width="190" height="41"/>
@@ -2887,7 +2883,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmW-Mv-Eyd">
-                                                <rect key="frame" x="300" y="2202.5" width="190" height="41"/>
+                                                <rect key="frame" x="300" y="2362.5" width="190" height="41"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOT-Vl-D57">
                                                         <rect key="frame" x="30" y="12" width="90.5" height="18"/>
@@ -2922,7 +2918,7 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L7A-Sk-mKf">
-                                                <rect key="frame" x="80" y="2309" width="1060" height="581"/>
+                                                <rect key="frame" x="80" y="2469" width="1060" height="421"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hcU-P6-DuJ">
                                                     <size key="itemSize" width="267" height="239"/>
@@ -3199,7 +3195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDq-3p-nkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3711" y="-841"/>
+            <point key="canvasLocation" x="2944" y="-1049"/>
         </scene>
     </scenes>
     <resources>

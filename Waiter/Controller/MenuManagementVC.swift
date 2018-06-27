@@ -117,16 +117,18 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         itemTV.backgroundColor = .white
         itemTV.separatorStyle = .none
         
-        // item cv
-        itemCV.delegate = self; itemCV.dataSource = self
-        itemCV.allowsSelection = true
-        itemCV.allowsMultipleSelection = false
-        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 50
         layout.minimumInteritemSpacing = 20
+        
+        // item cv
+        itemCV.register(ItemOptionCell.self, forCellWithReuseIdentifier: "ItemOptionCell")
+        itemCV.delegate = self; itemCV.dataSource = self
+        itemCV.allowsSelection = true
+        itemCV.allowsMultipleSelection = false
+        
         
         // create item - section
         itemNameTextField.layer.borderWidth = 1.0
@@ -384,16 +386,26 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - COLLECTION VIEW
     
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 6
+            
+            if collectionView == itemCV {
+                return 6
+            } else {
+                return 0
+            }
+            
         }
     
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            if collectionView == itemCV {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
+                
+                 cell.configureCell(indexPath: indexPath)
+                
+                return cell
+            } else {
+                return UICollectionViewCell()
+            }
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
-            
-            cell.configureCell(indexPath: indexPath)
-            
-            return cell
         }
     
     // MARK: - IMAGE PICKER
