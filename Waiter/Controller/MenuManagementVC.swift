@@ -11,6 +11,8 @@ import FirebaseStorage
 
 class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var isFromSave = false
+    
     // NAVIGATION BAR BUTTONS
     
     @IBOutlet weak var menuManagementButton: UIButton!
@@ -183,6 +185,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func saveButton_Pressed(_ sender: Any) { // save item
         
+        isFromSave = true 
+        
         let dictOfArraysIsNotEmpty: Bool =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
         let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
@@ -213,6 +217,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
+        
     }
     
     // ADD / EDIT MENU ITEMS
@@ -330,6 +335,14 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
             cell.parentVC = self
+            if(self.isFromSave) {
+                self.isFromSave = false
+                cell.breakfastSwitch.isOn = false
+                cell.lunchSwitch.isOn = false
+                cell.dinnerSwitch.isOn = false
+                
+            }
+            
             cell.breakfastSwitch.tag = indexPath.row
             cell.lunchSwitch.tag = indexPath.row
             cell.dinnerSwitch.tag = indexPath.row
@@ -385,28 +398,28 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     // MARK: - COLLECTION VIEW
     
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            
-            if collectionView == itemCV {
-                return 6
-            } else {
-                return 0
-            }
-            
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == itemCV {
+            return 6
+        } else {
+            return 0
         }
+        
+    }
     
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            if collectionView == itemCV {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
-                
-                cell.configureCell(indexPath: indexPath)
-                
-                return cell
-            } else {
-                return UICollectionViewCell()
-            }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == itemCV {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
             
+            cell.configureCell(indexPath: indexPath)
+            
+            return cell
+        } else {
+            return UICollectionViewCell()
         }
+        
+    }
     
     // MARK: - IMAGE PICKER
     
@@ -459,7 +472,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if success {
                 
                 self.successfullyDeletedCategory_Alert()
-            
+                
             } else {
                 
                 self.errorDeletingCategory_Alert()
