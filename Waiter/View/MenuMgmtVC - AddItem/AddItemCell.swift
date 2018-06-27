@@ -24,7 +24,7 @@ class AddItemCell: UITableViewCell {
     
     // MARK: - ACTIONS
     
-    func addAndRemoveCategoryItem(switch:UISwitch, categoryUID:String, catName:String) {
+    func addAndRemoveCategoryItem(switch: UISwitch, categoryUID: String, catName: String) {
         
         if let arrItem = parentVC.dictOfArrays[categoryUID] {
             
