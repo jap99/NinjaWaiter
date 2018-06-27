@@ -400,13 +400,29 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
                 
                 cell.configureCell(indexPath: indexPath)
-                
+                cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+
                 return cell
             } else {
                 return UICollectionViewCell()
             }
             
         }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("************* C=heck *")
+        if collectionView == itemCV {
+            
+            // show the ItemOptionsView.xib
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
+            
+            
+           
+
+        } else {
+            
+        }
+    }
     
     // MARK: - IMAGE PICKER
     
@@ -495,6 +511,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             })
         }
     }
-    
+   @objc func addItemButtonAction()
+    {
+        let optionView = Bundle.main.loadNibNamed("ItemOptionsView", owner: self, options: nil)?.first as! UIView
+        optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
+        self.view.addSubview(optionView)
+        
+    }
     
 }
