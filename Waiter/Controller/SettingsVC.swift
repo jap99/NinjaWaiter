@@ -64,7 +64,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         hideKeyboardWhenTappedAround()
         
         settingsButton.isUserInteractionEnabled = false
- 
+        
         
         
         setup()
@@ -102,6 +102,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidAppear(animated)
         
         print("VIEW DID APPEAR")
+        threeOutoTenLabel.text = "\(staffArray.count)/10"
     }
     
     // MARK: - SETUP
@@ -174,18 +175,18 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if let t1p = dict["taxPercentage1NameText"] {
                     self.taxPercentage1TextField.text = t1p as? String
                 }
-
+                
                 if let t2 = dict["tax2NameText"] {
                     self.taxName2TextField.text = t2 as? String
                 }
-
+                
                 if let t2p = dict["taxPercentage2NameText"] {
                     self.taxPercentage2TextField.text = t2p as? String
                 }
             }
         }
         
-       
+        
     }
     
     // MARK: - IBACTIONS
@@ -202,9 +203,17 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) { // only for showing the popup view; not for saving to firebase
         
-        addStaffView.isHidden = false
-        cancelButton.isHidden = false 
-        self.view.bringSubview(toFront: addStaffView)
+        if staffArray.count <= 10 {
+            
+            addStaffView.isHidden = false
+            cancelButton.isHidden = false
+            self.view.bringSubview(toFront: addStaffView)
+            
+        } else {
+            
+            tooManyStaffMembers_Alert()
+        }
+        
     }
     
     // SAVE TAXES & DISCOUNTS
@@ -295,122 +304,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             self.successfullyAddedStaff_Alert(user: self.emailTextField.text!)
                         }
                     })
-                    
                 }
             }
         } else {
             
             enterEmailAndPassword_Alert()
         }
-        
-    }
-    
-    // MARK: - ALERTS
-    
-    func enterEmailAndPassword_Alert() {
-        let ac = UIAlertController(title: "Data Error", message: "Please make sure you enter both an email address and password for the user you are creating.", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
-        ac.addAction(ok)
-        
-        present(ac, animated: true, completion: { //[weak self] in
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                
-                ac.dismiss(animated: true, completion: {
-                    //self?.removeFromSuperview()
-                })
-            })
-        })
-    }
-    
-    func successfullyAddedStaff_Alert(user: String) {
-        
-        self.emailTextField.text = ""
-        self.passwordTextField.text = ""
-        self.addStaffView.isHidden = true
-        
-        let ac = UIAlertController(title: "Success", message: "Staff member, \(user), added successfully.", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
-        ac.addAction(ok)
-        
-        present(ac, animated: true, completion: {// [weak self] in
-            
-            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                self.tv.reloadData()
-                self.loadViewIfNeeded()
-                ac.dismiss(animated: true, completion: {
-                    //self?.removeFromSuperview()
-                })
-            })
-        })
-    }
-    
-    // MARK: - TABLE VIEW (STAFF)
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
-            
-            waiterCell.deleteAccountButton.tag = indexPath.row
-            waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
-            
-            //            for x in 0..<staffArray.count {
-            //
-            //                print(staffArray.count)
-            //
-            //                if x < 8 {
-            //
-            //                    if staffArray.count <= x {
-            //                        waiterCell.deleteAccountButton.tag = indexPath.row
-            //                        waiterCell.setData(staff: staffArray[x], indexPath: indexPath)
-            //
-            //                    }
-            //                }
-            //            }
-            
-            if indexPath.row % 2 == 0 {
-                waiterCell.backgroundColor = .white
-                
-            } else {
-                waiterCell.backgroundColor = customLightGray
-            }
-            
-            return waiterCell
-        } else {
-            
-            let cell = UITableViewCell()
-            
-            if indexPath.row % 2 == 0 {
-                cell.backgroundColor = .white
-                
-            } else {
-                cell.backgroundColor = customLightGray
-            }
-            
-            return cell
-        }
-        
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        //        var count = 0
-        //
-        //        if staffArray.count <= 8 {
-        //            count = 8
-        //        } else {
-        //            count = staffArray.count
-        //        }
-        return staffArray.count //count
     }
     
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
@@ -428,6 +327,73 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.errorDeletingStaff_Alert()
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    // MARK: - TABLE VIEW (STAFF)
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
+            
+            if indexPath.row < staffArray.count {
+                
+                waiterCell.deleteAccountButton.tag = indexPath.row
+                print(indexPath.row)
+                print(staffArray.count)
+                print("----------------------")
+                waiterCell.setData(staff: staffArray[indexPath.row], indexPath: indexPath)
+                
+                if indexPath.row % 2 == 0 {
+                    waiterCell.backgroundColor = .white
+                    
+                } else {
+                    waiterCell.backgroundColor = customLightGray
+                }
+                
+                return waiterCell
+                
+            } else { // empty cells
+                
+                //let cell = UITableViewCell()
+                waiterCell.deleteAccountButton.isHidden = true
+                waiterCell.resetButton.isHidden = true
+                waiterCell.staffEmailLabel.isHidden = true
+                waiterCell.staffTypeLabel.isHidden = true
+                
+                if indexPath.row % 2 == 0 {
+                    waiterCell.backgroundColor = .white
+                    
+                } else {
+                    waiterCell.backgroundColor = customLightGray
+                }
+                
+                return waiterCell
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 1 {
+            
+            return staffArray.count
+            
+        } else {
+            
+            var count = 0
+            
+            if staffArray.count <= 10 {
+                
+                count = 10 - staffArray.count
+            }
+            
+            return count
         }
     }
     
@@ -454,12 +420,63 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ac.addAction(ok)
         present(ac, animated: true) {
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 
                 ac.dismiss(animated: true, completion: nil)
             })
         }
     }
+    
+    func enterEmailAndPassword_Alert() {
+        let ac = UIAlertController(title: "Data Error", message: "Please make sure you enter both an email address and password for the user you are creating.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        
+        present(ac, animated: true, completion: { //[weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                
+                ac.dismiss(animated: true, completion: nil)
+            })
+        })
+    }
+    
+    func successfullyAddedStaff_Alert(user: String) {
+        
+        self.emailTextField.text = ""
+        self.passwordTextField.text = ""
+        self.addStaffView.isHidden = true
+        
+        let ac = UIAlertController(title: "Success", message: "Staff member, \(user), was successfully added to your database.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        
+        present(ac, animated: true, completion: {// [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.tv.reloadData()
+                self.loadViewIfNeeded()
+                ac.dismiss(animated: true, completion: nil)
+            })
+        })
+    }
+    
+    func tooManyStaffMembers_Alert() {
+        
+        let ac = UIAlertController(title: "Sorry", message: "Too many staff members added. Please delete one to add another.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        
+        present(ac, animated: true, completion: {// [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
+                self.tv.reloadData()
+                self.loadViewIfNeeded()
+                ac.dismiss(animated: true, completion: nil)
+            })
+        })
+    }
+    
 }
 
 
