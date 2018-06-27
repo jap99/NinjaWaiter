@@ -124,7 +124,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         layout.minimumInteritemSpacing = 20
         
         // item cv
-        itemCV.register(ItemOptionCell.self, forCellWithReuseIdentifier: "ItemOptionCell")
+        
         itemCV.delegate = self; itemCV.dataSource = self
         itemCV.allowsSelection = true
         itemCV.allowsMultipleSelection = false
@@ -399,7 +399,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if collectionView == itemCV {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
                 
-                 cell.configureCell(indexPath: indexPath)
+                cell.configureCell(indexPath: indexPath)
                 
                 return cell
             } else {

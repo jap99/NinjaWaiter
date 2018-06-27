@@ -22,12 +22,11 @@ class ItemOptionCell: UICollectionViewCell {
     //MARK: - ACTIONS
 
     func configureCell(indexPath: IndexPath) {
-
+        
         self.addEditItemOptionsButton.setTitle("\(indexPath.row + 1)", for: .normal)
 
     }
-
-
+ 
     //            if isEmpty {
     //                cell.addEditItemOptionsButton.setTitleColor(customRed, for: .normal)
     //            } else {
