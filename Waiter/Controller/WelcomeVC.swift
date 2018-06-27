@@ -114,19 +114,13 @@ class WelcomeVC: UIViewController {
     // MARK: - LOGIN
     
     func loginAPI() {
-      
         if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
-            
             AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
-                
                 if errMessage != nil {
-                    
                 } else if let currentUser = user as? User {
-                   
                    // DataService.instance.getAvailabilityDataFromServer()
                     
                     _currentUser = AppUser(user:currentUser)
-                    
                     DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
                         
                         if let _ = obj.value as? String {
@@ -145,19 +139,12 @@ class WelcomeVC: UIViewController {
     }
     
     func staffListAPI() {
-       
         StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
-            
             if error != nil {
-                
             } else { // no error
-                
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
                 vc.staffArray = staffArray
-                
-                self.present(vc, animated: true, completion: {
-                    
-                })
+                self.present(vc, animated: true, completion: nil)
             }
         })
     }

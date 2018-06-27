@@ -74,10 +74,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func confirmOrder(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContinueOrderVC-ID") as! ContinueOrderVC
-        self.present(vc, animated: true, completion: {
-            
-        })
+        
+        if cart.count > 0 {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContinueOrderVC-ID") as! ContinueOrderVC
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            noItemsInCart_Alert()
+        }
+        
     }
     
     // MARK: - TABLE VIEW
@@ -111,21 +115,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return cellCV1
 
         } else if collectionView == self.cv2 {
-
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
-
-            let data = arrCategory[currIndex].categoryItemList
-
-            cell.foodNameLabel.text = data[indexPath.row].itemName
-            cell.giveBorder(selected: data[indexPath.row].isSelected)
-
-            if data[indexPath.row].itemImage != "" {
-
-                let data = try? Data(contentsOf: URL(string: data[indexPath.row].itemImage)!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                cell.foodImageView.image = UIImage(data: data!)
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+            DispatchQueue.main.async {
+                
+                let data = self.arrCategory[self.currIndex].categoryItemList
+                
+                cell.foodNameLabel.text = data[indexPath.row].itemName
+                cell.giveBorder(selected: data[indexPath.row].isSelected)
+                if data[indexPath.row].itemImage != "" {
+                    
+                    let data = try? Data(contentsOf: URL(string: data[indexPath.row].itemImage)!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                    cell.foodImageView.image = UIImage(data: data!)
+                }
             }
+            
             return cell
-
         } else {
             let cell = UICollectionViewCell()
             return cell
@@ -141,25 +145,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // number of items
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         var count: Int?
-        
         if collectionView == self.cv1 {
-            
             count = arrCategory.count
-            
         } else if collectionView == self.cv2 {
-            
             if arrCategory.count > 0 {
-             
                 count = arrCategory[currIndex].categoryItemList.count
-            
             } else {
-                
                 return 0
             }
         }
-        
         return count!
     }
     
@@ -167,7 +162,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == cv1 {
-            print("PRINTING CV1 PRESSED")
+            
         } else if collectionView == cv2 {
             arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
             let itemPrice = arrCategory[currIndex].categoryItemList[indexPath.row].itemPrice
@@ -175,10 +170,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let itemData: Dictionary<String, AnyObject> = [
                 itemName: itemPrice as AnyObject
             ]
-            cart.append(itemData)
-            print("PRINTING CART ARRAY DATA: \(cart)")
-            cv2.reloadData()
-            tv.reloadData()
+            
+            DispatchQueue.main.async {
+                self.cart.append(itemData)
+                self.cv2.reloadData()
+                self.tv.reloadData()
+            }
         }
     }
     
@@ -191,22 +188,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
-                print(dict)
                 
-                if let discount = dict["discountText"] {
-                    self.discountLabel_Left.text = "\(discount as! String)% Discount"
-                }
-                
-                if let s = dict["serviceChargeText"] {
-                    self.serviceChargeLabel_Left.text =  "\(s as! String)% Service Charge"
-                }
-                
-                if let t1 = dict["tax1NameText"], let t1p = dict["taxPercentage1NameText"] {
-                    self.tax1Label_Left.text = "\(t1p as! String)% \(t1 as! String)"
-                }
-                
-                if let t2 = dict["tax2NameText"], let t2p = dict["taxPercentage2NameText"] {
-                    self.tax2Label_Left.text = "\(t2p as! String)% \(t2 as! String)"
+                DispatchQueue.main.async {
+                    if let discount = dict["discountText"] {
+                        self.discountLabel_Left.text = "\(discount as! String)% Discount"
+                    }
+                    
+                    if let s = dict["serviceChargeText"] {
+                        self.serviceChargeLabel_Left.text =  "\(s as! String)% Service Charge"
+                    }
+                    
+                    if let t1 = dict["tax1NameText"], let t1p = dict["taxPercentage1NameText"] {
+                        self.tax1Label_Left.text = "\(t1p as! String)% \(t1 as! String)"
+                    }
+                    
+                    if let t2 = dict["tax2NameText"], let t2p = dict["taxPercentage2NameText"] {
+                        self.tax2Label_Left.text = "\(t2p as! String)% \(t2 as! String)"
+                    }
                 }
             }
         }
@@ -217,17 +215,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if tag == 1 { order = "Lunch" } else if tag == 2 { order = "Dinner" }
         
         DataManager.shared().getCategoryList(order: order) { (arycategory) in
-            
-            self.arrCategory = arycategory
-            self.cv1.reloadData()
-            self.cv2.reloadData()
+            DispatchQueue.main.async {
+                self.arrCategory = arycategory
+                self.cv1.reloadData()
+                self.cv2.reloadData()
+            }
         }
     }
     
     @objc func catClick(sender: UIButton) {
+        DispatchQueue.main.async {
+            self.currIndex = sender.tag
+            self.cv2.reloadData()
+        }
+    }
+    
+    // MARK: - ALERTS
+    
+    func noItemsInCart_Alert() {
+        let ac = UIAlertController(title: "Sorry", message: "No items have been added to the cart. Please add at least one item to the cart to checkout.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
         
-        currIndex = sender.tag
-        cv2.reloadData()
+        present(ac, animated: true, completion: {// [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                
+                ac.dismiss(animated: true, completion: nil)
+            })
+        })
     }
 }
 
