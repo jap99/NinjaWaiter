@@ -23,7 +23,7 @@ class FoodCell: UICollectionViewCell {
     func giveBorder(selected: Bool) {
         
         if selected {
-            self.contentView.layer.backgroundColor = customGreen.cgColor
+            self.contentView.layer.backgroundColor = customRed.cgColor
             
         } else {
             

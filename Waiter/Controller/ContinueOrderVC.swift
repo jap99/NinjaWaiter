@@ -65,7 +65,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         nineImageView.tag = 9
         zeroImageView.tag = 0
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.providePhoneNumber))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.providePhoneNumber(_:)))
         
         oneImageView.addGestureRecognizer(tapGesture)
         twoImageView.addGestureRecognizer(tapGesture)
@@ -77,6 +77,10 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         eightImageView.addGestureRecognizer(tapGesture)
         nineImageView.addGestureRecognizer(tapGesture)
         zeroImageView.addGestureRecognizer(tapGesture)
+        
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+
     }
     
     @objc func providePhoneNumber(_ sender: UIImageView) {
@@ -110,6 +114,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var count: Int?
         
+        print(Singleton.sharedInstance.settingsData[0].totalTable)
         if collectionView == self.cv1 && Singleton.sharedInstance.settingsData[0].totalTable > 0 {
            count = Singleton.sharedInstance.settingsData[0].totalTable
         } else {
@@ -117,7 +122,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
             noTablesToShow_Alert()
             
         }
-        return count!
+        return 10 //count!
     }
     
     

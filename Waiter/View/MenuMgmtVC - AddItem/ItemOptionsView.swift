@@ -19,6 +19,9 @@ class ItemOptionsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.borderWidth = 0.5
+        self.layer.cornerRadius = 10.0
+        self.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     @IBAction func cancelButton_Pressed(_ sender: UIButton) {

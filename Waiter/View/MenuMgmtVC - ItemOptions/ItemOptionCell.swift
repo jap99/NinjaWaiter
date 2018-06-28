@@ -16,6 +16,8 @@ class ItemOptionCell: UICollectionViewCell {
         super.awakeFromNib()
 
         self.contentView.bounds.size = CGSize(width: 122, height: 122)
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.lightGray.cgColor
         
     }
 
