@@ -20,11 +20,16 @@ class CheckoutCell: UITableViewCell {
     }
     
     func configureCell(indexPath: IndexPath, cartDictionaries: [[String: AnyObject]]) {
-        for (key, value) in cartDictionaries[indexPath.row] {
-            let name = key
-            let price = value
-            self.itemDescriptionLabel?.text = name
-            self.itemPriceLabel?.text = "\(price)"
-        }
+        let cartItem = cartDictionaries[indexPath.row]
+        
+        self.itemDescriptionLabel?.text = (cartItem["itemName"] as! String)
+        self.itemPriceLabel?.text = "\(String(describing: cartItem["itemPrice"]!))"
+        
+//        for (key, value) in cartDictionaries[indexPath.row] {
+//            let name = key
+//            let price = value
+//            self.itemDescriptionLabel?.text = name
+//            self.itemPriceLabel?.text = "\(price)"
+//        }
     }
 }

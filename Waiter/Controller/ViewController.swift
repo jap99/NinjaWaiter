@@ -162,13 +162,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         } else if collectionView == cv2 {
             arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
-            let itemPrice = arrCategory[currIndex].categoryItemList[indexPath.row].itemPrice
-            let itemName = arrCategory[currIndex].categoryItemList[indexPath.row].itemName
-            let itemData: Dictionary<String, AnyObject> = [
-                itemName: itemPrice as AnyObject
-            ]
             
-            self.cart.append(itemData)
+            let itemId = arrCategory[currIndex].categoryItemList[indexPath.row].itemId
+            if arrCategory[currIndex].categoryItemList[indexPath.row].isSelected {
+                let itemPrice = arrCategory[currIndex].categoryItemList[indexPath.row].itemPrice
+                let itemName = arrCategory[currIndex].categoryItemList[indexPath.row].itemName
+                let itemData: Dictionary<String, AnyObject> = [
+                    "itemName" : itemName as AnyObject,
+                    "itemPrice" : itemPrice as AnyObject,
+                    "ItemID": itemId as AnyObject
+                ]
+                self.cart.append(itemData)
+            } else {
+                var i = 0
+                CartLoop: for cartItem in self.cart {
+                    if cartItem["ItemID"] as! String == itemId {
+                        break CartLoop
+                    }
+                    i += 1
+                }
+                self.cart.remove(at: i)
+            }
+            
             self.cv2.reloadData()
             self.tv.reloadData()
             
