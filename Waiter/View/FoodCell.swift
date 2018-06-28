@@ -11,13 +11,15 @@ import UIKit
 
 class FoodCell: UICollectionViewCell {
     
+    @IBOutlet weak var fooddTitleBgView: UIView!
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var foodImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.contentView.layer.masksToBounds = true 
+        self.contentView.layer.masksToBounds = true
+        self.fooddTitleBgView.layer.cornerRadius = 7
     }
     
     func giveBorder(selected: Bool) {

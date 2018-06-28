@@ -68,6 +68,19 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
          
         setup()
         
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        addStaffView.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.addStaffView.layer.cornerRadius = 10
+        self.addStaffView.layer.borderWidth = 0.5
+        self.addStaffView.layer.borderColor = UIColor.lightGray.cgColor
+        
         StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in
             
             if let error = error {
@@ -77,24 +90,14 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.staffArray = staffMemberArray!
                     print(staffMemberArray!)
                 }
-                
             }
         }
         
+        
+        setupObjectsWithData()
         tv.beginUpdates()
         tv.reloadData()
         tv.endUpdates()
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        addStaffView.isHidden = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        setupObjectsWithData()
-        tv.reloadData()
         staffSavedSuccessful_View.isHidden = true 
     }
     

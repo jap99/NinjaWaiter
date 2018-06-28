@@ -83,7 +83,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.foodTextField.layer.cornerRadius = 7
+        self.addCategoryView.layer.borderColor = UIColor.lightGray.cgColor
+        self.addCategoryView.layer.borderWidth = 1.0 
         getCategories()
         setupVC()
     }
