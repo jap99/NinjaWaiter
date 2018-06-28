@@ -168,11 +168,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 itemName: itemPrice as AnyObject
             ]
             
-            DispatchQueue.main.async {
-                self.cart.append(itemData)
-                self.cv2.reloadData()
-                self.tv.reloadData()
-            }
+            self.cart.append(itemData)
+            self.cv2.reloadData()
+            self.tv.reloadData()
+            
         }
     }
     

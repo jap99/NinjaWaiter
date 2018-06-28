@@ -245,87 +245,93 @@ class DataService {
         }
     }
     
-    // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
+   var itemImageUrlString: String?     // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
     
-    var itemImageUrlString: String?
+    
     
     func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
-        
         let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
         
-        if let imageData = UIImageJPEGRepresentation(itemImage!, 0.5) {
-            
-            let imageName = NSUUID().uuidString
-            
-            let storageRef = imagesStorageRef.child("\(imageName).jpeg")
-            
-            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+        if let itemImage = itemImage {
+            if let imageData = UIImageJPEGRepresentation(itemImage, 0.5) {
+                let imageName = NSUUID().uuidString
+                let storageRef = imagesStorageRef.child("\(imageName).jpeg")
                 
-                if let error = error {
-                    print("PRINTING ERROR UPLOADING PROFILE IMAGE TO FIREBASE - ERROR DESCRIPTION: \(error.localizedDescription)")
-                    return
-                }
-                
-                storageRef.downloadURL(completion: { (url, error) in
-                    if let downloadURL = url {
-                        self.itemImageUrlString = downloadURL.description
-                    }
-                    if let error = error {
-                        print(error.localizedDescription)
+                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                    
+                    if let error = error {  return
                     }
                     
-                    
-                    let itemDetails: Dictionary<String, AnyObject> = [
-                        "itemName": itemName as AnyObject,
-                        "itemPrice": itemPrice as AnyObject,
-                        "itemImageURL": self.itemImageUrlString as AnyObject
-                    ]
-                    
-                    let item: Dictionary<String, AnyObject> = [
-                        //  "Categories": categoryDictOfArray as AnyObject,
-                        "ItemDetails": itemDetails as AnyObject,
-                        "itemImageURL": self.itemImageUrlString as AnyObject
-                    ]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
+                    storageRef.downloadURL(completion: { (url, error) in
+                        if let downloadURL = url {  self.itemImageUrlString = downloadURL.description }
                         
-                        if let error = error {
-                            print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
-                            completion(false)
-                        } else {
-                            
-                            let itemDetailsNode: Dictionary<String, AnyObject> = [
-                                "ItemDetails": itemDetails as AnyObject
-                            ]
-                            
-                            let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
-                            let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
-                            let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
-                            
-                            var arrBreakFast: [String: Any]
-                            var arrlunch: [String: Any]
-                            var arrDinner: [String: Any]
-                            
-                            if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
-                                arrBreakFast = [itemUID: itemDetailsNode]
-                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrBreakFast)
-                            }
-                            if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
-                                arrlunch = [itemUID: itemDetailsNode]
-                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_LUNCH).child(FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrlunch)
-                            }
-                            if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
-                                arrDinner = [itemUID: itemDetailsNode]
-                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_DINNER).child(FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrDinner)
-                            }
-                            
-                            completion(true)
+                        if let error = error {  print(error.localizedDescription)
                         }
-                    }
+                        
+                        let itemDetails: Dictionary<String, AnyObject> = [
+                            "itemName": itemName as AnyObject,
+                            "itemPrice": itemPrice as AnyObject,
+                            "itemImageURL": self.itemImageUrlString as AnyObject
+                        ]
+                        
+                        let item: Dictionary<String, AnyObject> = [
+                            "ItemDetails": itemDetails as AnyObject,
+                            "itemImageURL": self.itemImageUrlString as AnyObject
+                        ]
+                        self.saveData(itemUID: itemUID, item: item, categoryDictOfArray: categoryDictOfArray, completion: completion)
+                    })
                 })
-            })
+            }
+        } else {
+            let itemDetails: Dictionary<String, AnyObject> = [
+                "itemName": itemName as AnyObject,
+                "itemPrice": itemPrice as AnyObject
+            ]
+            
+            let item: Dictionary<String, AnyObject> = [
+                "ItemDetails": itemDetails as AnyObject
+            ]
+            self.saveData(itemUID: itemUID, item: item, categoryDictOfArray: categoryDictOfArray, completion: completion)
         }
     }
     
+    
+    func saveData(itemUID: String, item: Dictionary<String, AnyObject>, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
+        self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
+            
+            if let error = error {
+                completion(false)
+            } else {
+                
+                let itemDetailsNode: Dictionary<String, AnyObject> = [
+                    "ItemDetails": item["ItemDetails"] as AnyObject
+                ]
+                
+                let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
+                let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
+                let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
+                
+                var arrBreakFast: [String: Any]
+                var arrlunch: [String: Any]
+                var arrDinner: [String: Any]
+                
+                if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
+                    arrBreakFast = [itemUID: itemDetailsNode]
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrBreakFast)
+                }
+                if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
+                    arrlunch = [itemUID: itemDetailsNode]
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_LUNCH).child(FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrlunch)
+                }
+                if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
+                    arrDinner = [itemUID: itemDetailsNode]
+                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_DINNER).child(FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrDinner)
+                }
+                
+                completion(true)
+            }
+        }
+    }
     // SAVE TABLE NUMBERS - TO SETTINGS
     
     func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String) {
