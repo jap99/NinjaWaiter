@@ -170,7 +170,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var count: Int?
+        var count: Int = 0
         
         print(Singleton.sharedInstance.settingsData[0].totalTable)
         if collectionView == self.cv1 && Singleton.sharedInstance.settingsData[0].totalTable > 0 {
@@ -180,7 +180,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
             noTablesToShow_Alert()
             
         }
-        return 10 //count!
+        return count
     }
     
     

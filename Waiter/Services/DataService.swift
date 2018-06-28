@@ -219,8 +219,6 @@ class DataService {
         
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
             
-            print(snapshot)
-            
             if !snapshot.exists() {
                 callback?(nil, nil)
                 return
@@ -234,8 +232,6 @@ class DataService {
     
     func getCategoriesFromServer(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
-            
-            print(snapshot)
             
             if !snapshot.exists() {
                 callback?(nil, nil)
