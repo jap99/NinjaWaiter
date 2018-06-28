@@ -41,6 +41,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var cart = [[String: AnyObject]]()
     var categoryType = CategoryType.none
     
+    var discountPercentage = 0.0
+    var serviceChargePercentage = 0.0
+    var tax1Percentage = 0.0
+    var tax2Percentage = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,6 +71,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupObjectsWithSettingsData()
         self.tv.isHidden = false
         tv.separatorStyle = .none
+        updateCartTotal()
     }
     
     @IBAction func goback(_ sender: Any) {
@@ -126,6 +132,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.tv.reloadData()
             }
         }
+        updateCartTotal()
     }
     
     // MARK: - COLLECTION VIEW
@@ -210,6 +217,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.cv2.reloadData()
             self.tv.reloadData()
+            updateCartTotal()
             
         }
     }
@@ -226,23 +234,57 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 DispatchQueue.main.async {
                     if let discount = dict["discountText"] {
+                        self.discountPercentage = (discount as! NSString).doubleValue
                         self.discountLabel_Left.text = "\(discount as! String)% Discount"
                     }
                     
                     if let s = dict["serviceChargeText"] {
+                        self.serviceChargePercentage = (s as! NSString).doubleValue
                         self.serviceChargeLabel_Left.text =  "\(s as! String)% Service Charge"
                     }
                     
                     if let t1 = dict["tax1NameText"], let t1p = dict["taxPercentage1NameText"] {
+                        self.tax1Percentage = (t1p as! NSString).doubleValue
                         self.tax1Label_Left.text = "\(t1p as! String)% \(t1 as! String)"
                     }
                     
                     if let t2 = dict["tax2NameText"], let t2p = dict["taxPercentage2NameText"] {
+                        self.tax2Percentage = (t2p as! NSString).doubleValue
                         self.tax2Label_Left.text = "\(t2p as! String)% \(t2 as! String)"
                     }
                 }
             }
         }
+    }
+    
+    func updateCartTotal() {
+        var subTotal = 0.0
+        var discount = 0.0
+        var serviceTax = 0.0
+        var tax1 = 0.0
+        var tax2 = 0.0
+        var total = 0.0
+        
+        for cartItem in self.cart {
+            subTotal = subTotal + (cartItem["itemPrice"] as! NSString).doubleValue
+        }
+        
+        discount = subTotal * discountPercentage/100
+        
+        let taxAbleAmount = subTotal - discount
+        serviceTax = taxAbleAmount * serviceChargePercentage/100
+        tax1 = taxAbleAmount * tax1Percentage/100
+        tax2 = taxAbleAmount * tax2Percentage/100
+        
+        total = subTotal - discount + serviceTax + tax1 + tax2
+        
+        subtotalLabel_Right.text = "\(subTotal)"
+        discountLabel_Right.text = "-\(discount)"
+        serviceChargeLabel_Right.text = "+\(serviceTax)"
+        tax1Label_Right.text = "+\(tax1)"
+        tax2Label_Right.text = "+\(tax2)"
+        totalLabel.text = "\(total)"
+        
     }
     
     func getMenuData() {
