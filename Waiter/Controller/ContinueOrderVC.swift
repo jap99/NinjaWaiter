@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{//}, UIGestureRecognizerDelegate{
 
     @IBOutlet weak var cv1: UICollectionView!
     
@@ -28,7 +28,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var chooseTableView: UIView!
     
-    var phoneNumber = ""
+    var phoneNumber = " "
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,18 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
 
     func setupGestureRecognizers() {
         
+        let tapGesture0 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber0))
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber1))
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber2))
+        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber3))
+        let tapGesture4 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber4))
+        let tapGesture5 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber5))
+        let tapGesture6 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber6))
+        let tapGesture7 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber7))
+        let tapGesture8 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber8))
+        let tapGesture9 = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumber9))
+        let tapGestureDelete = UITapGestureRecognizer(target: self, action: #selector(providePhoneNumberDelete(_:)))
+        
         oneImageView.isUserInteractionEnabled = true
         twoImageView.isUserInteractionEnabled = true
         threeImageView.isUserInteractionEnabled = true
@@ -54,38 +66,84 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         zeroImageView.isUserInteractionEnabled = true
         deleteImageView.isUserInteractionEnabled = true
         
-        oneImageView.tag = 1
-        twoImageView.tag = 2
-        threeImageView.tag = 3
-        fourImageView.tag = 4
-        fiveImageView.tag = 5
-        sixImageView.tag = 6
-        sevenImageView.tag = 7
-        eightImageView.tag = 8
-        nineImageView.tag = 9
-        zeroImageView.tag = 0
+//        oneImageView.tag = 1
+//        twoImageView.tag = 2
+//        threeImageView.tag = 3
+//        fourImageView.tag = 4
+//        fiveImageView.tag = 5
+//        sixImageView.tag = 6
+//        sevenImageView.tag = 7
+//        eightImageView.tag = 8
+//        nineImageView.tag = 9
+//        zeroImageView.tag = 0
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.providePhoneNumber(_:)))
-        
-        oneImageView.addGestureRecognizer(tapGesture)
-        twoImageView.addGestureRecognizer(tapGesture)
-        threeImageView.addGestureRecognizer(tapGesture)
-        fourImageView.addGestureRecognizer(tapGesture)
-        fiveImageView.addGestureRecognizer(tapGesture)
-        sixImageView.addGestureRecognizer(tapGesture)
-        sevenImageView.addGestureRecognizer(tapGesture)
-        eightImageView.addGestureRecognizer(tapGesture)
-        nineImageView.addGestureRecognizer(tapGesture)
-        zeroImageView.addGestureRecognizer(tapGesture)
-        
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
+        oneImageView.addGestureRecognizer(tapGesture1)
+        twoImageView.addGestureRecognizer(tapGesture2)
+        threeImageView.addGestureRecognizer(tapGesture3)
+        fourImageView.addGestureRecognizer(tapGesture4)
+        fiveImageView.addGestureRecognizer(tapGesture5)
+        sixImageView.addGestureRecognizer(tapGesture6)
+        sevenImageView.addGestureRecognizer(tapGesture7)
+        eightImageView.addGestureRecognizer(tapGesture8)
+        nineImageView.addGestureRecognizer(tapGesture9)
+        zeroImageView.addGestureRecognizer(tapGesture0)
+        deleteImageView.addGestureRecognizer(tapGestureDelete)
+    }
 
+    
+    @objc func providePhoneNumber0() {
+        phoneNumber = "\(phoneNumber)0"
+        phoneNumberTextField.text = phoneNumber
     }
     
-    @objc func providePhoneNumber(_ sender: UIImageView) {
-        
-        phoneNumber = "\(phoneNumber)\(sender.tag)"
+    @objc func providePhoneNumber1() {
+        phoneNumber = "\(phoneNumber)1"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber2() {
+        phoneNumber = "\(phoneNumber)2"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber3() {
+        phoneNumber = "\(phoneNumber)3"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber4() {
+        phoneNumber = "\(phoneNumber)4"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber5() {
+        phoneNumber = "\(phoneNumber)5"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber6() {
+        phoneNumber = "\(phoneNumber)6"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber7() {
+        phoneNumber = "\(phoneNumber)7"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber8() {
+        phoneNumber = "\(phoneNumber)8"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumber9() {
+        phoneNumber = "\(phoneNumber)9"
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    @objc func providePhoneNumberDelete(_ sender: UITapGestureRecognizer) {
+//        phoneNumber.remove(at: phoneNumber.remove)
+        phoneNumber.removeLast()
         phoneNumberTextField.text = phoneNumber
     }
  
