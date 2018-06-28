@@ -37,7 +37,14 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         cv1.delegate = self; cv1.dataSource = self
         cv1.reloadData()
         setupGestureRecognizers()
-        chooseTableView.layer.cornerRadius = 7.0 
+        chooseTableView.layer.cornerRadius = 7.0
+        
+//        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+//        layout.itemSize = CGSize(width: 172, height: 172)
+//        layout.minimumInteritemSpacing = 20
+//        layout.minimumLineSpacing = 20
+//        cv1!.collectionViewLayout = layout
     }
 
     func setupGestureRecognizers() {
@@ -66,17 +73,6 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         zeroImageView.isUserInteractionEnabled = true
         deleteImageView.isUserInteractionEnabled = true
         
-//        oneImageView.tag = 1
-//        twoImageView.tag = 2
-//        threeImageView.tag = 3
-//        fourImageView.tag = 4
-//        fiveImageView.tag = 5
-//        sixImageView.tag = 6
-//        sevenImageView.tag = 7
-//        eightImageView.tag = 8
-//        nineImageView.tag = 9
-//        zeroImageView.tag = 0
-        
         oneImageView.addGestureRecognizer(tapGesture1)
         twoImageView.addGestureRecognizer(tapGesture2)
         threeImageView.addGestureRecognizer(tapGesture3)
@@ -89,7 +85,6 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         zeroImageView.addGestureRecognizer(tapGesture0)
         deleteImageView.addGestureRecognizer(tapGestureDelete)
     }
-
     
     @objc func providePhoneNumber0() {
         phoneNumber = "\(phoneNumber)0"
@@ -142,7 +137,6 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     @objc func providePhoneNumberDelete(_ sender: UITapGestureRecognizer) {
-//        phoneNumber.remove(at: phoneNumber.remove)
         phoneNumber.removeLast()
         phoneNumberTextField.text = phoneNumber
     }
@@ -150,6 +144,10 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
     // MARK: - COLLECTION VIEW
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        layout?.minimumInteritemSpacing = 0
+        layout?.minimumLineSpacing = 0
         
         if collectionView == self.cv1 {
             
@@ -176,13 +174,10 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         if collectionView == self.cv1 && Singleton.sharedInstance.settingsData[0].totalTable > 0 {
            count = Singleton.sharedInstance.settingsData[0].totalTable
         } else {
-            
             noTablesToShow_Alert()
-            
         }
         return count
     }
-    
     
     // MARK: - IBACTIONS
     
@@ -195,8 +190,6 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderSuccessVC-ID") as! OrderSuccessVC
         self.present(vc, animated: true, completion: nil)
     }
-    
-    
     
     // MARK: - ALERTS
     
