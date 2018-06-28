@@ -72,6 +72,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tv.isHidden = false
         tv.separatorStyle = .none
         updateCartTotal()
+        getDataFromFirebase()
     }
     
     @IBAction func goback(_ sender: Any) {
@@ -285,6 +286,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tax2Label_Right.text = "+\(tax2)"
         totalLabel.text = "\(total)"
         
+    }
+    
+    func getDataFromFirebase() {
+        DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { (arrayCategory) in
+            
+            for cat in arrayCategory {
+                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+                category.updateWith(cat: cat, type: self.categoryType)
+            }
+            _appDel.saveContext()
+            self.getMenuData()
+        }
+
     }
     
     func getMenuData() {
