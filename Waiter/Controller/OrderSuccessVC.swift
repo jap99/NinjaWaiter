@@ -24,10 +24,14 @@ class OrderSuccessVC: UIViewController {
         gifView.loadGif(name: "ordered-animation")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        runTimer()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        runTimer()
+        //runTimer()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
