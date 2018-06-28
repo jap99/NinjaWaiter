@@ -62,8 +62,9 @@ class Settings {
                 if let tax1Percent = snap["taxPercentage1NameText"] as? String { settings.tax1Percent = Int(tax1Percent) }
                 if let tax2Name = snap["tax2NameText"] as? String { settings.tax2Name = tax2Name }
                 if let tax2Percent = snap["taxPercentage2NameText"] as? String { settings.tax2Percent = Int(tax2Percent) }
-                if let tableStartNumber = snap["tableStartNumber"] as? Int, let tableEndNumber = snap["tableEndNumber"] as? Int {
-                    settings.startingNumber = tableStartNumber; settings.endingNumber = tableEndNumber;
+                
+                if let tableStartNumber = snap["tableStartNumber"] as? String, let tableEndNumber = snap["tableEndNumber"] as? String {
+                    settings.startingNumber = Int(tableStartNumber); settings.endingNumber = Int(tableEndNumber);
                 }
                 
                 let setting = Settings(adminEmail: restAdminEmail,
