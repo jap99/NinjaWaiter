@@ -100,8 +100,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let checkoutCell = tableView.dequeueReusableCell(withIdentifier: "CheckoutCell", for: indexPath) as! CheckoutCell
         
+        checkoutCell.xButton.tag = indexPath.row
+        checkoutCell.xButton.removeTarget(self, action: #selector(ViewController.removeItemFromCart(_:)), for: .touchUpInside)
+        checkoutCell.xButton.addTarget(self, action: #selector(ViewController.removeItemFromCart(_:)), for: .touchUpInside)
+        
         checkoutCell.configureCell(indexPath: indexPath, cartDictionaries: cart)
         return checkoutCell
+    }
+    
+    @objc func removeItemFromCart(_ sender: AnyObject) {
+        if let btn = sender as? UIButton {
+            if cart.count > btn.tag {
+                let removeItemId = sender.accessibilityIdentifier
+                var i = 0
+                ItemLoop: for item in arrCategory[currIndex].categoryItemList {
+                    if item.itemId == removeItemId {
+                        arrCategory[currIndex].categoryItemList[i].isSelected = false
+                        break ItemLoop
+                    }
+                    i  += 1
+                }
+                
+                cart.remove(at: btn.tag)
+                self.cv2.reloadData()
+                self.tv.reloadData()
+            }
+        }
     }
     
     // MARK: - COLLECTION VIEW

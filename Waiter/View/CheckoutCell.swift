@@ -21,7 +21,7 @@ class CheckoutCell: UITableViewCell {
     
     func configureCell(indexPath: IndexPath, cartDictionaries: [[String: AnyObject]]) {
         let cartItem = cartDictionaries[indexPath.row]
-        
+        xButton.accessibilityIdentifier = (cartItem["ItemID"] as! String)
         self.itemDescriptionLabel?.text = (cartItem["itemName"] as! String)
         self.itemPriceLabel?.text = "\(String(describing: cartItem["itemPrice"]!))"
         
