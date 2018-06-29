@@ -88,6 +88,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 if staffMemberArray != nil {
                     self.staffArray = staffMemberArray!
+                    self.tv.reloadData()
                     print(staffMemberArray!)
                 }
             }
