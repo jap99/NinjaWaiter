@@ -258,7 +258,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    
+    func setround2Decimal(str:Double) -> String {
+        
+        var finalStr = String()
+        
+       finalStr = String(format: "%.2f", str)
+        //
+        return finalStr
+        
+    }
     func updateCartTotal() {
         var subTotal = 0.0
         var discount = 0.0
@@ -279,13 +287,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tax2 = taxAbleAmount * tax2Percentage/100
         
         total = subTotal - discount + serviceTax + tax1 + tax2
-        
-        subtotalLabel_Right.text = "\(subTotal)"
-        discountLabel_Right.text = "-\(discount)"
-        serviceChargeLabel_Right.text = "+\(serviceTax)"
-        tax1Label_Right.text = "+\(tax1)"
-        tax2Label_Right.text = "+\(tax2)"
-        totalLabel.text = "\(total)"
+        //"\(subTotal)"
+        subtotalLabel_Right.text = self.setround2Decimal(str: subTotal)
+        discountLabel_Right.text = "-\(self.setround2Decimal(str: discount))"
+        serviceChargeLabel_Right.text = "+\(self.setround2Decimal(str: serviceTax))"
+        tax1Label_Right.text = "+\(self.setround2Decimal(str: tax1))"
+        tax2Label_Right.text = "+\(self.setround2Decimal(str: tax2))"
+        totalLabel.text = "\(self.setround2Decimal(str: total))"
         
     }
     

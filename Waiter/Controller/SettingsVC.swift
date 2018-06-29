@@ -65,7 +65,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         hideKeyboardWhenTappedAround()
         
         settingsButton.isUserInteractionEnabled = false
-         
+        
         setup()
         
         
@@ -322,7 +322,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         _ = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             
             if error == nil {
-                self.staffArray.remove(at: sender.tag + 1)
+                self.staffArray.remove(at: sender.tag)
                 self.tv.reloadData()
                 DispatchQueue.main.async {
                     self.successfullyDeletedStaff_Alert()
@@ -339,40 +339,48 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
             
-            if indexPath.section == 0 {
-                waiterCell.deleteAccountButton.tag = indexPath.row
-                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-                return waiterCell
-                
-            } else if indexPath.section == 1 { // empty cells
-                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-                return waiterCell
-            }
+//            if indexPath.section == 0 {
+//                waiterCell.deleteAccountButton.tag = indexPath.row
+//                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
+//                return waiterCell
+//
+//            } else if indexPath.section == 1 { // empty cells
+//                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
+//                return waiterCell
+//            }
+//        }
+//        return UITableViewCell()
+            waiterCell.deleteAccountButton.tag = indexPath.row
+                            waiterCell.setData(staffList: staffArray, indexPath: indexPath)
+            
+            return waiterCell
         }
         return UITableViewCell()
+        
     }
-    
+    // HI, do you ahve Skype ? we cYan es talk there  naveeng111
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == 0 {
-            return staffArray.count
-            
-        } else if section == 1 {
-            var count = 0
-            
-            if staffArray.count <= 10 {
-                count = 10 - staffArray.count
-            }
-  
-            if count >= 0 {
-                return count
-            } 
-        }
-        return 0
+//
+//        if section == 0 {
+//            return staffArray.count
+//
+//        } else if section == 1 { // the empty cells
+//            var count = 0
+//
+//            if staffArray.count <= 10 {
+//                count = 10 - staffArray.count
+//            }
+//
+//            if count >= 0 {
+//                return count
+//            }
+//        }
+//        return 0
+        return staffArray.count
     }
     
     // MARK: - ALERTS
@@ -408,7 +416,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ac.addAction(ok)
         
         present(ac, animated: true, completion: { //[weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 ac.dismiss(animated: true, completion: nil)
             })
         })
