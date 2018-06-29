@@ -179,6 +179,9 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         return count
     }
     
+    
+    
+    
     // MARK: - IBACTIONS
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -190,6 +193,13 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderSuccessVC-ID") as! OrderSuccessVC
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func goToDashboard(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    
     
     // MARK: - ALERTS
     

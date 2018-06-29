@@ -77,9 +77,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.addStaffView.layer.cornerRadius = 10
-        self.addStaffView.layer.borderWidth = 0.5
-        self.addStaffView.layer.borderColor = UIColor.lightGray.cgColor
         
         StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in
             
@@ -88,12 +85,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 if staffMemberArray != nil {
                     self.staffArray = staffMemberArray!
-                    self.tv.reloadData()
-                    print(staffMemberArray!)
+                    //self.tv.reloadData() 
                 }
             }
         }
-        
         
         setupObjectsWithData()
         tv.beginUpdates()
@@ -105,9 +100,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("VIEW DID APPEAR")
         threeOutoTenLabel.text = "\(staffArray.count)/10"
     }
+    
+    
+    
+    
+    
     
     // MARK: - SETUP
     
@@ -147,7 +146,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         taxPercentage2TextField.layer.borderWidth = 1.0
         
         tv.separatorStyle = .none
+        
+        self.addStaffView.layer.cornerRadius = 10
+        self.addStaffView.layer.borderWidth = 0.5
+        self.addStaffView.layer.borderColor = UIColor.lightGray.cgColor
+        
     }
+    
+    
+    
+    
     
     func setupObjectsWithData() {
         
@@ -155,7 +163,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
-                print(dict)
                 
                 if let startingNumberTable = dict["tableStartNumber"],
                     let endingNumberTable = dict["tableEndNumber"] {
@@ -193,15 +200,30 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - IBACTIONS
     
+    
+    
+    
+    
     @IBAction func backButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
         present(vc, animated: true, completion: nil)
     }
     
+    
+    
+    
+    
+    
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuManagementVC-ID") as! MenuManagementVC
         present(vc, animated: true, completion: nil)
     }
+    
+    
+    
+    
+    
+    
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) { // only for showing the popup view; not for saving to firebase
         
@@ -217,6 +239,11 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
+    
+    
+    
+    
     
     // SAVE TAXES & DISCOUNTS
     
@@ -258,6 +285,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         DataService.instance.saveTaxesAndDiscounts(settings: settings)
     }
     
+    
+    
+    
     // SAVE TABLE NUMBERS
     
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
@@ -268,6 +298,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
+    
+    
     // FOR THE 'CREATE STAFF' POPUP VIEW
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
@@ -275,6 +309,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         emailTextField.text = ""
         passwordTextField.text = ""
     } 
+    
+    
+    
     
     // CREATE STAFF MEMBER
     
@@ -317,10 +354,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
+    
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
         print("Delete account tap\(sender.tag)")
-        
-        _ = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+        DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             
             if error == nil {
                 self.staffArray.remove(at: sender.tag)
@@ -335,54 +374,41 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
+    
+    
+    
+    
     // MARK: - TABLE VIEW (STAFF)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
             
-//            if indexPath.section == 0 {
-//                waiterCell.deleteAccountButton.tag = indexPath.row
-//                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-//                return waiterCell
-//
-//            } else if indexPath.section == 1 { // empty cells
-//                waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-//                return waiterCell
-//            }
-//        }
-//        return UITableViewCell()
             waiterCell.deleteAccountButton.tag = indexPath.row
-                            waiterCell.setData(staffList: staffArray, indexPath: indexPath)
+            waiterCell.setData(staffList: staffArray, indexPath: indexPath)
             
             return waiterCell
         }
         return UITableViewCell()
         
     }
-    // HI, do you ahve Skype ? we cYan es talk there  naveeng111
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//        if section == 0 {
-//            return staffArray.count
-//
-//        } else if section == 1 { // the empty cells
-//            var count = 0
-//
-//            if staffArray.count <= 10 {
-//                count = 10 - staffArray.count
-//            }
-//
-//            if count >= 0 {
-//                return count
-//            }
-//        }
-//        return 0
+        
         return staffArray.count
     }
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: - ALERTS
     

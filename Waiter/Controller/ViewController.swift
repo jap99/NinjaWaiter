@@ -193,6 +193,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == cv1 {
             
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
+                
+                cell.foodNameLabel.backgroundColor = UIColor.white
+            
+            
         } else if collectionView == cv2 {
             arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
             
@@ -347,14 +352,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func noItemsInCart_Alert() {
         let ac = UIAlertController(title: "No Items In Cart", message: "No items have been added to the cart. Please add at least one item to the cart to checkout.", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: { (_) in
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as? DashboardVC {
+                self.present(vc, animated: true, completion: nil)
+            }
+        })
+        
         ac.addAction(ok)
         
         present(ac, animated: true, completion: {// [weak self] in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 
-                ac.dismiss(animated: true, completion: nil)
+                ac.dismiss(animated: true, completion: {
+                    
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as? DashboardVC {
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                    
+                })
             })
         })
     }

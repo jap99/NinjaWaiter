@@ -25,13 +25,14 @@ class OrderSuccessVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        runTimer()
+        super.viewWillAppear(animated)
+//        runTimer()
+//        let _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.myPerformCode), userInfo: nil, repeats: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //runTimer()
+        runTimer()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,16 +49,22 @@ class OrderSuccessVC: UIViewController {
     
     // MARK: - ACTIONS
     
+    
+//    @objc func myPerformCode() {
+//        runTimer()
+//    }
+    
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(OrderSuccessVC.updateTimer)), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer() {
         
-        if seconds > 0 {
+        if seconds >= 0 {
             seconds -= 1     //This will decrement(count down)the seconds.
+            
             DispatchQueue.main.async {
-                self.countdownTextField.text = "This screen will automatically close in \(self.seconds) seconds"  
+                self.countdownTextField.text = "This screen will automatically close in \(self.seconds) seconds"
             }
             
         } else {
