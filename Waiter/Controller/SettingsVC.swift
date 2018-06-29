@@ -319,13 +319,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
         print("Delete account tap\(sender.tag)")
         
-        let _ = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+        _ = DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             
             if error == nil {
+                self.staffArray.remove(at: sender.tag + 1)
+                self.tv.reloadData()
                 DispatchQueue.main.async {
-                    self.staffArray.remove(at: sender.tag)
                     self.successfullyDeletedStaff_Alert()
-                    self.tv.reloadData()
                 }
             } else if let error = error {
                 self.errorDeletingStaff_Alert()
@@ -342,12 +342,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 waiterCell.deleteAccountButton.tag = indexPath.row
                 waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-                
                 return waiterCell
+                
             } else if indexPath.section == 1 { // empty cells
-                
                 waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-                
                 return waiterCell
             }
         }
@@ -361,15 +359,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            
             return staffArray.count
             
         } else if section == 1 {
-            
             var count = 0
             
             if staffArray.count <= 10 {
-                
                 count = 10 - staffArray.count
             }
   
@@ -387,10 +382,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ac = UIAlertController(title: "Success", message: "You have successfully deleted a staff member from the database.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
+        
         present(ac, animated: true) {
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                
                 ac.dismiss(animated: true, completion: nil)
             })
         }
@@ -402,9 +396,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         present(ac, animated: true) {
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                
                 ac.dismiss(animated: true, completion: nil)
             })
         }
@@ -416,9 +408,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ac.addAction(ok)
         
         present(ac, animated: true, completion: { //[weak self] in
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { 
                 ac.dismiss(animated: true, completion: nil)
             })
         })

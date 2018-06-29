@@ -18,6 +18,9 @@
 		9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16826220CFD66600CFE4B1 /* AddItemCell.swift */; };
 		9F2546C820D62C9900162133 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2546C720D62C9900162133 /* AppUser.swift */; };
 		9F2546CA20D644E900162133 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2546C920D644E900162133 /* Settings.swift */; };
+		9F4A184320E63D270051C059 /* CategoryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184220E63D270051C059 /* CategoryItems.swift */; };
+		9F4A184520E63D410051C059 /* CategoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184420E63D410051C059 /* CategoryDetail.swift */; };
+		9F4A184720E63D9D0051C059 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184620E63D9D0051C059 /* DataManager.swift */; };
 		9F4D4ECD20D4D8F0004F4C8A /* practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D4ECC20D4D8F0004F4C8A /* practice.swift */; };
 		9F4F8A6920DC060F0071E06E /* waiter.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F8A6820DC060F0071E06E /* waiter.gif */; };
 		9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* AddCategoryCell.swift */; };
@@ -81,6 +84,9 @@
 		9F16826220CFD66600CFE4B1 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
 		9F2546C720D62C9900162133 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		9F2546C920D644E900162133 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9F4A184220E63D270051C059 /* CategoryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItems.swift; sourceTree = "<group>"; };
+		9F4A184420E63D410051C059 /* CategoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetail.swift; sourceTree = "<group>"; };
+		9F4A184620E63D9D0051C059 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9F4D4ECC20D4D8F0004F4C8A /* practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practice.swift; sourceTree = "<group>"; };
 		9F4F8A6820DC060F0071E06E /* waiter.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = waiter.gif; sourceTree = "<group>"; };
 		9F67871120CC4CCD008E209F /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
@@ -264,6 +270,8 @@
 				9F2546C920D644E900162133 /* Settings.swift */,
 				9F84AA5120DB3CFA00E6B2BB /* SubItem.swift */,
 				9F84AA5320DB46A600E6B2BB /* Availability.swift */,
+				9F4A184220E63D270051C059 /* CategoryItems.swift */,
+				9F4A184420E63D410051C059 /* CategoryDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 			children = (
 				9FEEFDC920C8E5F000119A35 /* DataService.swift */,
 				9FEEFDCC20C8EABF00119A35 /* AuthServices.swift */,
+				9F4A184620E63D9D0051C059 /* DataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -500,6 +509,7 @@
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
+				9F4A184320E63D270051C059 /* CategoryItems.swift in Sources */,
 				9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */,
 				9F84AA5020DB338000E6B2BB /* ItemOptionCell.swift in Sources */,
 				9FEEFDCA20C8E5F100119A35 /* DataService.swift in Sources */,
@@ -525,8 +535,10 @@
 				9F0228CE20D25C7600550DAD /* Item.swift in Sources */,
 				9F84AA5220DB3CFA00E6B2BB /* SubItem.swift in Sources */,
 				9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */,
+				9F4A184520E63D410051C059 /* CategoryDetail.swift in Sources */,
 				9F79DAB020D52B11002D1743 /* Singleton.swift in Sources */,
 				9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */,
+				9F4A184720E63D9D0051C059 /* DataManager.swift in Sources */,
 				9FD1DAC420E2B0E000F6AD0D /* kPParentManagedObject.swift in Sources */,
 				9FF4190020CFF7A100EB56B6 /* Defaults+Subscripts.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,

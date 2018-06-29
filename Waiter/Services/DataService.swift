@@ -255,13 +255,15 @@ class DataService {
                 
                 storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                     
-                    if let error = error {  return
+                    if let error = error {
+                        return
                     }
                     
                     storageRef.downloadURL(completion: { (url, error) in
                         if let downloadURL = url {  self.itemImageUrlString = downloadURL.description }
                         
-                        if let error = error {  print(error.localizedDescription)
+                        if let error = error {
+                            print(error.localizedDescription)
                         }
                         
                         let itemDetails: Dictionary<String, AnyObject> = [
@@ -271,8 +273,7 @@ class DataService {
                         ]
                         
                         let item: Dictionary<String, AnyObject> = [
-                            "ItemDetails": itemDetails as AnyObject,
-                            "itemImageURL": self.itemImageUrlString as AnyObject
+                            "itemDetails": itemDetails as AnyObject
                         ]
                         self.saveData(itemUID: itemUID, item: item, categoryDictOfArray: categoryDictOfArray, completion: completion)
                     })
@@ -285,7 +286,7 @@ class DataService {
             ]
             
             let item: Dictionary<String, AnyObject> = [
-                "ItemDetails": itemDetails as AnyObject
+                "itemDetails": itemDetails as AnyObject
             ]
             self.saveData(itemUID: itemUID, item: item, categoryDictOfArray: categoryDictOfArray, completion: completion)
         }
@@ -300,7 +301,7 @@ class DataService {
             } else {
                 
                 let itemDetailsNode: Dictionary<String, AnyObject> = [
-                    "ItemDetails": item["ItemDetails"] as AnyObject
+                    "itemDetails": item["itemDetails"] as AnyObject
                 ]
                 
                 let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
@@ -381,6 +382,18 @@ class DataService {
             
         }
     }
+    
+    // SAVE ITEM OPTION
+    
+    func saveItemOption(itemUID: String, completion: @escaping (Bool) -> ()) {
+        
+//        let itemOptionUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child().childByAutoId().key
+//
+//        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).update
+    }
+    
+    
+    
     
     
 }

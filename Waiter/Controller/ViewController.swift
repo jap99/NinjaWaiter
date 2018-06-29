@@ -150,6 +150,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         } else if collectionView == self.cv2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+            cell.foodImageView.image = nil 
             let data = self.arrCategory[self.currIndex].categoryItemList
             
             cell.foodNameLabel.text = data[indexPath.row].itemName

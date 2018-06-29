@@ -17,6 +17,6 @@
     </entity>
     <elements>
         <element name="CategoryEntity" positionX="-18" positionY="27" width="128" height="120"/>
-        <element name="ItemCoreData" positionX="0" positionY="45" width="128" height="135"/>
+        <element name="ItemCoreData" positionX="-360" positionY="72" width="128" height="135"/>
     </elements>
 </model>

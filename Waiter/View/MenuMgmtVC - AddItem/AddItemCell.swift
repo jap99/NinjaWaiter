@@ -44,22 +44,22 @@ class AddItemCell: UITableViewCell {
     
     @IBAction func breakfastSwitchAction(_ sender: UISwitch) {
         if let uidOfCategorySelected = Singleton.sharedInstance.categoriesItems[sender.tag].uid {
-            let breakfast = "Breakfast"
-            addAndRemoveCategoryItem(switch:sender, categoryUID: uidOfCategorySelected, catName: breakfast)
+            
+            addAndRemoveCategoryItem(switch:sender, categoryUID: uidOfCategorySelected, catName: "Breakfast")
         }
     }
     
     @IBAction func lunchSwitch(_ sender: UISwitch) {
         if let uidOfCategorySelected = Singleton.sharedInstance.categoriesItems[sender.tag].uid {
-            let lunch = "Lunch"
-            addAndRemoveCategoryItem(switch:sender, categoryUID: uidOfCategorySelected, catName: lunch)
+            
+            addAndRemoveCategoryItem(switch:sender, categoryUID: uidOfCategorySelected, catName: "Lunch")
         }
     }
     
     @IBAction func dinnerSwitch(_ sender: UISwitch) {
         if let uidOfCategorySelected = Singleton.sharedInstance.categoriesItems[sender.tag].uid {
-            let dinner = "Dinner"
-            addAndRemoveCategoryItem(switch:sender, categoryUID: uidOfCategorySelected, catName: dinner)
+            
+            addAndRemoveCategoryItem(switch:sender, categoryUID: uidOfCategorySelected, catName: "Dinner")
         }
     }
     
