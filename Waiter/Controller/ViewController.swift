@@ -146,6 +146,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cellCV1.foodNameLabel.tag = indexPath.row
             cellCV1.foodNameLabel.addTarget(self, action: #selector(catClick(sender:)), for: .touchUpInside)
             cellCV1.foodNameLabel.setTitle(arrCategory[indexPath.row].categoryName, for: .normal)
+            
+            if self.currIndex == indexPath.row {
+                cellCV1.contentView.backgroundColor = .white
+            } else {
+                cellCV1.contentView.backgroundColor = .clear
+            }
+            
             return cellCV1
 
         } else if collectionView == self.cv2 {
