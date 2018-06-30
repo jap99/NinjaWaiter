@@ -62,7 +62,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tv.delegate = self; tv.dataSource = self
         
-        hideKeyboardWhenTappedAround()
+       // hideKeyboardWhenTappedAround()
         
         settingsButton.isUserInteractionEnabled = false
         
@@ -402,28 +402,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
-        print("Delete account tap\(sender.tag)")
-        DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
-            
-            if error == nil {
-                
-                if self.staffArray[sender.tag].uid != nil {
-                    
-                    let senderIndex = sender.tag
-                    self.staffArray.remove(at: senderIndex)
-                    self.updateStaffTv()
-                    self.tv.reloadData()
-                    
-                    DispatchQueue.main.async {
-                        self.successfullyDeletedStaff_Alert()
-                    }
-                }
-
-            } else if let error = error {
-                self.errorDeletingStaff_Alert()
-                print(error.localizedDescription)
-            }
-        }
+        
     }
     
     
@@ -441,7 +420,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staffList: staffArray, indexPath: indexPath)
-            
+            waiterCell.delegate = self
             return waiterCell
         }
         return UITableViewCell()
@@ -470,6 +449,28 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     // MARK: - ALERTS
+    
+    func errorResettingPassword_Alert() {
+        let ac = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        present(ac, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                ac.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
+    
+    func successPasswordReset_Alert() {
+        let ac = UIAlertController(title: "Successful", message: "Password reset email has been sent to \(staff.email!)", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        present(ac, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                ac.dismiss(animated: true, completion: nil)
+            })
+        }
+    }
     
     func successfullyDeletedStaff_Alert() {
         
@@ -553,6 +554,51 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         })
     }
   
+}
+
+// MARK: - WAITER CELL PROTOCOL
+
+extension SettingsVC :  WaiterCellProtocol {
+    func resetButtonClicked(_ sender: UIButton) {
+        if staffArray.count > sender.tag {
+            let staff = staffArray[sender.tag]
+            print(staff.email)
+            Auth.auth().sendPasswordReset(withEmail: "\(staff.email.trimmingCharacters(in: .whitespacesAndNewlines))") { error in
+                if error != nil {
+                    self.errorResettingPassword_Alert()
+                } else {
+                    self.successPasswordReset_Alert()
+                }
+            }
+        }
+    }
+    
+   
+    
+    func deleteButtonClicked(_ sender: UIButton) {
+        print("Delete account tap\(sender.tag)")
+        DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+            
+            if error == nil {
+                
+                if self.staffArray[sender.tag].uid != "" {
+                    
+                    let senderIndex = sender.tag
+                    self.staffArray.remove(at: senderIndex)
+                    self.updateStaffTv()
+                    self.tv.reloadData()
+                    
+                    DispatchQueue.main.async {
+                        self.successfullyDeletedStaff_Alert()
+                    }
+                }
+                
+            } else if let error = error {
+                self.errorDeletingStaff_Alert()
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 

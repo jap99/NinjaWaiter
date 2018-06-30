@@ -1568,7 +1568,7 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="btnDeteleAccountTapWithSender:" destination="ST4-oh-l6n" eventType="touchUpInside" id="Bj2-1m-Z3s"/>
+                                                                        <action selector="deleteAccount:" destination="hub-sm-EWm" eventType="touchUpInside" id="bo8-c6-cOs"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ApK-Ru-A8S" customClass="RoundedButton" customModule="Waiter" customModuleProvider="target">
@@ -1583,7 +1583,7 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="resetPasswordButton_Pressed:" destination="hub-sm-EWm" eventType="touchUpInside" id="7ag-0S-boC"/>
+                                                                        <action selector="resetPassword:" destination="hub-sm-EWm" eventType="touchUpInside" id="5eT-GE-REq"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -1605,7 +1605,7 @@
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
-                                                            <outlet property="deleteAccountButton" destination="0N9-CT-N0R" id="iv3-B6-Pgv"/>
+                                                            <outlet property="deleteAccountButton" destination="0N9-CT-N0R" id="H4g-ja-nK7"/>
                                                             <outlet property="resetButton" destination="ApK-Ru-A8S" id="GRj-nA-cOk"/>
                                                             <outlet property="staffEmailLabel" destination="j5g-Sh-41r" id="TsJ-dT-rfZ"/>
                                                             <outlet property="staffNumberLabel" destination="TNf-eN-Zee" id="lOT-1q-x05"/>

@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol WaiterCellProtocol {
+    func resetButtonClicked(_ sender: UIButton)
+    func deleteButtonClicked(_ sender: UIButton)
+}
+
 class WaiterCell: UITableViewCell {
 
     @IBOutlet weak var staffNumberLabel: UILabel!
@@ -15,6 +20,8 @@ class WaiterCell: UITableViewCell {
     @IBOutlet weak var staffTypeLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
+    
+    var delegate : WaiterCellProtocol?
     
     func setData(staffList: [StaffMember]?, indexPath: IndexPath) {
             if let staffList = staffList {
@@ -27,6 +34,8 @@ class WaiterCell: UITableViewCell {
                 staffEmailLabel.text = staff.email
                 staffNumberLabel.text = "\(indexPath.row + 1)"
             }
+        resetButton.tag = indexPath.row
+        deleteAccountButton.tag = indexPath.row
         setupColoredCellBackgrounds(indexPath: indexPath)
     }
    
@@ -39,5 +48,16 @@ class WaiterCell: UITableViewCell {
         }
     }
     
+    @IBAction func resetPassword(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.resetButtonClicked(sender)
+        }
+    }
+    
+    @IBAction func deleteAccount(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.deleteButtonClicked(sender)
+        }
+    }
 }
 
