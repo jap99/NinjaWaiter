@@ -229,6 +229,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == cv1 {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
+            
+            cell.foodNameLabel.backgroundColor = UIColor.white
+            
+            
+        } else if collectionView == cv2 {
+        }
+    }
+    
+    
+   
     
     // MARK: - ACTIONS
     

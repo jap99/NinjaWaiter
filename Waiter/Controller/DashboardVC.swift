@@ -16,11 +16,17 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var dinnerButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
+    @IBOutlet weak var v1: UIView!
+    @IBOutlet weak var v2: UIView!
+    
+    
+    
     var staffArray: [StaffMember]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        v1.layer.cornerRadius = 8
+        v2.layer.cornerRadius = 8
         settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
   //      fetchCategoryFromServer()

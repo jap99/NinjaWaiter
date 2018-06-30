@@ -68,7 +68,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         setup()
         
-        
+        self.updateStaffTv()
         
     }
     
@@ -78,33 +78,30 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        StaffMember.getStaffList(adminEmail: LoginModel.instance.username) { (staffMemberArray, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if staffMemberArray != nil {
-                    self.staffArray = staffMemberArray!
-                    //self.tv.reloadData() 
-                }
-            }
-        }
+//        self.tv.beginUpdates()
+//        self.tv.reloadData()
+        
         
         setupObjectsWithData()
-        tv.beginUpdates()
-        tv.reloadData()
-        tv.endUpdates()
-        staffSavedSuccessful_View.isHidden = true 
+//        tv.beginUpdates()
+//        tv.reloadData()
+//        tv.endUpdates()
+        staffSavedSuccessful_View.isHidden = true
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        threeOutoTenLabel.text = "\(staffArray.count)/10"
+        //resetStaffNumberCountLabel()
+        //updateStaffTv()
+        //updateStaffTv()
     }
     
+
     
-    
+
     
     
     
@@ -198,6 +195,51 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    // MARK: - ACTIONS
+    
+    
+    
+    func resetStaffNumberCountLabel() {
+        threeOutoTenLabel.text = "\(staffArray.count)/10"
+    }
+    
+    
+    func updateStaffTv() {
+ 
+        StaffMember.getStaff { (dict, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let dict = dict {
+                self.staffArray.removeAll()
+                
+                let keyList = dict.keys
+                var allkeys = [String]()
+                var staffDictionaryArray: [[String: Any]] = []
+                for key in keyList {
+                    if let staffMemberDictionary = dict[key] as? [String: Any] {
+                        allkeys.append(key)
+                        if let staffType = staffMemberDictionary["staffType"] as? String,
+                            let staffEmail = staffMemberDictionary["staffEmail"] as? String {
+                            
+                            let staff = StaffMember(email: staffEmail, type: staffType, uid: key)
+                            self.staffArray.append(staff)
+                        }
+
+                        staffDictionaryArray.append(staffMemberDictionary)
+                        self.resetStaffNumberCountLabel()
+                        self.tv.reloadData()
+                    }
+                }
+ 
+            }
+            self.view.layoutSubviews()
+        }
+    }
+    
+    
+    
+    
     // MARK: - IBACTIONS
     
     
@@ -227,7 +269,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func addStaffButton_Pressed(_ sender: Any) { // only for showing the popup view; not for saving to firebase
         
-        if staffArray.count <= 10 {
+        if staffArray.count < 10 {
             
             addStaffView.isHidden = false
             cancelButton.isHidden = false
@@ -236,8 +278,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             
             tooManyStaffMembers_Alert()
-        }
-        
+        } 
     }
     
     
@@ -245,7 +286,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    // SAVE TAXES & DISCOUNTS
+    // TAXES
     
     @IBAction func saveButton_Pressed(_ sender: Any) { 
         
@@ -288,7 +329,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    // SAVE TABLE NUMBERS
+    // TABLES
     
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
         
@@ -302,7 +343,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    // FOR THE 'CREATE STAFF' POPUP VIEW
+    // CREATE STAFF - POPUP
     
     @IBAction func cancelButton_Pressed(_ sender: Any) {
         addStaffView.isHidden = true
@@ -313,45 +354,48 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
-    // CREATE STAFF MEMBER
+    // SAVE STAFF
     
     @IBAction func createButton_Pressed(_ sender: Any) {
         
-        if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
-            
-            AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
+        if staffArray.count < 10 {
+            if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
                 
-                if let error = error {
+                if (emailTextField.text?.count)! >= 8 {
                     
-                    print("ERROR SAVING STAFF\(error.debugDescription)")
-                    
-                } else { // success
-                    
-                    self.staffSavedSuccessful_View.isHidden = false
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                        self.staffSavedSuccessful_View.isHidden = true
-                    })
-                    
-                    StaffMember.getStaffList(adminEmail: self.emailTextField.text!, callback: { (staffArray, error) in
+                    AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
                         
                         if let error = error {
-                            print(error.localizedDescription)
                             
-                        } else {
+                            print("ERROR SAVING STAFF\(error.debugDescription)")
                             
-                            DispatchQueue.main.async {
-                                self.tv.reloadData()
-                            }
+                        } else { // success
+                            
+                            
+                            self.staffSavedSuccessful_View.isHidden = false
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                                self.staffSavedSuccessful_View.isHidden = true
+                            })
+                            
+                            self.updateStaffTv()
                             self.successfullyAddedStaff_Alert(user: self.emailTextField.text!)
                         }
-                    })
+                    }
+                    
+                } else {
+                    
+                    passwordNotLongEnough_Alert()
                 }
+
+            } else {
+                
+                enterEmailAndPassword_Alert()
             }
         } else {
-            
-            enterEmailAndPassword_Alert()
+            tooManyStaffMembers_Alert()
         }
+
     }
     
     
@@ -362,11 +406,19 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             
             if error == nil {
-                self.staffArray.remove(at: sender.tag)
-                self.tv.reloadData()
-                DispatchQueue.main.async {
-                    self.successfullyDeletedStaff_Alert()
+                
+                if self.staffArray[sender.tag].uid != nil {
+                    
+                    let senderIndex = sender.tag
+                    self.staffArray.remove(at: senderIndex)
+                    self.updateStaffTv()
+                    self.tv.reloadData()
+                    
+                    DispatchQueue.main.async {
+                        self.successfullyDeletedStaff_Alert()
+                    }
                 }
+
             } else if let error = error {
                 self.errorDeletingStaff_Alert()
                 print(error.localizedDescription)
@@ -382,6 +434,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - TABLE VIEW (STAFF)
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
             
@@ -394,9 +448,14 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -462,29 +521,38 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         present(ac, animated: true, completion: {// [weak self] in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.tv.reloadData()
-                self.loadViewIfNeeded()
+                ac.dismiss(animated: true, completion: nil)
+            })
+        })
+    }
+    
+    func passwordNotLongEnough_Alert() {
+        let ac = UIAlertController(title: "Password Error", message: "Please make sure your password is at least 8 characters long.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        ac.addAction(ok)
+        
+        present(ac, animated: true, completion: {// [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 ac.dismiss(animated: true, completion: nil)
             })
         })
     }
     
     func tooManyStaffMembers_Alert() {
-        
+        addStaffView.isHidden = true
         let ac = UIAlertController(title: "Sorry", message: "Too many staff members added. Please delete one to add another.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
-        
+
         present(ac, animated: true, completion: {// [weak self] in
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
-                self.tv.reloadData()
-                self.loadViewIfNeeded()
                 ac.dismiss(animated: true, completion: nil)
             })
         })
     }
-    
+  
 }
 
 
