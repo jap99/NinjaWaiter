@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseStorage
+import DropDown
+
 
 class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -79,15 +81,27 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var imagePicker: UIImagePickerController?
     var textField : UITextField?
     
+    let dropDown = DropDown()
+
+    
     // V D L
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.foodTextField.layer.cornerRadius = 7
         self.addCategoryView.layer.borderColor = UIColor.lightGray.cgColor
-        self.addCategoryView.layer.borderWidth = 1.0 
+        self.addCategoryView.layer.borderWidth = 1.0
+        
+       dropDown.anchorView = byCategoryView
+        
         getCategories()
         setupVC()
+        
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            
+        }
+        
     }
     
     // V D A
@@ -187,13 +201,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let dictOfArraysIsNotEmpty: Bool =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
-        let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
-        let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
-        let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
-        
-        print("lunch: \(lunch)")
-        print("dinner: \(dinner)")
-        print("breakFast: \(breakFast)")
+//        let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
+//        let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
+//        let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
+//        print("lunch: \(lunch)")
+//        print("dinner: \(dinner)")
+//        print("breakFast: \(breakFast)")
         
         if let name = itemNameTextField.text, let price = itemPriceTextField.text, dictOfArraysIsNotEmpty {
             
@@ -222,6 +235,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func byCategoryButton_Pressed(_ sender: Any) {
+        dropDown.show()
     }
     
     
@@ -240,6 +254,13 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 if let c = categories {
                     self.categories = c
+                    var categoryList = [String]()
+                    
+                    categoryList.append("By Categoires")
+                    for category in self.categories {
+                        categoryList.append(category.name)
+                    }
+                    self.dropDown.dataSource = categoryList
                     self.categoryTV.reloadData()
                     self.itemTV.reloadData()
                     return
@@ -389,6 +410,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == itemCV {
             return 6
+        } else if collectionView == editMenuItemsCV {
+            return 0
         } else {
             return 0
         }
@@ -401,6 +424,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             cell.configureCell(indexPath: indexPath)
             cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+            
+            return cell
+        } else if collectionView == editMenuItemsCV {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+            
+            
             
             return cell
         } else {

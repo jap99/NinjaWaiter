@@ -113,40 +113,42 @@ class WelcomeVC: UIViewController {
     
     // MARK: - LOGIN
     
-    func loginAPI() {
-        if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
-            AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
-                if errMessage != nil {
-                } else if let currentUser = user as? User {
-                   // DataService.instance.getAvailabilityDataFromServer()
-                    
-                    _currentUser = AppUser(user:currentUser)
-                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
+    func loginAPI() { 
+            if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
+                AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
+                    if errMessage != nil {
+                    } else if let currentUser = user as? User {
+                        // DataService.instance.getAvailabilityDataFromServer()
                         
-                        if let _ = obj.value as? String {
-                            _currentUser.type = .adamin
-                        } else {
-                            _currentUser.type = .staff
-                        }
-                    })
-                    _userDefault.set(self.loginModel.username, forKey:kUsername)
-                    _userDefault.set(self.loginModel.password, forKey:kPassword)
-                    _userDefault.synchronize()
-                    self.staffListAPI()
+                        _currentUser = AppUser(user:currentUser)
+                        DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
+                            
+                            if let _ = obj.value as? String {
+                                _currentUser.type = .adamin
+                            } else {
+                                _currentUser.type = .staff
+                            }
+                        })
+                        _userDefault.set(self.loginModel.username, forKey:kUsername)
+                        _userDefault.set(self.loginModel.password, forKey:kPassword)
+                        _userDefault.synchronize()
+                        self.staffListAPI()
+                    }
                 }
             }
-        }
     }
     
     func staffListAPI() {
-        StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
-            if error != nil {
-            } else { // no error
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
-                vc.staffArray = staffArray
-                self.present(vc, animated: true, completion: nil)
-            }
-        })
+        if RESTAURANT_UID != nil {
+            StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
+                if error != nil {
+                } else { // no error
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
+                    vc.staffArray = staffArray
+                    self.present(vc, animated: true, completion: nil)
+                }
+            })
+        }
     }
 }
 

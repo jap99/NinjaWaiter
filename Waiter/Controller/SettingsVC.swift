@@ -77,26 +77,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-//        self.tv.beginUpdates()
-//        self.tv.reloadData()
-        
-        
         setupObjectsWithData()
-//        tv.beginUpdates()
-//        tv.reloadData()
-//        tv.endUpdates()
         staffSavedSuccessful_View.isHidden = true
-    }
-    
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //resetStaffNumberCountLabel()
-        //updateStaffTv()
-        //updateStaffTv()
     }
     
 
@@ -144,9 +126,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tv.separatorStyle = .none
         
-        self.addStaffView.layer.cornerRadius = 10
-        self.addStaffView.layer.borderWidth = 0.5
-        self.addStaffView.layer.borderColor = UIColor.lightGray.cgColor
+        addStaffView.layer.cornerRadius = 10
+        addStaffView.layer.borderWidth = 0.5
+        addStaffView.layer.borderColor = UIColor.lightGray.cgColor
         
     }
     
@@ -371,7 +353,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             
                         } else { // success
                             
-                            
                             self.staffSavedSuccessful_View.isHidden = false
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
@@ -384,7 +365,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                     
                 } else {
-                    
                     passwordNotLongEnough_Alert()
                 }
 
@@ -399,16 +379,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
         
     }
-    
-    
-    
-    
-    
     
     
     // MARK: - TABLE VIEW (STAFF)
@@ -450,8 +423,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - ALERTS
     
-    func errorResettingPassword_Alert() {
-        let ac = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+    func errorResettingPassword_Alert(error: Error) {
+        let ac = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         present(ac, animated: true) {
@@ -461,7 +434,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func successPasswordReset_Alert() {
+    func successPasswordReset_Alert(staff: StaffMember) {
         let ac = UIAlertController(title: "Successful", message: "Password reset email has been sent to \(staff.email!)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
@@ -562,12 +535,11 @@ extension SettingsVC :  WaiterCellProtocol {
     func resetButtonClicked(_ sender: UIButton) {
         if staffArray.count > sender.tag {
             let staff = staffArray[sender.tag]
-            print(staff.email)
             Auth.auth().sendPasswordReset(withEmail: "\(staff.email.trimmingCharacters(in: .whitespacesAndNewlines))") { error in
                 if error != nil {
-                    self.errorResettingPassword_Alert()
+                    self.errorResettingPassword_Alert(error: error!)
                 } else {
-                    self.successPasswordReset_Alert()
+                    self.successPasswordReset_Alert(staff: staff)
                 }
             }
         }

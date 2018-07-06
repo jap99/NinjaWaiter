@@ -41,10 +41,9 @@ class DashboardVC: UIViewController {
                 }
             }
             DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
-        }
+        
         
         DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { (arrayCategory) in
-
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .breakfast)
@@ -53,7 +52,6 @@ class DashboardVC: UIViewController {
         }
         
         DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { (arrayCategory) in
-            
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .lunch)
@@ -62,7 +60,6 @@ class DashboardVC: UIViewController {
         }
         
         DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { (arrayCategory) in
-            
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .dinner)
@@ -70,6 +67,7 @@ class DashboardVC: UIViewController {
             _appDel.saveContext()
         }
 
+        }
 
        // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
          

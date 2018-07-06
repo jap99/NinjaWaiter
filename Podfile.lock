@@ -1,4 +1,5 @@
 PODS:
+  - DropDown (2.3.2)
   - Firebase/Analytics (5.2.0):
     - Firebase/Core
   - Firebase/Auth (5.2.0):
@@ -46,6 +47,7 @@ PODS:
   - nanopb/encode (0.3.8)
 
 DEPENDENCIES:
+  - DropDown
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -55,6 +57,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - DropDown
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -69,6 +72,7 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
+  DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
   Firebase: 25ed0412036d7d008568d1fb4d2e9d81ea8a0a2c
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseAuth: 463b8ce33bd5d05f706dcd4615499e3212b4132b
@@ -82,6 +86,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 8fb0db809cb8c4546a355ecaae0a058776ceb528
+PODFILE CHECKSUM: bc0085995712036d752c197243b97b94d7b51858
 
 COCOAPODS: 1.5.0

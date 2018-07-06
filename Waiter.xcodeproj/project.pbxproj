@@ -26,6 +26,7 @@
 		9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871120CC4CCD008E209F /* AddCategoryCell.swift */; };
 		9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67871320CC4CEB008E209F /* MenuManagementVC.swift */; };
 		9F79DAB020D52B11002D1743 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79DAAF20D52B11002D1743 /* Singleton.swift */; };
+		9F7A64DA20E74AFB006BF525 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9F7A64D920E74AFA006BF525 /* Podfile */; };
 		9F84AA5020DB338000E6B2BB /* ItemOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84AA4F20DB338000E6B2BB /* ItemOptionCell.swift */; };
 		9F84AA5220DB3CFA00E6B2BB /* SubItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84AA5120DB3CFA00E6B2BB /* SubItem.swift */; };
 		9F84AA5420DB46A600E6B2BB /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84AA5320DB46A600E6B2BB /* Availability.swift */; };
@@ -92,6 +93,7 @@
 		9F67871120CC4CCD008E209F /* AddCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryCell.swift; sourceTree = "<group>"; };
 		9F67871320CC4CEB008E209F /* MenuManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManagementVC.swift; sourceTree = "<group>"; };
 		9F79DAAF20D52B11002D1743 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		9F7A64D920E74AFA006BF525 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		9F84AA4F20DB338000E6B2BB /* ItemOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionCell.swift; sourceTree = "<group>"; };
 		9F84AA5120DB3CFA00E6B2BB /* SubItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubItem.swift; sourceTree = "<group>"; };
 		9F84AA5320DB46A600E6B2BB /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		9F8EABDA20AC74A50027EDFB = {
 			isa = PBXGroup;
 			children = (
+				9F7A64D920E74AFA006BF525 /* Podfile */,
 				9F8EABE520AC74A50027EDFB /* Waiter */,
 				9F8EABE420AC74A50027EDFB /* Products */,
 				CAC09030DF52C0E91D6558F2 /* Pods */,
@@ -438,6 +441,7 @@
 				9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */,
 				9F4F8A6920DC060F0071E06E /* waiter.gif in Resources */,
 				9FEEFDC620C8E3A900119A35 /* GoogleService-Info.plist in Resources */,
+				9F7A64DA20E74AFB006BF525 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +473,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Waiter/Pods-Waiter-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -477,6 +482,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -701,10 +707,7 @@
 				DEVELOPMENT_TEAM = VWFZU9229C;
 				INFOPLIST_FILE = Waiter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleandev.Waiter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee8a1d18-6bdf-40c6-b7c3-d2ecd82b6f29";
@@ -724,10 +727,7 @@
 				DEVELOPMENT_TEAM = VWFZU9229C;
 				INFOPLIST_FILE = Waiter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleandev.Waiter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ff3e62b7-670e-490c-8e83-a71c10176826";
