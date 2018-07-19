@@ -1220,6 +1220,9 @@
                                 <state key="normal" image="RectangleSetup">
                                     <attributedString key="attributedTitle"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButton_Pressed:" destination="nvF-1t-SNi" eventType="touchUpInside" id="ew4-NH-8oV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Restaurant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="F5L-lw-3WH">
                                 <rect key="frame" x="810" y="629" width="183.5" height="27.5"/>
@@ -2261,6 +2264,8 @@
                         <outlet property="kitchenPrinterTextField" destination="oxp-hg-Zgj" id="2dF-MA-70I"/>
                         <outlet property="menuManagementButton" destination="cZM-zT-XN5" id="YnX-ph-TRv"/>
                         <outlet property="passwordTextField" destination="g7F-f6-y2F" id="hnU-EN-iHj"/>
+                        <outlet property="plusSignImage" destination="Nd0-bS-FpC" id="40K-Bl-lTL"/>
+                        <outlet property="restaurantNameLabel" destination="ds8-A6-FIO" id="6lN-Uh-6lV"/>
                         <outlet property="saveButton" destination="byF-Jr-nvg" id="bur-PW-guL"/>
                         <outlet property="serviceChargeTextField" destination="QFy-WY-1AE" id="Q1s-Ug-NT3"/>
                         <outlet property="settingsButton" destination="55v-8q-Bts" id="MXf-NN-ZOL"/>
@@ -2272,6 +2277,8 @@
                         <outlet property="taxPercentage2TextField" destination="qXW-c4-Uo4" id="bYN-Bq-nnv"/>
                         <outlet property="threeOutoTenLabel" destination="VP7-zE-seH" id="wdw-b3-zP4"/>
                         <outlet property="tv" destination="9sA-q7-PQZ" id="Iy1-vb-4oJ"/>
+                        <outlet property="tvTopView" destination="i8f-Cd-5mz" id="JB9-Y6-nMb"/>
+                        <outlet property="userLabel" destination="Ppe-7u-Eyy" id="Hxu-w4-kBA"/>
                         <outlet property="waiterGif" destination="yGK-Ps-v6v" id="AW3-0h-9km"/>
                     </connections>
                 </viewController>
@@ -3060,6 +3067,10 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvY-hp-8dI">
                                                                     <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
                                                                 </imageView>
+                                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F78-xu-tO7">
+                                                                    <rect key="frame" x="13" y="135" width="181" height="63"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOu-Gi-deq">
                                                                     <rect key="frame" x="13" y="135" width="181" height="63"/>
                                                                     <color key="backgroundColor" red="0.27450980390000002" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3073,11 +3084,15 @@
                                                             </subviews>
                                                         </view>
                                                         <constraints>
+                                                            <constraint firstItem="F78-xu-tO7" firstAttribute="centerY" secondItem="oOu-Gi-deq" secondAttribute="centerY" id="4Jd-oC-t5j"/>
                                                             <constraint firstItem="wvY-hp-8dI" firstAttribute="centerY" secondItem="gsx-iI-H44" secondAttribute="centerY" id="66c-di-5ET"/>
                                                             <constraint firstAttribute="bottomMargin" secondItem="oOu-Gi-deq" secondAttribute="bottom" constant="6" id="BFt-rx-dfK"/>
                                                             <constraint firstItem="wvY-hp-8dI" firstAttribute="centerX" secondItem="gsx-iI-H44" secondAttribute="centerX" id="EPg-Ec-ogL"/>
+                                                            <constraint firstItem="F78-xu-tO7" firstAttribute="centerX" secondItem="oOu-Gi-deq" secondAttribute="centerX" id="EmP-ff-iKo"/>
                                                             <constraint firstAttribute="trailingMargin" secondItem="oOu-Gi-deq" secondAttribute="trailing" constant="5" id="Hjn-1D-iDF"/>
                                                             <constraint firstItem="wvY-hp-8dI" firstAttribute="width" secondItem="gsx-iI-H44" secondAttribute="width" id="U0q-uD-9Dc"/>
+                                                            <constraint firstItem="F78-xu-tO7" firstAttribute="width" secondItem="oOu-Gi-deq" secondAttribute="width" id="cBj-YT-R8b"/>
+                                                            <constraint firstItem="F78-xu-tO7" firstAttribute="height" secondItem="oOu-Gi-deq" secondAttribute="height" id="mvS-93-FJn"/>
                                                             <constraint firstItem="wvY-hp-8dI" firstAttribute="height" secondItem="gsx-iI-H44" secondAttribute="height" id="s4M-5y-tj0"/>
                                                             <constraint firstItem="oOu-Gi-deq" firstAttribute="leading" secondItem="gsx-iI-H44" secondAttribute="leadingMargin" constant="5" id="s4X-fh-Sjt"/>
                                                         </constraints>
@@ -3085,6 +3100,7 @@
                                                         <connections>
                                                             <outlet property="foodImageView" destination="wvY-hp-8dI" id="MeJ-u3-Uj0"/>
                                                             <outlet property="foodNameLabel" destination="oOu-Gi-deq" id="PKn-hX-eKg"/>
+                                                            <outlet property="fooddTitleBgView" destination="F78-xu-tO7" id="U5L-6V-TWO"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -3284,9 +3300,12 @@
                     <connections>
                         <outlet property="addButton" destination="vVy-rD-gUt" id="QVF-Pr-c95"/>
                         <outlet property="addCategoryButton" destination="fg8-DE-3iX" id="oe3-B9-Ug7"/>
+                        <outlet property="addCategoryLabel" destination="XLQ-fC-KMO" id="4X0-X5-AFA"/>
                         <outlet property="addCategoryView" destination="y4p-Ae-hc0" id="n8d-Ik-9Xo"/>
                         <outlet property="addImageButton" destination="jsU-Gc-mCi" id="hsw-Rj-ZGp"/>
+                        <outlet property="addItemImageLabel" destination="Vcx-sw-Qol" id="MKZ-VE-dfK"/>
                         <outlet property="addItemView" destination="kAs-6f-HYK" id="HQY-xS-vYH"/>
+                        <outlet property="addLabel" destination="y4p-Ae-hc0" id="eSm-x2-ShP"/>
                         <outlet property="allButton" destination="fI8-nk-qHq" id="FR1-8S-akM"/>
                         <outlet property="allView" destination="IWD-z6-1iG" id="EB7-gq-Upg"/>
                         <outlet property="backButton" destination="Otq-7e-uis" id="Bfr-5m-aYK"/>
@@ -3296,14 +3315,25 @@
                         <outlet property="cancelButton" destination="2Dn-OP-vy0" id="k3u-SK-cw4"/>
                         <outlet property="categorySavedSuccess_View" destination="OCA-lT-GRP" id="YcY-Sf-3VU"/>
                         <outlet property="categoryTV" destination="ffH-ho-ZL3" id="wUQ-dq-HAB"/>
+                        <outlet property="categoryTvTopView" destination="bXX-57-fz7" id="dXt-yn-Fxb"/>
+                        <outlet property="editItemsLbl" destination="taX-ke-Lqh" id="tr7-0t-MT9"/>
                         <outlet property="editMenuItemsCV" destination="L7A-Sk-mKf" id="jVT-XR-7uv"/>
+                        <outlet property="editSubtitleLbl" destination="21p-9z-rA7" id="K8C-Bj-Jz1"/>
                         <outlet property="foodTextField" destination="tkf-hM-2Zm" id="Gus-Uc-5zj"/>
+                        <outlet property="itemAvailLabel" destination="DVo-u2-cRV" id="bzG-lL-UK4"/>
+                        <outlet property="itemBfLabel" destination="eqb-u3-UfW" id="6mp-kT-jAm"/>
                         <outlet property="itemCV" destination="dJU-V3-ddj" id="r9k-qg-8lq"/>
+                        <outlet property="itemCategoryLabel" destination="yJr-zf-Cc6" id="GIl-1T-PeT"/>
+                        <outlet property="itemDinLbl" destination="ISo-gk-pfu" id="wRo-SI-GsR"/>
                         <outlet property="itemEditedSuccessfully_View" destination="0QI-Qn-IlX" id="EhC-fg-e8Q"/>
+                        <outlet property="itemLabel" destination="14o-ev-ilj" id="P9D-0Z-pzs"/>
+                        <outlet property="itemLunchLbl" destination="3bc-BT-PoF" id="dJj-eF-D1l"/>
                         <outlet property="itemNameTextField" destination="36F-Ne-hzq" id="JS4-cE-wcC"/>
+                        <outlet property="itemOptionsLbl" destination="kKT-Sr-EVq" id="0x4-iX-6A3"/>
                         <outlet property="itemPriceTextField" destination="Bhh-9G-EtA" id="Hoc-4d-Zh6"/>
                         <outlet property="itemSavedSuccess_View" destination="ibW-yM-Xqy" id="sDM-uy-W3i"/>
                         <outlet property="itemTV" destination="ynY-Uh-gtp" id="WHf-pj-Kcr"/>
+                        <outlet property="itemTvTopView" destination="irq-ex-yOE" id="r2Y-DP-bYD"/>
                         <outlet property="mainScrollview" destination="xpv-Fc-HCs" id="Ofp-mw-UY7"/>
                         <outlet property="menuManagementButton" destination="F6P-im-wau" id="I4G-JU-csQ"/>
                         <outlet property="plusSignCategoryImageView" destination="jNX-7p-Bqe" id="dxX-EW-FLf"/>

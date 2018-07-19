@@ -111,6 +111,11 @@ class WelcomeVC: UIViewController {
         self.present(viewController, animated: true, completion: nil)
     }
     
+    @IBAction func loginButton_Pressed(_ sender: Any) {
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC-ID") as! LoginVC
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
     // MARK: - LOGIN
     
     func loginAPI() { 

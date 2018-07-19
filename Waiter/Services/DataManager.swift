@@ -110,4 +110,91 @@ class DataManager: NSObject {
             completion(catName)
         }
     }
+    
+//    func getItemList(order: String,completion: @escaping ([CategoryItems]) -> Void) {
+//        self.ref.child("Restaurants").child(RESTAURANT_UID).child("Menu").child("Availability").child("Categories").child("Items").observe(.value) { (snapshot) in
+//
+//            let response = snapshot.value as? [String: Any] ?? [:]
+//
+//            var arrItems = [Item] ()
+//
+//            for data in response {
+//
+//                let item = Item()
+//
+//                self.getItemDetail(key: data.key, completion: { (name) in
+//
+////                    Item.uid = data.key
+////                    Item.title = name
+//                    //Item.price = pric
+//
+//                    if let item_dict = data.value as? [String:Any] {
+//
+//                        for items in item_dict {
+//
+//                            if let itemobj = items.value as? [String:Any] {
+//
+//                                var arrDetail = [Item]()
+//
+//                                for item in itemobj {
+//
+//                                    if let itemDetail = item.value as? [String:Any] {
+//
+//                                        if let Detail = itemDetail["ItemDetails"] as? [String:Any] {
+//
+//                                            let ItemDetail = Item()
+//                                            ItemDetail.uid = item.key
+//                                            if let img_url = Detail["itemImageURL"] as? String {
+//
+//                                                ItemDetail.imageURL = img_url
+//
+//                                            }
+//                                            if let name = Detail["itemName"] as? String {
+//
+//                                                ItemDetail.title = name
+//
+//                                            }
+//
+//                                            if let price = Detail["itemPrice"] as? String {
+//
+//                                                ItemDetail.price = price
+//
+//                                            }
+//                                            arrDetail.append(ItemDetail)
+//                                        }
+//                                    }
+//                                }
+//                                Item.itemList[] = arrDetail
+//                            }
+//                        }
+//                    }
+//
+//                    arrItems.append(Item)
+//
+//                    if arrItems.count == response.count {
+//
+//                        completion(arrItems)
+//                    }
+//                })
+//            }
+//        }
+//    }
+//
+//    func getItemDetail(key:String,completion: @escaping(String) -> Void) {
+//
+//        var itemName = ""
+//        var itemPrice = ""
+//        self.ref.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(FIR_ITEMS).child(key).observe(.value) { (snapshot) in
+//
+//            let response = snapshot.value as? String
+//
+//            if let item = response {
+//
+//                itemName = item
+//            }
+//
+//            completion(itemName)
+//        }
+//    }
+
 }

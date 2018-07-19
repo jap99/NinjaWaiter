@@ -11,6 +11,7 @@
 		9F0228CC20D25C4F00550DAD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0228CB20D25C4F00550DAD /* Category.swift */; };
 		9F0228CE20D25C7600550DAD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0228CD20D25C7600550DAD /* Item.swift */; };
 		9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F05893C20D4B842001C176D /* RoundedButton.swift */; };
+		9F0D29F9210022DE0018700F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F0D29F8210022DE0018700F /* GoogleService-Info.plist */; };
 		9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825920CFCD1700CFE4B1 /* CreateItem.xib */; };
 		9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */; };
 		9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */; };
@@ -57,7 +58,6 @@
 		9FEA847720B630AB00C6DEE1 /* CreateRestaurantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */; };
 		9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */; };
 		9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEDA94620CBD55A00201775 /* PrinterVC.swift */; };
-		9FEEFDC620C8E3A900119A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FEEFDC520C8E3A900119A35 /* GoogleService-Info.plist */; };
 		9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDC720C8E51600119A35 /* Constants.swift */; };
 		9FEEFDCA20C8E5F100119A35 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDC920C8E5F000119A35 /* DataService.swift */; };
 		9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEEFDCC20C8EABF00119A35 /* AuthServices.swift */; };
@@ -78,6 +78,7 @@
 		9F0228CB20D25C4F00550DAD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9F0228CD20D25C7600550DAD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9F05893C20D4B842001C176D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		9F0D29F8210022DE0018700F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F16825920CFCD1700CFE4B1 /* CreateItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateItem.xib; sourceTree = "<group>"; };
 		9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItem.swift; sourceTree = "<group>"; };
 		9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionsView.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		9FEA847620B630AB00C6DEE1 /* CreateRestaurantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateRestaurantView.xib; sourceTree = "<group>"; };
 		9FEA847820B630BB00C6DEE1 /* CreateRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRestaurantView.swift; sourceTree = "<group>"; };
 		9FEDA94620CBD55A00201775 /* PrinterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterVC.swift; sourceTree = "<group>"; };
-		9FEEFDC520C8E3A900119A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FEEFDC720C8E51600119A35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9FEEFDC920C8E5F000119A35 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		9FEEFDCC20C8EABF00119A35 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
@@ -301,8 +301,8 @@
 			children = (
 				9F4F8A6820DC060F0071E06E /* waiter.gif */,
 				9F8EABE620AC74A50027EDFB /* AppDelegate.swift */,
-				9FEEFDC520C8E3A900119A35 /* GoogleService-Info.plist */,
 				9F8EABEA20AC74A50027EDFB /* Main.storyboard */,
+				9F0D29F8210022DE0018700F /* GoogleService-Info.plist */,
 				9F8EABF020AC74A60027EDFB /* Assets.xcassets */,
 				9FEA847220B544B700C6DEE1 /* ordered-animation.gif */,
 				9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */,
@@ -436,11 +436,11 @@
 				9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */,
 				9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */,
 				9F16826020CFD47B00CFE4B1 /* ItemOptionsView.xib in Resources */,
+				9F0D29F9210022DE0018700F /* GoogleService-Info.plist in Resources */,
 				9FEA847720B630AB00C6DEE1 /* CreateRestaurantView.xib in Resources */,
 				9FEA846220B52CE700C6DEE1 /* AddItemView.xib in Resources */,
 				9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */,
 				9F4F8A6920DC060F0071E06E /* waiter.gif in Resources */,
-				9FEEFDC620C8E3A900119A35 /* GoogleService-Info.plist in Resources */,
 				9F7A64DA20E74AFB006BF525 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,7 +707,10 @@
 				DEVELOPMENT_TEAM = VWFZU9229C;
 				INFOPLIST_FILE = Waiter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleandev.Waiter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee8a1d18-6bdf-40c6-b7c3-d2ecd82b6f29";
@@ -727,7 +730,10 @@
 				DEVELOPMENT_TEAM = VWFZU9229C;
 				INFOPLIST_FILE = Waiter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cleandev.Waiter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ff3e62b7-670e-490c-8e83-a71c10176826";

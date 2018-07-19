@@ -21,6 +21,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var addStaffButton: UIButton!
     @IBOutlet weak var staffSavedSuccessful_View: UIView!
     
+    @IBOutlet weak var restaurantNameLabel: UILabel!
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var plusSignImage: UIImageView!
+    @IBOutlet weak var tvTopView: UIView!
+    
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
@@ -61,15 +67,17 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         
         tv.delegate = self; tv.dataSource = self
-        
+        print(UIScreen.main.bounds.width)
        // hideKeyboardWhenTappedAround()
-        
+        if UIScreen.main.bounds.width > 900 { // setup constraints for small sized iPad // 1024px is for 9.7 inches
+            tvTopView.translatesAutoresizingMaskIntoConstraints = false
+            tv.translatesAutoresizingMaskIntoConstraints = false 
+        }
         settingsButton.isUserInteractionEnabled = false
         
-        setup()
+        setupColors()
         
-        self.updateStaffTv()
-        
+        self.updateStaffTv() 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,7 +97,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - SETUP
     
-    func setup() {
+    func setupColors() {
         waiterGif.loadGif(name: "waiter")
         startingTextField.layer.borderColor = UIColor.lightGray.cgColor
         startingTextField.layer.borderWidth = 1.0
@@ -129,11 +137,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         addStaffView.layer.cornerRadius = 10
         addStaffView.layer.borderWidth = 0.5
         addStaffView.layer.borderColor = UIColor.lightGray.cgColor
-        
     }
-    
-    
-    
     
     
     func setupObjectsWithData() {

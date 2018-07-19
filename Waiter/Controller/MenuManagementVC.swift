@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseStorage
+import Firebase
 import DropDown
 
 
@@ -15,7 +16,22 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var isFromSave = false
     
-    // NAVIGATION BAR BUTTONS
+    @IBOutlet weak var addLabel: UIView!
+    @IBOutlet weak var itemCategoryLabel: UILabel!
+    @IBOutlet weak var addCategoryLabel: UILabel!
+    @IBOutlet weak var categoryTvTopView: UIView!
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var addItemImageLabel: UILabel!
+    @IBOutlet weak var itemTvTopView: UIView!
+    @IBOutlet weak var itemAvailLabel: UILabel!
+    @IBOutlet weak var itemBfLabel: UILabel!
+    @IBOutlet weak var itemLunchLbl: UILabel!
+    @IBOutlet weak var itemDinLbl: UILabel!
+    @IBOutlet weak var itemOptionsLbl: UILabel!
+    @IBOutlet weak var editItemsLbl: UILabel!
+    @IBOutlet weak var editSubtitleLbl: UILabel!
+    
+    // NAVIGATION BAR BUTTONSe
     
     @IBOutlet weak var menuManagementButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -31,6 +47,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet weak var addCategoryButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
+    
+    // GET ITEMS
+    
+    private var dbRef: DatabaseReference!
+    private var itemRef: DatabaseReference!
     
     // TABLE VIEWS
     
@@ -97,9 +118,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         getCategories()
         setupVC()
         
-        
-        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            
+        dropDown.selectionAction = { [unowned self] (index: Int, categoryName: String) in
+            self.getCategoryItems(categoryName: categoryName)
         }
         
     }
@@ -229,6 +249,35 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+  
+    var items: [[String: AnyObject]] = []
+    func getCategoryItems(categoryName: String) {
+        
+        for x in self.categories {
+            
+            if x.name == categoryName {
+                
+                let categoryUID = x.uid
+                DataService.instance.getCategoryItems(categoryUID: categoryUID!) { (dict, error) in
+                    if let dict = dict {
+                        
+                        for item in dict {
+                            
+                            if let itemDict = (item.value as? [String: AnyObject]) {
+                                let itemUID = item.key
+                                let itemName = itemDict["itemDetails"]!["itemName"] as! String
+                                let itemPrice = itemDict["itemDetails"]!["itemPrice"] as! String
+                                self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                                self.editMenuItemsCV.reloadData()                            }
+                        }
+                    }
+                }
+            }
+        }
+ 
+
+    }
+    
     // ADD / EDIT MENU ITEMS
     
     @IBAction func allButton_Pressed(_ sender: Any) {
@@ -253,13 +302,15 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             guard let error = error else {
                 
                 if let c = categories {
+                    
                     self.categories = c
+                    
                     var categoryList = [String]()
                     
-                    categoryList.append("By Categoires")
                     for category in self.categories {
                         categoryList.append(category.name)
                     }
+                    
                     self.dropDown.dataSource = categoryList
                     self.categoryTV.reloadData()
                     self.itemTV.reloadData()
@@ -275,9 +326,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         if let categoryName = foodTextField.text, categoryName.count > 0 {
             
             DataService.instance.saveCategory(categoryName: categoryName) { (success) in
-                
                 if success {
-                    
                     self.foodTextField.text = ""
                     self.addCategoryView.isHidden = true
                     self.categorySavedSuccess_View.isHidden = false
@@ -287,7 +336,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     })
                 }
             }
-            
         } else {
             showError_CategoryAddFailed()
         }
@@ -406,44 +454,48 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     // MARK: - COLLECTION VIEW
-    
+  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         if collectionView == itemCV {
             return 6
         } else if collectionView == editMenuItemsCV {
-            return 0
+            return items.count
         } else {
             return 0
         }
+        
     }
-    
+
     // cell for
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == itemCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
-            
+
             cell.configureCell(indexPath: indexPath)
             cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
             
+
             return cell
         } else if collectionView == editMenuItemsCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
             
-            
-            
+            cell.foodImageView.image = items[indexPath.item]["itemImageURL"] as? String != nil ? UIImage(data: try! Data(contentsOf: (URL(string: items[indexPath.item]["itemImageURL"] as? String ?? ""))!)) :  #imageLiteral(resourceName: "Rectangle 4")
+            cell.foodNameLabel.text = items[indexPath.row]["itemName"] as? String
             return cell
         } else {
             return UICollectionViewCell()
         }
     }
-    
+
     // did select
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == itemCV {
-            
+
             // show ItemOptionsView.xib
             _ = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
         } else {
+
             
         }
     }

@@ -35,6 +35,8 @@ class DataService {
         return mainStorageRef.child("images")
     }
     
+    var itemImageUrlString: String?     // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
+    
     // SAVE RESTAURANT & ADMIN - TO RESTAURANT NODE & SETTINGS
     
     func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
@@ -161,7 +163,7 @@ class DataService {
                 print(error.localizedDescription)
                 
             } else {
-                  self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
+                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
                     
                     if let error = error {
                         print("BREAKFAST - ERROR REMOVING CATEGORY: \(error.localizedDescription)")
@@ -189,7 +191,7 @@ class DataService {
             }
         }
         
-       
+        
     }
     
     // SAVE CATEGORY - TO RESTAURANT NODE
@@ -241,21 +243,20 @@ class DataService {
         }
     }
     
-   var itemImageUrlString: String?     // SAVE ITEM - TO ITEMS NODE & AVAILABILITY NODE
-    
-    
+    // SAVE ITEM - #1
     
     func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
+        
         let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
         
         if let itemImage = itemImage {
-            if let imageData = UIImageJPEGRepresentation(itemImage, 0.5) {
+            if let imageData = UIImageJPEGRepresentation(itemImage, 0.4) {
                 let imageName = NSUUID().uuidString
                 let storageRef = imagesStorageRef.child("\(imageName).jpeg")
                 
                 storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                     
-                    if let error = error {
+                    if let _ = error {
                         return
                     }
                     
@@ -292,11 +293,13 @@ class DataService {
         }
     }
     
+    // SAVE ITEM - #2
     
     func saveData(itemUID: String, item: Dictionary<String, AnyObject>, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
+        
         self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
             
-            if let error = error {
+            if let _ = error {
                 completion(false)
             } else {
                 
@@ -304,32 +307,60 @@ class DataService {
                     "itemDetails": item["itemDetails"] as AnyObject
                 ]
                 
-                let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
-                let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
-                let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
+                let categoryUIDs = categoryDictOfArray.keys
                 
-                var arrBreakFast: [String: Any]
-                var arrlunch: [String: Any]
-                var arrDinner: [String: Any]
-                
-                if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
-                    arrBreakFast = [itemUID: itemDetailsNode]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrBreakFast)
+                for category in categoryUIDs {
+                    print(category)
+                      self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(category).child(itemUID).updateChildValues(itemDetailsNode) { (error, ref) in
+                        
+                        if let error = error {
+                            print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
+                            completion(false)
+                            
+                        } else {
+                            
+                            let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
+                            let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
+                            let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
+                            
+                            var arrBreakFast: [String: Any]
+                            var arrlunch: [String: Any]
+                            var arrDinner: [String: Any]
+                            
+                            if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
+                                arrBreakFast = [itemUID: itemDetailsNode]
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_BREAKFAST).child(FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrBreakFast)
+                            }
+                            if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
+                                arrlunch = [itemUID: itemDetailsNode]
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_LUNCH).child(FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrlunch)
+                            }
+                            if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
+                                arrDinner = [itemUID: itemDetailsNode]
+                                self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_DINNER).child(FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrDinner)
+                            }
+                            completion(true)
+                        }
+                    }
                 }
-                if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
-                    arrlunch = [itemUID: itemDetailsNode]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_LUNCH).child(FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrlunch)
-                }
-                if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
-                    arrDinner = [itemUID: itemDetailsNode]
-                    self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).child(FIR_DINNER).child(FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(FIR_ITEMS).updateChildValues(arrDinner)
-                }
-                
-                completion(true)
             }
         }
     }
-    // SAVE TABLE NUMBERS - TO SETTINGS
+    
+    func getCategoryItems(categoryUID: String, callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) {
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(categoryUID).observe(.value) { (snapshot) in
+            
+            if !snapshot.exists() {
+                callback?(nil, nil)
+                return
+            } else {
+                
+                callback?((snapshot.value as! [String : AnyObject]), nil)
+            }
+        }
+    }
+    
+    // SAVE TABLE NUMBERS
     
     func saveNumberOfTables(tableStartNumber: String, tableEndNumber: String) {
         
@@ -341,7 +372,7 @@ class DataService {
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(data)
     }
     
-    // SAVE TAXES & DISCOUNT SETTINGS - TO SETTINGS
+    // SAVE TAXES & DISCOUNTS
     
     func saveTaxesAndDiscounts(settings: [String: AnyObject]) {
         
@@ -353,8 +384,6 @@ class DataService {
     func getSettingsData(callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) { // Includes table numbers
         
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).observe(.value) { (snapshot) in
-            
-            print(snapshot.value!)
             
             if !snapshot.exists() {
                 callback?(nil, nil)
@@ -376,10 +405,8 @@ class DataService {
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 
                 let availability = Availability(dict:snapshot)
-                print(availability)
                 Singleton.sharedInstance.availabilityData = [availability]
             }
-            
         }
     }
     
@@ -387,9 +414,10 @@ class DataService {
     
     func saveItemOption(itemUID: String, completion: @escaping (Bool) -> ()) {
         
-//        let itemOptionUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child().childByAutoId().key
-//
-//        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).update
+ //       mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(category).child(itemUID).
+        //        let itemOptionUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child().childByAutoId().key
+        //
+        //        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).update
     }
     
     

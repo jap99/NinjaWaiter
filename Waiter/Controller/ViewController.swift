@@ -313,7 +313,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tax2 = taxAbleAmount * tax2Percentage/100
         
         total = subTotal - discount + serviceTax + tax1 + tax2
-        //"\(subTotal)"
         subtotalLabel_Right.text = self.setround2Decimal(str: subTotal)
         discountLabel_Right.text = "-\(self.setround2Decimal(str: discount))"
         serviceChargeLabel_Right.text = "+\(self.setround2Decimal(str: serviceTax))"

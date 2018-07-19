@@ -16,6 +16,8 @@ class Item {
     var price: String!
     var imageURL: String?
     
+    var itemList: [Item] = [Item]()
+    
     // an item belongs to a category
     
     // an item can have multiple subitems (optional)

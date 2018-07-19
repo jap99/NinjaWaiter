@@ -10,5 +10,24 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "MenuManagementVC.collectionView(_:cellForItemAt:):MenuManagementVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "items[indexPath.item][&quot;itemImageURL&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "items[indexPath.item][&quot;itemImageURL&quot;] as? String">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MenuManagementVC.getCategoryItems(categoryName:):MenuManagementVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.items">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

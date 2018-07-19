@@ -44,7 +44,7 @@ class Category {
         var arrCategory: [Category] = []
         if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
             for snap in snapshot {
-                let categoryUID = snap.key
+                let categoryUID = snap.key 
                 let categoryName = snap.value as! String
                 let category = Category(uid: categoryUID, name: categoryName)
                 arrCategory.append(category)
