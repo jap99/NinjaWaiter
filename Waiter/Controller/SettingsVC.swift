@@ -25,6 +25,22 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var plusSignImage: UIImageView!
     @IBOutlet weak var tvTopView: UIView!
+    @IBOutlet weak var navBarView: UIView!
+    @IBOutlet weak var lineView1: UIView!
+    @IBOutlet weak var generalLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var serviceChargeLabel: UILabel!
+    @IBOutlet weak var taxLabel: UILabel!
+    @IBOutlet weak var tax2Label: UILabel!
+    @IBOutlet weak var leaveEmptyLabel: UILabel!
+    @IBOutlet weak var tableNumbersView: UIView!
+    @IBOutlet weak var printerLabel: UILabel!
+    @IBOutlet weak var printerDescLabel: UILabel!
+    @IBOutlet weak var cashierLabel: UILabel!
+    @IBOutlet weak var kitchenLabel: UILabel!
+    @IBOutlet weak var barLabel: UILabel!
+    @IBOutlet weak var printersStackView: UIStackView!
+    @IBOutlet weak var printerSaveButton: RoundedButton!
     
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -70,8 +86,59 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print(UIScreen.main.bounds.width)
        // hideKeyboardWhenTappedAround()
         if UIScreen.main.bounds.width > 900 { // setup constraints for small sized iPad // 1024px is for 9.7 inches
+            self.view.autoresizesSubviews = false
             tvTopView.translatesAutoresizingMaskIntoConstraints = false
-            tv.translatesAutoresizingMaskIntoConstraints = false 
+            tv.translatesAutoresizingMaskIntoConstraints = false
+            restaurantNameLabel.translatesAutoresizingMaskIntoConstraints = false
+            userLabel.translatesAutoresizingMaskIntoConstraints = false
+            navBarView.translatesAutoresizingMaskIntoConstraints = false
+            addStaffButton.translatesAutoresizingMaskIntoConstraints = false
+            plusSignImage.translatesAutoresizingMaskIntoConstraints = false
+            lineView1.translatesAutoresizingMaskIntoConstraints = false
+            
+            let vertical_views_setTwo: [String: UIView] = ["printerDescrL": printerDescLabel, ]
+            
+            let navBar: [String: UIView] = ["navBar": navBarView]
+            
+            let horizontal_generalLabels: [String: UIView] = ["discountL": discountLabel, "serviceChargeL": serviceChargeLabel, "tax1L": taxLabel, "tax2L": tax2Label
+            ]
+            
+            let horizontal_generalTextFields: [String: UIView] = ["discountT": discountTextField, "serviceT": serviceChargeTextField, "taxName1": taxName1TextField, "taxPer1": taxPercentage1TextField, "taxName2": taxName2TextField, "taxPer2": taxPercentage2TextField
+            ]
+            
+            
+             let vertical_views_setOne: [String: UIView] = ["navBar": navBarView, "resName": restaurantNameLabel, "userLabel": userLabel, "addStaffButton": addStaffButton, "tv": tv, "lineView": lineView1, "generalL": generalLabel, "discountL": discountLabel, "discountT": discountTextField, "generalSaveB": saveButton, "tableNumView": tableNumbersView, "printerL": printerLabel, "printerStackView": printersStackView, "printerSaveB": printerSaveButton]
+            
+            NSLayoutConstraint.activate([
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[navBar]-100-[resName]-75-[userLabel]-30-[addStaffButton]-222-[lineView]-111-[generalL]-50-[discountL]-30-[discountT]-30-[generalSaveB]-60-[tableNumView]-60-[printerL]-40-[printerStackView]-20-[printerSaveB]-20-|", options: [], metrics: nil, views: vertical_views_setOne)
+//
+//                    tvTopView.leadingAnchor.constraint(equalTo: addStaffButton.trailingAnchor, constant: 30),
+//                    tvTopView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
+//
+//                    tv.leadingAnchor.constraint(equalTo: tvTopView.leadingAnchor),
+//                    tv.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
+//                 //   tv.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.37),
+//
+//                    restaurantNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
+//                    restaurantNameLabel.topAnchor.constraint(equalTo: navBarView.bottomAnchor, constant: 40),
+//
+//                    navBarView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40),
+//
+//                    userLabel.leadingAnchor.constraint(equalTo: restaurantNameLabel.leadingAnchor),
+//                    userLabel.topAnchor.constraint(equalTo: restaurantNameLabel.bottomAnchor, constant: 50),
+//
+//                    addStaffButton.leadingAnchor.constraint(equalTo: restaurantNameLabel.leadingAnchor),
+//                //    NSLayoutConstraint.constraints(withVisualFormat: "H:|-30-[addStaffButton(200)]-30-[tv]-30-|", options: [], metrics: nil, views: verticalViews)
+//
+//                    plusSignImage.topAnchor.constraint(equalTo: addStaffButton.topAnchor, constant: -129),
+//                    plusSignImage.leadingAnchor.constraint(equalTo: addStaffButton.leadingAnchor),
+//                    plusSignImage.trailingAnchor.constraint(equalTo: addStaffButton.trailingAnchor),
+//
+//                    lineView1.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
+//                    lineView1.trailingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
+//                    lineView1.topAnchor.constraint(equalTo: addStaffButton.bottomAnchor, constant: 177)
+
+            ].flatMap{$0})
         }
         settingsButton.isUserInteractionEnabled = false
         

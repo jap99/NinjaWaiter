@@ -1481,7 +1481,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLM-De-hFu" userLabel="lineView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLM-De-hFu" userLabel="lineView1">
                                                 <rect key="frame" x="100" y="758" width="1166" height="1"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1520,7 +1520,7 @@
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9sA-q7-PQZ">
                                                 <rect key="frame" x="394" y="386" width="872" height="350"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.56078431370000004" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="350" id="PIj-BA-vkW"/>
                                                 </constraints>
@@ -2254,30 +2254,46 @@
                         <outlet property="addStaffButton" destination="iGq-Ln-eBI" id="cMK-xS-KMZ"/>
                         <outlet property="addStaffView" destination="Xhk-bV-AfP" id="vfU-LZ-Fup"/>
                         <outlet property="backButton" destination="jWK-XH-Je4" id="LaR-hJ-2RE"/>
+                        <outlet property="barLabel" destination="83B-HA-0Mn" id="nqT-qT-m0P"/>
                         <outlet property="barPrinterTextField" destination="NES-gB-znj" id="gL4-LD-Fki"/>
                         <outlet property="cancelButton" destination="RJ3-YZ-ePq" id="GNE-BV-QCn"/>
+                        <outlet property="cashierLabel" destination="wgC-NG-35o" id="3Kf-WB-l4f"/>
                         <outlet property="cashierPrinterTextField" destination="fId-md-ojg" id="J0D-ES-OI7"/>
                         <outlet property="createButton" destination="6pZ-KF-AOm" id="mSx-ky-xBA"/>
+                        <outlet property="discountLabel" destination="S99-8O-7C0" id="J3R-YF-NyH"/>
                         <outlet property="discountTextField" destination="jDp-yn-z0b" id="bUb-Ek-7P6"/>
                         <outlet property="emailTextField" destination="DQz-dF-c5O" id="C6M-Hp-9oa"/>
                         <outlet property="endingTextField" destination="LHd-ox-tfM" id="UK1-hM-TGJ"/>
+                        <outlet property="generalLabel" destination="nvh-dn-J83" id="la2-6s-mf3"/>
+                        <outlet property="kitchenLabel" destination="kTy-Jm-Naa" id="nlB-Cu-DpM"/>
                         <outlet property="kitchenPrinterTextField" destination="oxp-hg-Zgj" id="2dF-MA-70I"/>
+                        <outlet property="leaveEmptyLabel" destination="ohc-xg-Whk" id="p8Z-xX-ZRn"/>
+                        <outlet property="lineView1" destination="eLM-De-hFu" id="DaW-pL-1hB"/>
                         <outlet property="menuManagementButton" destination="cZM-zT-XN5" id="YnX-ph-TRv"/>
+                        <outlet property="navBarView" destination="oOP-Cl-PTf" id="tbT-gM-HUL"/>
                         <outlet property="passwordTextField" destination="g7F-f6-y2F" id="hnU-EN-iHj"/>
                         <outlet property="plusSignImage" destination="Nd0-bS-FpC" id="40K-Bl-lTL"/>
+                        <outlet property="printerDescLabel" destination="JzD-0W-Oma" id="hog-6Q-rN5"/>
+                        <outlet property="printerLabel" destination="0E6-it-kmS" id="4cO-Vj-Ohf"/>
+                        <outlet property="printerSaveButton" destination="hVB-NM-Bcx" id="USO-wd-0T3"/>
+                        <outlet property="printersStackView" destination="0h6-cK-dFG" id="xev-rl-wlt"/>
                         <outlet property="restaurantNameLabel" destination="ds8-A6-FIO" id="6lN-Uh-6lV"/>
                         <outlet property="saveButton" destination="byF-Jr-nvg" id="bur-PW-guL"/>
+                        <outlet property="serviceChargeLabel" destination="fOE-XY-W9s" id="hUy-Ei-S1N"/>
                         <outlet property="serviceChargeTextField" destination="QFy-WY-1AE" id="Q1s-Ug-NT3"/>
                         <outlet property="settingsButton" destination="55v-8q-Bts" id="MXf-NN-ZOL"/>
                         <outlet property="staffSavedSuccessful_View" destination="yEr-QQ-2R2" id="2Pm-U0-bCc"/>
                         <outlet property="startingTextField" destination="1KK-ag-z9f" id="9dC-Sb-gc6"/>
+                        <outlet property="tableNumbersView" destination="tjX-g9-Cth" id="agN-as-0Ws"/>
+                        <outlet property="tax2Label" destination="y2j-eY-0jV" id="Vqx-Be-r6k"/>
+                        <outlet property="taxLabel" destination="Mkr-Na-7j9" id="AEk-Pj-a7F"/>
                         <outlet property="taxName1TextField" destination="C5Z-Vg-l6T" id="61j-mb-zf0"/>
                         <outlet property="taxName2TextField" destination="Bjl-TB-h9c" id="Ixv-cg-Ixw"/>
                         <outlet property="taxPercentage1TextField" destination="rmj-8H-3O9" id="kWe-SM-loc"/>
                         <outlet property="taxPercentage2TextField" destination="qXW-c4-Uo4" id="bYN-Bq-nnv"/>
                         <outlet property="threeOutoTenLabel" destination="VP7-zE-seH" id="wdw-b3-zP4"/>
                         <outlet property="tv" destination="9sA-q7-PQZ" id="Iy1-vb-4oJ"/>
-                        <outlet property="tvTopView" destination="i8f-Cd-5mz" id="JB9-Y6-nMb"/>
+                        <outlet property="tvTopView" destination="oOP-Cl-PTf" id="6Bc-wE-7IC"/>
                         <outlet property="userLabel" destination="Ppe-7u-Eyy" id="Hxu-w4-kBA"/>
                         <outlet property="waiterGif" destination="yGK-Ps-v6v" id="AW3-0h-9km"/>
                     </connections>
