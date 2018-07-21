@@ -2252,6 +2252,7 @@
                     <size key="freeformSize" width="1366" height="2200"/>
                     <connections>
                         <outlet property="addStaffButton" destination="iGq-Ln-eBI" id="cMK-xS-KMZ"/>
+                        <outlet property="addStaffLabel" destination="S4m-g1-QaN" id="Fos-3G-0TD"/>
                         <outlet property="addStaffView" destination="Xhk-bV-AfP" id="vfU-LZ-Fup"/>
                         <outlet property="backButton" destination="jWK-XH-Je4" id="LaR-hJ-2RE"/>
                         <outlet property="barLabel" destination="83B-HA-0Mn" id="nqT-qT-m0P"/>
@@ -2279,6 +2280,8 @@
                         <outlet property="printersStackView" destination="0h6-cK-dFG" id="xev-rl-wlt"/>
                         <outlet property="restaurantNameLabel" destination="ds8-A6-FIO" id="6lN-Uh-6lV"/>
                         <outlet property="saveButton" destination="byF-Jr-nvg" id="bur-PW-guL"/>
+                        <outlet property="scrollSubview" destination="Xgn-5I-GoG" id="yIh-e7-pci"/>
+                        <outlet property="scrollView" destination="QM2-nJ-auo" id="Iiy-Q3-TLW"/>
                         <outlet property="serviceChargeLabel" destination="fOE-XY-W9s" id="hUy-Ei-S1N"/>
                         <outlet property="serviceChargeTextField" destination="QFy-WY-1AE" id="Q1s-Ug-NT3"/>
                         <outlet property="settingsButton" destination="55v-8q-Bts" id="MXf-NN-ZOL"/>
@@ -2293,7 +2296,7 @@
                         <outlet property="taxPercentage2TextField" destination="qXW-c4-Uo4" id="bYN-Bq-nnv"/>
                         <outlet property="threeOutoTenLabel" destination="VP7-zE-seH" id="wdw-b3-zP4"/>
                         <outlet property="tv" destination="9sA-q7-PQZ" id="Iy1-vb-4oJ"/>
-                        <outlet property="tvTopView" destination="oOP-Cl-PTf" id="6Bc-wE-7IC"/>
+                        <outlet property="tvTopView" destination="i8f-Cd-5mz" id="CCi-2z-MQ7"/>
                         <outlet property="userLabel" destination="Ppe-7u-Eyy" id="Hxu-w4-kBA"/>
                         <outlet property="waiterGif" destination="yGK-Ps-v6v" id="AW3-0h-9km"/>
                     </connections>
