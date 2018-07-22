@@ -348,14 +348,28 @@ class DataService {
     }
     
     func getCategoryItems(categoryUID: String, callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) {
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(categoryUID).observe(.value) { (snapshot) in
-            
-            if !snapshot.exists() {
-                callback?(nil, nil)
-                return
-            } else {
+       
+        if categoryUID != "" {
+       mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(categoryUID).observe(.value) { (snapshot) in
                 
-                callback?((snapshot.value as! [String : AnyObject]), nil)
+                if !snapshot.exists() {
+                    callback?(nil, nil)
+                    return
+                } else {
+                    print(snapshot.value as! AnyObject)
+                    callback?((snapshot.value as! [String : AnyObject]), nil)
+                }
+            }
+        } else {
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").observe(.value) { (snapshot) in
+                
+                if !snapshot.exists() {
+                    callback?(nil, nil)
+                    return
+                } else {
+                    print(snapshot.value as! AnyObject)
+                    callback?((snapshot.value as! [String : AnyObject]), nil)
+                }
             }
         }
     }

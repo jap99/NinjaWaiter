@@ -51,8 +51,8 @@ let ADD_CATEGORY_CELL = "AddCategoryCell"
 let ADD_ITEM_CELL = "AddItemCell"
 
 // PATHS
-let databaseKey = "https://waiter-d1f30.firebaseio.com/"
-let storageKey = "gs://waiter-d1f30.appspot.com/"
+let databaseKey = "https://waiter-9249e.firebaseio.com/"
+let storageKey = "gs://waiter-9249e.appspot.com/"
 
 // COLORS
 

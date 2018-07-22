@@ -122,6 +122,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         setupInterfaceIfSmallDevice()
         getCategories()
         setupVC()
+
+        self.getCategoryItems(categoryName: "All")
         
         dropDown.selectionAction = { [unowned self] (index: Int, categoryName: String) in
             self.filterCategoryLabel.text = categoryName
@@ -292,29 +294,37 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var items: [[String: AnyObject]] = []
     func getCategoryItems(categoryName: String) {
         
-        for x in self.categories {
-            
+        var categoryUID = ""
+        CATLOOP: for x in self.categories {
             if x.name == categoryName {
-                
-                let categoryUID = x.uid
-                DataService.instance.getCategoryItems(categoryUID: categoryUID!) { (dict, error) in
-                    if let dict = dict {
-                        
-                        for item in dict {
-                            
-                            if let itemDict = (item.value as? [String: AnyObject]) {
-                                let itemUID = item.key
-                                let itemName = itemDict["itemDetails"]!["itemName"] as! String
-                                let itemPrice = itemDict["itemDetails"]!["itemPrice"] as! String
-                                self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
-                                self.editMenuItemsCV.reloadData()                            }
+                categoryUID = x.uid
+                break CATLOOP
+            }
+        }
+        
+        DataService.instance.getCategoryItems(categoryUID: categoryUID) { (dict, error) in
+            self.items = [[String: AnyObject]]()
+            if let dict = dict {
+                if categoryUID != "" {
+                    for item in dict {
+                        if let itemDict = (item.value as? [String: AnyObject]) {
+                            self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                        }
+                    }
+                } else {
+                    for categories in dict {
+                        if let categoryItems = (categories.value as? [String: AnyObject]) {
+                            for item in categoryItems {
+                                if let itemDict = (item.value as? [String: AnyObject]) {
+                                    self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                                }
+                            }
                         }
                     }
                 }
             }
+            self.editMenuItemsCV.reloadData()
         }
-        
-        
     }
     
     // ADD / EDIT MENU ITEMS
@@ -345,7 +355,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.categories = c
                     
                     var categoryList = [String]()
-                    
+                    categoryList.append("All")
                     for category in self.categories {
                         categoryList.append(category.name)
                     }
