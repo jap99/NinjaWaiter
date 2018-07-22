@@ -19,8 +19,7 @@ class AddItemCell: UITableViewCell {
     @IBOutlet weak var dinnerSwitch: UISwitch!
     
     override func awakeFromNib() {
-
-        configureInterfaceForSmallDevice() 
+        configureInterfaceForSmallDevice()
     }
     
     

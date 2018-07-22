@@ -16,10 +16,10 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var dinnerButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var v1: UIView!
     @IBOutlet weak var v2: UIView!
-    
-    
     
     var staffArray: [StaffMember]?
     
@@ -29,10 +29,14 @@ class DashboardVC: UIViewController {
         v2.layer.cornerRadius = 8
         settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
-  //      fetchCategoryFromServer()
-        
+        if UIScreen.main.bounds.width < 1030 {
+            topLabel.translatesAutoresizingMaskIntoConstraints = false
+            containerView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[l]-60-[v]", options: [], metrics: nil, views: ["l": topLabel, "v":containerView])
+                ].flatMap{$0})
+        }
         if RESTAURANT_UID != nil {
-            
             DataService.instance.getSettingsData { (dict, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -41,8 +45,7 @@ class DashboardVC: UIViewController {
                 }
             }
             DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
-        
-        
+         
         DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { (arrayCategory) in
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
@@ -50,7 +53,6 @@ class DashboardVC: UIViewController {
             }
             _appDel.saveContext()
         }
-        
         DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { (arrayCategory) in
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
@@ -58,7 +60,6 @@ class DashboardVC: UIViewController {
             }
             _appDel.saveContext()
         }
-        
         DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { (arrayCategory) in
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
@@ -68,14 +69,12 @@ class DashboardVC: UIViewController {
         }
 
         }
-
        // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
          
     }
     
     func  fetchCategoryFromServer() { // won't need this in the future
         DispatchQueue.global(qos: .background).async {
-            
             DataService.instance.getCategoriesFromServer { (categories: [Category]?, error) in
                 guard let _ = error else {
                     return
