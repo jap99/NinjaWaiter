@@ -144,13 +144,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let  cellCV1 = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
 
             cellCV1.foodNameLabel.tag = indexPath.row
+            cellCV1.foodNameLabel.removeTarget(self, action: #selector(catClick(sender:)), for: .touchUpInside)
             cellCV1.foodNameLabel.addTarget(self, action: #selector(catClick(sender:)), for: .touchUpInside)
             cellCV1.foodNameLabel.setTitle(arrCategory[indexPath.row].categoryName, for: .normal)
             
             if self.currIndex == indexPath.row {
-                cellCV1.contentView.backgroundColor = .white
+                cellCV1.selectorView.isHidden = false
             } else {
-                cellCV1.contentView.backgroundColor = .clear
+                cellCV1.selectorView.isHidden = true
             }
             
             return cellCV1
@@ -198,14 +199,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // did select item
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == cv1 {
-            
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
-                
-                cell.foodNameLabel.backgroundColor = UIColor.white
-            
-            
-        } else if collectionView == cv2 {
+        if collectionView == cv2 {
             arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
             
             let itemId = arrCategory[currIndex].categoryItemList[indexPath.row].itemId
@@ -237,14 +231,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if collectionView == cv1 {
-            
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionCell", for: indexPath) as! SectionCell
-            
-            cell.foodNameLabel.backgroundColor = UIColor.white
-            
-            
-        } else if collectionView == cv2 {
+        if collectionView == cv2 {
         }
     }
     
@@ -362,10 +349,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func catClick(sender: UIButton) {
-        DispatchQueue.main.async {
-            self.currIndex = sender.tag
-            self.cv2.reloadData()
-        }
+        self.currIndex = sender.tag
+        self.cv1.reloadData()
+        self.cv2.reloadData()
     }
     
     // MARK: - ALERTS

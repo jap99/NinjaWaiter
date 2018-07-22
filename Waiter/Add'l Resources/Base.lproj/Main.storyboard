@@ -458,6 +458,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="189" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMc-Gh-wnW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="189" height="50"/>
+                                                    <subviews>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-SD-QYz">
+                                                            <rect key="frame" x="10" y="8" width="169" height="34"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="295-Yr-IDD">
+                                                            <rect key="frame" x="72" y="36" width="44" height="13"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="44" id="lRT-bQ-YTL"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="295-Yr-IDD" firstAttribute="centerX" secondItem="lMc-Gh-wnW" secondAttribute="centerX" id="94G-53-rgI"/>
+                                                        <constraint firstAttribute="bottom" secondItem="295-Yr-IDD" secondAttribute="bottom" constant="1" id="IhH-tt-m2H"/>
+                                                        <constraint firstItem="eWw-SD-QYz" firstAttribute="leading" secondItem="lMc-Gh-wnW" secondAttribute="leading" constant="10" id="Jjs-Xh-ihr"/>
+                                                        <constraint firstItem="eWw-SD-QYz" firstAttribute="top" secondItem="lMc-Gh-wnW" secondAttribute="top" constant="8" id="W7f-7y-XAQ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="eWw-SD-QYz" secondAttribute="bottom" constant="8" id="dNM-m8-xK8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eWw-SD-QYz" secondAttribute="trailing" constant="10" id="gFP-rg-AwL"/>
+                                                    </constraints>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMO-Il-5Mc">
                                                     <rect key="frame" x="0.0" y="0.0" width="189" height="50"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
@@ -471,10 +495,15 @@
                                             <constraint firstItem="GMO-Il-5Mc" firstAttribute="top" secondItem="gBQ-ky-I2V" secondAttribute="top" id="8Uz-DU-9dK"/>
                                             <constraint firstAttribute="trailing" secondItem="GMO-Il-5Mc" secondAttribute="trailing" id="HNA-gd-l3R"/>
                                             <constraint firstAttribute="bottom" secondItem="GMO-Il-5Mc" secondAttribute="bottom" id="HV3-GS-tkI"/>
+                                            <constraint firstAttribute="trailing" secondItem="lMc-Gh-wnW" secondAttribute="trailing" id="Ozr-B2-hhL"/>
+                                            <constraint firstItem="lMc-Gh-wnW" firstAttribute="top" secondItem="gBQ-ky-I2V" secondAttribute="top" id="Xv9-QL-SWg"/>
+                                            <constraint firstItem="lMc-Gh-wnW" firstAttribute="leading" secondItem="gBQ-ky-I2V" secondAttribute="leading" id="sd6-7T-NjP"/>
                                             <constraint firstItem="GMO-Il-5Mc" firstAttribute="leading" secondItem="gBQ-ky-I2V" secondAttribute="leading" id="xHY-HE-sPy"/>
+                                            <constraint firstAttribute="bottom" secondItem="lMc-Gh-wnW" secondAttribute="bottom" id="z03-Y0-6Ez"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="foodNameLabel" destination="GMO-Il-5Mc" id="fNz-VY-B5T"/>
+                                            <outlet property="selectorView" destination="lMc-Gh-wnW" id="4vg-gS-YbR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

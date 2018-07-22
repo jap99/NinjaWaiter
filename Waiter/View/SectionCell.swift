@@ -12,6 +12,7 @@ import UIKit
 class SectionCell: UICollectionViewCell {
     
     @IBOutlet weak var foodNameLabel: UIButton!
+    @IBOutlet weak var selectorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
