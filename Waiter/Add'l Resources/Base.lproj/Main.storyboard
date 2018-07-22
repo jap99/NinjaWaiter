@@ -3042,8 +3042,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmW-Mv-Eyd">
                                                 <rect key="frame" x="300" y="2242.5" width="190" height="41"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOT-Vl-D57">
-                                                        <rect key="frame" x="30" y="12" width="90.5" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOT-Vl-D57">
+                                                        <rect key="frame" x="10" y="12" width="127.5" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -3055,8 +3055,8 @@
                                                             <constraint firstAttribute="width" constant="16" id="SN5-54-wiU"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNO-of-d27">
-                                                        <rect key="frame" x="0.0" y="0.0" width="122" height="41"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNO-of-d27">
+                                                        <rect key="frame" x="0.0" y="0.0" width="190" height="41"/>
                                                         <connections>
                                                             <action selector="byCategoryButton_Pressed:" destination="bJa-cx-TvK" eventType="touchUpInside" id="7Sb-Mw-qFb"/>
                                                         </connections>
@@ -3065,12 +3065,13 @@
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="KOT-Vl-D57" firstAttribute="centerY" secondItem="kmW-Mv-Eyd" secondAttribute="centerY" id="1B2-fg-RRb"/>
-                                                    <constraint firstItem="D4X-Za-AAc" firstAttribute="leading" secondItem="KOT-Vl-D57" secondAttribute="trailing" constant="27" id="7dZ-Sg-Oqm"/>
-                                                    <constraint firstItem="KOT-Vl-D57" firstAttribute="leading" secondItem="kmW-Mv-Eyd" secondAttribute="leading" constant="30" id="E7K-Zb-UFB"/>
+                                                    <constraint firstItem="D4X-Za-AAc" firstAttribute="leading" secondItem="KOT-Vl-D57" secondAttribute="trailing" constant="10" id="7dZ-Sg-Oqm"/>
+                                                    <constraint firstItem="KOT-Vl-D57" firstAttribute="leading" secondItem="kmW-Mv-Eyd" secondAttribute="leading" constant="10" id="E7K-Zb-UFB"/>
                                                     <constraint firstItem="SNO-of-d27" firstAttribute="height" secondItem="kmW-Mv-Eyd" secondAttribute="height" id="GMk-lr-aCd"/>
                                                     <constraint firstItem="SNO-of-d27" firstAttribute="width" secondItem="kmW-Mv-Eyd" secondAttribute="width" id="IMW-El-CqP"/>
                                                     <constraint firstItem="SNO-of-d27" firstAttribute="centerX" secondItem="kmW-Mv-Eyd" secondAttribute="centerX" id="JTp-jz-lNJ"/>
                                                     <constraint firstItem="SNO-of-d27" firstAttribute="centerY" secondItem="kmW-Mv-Eyd" secondAttribute="centerY" id="a3y-km-5sf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="D4X-Za-AAc" secondAttribute="trailing" constant="26.5" id="aJJ-mW-L4s"/>
                                                     <constraint firstItem="D4X-Za-AAc" firstAttribute="centerY" secondItem="KOT-Vl-D57" secondAttribute="centerY" id="eHh-Xw-kep"/>
                                                 </constraints>
                                             </view>
@@ -3346,6 +3347,7 @@
                         <outlet property="editItemsLbl" destination="taX-ke-Lqh" id="tr7-0t-MT9"/>
                         <outlet property="editMenuItemsCV" destination="L7A-Sk-mKf" id="jVT-XR-7uv"/>
                         <outlet property="editSubtitleLbl" destination="21p-9z-rA7" id="K8C-Bj-Jz1"/>
+                        <outlet property="filterCategoryLabel" destination="KOT-Vl-D57" id="GKN-wq-H1z"/>
                         <outlet property="foodTextField" destination="tkf-hM-2Zm" id="Gus-Uc-5zj"/>
                         <outlet property="itemAvailLabel" destination="DVo-u2-cRV" id="bzG-lL-UK4"/>
                         <outlet property="itemBfLabel" destination="eqb-u3-UfW" id="6mp-kT-jAm"/>

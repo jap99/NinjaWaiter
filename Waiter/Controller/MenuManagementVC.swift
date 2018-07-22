@@ -30,6 +30,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemOptionsLbl: UILabel!
     @IBOutlet weak var editItemsLbl: UILabel!
     @IBOutlet weak var editSubtitleLbl: UILabel!
+    @IBOutlet weak var filterCategoryLabel: UILabel!
     
     // NAVIGATION BAR BUTTONS
     
@@ -107,7 +108,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var textField : UITextField?
     
     let dropDown = DropDown()
-
+    
     
     // V D L
     
@@ -117,38 +118,25 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.addCategoryView.layer.borderColor = UIColor.lightGray.cgColor
         self.addCategoryView.layer.borderWidth = 1.0
         
-        let navBarViews: [String: UIView] = ["navBarView": navBarView, "backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
-        
-        navBarView.translatesAutoresizingMaskIntoConstraints = false
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        menuManagementButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        let itemViews: [String: UIView] = ["tv": itemTvTopView]
-        
-        addImageButton.translatesAutoresizingMaskIntoConstraints = false
-        itemTvTopView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let itemTopViews: [String: UIView] = ["availabilityL": itemAvailLabel, "breakfastL": itemBfLabel, "lunchL": itemLunchLbl, "dinnerL": itemDinLbl]
-        
-        
-        NSLayoutConstraint.activate([
-            
-            NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
-            NSLayoutConstraint.constraints(withVisualFormat: "H:[addCategoryB]-30-[tv]-30-|", options: [], metrics: nil, views: ["tv": categoryTV, "addCategoryB": addCategoryButton]),
-            NSLayoutConstraint.constraints(withVisualFormat: "[tv]-30-|", options: [], metrics: nil, views: itemViews),
-            NSLayoutConstraint.constraints(withVisualFormat: "[availabilityL]-105-[breakfastL]-45-[lunchL]-45-[dinnerL]-30-|", options: [], metrics: nil, views: itemTopViews)
-            ].flatMap{$0})
-        
-       dropDown.anchorView = byCategoryView
-        
+        dropDown.anchorView = byCategoryView
+        setupInterfaceIfSmallDevice()
         getCategories()
         setupVC()
+
+        self.getCategoryItems(categoryName: "All")
         
         dropDown.selectionAction = { [unowned self] (index: Int, categoryName: String) in
+            self.filterCategoryLabel.text = categoryName
             self.getCategoryItems(categoryName: categoryName)
         }
         
+    }
+    
+    // V D L S
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
     }
     
     // V D A
@@ -192,7 +180,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         itemCV.allowsSelection = true
         itemCV.allowsMultipleSelection = false
         
-        
         // create item - section
         itemNameTextField.layer.borderWidth = 1.0
         itemNameTextField.layer.borderColor = UIColor.lightGray.cgColor
@@ -209,6 +196,33 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         hideKeyboardWhenTappedAround()
     }
+    
+    func setupInterfaceIfSmallDevice() {
+        if UIScreen.main.bounds.width < 1030 {
+            let navBarViews: [String: UIView] = ["navBarView": navBarView, "backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
+            
+            navBarView.translatesAutoresizingMaskIntoConstraints = false
+            backButton.translatesAutoresizingMaskIntoConstraints = false
+            settingsButton.translatesAutoresizingMaskIntoConstraints = false
+            menuManagementButton.translatesAutoresizingMaskIntoConstraints = false
+            
+            let itemViews: [String: UIView] = ["tv": itemTvTopView]
+            
+            addImageButton.translatesAutoresizingMaskIntoConstraints = false
+            itemTvTopView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let itemTopViews: [String: UIView] = ["availabilityL": itemAvailLabel, "breakfastL": itemBfLabel, "lunchL": itemLunchLbl, "dinnerL": itemDinLbl]
+            
+            NSLayoutConstraint.activate([
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
+                NSLayoutConstraint.constraints(withVisualFormat: "H:[addCategoryB]-30-[tv]-30-|", options: [], metrics: nil, views: ["tv": categoryTV, "addCategoryB": addCategoryButton]),
+                NSLayoutConstraint.constraints(withVisualFormat: "[tv]-30-|", options: [], metrics: nil, views: itemViews),
+                NSLayoutConstraint.constraints(withVisualFormat: "[availabilityL]-105-[breakfastL]-45-[lunchL]-45-[dinnerL]-30-|", options: [], metrics: nil, views: itemTopViews)
+                ].flatMap{$0})
+        }
+    }
+    
     // MARK: - IBACTIONS
     
     @IBAction func backButton_Pressed(_ sender: Any) {
@@ -248,12 +262,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let dictOfArraysIsNotEmpty: Bool =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
         
-//        let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
-//        let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
-//        let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
-//        print("lunch: \(lunch)")
-//        print("dinner: \(dinner)")
-//        print("breakFast: \(breakFast)")
+        //        let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
+        //        let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
+        //        let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
+        //        print("lunch: \(lunch)")
+        //        print("dinner: \(dinner)")
+        //        print("breakFast: \(breakFast)")
         
         if let name = itemNameTextField.text, let price = itemPriceTextField.text, dictOfArraysIsNotEmpty {
             
@@ -276,33 +290,41 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-  
+    
     var items: [[String: AnyObject]] = []
     func getCategoryItems(categoryName: String) {
         
-        for x in self.categories {
-            
+        var categoryUID = ""
+        CATLOOP: for x in self.categories {
             if x.name == categoryName {
-                
-                let categoryUID = x.uid
-                DataService.instance.getCategoryItems(categoryUID: categoryUID!) { (dict, error) in
-                    if let dict = dict {
-                        
-                        for item in dict {
-                            
-                            if let itemDict = (item.value as? [String: AnyObject]) {
-                                let itemUID = item.key
-                                let itemName = itemDict["itemDetails"]!["itemName"] as! String
-                                let itemPrice = itemDict["itemDetails"]!["itemPrice"] as! String
-                                self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
-                                self.editMenuItemsCV.reloadData()                            }
+                categoryUID = x.uid
+                break CATLOOP
+            }
+        }
+        
+        DataService.instance.getCategoryItems(categoryUID: categoryUID) { (dict, error) in
+            self.items = [[String: AnyObject]]()
+            if let dict = dict {
+                if categoryUID != "" {
+                    for item in dict {
+                        if let itemDict = (item.value as? [String: AnyObject]) {
+                            self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                        }
+                    }
+                } else {
+                    for categories in dict {
+                        if let categoryItems = (categories.value as? [String: AnyObject]) {
+                            for item in categoryItems {
+                                if let itemDict = (item.value as? [String: AnyObject]) {
+                                    self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                                }
+                            }
                         }
                     }
                 }
             }
+            self.editMenuItemsCV.reloadData()
         }
- 
-
     }
     
     // ADD / EDIT MENU ITEMS
@@ -333,7 +355,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.categories = c
                     
                     var categoryList = [String]()
-                    
+                    categoryList.append("All")
                     for category in self.categories {
                         categoryList.append(category.name)
                     }
@@ -481,9 +503,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     // MARK: - COLLECTION VIEW
-  
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+        
         if collectionView == itemCV {
             return 6
         } else if collectionView == editMenuItemsCV {
@@ -493,16 +515,16 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
     }
-
+    
     // cell for
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == itemCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
-
+            
             cell.configureCell(indexPath: indexPath)
             cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
             
-
+            
             return cell
         } else if collectionView == editMenuItemsCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
@@ -514,15 +536,15 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             return UICollectionViewCell()
         }
     }
-
+    
     // did select
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == itemCV {
-
+            
             // show ItemOptionsView.xib
             _ = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
         } else {
-
+            
             
         }
     }
@@ -571,15 +593,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @objc func deleteCategoryFunc(sender: UIButton) {
-        
         DataService.instance.deleteCategory(categoryUID: (self.categories[sender.tag].uid)!) { (success) in
-            
             if success {
-                
                 self.successfullyDeletedCategory_Alert()
-                
             } else {
-                
                 self.errorDeletingCategory_Alert()
             }
         }
@@ -591,9 +608,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         present(ac, animated: true) {
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                
                 ac.dismiss(animated: true, completion: nil)
             })
         }
@@ -604,14 +619,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
         present(ac, animated: true) {
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                
                 ac.dismiss(animated: true, completion: nil)
             })
         }
     }
     
-   
+    
     
 }
