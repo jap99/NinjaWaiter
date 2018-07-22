@@ -341,7 +341,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                                 self.staffSavedSuccessful_View.isHidden = true
                             })
-                            self.updateStaffTv()
+                            self.updateStaffTV()
                             self.successfullyAddedStaff_Alert(user: self.emailTextField.text!)
                         }
                     }
@@ -493,12 +493,13 @@ extension SettingsVC :  WaiterCellProtocol {
     }
     
     func deleteButtonClicked(_ sender: UIButton) {
-        print("Delete account tap\(sender.tag)")  DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+        print("Delete account tap\(sender.tag)")
+        DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             if error == nil {
                 if self.staffArray[sender.tag].uid != "" {
                     let senderIndex = sender.tag
                     self.staffArray.remove(at: senderIndex)
-                    self.updateStaffTv()
+                    self.updateStaffTV()
                     self.tv.reloadData()
                     DispatchQueue.main.async {
                         self.successfullyDeletedStaff_Alert()

@@ -20,6 +20,18 @@ class AddItemCell: UITableViewCell {
     
     
     override func awakeFromNib() {
+        
+        let cellViews: [String: UIView] = ["c": categoryTitle, "bs": breakfastSwitch, "ls": lunchSwitch, "ds": dinnerSwitch]
+        categoryTitle.translatesAutoresizingMaskIntoConstraints = false
+        breakfastSwitch.translatesAutoresizingMaskIntoConstraints = false
+        lunchSwitch.translatesAutoresizingMaskIntoConstraints = false
+        dinnerSwitch.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            NSLayoutConstraint.constraints(withVisualFormat: "H:|-30-[c]-70-[bs]-90-[ls]-60-[ds]-50-|", options: [], metrics: nil, views: cellViews),
+            NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[c]", options: [], metrics: nil, views: cellViews)
+            ].flatMap{$0})
     }
     
     // MARK: - ACTIONS

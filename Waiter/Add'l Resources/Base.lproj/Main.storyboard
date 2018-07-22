@@ -1520,7 +1520,7 @@
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9sA-q7-PQZ">
                                                 <rect key="frame" x="394" y="386" width="872" height="350"/>
-                                                <color key="backgroundColor" red="0.56078431370000004" green="0.78039215689999997" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="350" id="PIj-BA-vkW"/>
                                                 </constraints>
@@ -2628,6 +2628,7 @@
                                                                 <constraint firstItem="6PA-nH-j2b" firstAttribute="leading" secondItem="BmO-Ny-aZh" secondAttribute="trailing" constant="143" id="6j3-yv-Qa0"/>
                                                                 <constraint firstItem="BmO-Ny-aZh" firstAttribute="height" secondItem="kzL-RP-r6G" secondAttribute="height" id="FdF-ef-MAB"/>
                                                                 <constraint firstItem="kzL-RP-r6G" firstAttribute="leading" secondItem="PTP-oF-euz" secondAttribute="trailing" constant="47" id="Ihu-cw-Mwr"/>
+                                                                <constraint firstItem="6PA-nH-j2b" firstAttribute="centerY" secondItem="BmO-Ny-aZh" secondAttribute="centerY" id="JPb-f9-88u"/>
                                                                 <constraint firstItem="BmO-Ny-aZh" firstAttribute="leading" secondItem="kzL-RP-r6G" secondAttribute="trailing" constant="161" id="Kd7-Uj-T1n"/>
                                                                 <constraint firstItem="PTP-oF-euz" firstAttribute="leading" secondItem="cof-7N-JWb" secondAttribute="leadingMargin" constant="14" id="Piw-0G-HeP"/>
                                                                 <constraint firstItem="PTP-oF-euz" firstAttribute="centerY" secondItem="cof-7N-JWb" secondAttribute="centerY" id="Zg9-kW-qnM"/>
@@ -3331,7 +3332,7 @@
                         <outlet property="addImageButton" destination="jsU-Gc-mCi" id="hsw-Rj-ZGp"/>
                         <outlet property="addItemImageLabel" destination="Vcx-sw-Qol" id="MKZ-VE-dfK"/>
                         <outlet property="addItemView" destination="kAs-6f-HYK" id="HQY-xS-vYH"/>
-                        <outlet property="addLabel" destination="y4p-Ae-hc0" id="eSm-x2-ShP"/>
+                        <outlet property="addLabel" destination="ifL-ya-0L4" id="Jb0-aV-lnn"/>
                         <outlet property="allButton" destination="fI8-nk-qHq" id="FR1-8S-akM"/>
                         <outlet property="allView" destination="IWD-z6-1iG" id="EB7-gq-Upg"/>
                         <outlet property="backButton" destination="Otq-7e-uis" id="Bfr-5m-aYK"/>
@@ -3362,6 +3363,7 @@
                         <outlet property="itemTvTopView" destination="irq-ex-yOE" id="r2Y-DP-bYD"/>
                         <outlet property="mainScrollview" destination="xpv-Fc-HCs" id="Ofp-mw-UY7"/>
                         <outlet property="menuManagementButton" destination="F6P-im-wau" id="I4G-JU-csQ"/>
+                        <outlet property="navBarView" destination="NIM-cv-DXV" id="NPD-Bj-u6e"/>
                         <outlet property="plusSignCategoryImageView" destination="jNX-7p-Bqe" id="dxX-EW-FLf"/>
                         <outlet property="plusSignItemImageView" destination="pxR-Sz-gIM" id="s72-oz-pSt"/>
                         <outlet property="saveCategoryButton" destination="2sl-lK-PWm" id="1N3-lA-guS"/>

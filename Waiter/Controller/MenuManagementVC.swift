@@ -31,8 +31,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var editItemsLbl: UILabel!
     @IBOutlet weak var editSubtitleLbl: UILabel!
     
-    // NAVIGATION BAR BUTTONSe
+    // NAVIGATION BAR BUTTONS
     
+    @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var menuManagementButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -94,6 +95,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var byCategoryImageView: UIImageView!
     @IBOutlet weak var editMenuItemsCV: UICollectionView!
     
+    // EXTRA OUTLETS CREATED IN ORDER TO CODE FOR SMALL DEVICES
+    
+    
     // VARIABLES
     
     var categories = [Category]()
@@ -112,6 +116,29 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.foodTextField.layer.cornerRadius = 7
         self.addCategoryView.layer.borderColor = UIColor.lightGray.cgColor
         self.addCategoryView.layer.borderWidth = 1.0
+        
+        let navBarViews: [String: UIView] = ["navBarView": navBarView, "backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
+        
+        navBarView.translatesAutoresizingMaskIntoConstraints = false
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        menuManagementButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let itemViews: [String: UIView] = ["tv": itemTvTopView]
+        
+        addImageButton.translatesAutoresizingMaskIntoConstraints = false
+        itemTvTopView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let itemTopViews: [String: UIView] = ["availabilityL": itemAvailLabel, "breakfastL": itemBfLabel, "lunchL": itemLunchLbl, "dinnerL": itemDinLbl]
+        
+        
+        NSLayoutConstraint.activate([
+            
+            NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
+            NSLayoutConstraint.constraints(withVisualFormat: "H:[addCategoryB]-30-[tv]-30-|", options: [], metrics: nil, views: ["tv": categoryTV, "addCategoryB": addCategoryButton]),
+            NSLayoutConstraint.constraints(withVisualFormat: "[tv]-30-|", options: [], metrics: nil, views: itemViews),
+            NSLayoutConstraint.constraints(withVisualFormat: "[availabilityL]-105-[breakfastL]-45-[lunchL]-45-[dinnerL]-30-|", options: [], metrics: nil, views: itemTopViews)
+            ].flatMap{$0})
         
        dropDown.anchorView = byCategoryView
         
