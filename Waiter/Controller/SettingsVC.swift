@@ -88,38 +88,30 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tv.delegate = self; tv.dataSource = self
         
         if UIScreen.main.bounds.width < 1030 {
-            navBarView.translatesAutoresizingMaskIntoConstraints = false
-            tvTopView.translatesAutoresizingMaskIntoConstraints = false
-            tv.translatesAutoresizingMaskIntoConstraints = false
-            restaurantNameLabel.translatesAutoresizingMaskIntoConstraints = false
-            userLabel.translatesAutoresizingMaskIntoConstraints = false
+
+            translateMasksToFalse()
             
-            addStaffButton.translatesAutoresizingMaskIntoConstraints = false
-            plusSignImage.translatesAutoresizingMaskIntoConstraints = false
-            addStaffLabel.translatesAutoresizingMaskIntoConstraints = false
-            
-            lineView1.translatesAutoresizingMaskIntoConstraints = false
-            
-//            let vertical_views_setTwo: [String: UIView] = ["printerDescrL": printerDescLabel, ]
 //            let horizontal_generalLabels: [String: UIView] = ["discountL": discountLabel, "serviceChargeL": serviceChargeLabel, "tax1L": taxLabel, "tax2L": tax2Label]
 //           let horizontal_generalTextFields: [String: UIView] = ["discountT": discountTextField, "serviceT": serviceChargeTextField, "taxName1": taxName1TextField, "taxPer1": //taxPercentage1TextField, "taxName2": taxName2TextField, "taxPer2": taxPercentage2TextField]
-            //                NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[navBarView][scrollview]|", options: [], metrics: nil, views: parentViews),
-            //                NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollSubview]|", options: [], metrics: nil, views: parentViews),
-            //                NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollSubview]|", options: [], metrics: nil, views: parentViews)
-            
-            scrollSubview.translatesAutoresizingMaskIntoConstraints = false
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            
+ 
             let vertical_views_setOne: [String: UIView] = ["navBar": navBarView, "scrollSubview": scrollSubview, "resName": restaurantNameLabel, "userLabel": userLabel, "addStaffButton": addStaffButton, "tv": tv, "lineView": lineView1, "generalL": generalLabel, "discountL": discountLabel, "discountT": discountTextField, "generalSaveB": saveButton, "tableNumView": tableNumbersView, "printerL": printerLabel, "printerStackView": printersStackView, "printerSaveB": printerSaveButton]
             
-  //          let parentViews: [String: UIView] = ["navBarView": navBarView, "scrollView": scrollView, "scrollSubview": scrollSubview]
-           
+            let vertical_views_setTwo: [String: UIView] = ["resName": restaurantNameLabel, "userLabel": userLabel, "tvTopView": tvTopView, "tv": tv, "printerDescrL": printerDescLabel, "lineView": lineView1]
+            
             let navBarViews: [String: UIView] = ["backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
             
             NSLayoutConstraint.activate([
                 
-                NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[scrollSubview]-100-[resName]-75-[userLabel]-30-[addStaffButton]-222-[lineView]-111-[generalL]-50-[discountL]-30-[discountT]-30-[generalSaveB]-60-[tableNumView]-60-[printerL]-40-[printerStackView]-20-[printerSaveB]-20-|", options: [], metrics: nil, views: vertical_views_setOne),
-                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews)
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[resName]-30-[userLabel]-30-[addStaffButton]-82-[lineView]-91-[generalL]-50-[discountL]-30-[discountT]-50-[generalSaveB]-60-[tableNumView]-60-[printerL]-40-[printerStackView]-30-[printerSaveB]-50-|", options: [], metrics: nil, views: vertical_views_setOne),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[resName]-30-[userLabel]-30-[tvTopView(50)][tv(>=50@999,<=120@1000)]-40-[lineView]", options: [], metrics: nil, views: vertical_views_setTwo),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[rest]", options: [], metrics: nil, views: ["rest": restaurantNameLabel]),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:[addStaffButton]-40-[tv]-40-|", options: [], metrics: nil, views: ["tv": tv, "addStaffButton": addStaffButton])
+                
  
             ].flatMap{$0})
         }
@@ -134,13 +126,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         scrollSubview.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         scrollSubview.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         scrollSubview.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        
-        
-        settingsButton.isUserInteractionEnabled = false
+        scrollSubview.heightAnchor.constraint(equalToConstant: 1800).isActive = true
         
         setupColors()
-        
-        self.updateStaffTv() 
+        updateStaffTV()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -152,91 +141,80 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         staffSavedSuccessful_View.isHidden = true
     }
     
-
-    
-
-    
-    
-    
+ 
     // MARK: - SETUP
     
     func setupColors() {
         waiterGif.loadGif(name: "waiter")
         startingTextField.layer.borderColor = UIColor.lightGray.cgColor
-        startingTextField.layer.borderWidth = 1.0
-        
+        startingTextField.layer.borderWidth = 1.0 
         endingTextField.layer.borderColor = UIColor.lightGray.cgColor
         endingTextField.layer.borderWidth = 1.0
-        
         cashierPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
         cashierPrinterTextField.layer.borderWidth = 1.0
-        
         kitchenPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
         kitchenPrinterTextField.layer.borderWidth = 1.0
-        
         barPrinterTextField.layer.borderColor = UIColor.lightGray.cgColor
         barPrinterTextField.layer.borderWidth = 1.0
-        
         discountTextField.layer.borderColor = UIColor.lightGray.cgColor
         discountTextField.layer.borderWidth = 1.0
-        
         serviceChargeTextField.layer.borderColor = UIColor.lightGray.cgColor
         serviceChargeTextField.layer.borderWidth = 1.0
-        
         taxName1TextField.layer.borderColor = UIColor.lightGray.cgColor
         taxName1TextField.layer.borderWidth = 1.0
-        
         taxName2TextField.layer.borderColor = UIColor.lightGray.cgColor
         taxName2TextField.layer.borderWidth = 1.0
-        
         taxPercentage1TextField.layer.borderColor = UIColor.lightGray.cgColor
         taxPercentage1TextField.layer.borderWidth = 1.0
-        
         taxPercentage2TextField.layer.borderColor = UIColor.lightGray.cgColor
         taxPercentage2TextField.layer.borderWidth = 1.0
-        
         tv.separatorStyle = .none
-        
         addStaffView.layer.cornerRadius = 10
         addStaffView.layer.borderWidth = 0.5
         addStaffView.layer.borderColor = UIColor.lightGray.cgColor
     }
     
+    func translateMasksToFalse() {
+        navBarView.translatesAutoresizingMaskIntoConstraints = false
+        tvTopView.translatesAutoresizingMaskIntoConstraints = false
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        restaurantNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        userLabel.translatesAutoresizingMaskIntoConstraints = false
+        addStaffButton.translatesAutoresizingMaskIntoConstraints = false
+        plusSignImage.translatesAutoresizingMaskIntoConstraints = false
+        addStaffLabel.translatesAutoresizingMaskIntoConstraints = false
+        scrollSubview.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        tableNumbersView.translatesAutoresizingMaskIntoConstraints = false
+        lineView1.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.isUserInteractionEnabled = false
+    }
     
     func setupObjectsWithData() {
-        
         DataService.instance.getSettingsData { (dict, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
-                
                 if let startingNumberTable = dict["tableStartNumber"],
                     let endingNumberTable = dict["tableEndNumber"] {
-                    
                     self.startingTextField.text = "\(startingNumberTable)"
                     self.endingTextField.text = "\(endingNumberTable)"
                 }
-                
                 if let discount = dict["discountText"] {
                     self.discountTextField.text = discount as? String
                 }
-                
                 if let s = dict["serviceChargeText"] {
                     self.serviceChargeTextField.text = s as? String
                 }
-                
                 if let t1 = dict["tax1NameText"] {
                     self.taxName1TextField.text = t1 as? String
                 }
-                
                 if let t1p = dict["taxPercentage1NameText"] {
                     self.taxPercentage1TextField.text = t1p as? String
                 }
-                
                 if let t2 = dict["tax2NameText"] {
                     self.taxName2TextField.text = t2 as? String
                 }
-                
                 if let t2p = dict["taxPercentage2NameText"] {
                     self.taxPercentage2TextField.text = t2p as? String
                 }
@@ -247,21 +225,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - ACTIONS
     
-    
-    
     func resetStaffNumberCountLabel() {
         threeOutoTenLabel.text = "\(staffArray.count)/10"
     }
     
-    
-    func updateStaffTv() {
- 
+    func updateStaffTV() {
         StaffMember.getStaff { (dict, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
                 self.staffArray.removeAll()
-                
                 let keyList = dict.keys
                 var allkeys = [String]()
                 var staffDictionaryArray: [[String: Any]] = []
@@ -270,99 +243,63 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         allkeys.append(key)
                         if let staffType = staffMemberDictionary["staffType"] as? String,
                             let staffEmail = staffMemberDictionary["staffEmail"] as? String {
-                            
                             let staff = StaffMember(email: staffEmail, type: staffType, uid: key)
                             self.staffArray.append(staff)
                         }
-
                         staffDictionaryArray.append(staffMemberDictionary)
                         self.resetStaffNumberCountLabel()
                         self.tv.reloadData()
                     }
                 }
- 
             }
             self.view.layoutSubviews()
         }
     }
     
     
-    
-    
     // MARK: - IBACTIONS
-    
-    
-    
-    
     
     @IBAction func backButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
         present(vc, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
     @IBAction func menuManagementButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuManagementVC-ID") as! MenuManagementVC
         present(vc, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
-    
     @IBAction func addStaffButton_Pressed(_ sender: Any) { // only for showing the popup view; not for saving to firebase
-        
         if staffArray.count < 10 {
-            
             addStaffView.isHidden = false
             cancelButton.isHidden = false
             self.view.bringSubview(toFront: addStaffView)
-            
         } else {
-            
             tooManyStaffMembers_Alert()
         } 
     }
     
-    
-    
-    
-    
-    
     // TAXES
     
-    @IBAction func saveButton_Pressed(_ sender: Any) { 
-        
+    @IBAction func saveButton_Pressed(_ sender: Any) {
         if let discountText = discountTextField.text {
             self.discountText = discountText
         }
-        
         if let serviceChargeText = serviceChargeTextField.text {
             self.serviceChargeText = serviceChargeText
         }
-        
         if let tax1NameText = taxName1TextField.text {
             self.tax1NameText = tax1NameText
         }
-        
         if let tax2NameText = taxName2TextField.text {
             self.tax2NameText = tax2NameText
         }
-        
         if let taxPercentage1NameText = taxPercentage1TextField.text {
             self.taxPercentage1NameText = taxPercentage1NameText
         }
-        
         if let taxPercentage2NameText = taxPercentage2TextField.text {
             self.taxPercentage2NameText = taxPercentage2NameText
         }
-        
         let settings: [String: AnyObject] = [
             "discountText": self.discountText as AnyObject,
             "serviceChargeText": self.serviceChargeText as AnyObject,
@@ -371,26 +308,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             "taxPercentage1NameText": self.taxPercentage1NameText as AnyObject,
             "taxPercentage2NameText": self.taxPercentage2NameText as AnyObject
         ]
-        
         DataService.instance.saveTaxesAndDiscounts(settings: settings)
     }
-    
-    
-    
     
     // TABLES
     
     @IBAction func saveButtonTableNumbers_Pressed(_ sender: Any) {
-        
         if let startingNumber = startingTextField.text, let endingNumber = endingTextField.text {
-            
             DataService.instance.saveNumberOfTables(tableStartNumber: startingNumber, tableEndNumber: endingNumber)
         }
     }
-    
-    
-    
-    
     
     // CREATE STAFF - POPUP
     
@@ -400,92 +327,58 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         passwordTextField.text = ""
     } 
     
-    
-    
-    
     // SAVE STAFF
     
     @IBAction func createButton_Pressed(_ sender: Any) {
-        
         if staffArray.count < 10 {
             if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
-                
                 if (emailTextField.text?.count)! >= 8 {
-                    
                     AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
-                        
                         if let error = error {
-                            
                             print("ERROR SAVING STAFF\(error.debugDescription)")
-                            
                         } else { // success
-                            
                             self.staffSavedSuccessful_View.isHidden = false
-                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                                 self.staffSavedSuccessful_View.isHidden = true
                             })
-                            
                             self.updateStaffTv()
                             self.successfullyAddedStaff_Alert(user: self.emailTextField.text!)
                         }
                     }
-                    
                 } else {
                     passwordNotLongEnough_Alert()
                 }
-
             } else {
-                
                 enterEmailAndPassword_Alert()
             }
         } else {
             tooManyStaffMembers_Alert()
         }
-
     }
     
-    
     @IBAction func btnDeteleAccountTap(sender: UIButton) {
-        
     }
     
     
     // MARK: - TABLE VIEW (STAFF)
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
-            
             waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staffList: staffArray, indexPath: indexPath)
             waiterCell.delegate = self
             return waiterCell
         }
         return UITableViewCell()
-        
     }
-    
-    
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return staffArray.count
     }
-    
-    
-    
-    
-    
-    
     
     
     // MARK: - ALERTS
@@ -513,11 +406,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func successfullyDeletedStaff_Alert() {
-        
         let ac = UIAlertController(title: "Success", message: "You have successfully deleted a staff member from the database.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
-        
         present(ac, animated: true) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 ac.dismiss(animated: true, completion: nil)
@@ -526,7 +417,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func errorDeletingStaff_Alert() {
-        
         let ac = UIAlertController(title: "Error", message: "There was an error deleting the staff member from the database. Please try again.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
@@ -541,7 +431,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ac = UIAlertController(title: "Data Error", message: "Please make sure you enter both an email address and password for the user you are creating.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
-        
         present(ac, animated: true, completion: { //[weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 ac.dismiss(animated: true, completion: nil)
@@ -550,17 +439,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func successfullyAddedStaff_Alert(user: String) {
-        
         self.emailTextField.text = ""
         self.passwordTextField.text = ""
         self.addStaffView.isHidden = true
-        
         let ac = UIAlertController(title: "Success", message: "Staff member, \(user), was successfully added to your database.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
-        
-        present(ac, animated: true, completion: {// [weak self] in
-            
+        present(ac, animated: true, completion: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 ac.dismiss(animated: true, completion: nil)
             })
@@ -571,9 +456,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ac = UIAlertController(title: "Password Error", message: "Please make sure your password is at least 8 characters long.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
-        
-        present(ac, animated: true, completion: {// [weak self] in
-            
+        present(ac, animated: true, completion: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 ac.dismiss(animated: true, completion: nil)
             })
@@ -585,15 +468,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let ac = UIAlertController(title: "Sorry", message: "Too many staff members added. Please delete one to add another.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
         ac.addAction(ok)
-
-        present(ac, animated: true, completion: {// [weak self] in
-
+        present(ac, animated: true, completion: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
                 ac.dismiss(animated: true, completion: nil)
             })
         })
     }
-  
 }
 
 // MARK: - WAITER CELL PROTOCOL
@@ -612,26 +492,18 @@ extension SettingsVC :  WaiterCellProtocol {
         }
     }
     
-   
-    
     func deleteButtonClicked(_ sender: UIButton) {
-        print("Delete account tap\(sender.tag)")
-        DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
-            
+        print("Delete account tap\(sender.tag)")  DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
             if error == nil {
-                
                 if self.staffArray[sender.tag].uid != "" {
-                    
                     let senderIndex = sender.tag
                     self.staffArray.remove(at: senderIndex)
                     self.updateStaffTv()
                     self.tv.reloadData()
-                    
                     DispatchQueue.main.async {
                         self.successfullyDeletedStaff_Alert()
                     }
                 }
-                
             } else if let error = error {
                 self.errorDeletingStaff_Alert()
                 print(error.localizedDescription)
