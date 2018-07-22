@@ -3346,6 +3346,7 @@
                         <outlet property="editItemsLbl" destination="taX-ke-Lqh" id="tr7-0t-MT9"/>
                         <outlet property="editMenuItemsCV" destination="L7A-Sk-mKf" id="jVT-XR-7uv"/>
                         <outlet property="editSubtitleLbl" destination="21p-9z-rA7" id="K8C-Bj-Jz1"/>
+                        <outlet property="filterCategoryLabel" destination="KOT-Vl-D57" id="GKN-wq-H1z"/>
                         <outlet property="foodTextField" destination="tkf-hM-2Zm" id="Gus-Uc-5zj"/>
                         <outlet property="itemAvailLabel" destination="DVo-u2-cRV" id="bzG-lL-UK4"/>
                         <outlet property="itemBfLabel" destination="eqb-u3-UfW" id="6mp-kT-jAm"/>

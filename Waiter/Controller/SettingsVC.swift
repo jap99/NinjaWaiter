@@ -87,47 +87,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tv.delegate = self; tv.dataSource = self
         
-        if UIScreen.main.bounds.width < 1030 {
-
-            translateMasksToFalse()
-            
-//            let horizontal_generalLabels: [String: UIView] = ["discountL": discountLabel, "serviceChargeL": serviceChargeLabel, "tax1L": taxLabel, "tax2L": tax2Label]
-//           let horizontal_generalTextFields: [String: UIView] = ["discountT": discountTextField, "serviceT": serviceChargeTextField, "taxName1": taxName1TextField, "taxPer1": //taxPercentage1TextField, "taxName2": taxName2TextField, "taxPer2": taxPercentage2TextField]
- 
-            let vertical_views_setOne: [String: UIView] = ["navBar": navBarView, "scrollSubview": scrollSubview, "resName": restaurantNameLabel, "userLabel": userLabel, "addStaffButton": addStaffButton, "tv": tv, "lineView": lineView1, "generalL": generalLabel, "discountL": discountLabel, "discountT": discountTextField, "generalSaveB": saveButton, "tableNumView": tableNumbersView, "printerL": printerLabel, "printerStackView": printersStackView, "printerSaveB": printerSaveButton]
-            
-            let vertical_views_setTwo: [String: UIView] = ["resName": restaurantNameLabel, "userLabel": userLabel, "tvTopView": tvTopView, "tv": tv, "printerDescrL": printerDescLabel, "lineView": lineView1]
-            
-            let navBarViews: [String: UIView] = ["backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
-            
-            NSLayoutConstraint.activate([
-                
-                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[resName]-30-[userLabel]-30-[addStaffButton]-82-[lineView]-91-[generalL]-50-[discountL]-30-[discountT]-50-[generalSaveB]-60-[tableNumView]-60-[printerL]-40-[printerStackView]-30-[printerSaveB]-50-|", options: [], metrics: nil, views: vertical_views_setOne),
-                
-                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[resName]-30-[userLabel]-30-[tvTopView(50)][tv(>=50@999,<=120@1000)]-40-[lineView]", options: [], metrics: nil, views: vertical_views_setTwo),
-                
-                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
-                
-                NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[rest]", options: [], metrics: nil, views: ["rest": restaurantNameLabel]),
-                
-                NSLayoutConstraint.constraints(withVisualFormat: "H:[addStaffButton]-40-[tv]-40-|", options: [], metrics: nil, views: ["tv": tv, "addStaffButton": addStaffButton])
-                
- 
-            ].flatMap{$0})
-        }
-        
-        scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: navBarView.bottomAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
-        scrollSubview.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
-        scrollSubview.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
-        scrollSubview.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        scrollSubview.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        scrollSubview.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        scrollSubview.heightAnchor.constraint(equalToConstant: 1800).isActive = true
-        
+        setupInterfaceIfSmallDevice()
         setupColors()
         updateStaffTV()
     }
@@ -188,6 +148,49 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableNumbersView.translatesAutoresizingMaskIntoConstraints = false
         lineView1.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.isUserInteractionEnabled = false
+    }
+    
+    func setupInterfaceIfSmallDevice() {
+        if UIScreen.main.bounds.width < 1030 {
+            
+            translateMasksToFalse()
+            
+            //            let horizontal_generalLabels: [String: UIView] = ["discountL": discountLabel, "serviceChargeL": serviceChargeLabel, "tax1L": taxLabel, "tax2L": tax2Label]
+            //           let horizontal_generalTextFields: [String: UIView] = ["discountT": discountTextField, "serviceT": serviceChargeTextField, "taxName1": taxName1TextField, "taxPer1": //taxPercentage1TextField, "taxName2": taxName2TextField, "taxPer2": taxPercentage2TextField]
+            
+            let vertical_views_setOne: [String: UIView] = ["navBar": navBarView, "scrollSubview": scrollSubview, "resName": restaurantNameLabel, "userLabel": userLabel, "addStaffButton": addStaffButton, "tv": tv, "lineView": lineView1, "generalL": generalLabel, "discountL": discountLabel, "discountT": discountTextField, "generalSaveB": saveButton, "tableNumView": tableNumbersView, "printerL": printerLabel, "printerStackView": printersStackView, "printerSaveB": printerSaveButton]
+            
+            let vertical_views_setTwo: [String: UIView] = ["resName": restaurantNameLabel, "userLabel": userLabel, "tvTopView": tvTopView, "tv": tv, "printerDescrL": printerDescLabel, "lineView": lineView1]
+            
+            let navBarViews: [String: UIView] = ["backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
+            
+            NSLayoutConstraint.activate([
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[resName]-30-[userLabel]-30-[addStaffButton]-82-[lineView]-91-[generalL]-50-[discountL]-30-[discountT]-50-[generalSaveB]-60-[tableNumView]-60-[printerL]-40-[printerStackView]-30-[printerSaveB]-50-|", options: [], metrics: nil, views: vertical_views_setOne),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[resName]-30-[userLabel]-30-[tvTopView(50)][tv(>=50@999,<=120@1000)]-40-[lineView]", options: [], metrics: nil, views: vertical_views_setTwo),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[rest]", options: [], metrics: nil, views: ["rest": restaurantNameLabel]),
+                
+                NSLayoutConstraint.constraints(withVisualFormat: "H:[addStaffButton]-40-[tv]-40-|", options: [], metrics: nil, views: ["tv": tv, "addStaffButton": addStaffButton])
+                
+                
+                ].flatMap{$0})
+        }
+        
+        scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: navBarView.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        scrollSubview.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        scrollSubview.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
+        scrollSubview.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        scrollSubview.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        scrollSubview.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        scrollSubview.heightAnchor.constraint(equalToConstant: 1800).isActive = true
     }
     
     func setupObjectsWithData() {
