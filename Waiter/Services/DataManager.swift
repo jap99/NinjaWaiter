@@ -35,14 +35,12 @@ class DataManager: NSObject {
             var arrCategory = [CategoryDetail] ()
             
             for data in response {
-                
                 let Category = CategoryDetail()
                 
                 self.getCatName(key: data.key, completion: { (name) in
                     
                     Category.categoryId = data.key
                     Category.categoryName = name
-                    
                     if let cat_dict = data.value as? [String:Any] {
                         
                         for items in cat_dict {
@@ -55,7 +53,7 @@ class DataManager: NSObject {
                                     
                                     if let itemDetail = item.value as? [String:Any] {
                                         
-                                        if let Detail = itemDetail["ItemDetails"] as? [String:Any] {
+                                        if let Detail = itemDetail["itemDetails"] as? [String:Any] {
                                             
                                             let CatDetail = CategoryItems()
                                             CatDetail.itemId = item.key
