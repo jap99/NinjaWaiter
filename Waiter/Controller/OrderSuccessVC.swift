@@ -60,7 +60,7 @@ class OrderSuccessVC: UIViewController {
     
     @objc func updateTimer() {
         
-        if seconds >= 0 {
+        if seconds > 0 {
             seconds -= 1     //This will decrement(count down)the seconds.
             
             DispatchQueue.main.async {

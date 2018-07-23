@@ -31,6 +31,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var editItemsLbl: UILabel!
     @IBOutlet weak var editSubtitleLbl: UILabel!
     @IBOutlet weak var filterCategoryLabel: UILabel!
+    @IBOutlet weak var scrollSubview: UIView!
     
     // NAVIGATION BAR BUTTONS
     
@@ -205,6 +206,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             backButton.translatesAutoresizingMaskIntoConstraints = false
             settingsButton.translatesAutoresizingMaskIntoConstraints = false
             menuManagementButton.translatesAutoresizingMaskIntoConstraints = false
+            mainScrollview.translatesAutoresizingMaskIntoConstraints = false
+            scrollSubview.translatesAutoresizingMaskIntoConstraints = false
             
             let itemViews: [String: UIView] = ["tv": itemTvTopView]
             

@@ -33,7 +33,7 @@ class DashboardVC: UIViewController {
             topLabel.translatesAutoresizingMaskIntoConstraints = false
             containerView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[l]-60-[v]", options: [], metrics: nil, views: ["l": topLabel, "v":containerView])
+                NSLayoutConstraint.constraints(withVisualFormat: "V:|-65-[l]-50-[v]", options: [], metrics: nil, views: ["l": topLabel, "v":containerView])
                 ].flatMap{$0})
         }
         if RESTAURANT_UID != nil {

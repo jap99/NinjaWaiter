@@ -148,6 +148,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableNumbersView.translatesAutoresizingMaskIntoConstraints = false
         lineView1.translatesAutoresizingMaskIntoConstraints = false
         settingsButton.isUserInteractionEnabled = false
+    
     }
     
     func setupInterfaceIfSmallDevice() {
