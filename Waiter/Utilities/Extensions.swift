@@ -101,3 +101,16 @@ extension NSDictionary{
         return false
     }
 }
+
+
+extension UIView {
+    func addCornerRadiusToNavBarButton() {
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+    }
+    
+    func addCornerRadiusCellItems() {
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+    }
+}

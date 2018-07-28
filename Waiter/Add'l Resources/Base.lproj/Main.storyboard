@@ -503,6 +503,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="foodNameLabel" destination="GMO-Il-5Mc" id="fNz-VY-B5T"/>
+                                            <outlet property="roundCornerView" destination="eWw-SD-QYz" id="aa2-4H-rcT"/>
                                             <outlet property="selectorView" destination="lMc-Gh-wnW" id="4vg-gS-YbR"/>
                                         </connections>
                                     </collectionViewCell>
@@ -515,7 +516,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OMC-SU-SXT">
                                 <rect key="frame" x="20" y="91" width="875" height="933"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ufS-hH-yed">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="ufS-hH-yed">
                                     <size key="itemSize" width="207" height="212"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -3117,7 +3118,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="KOT-Vl-D57" firstAttribute="centerY" secondItem="kmW-Mv-Eyd" secondAttribute="centerY" id="1B2-fg-RRb"/>
                                                     <constraint firstItem="D4X-Za-AAc" firstAttribute="leading" secondItem="KOT-Vl-D57" secondAttribute="trailing" constant="10" id="7dZ-Sg-Oqm"/>
@@ -3149,6 +3150,7 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvY-hp-8dI">
                                                                     <rect key="frame" x="0.0" y="0.0" width="207" height="212"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </imageView>
                                                                 <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F78-xu-tO7">
                                                                     <rect key="frame" x="13" y="135" width="181" height="63"/>
@@ -3156,7 +3158,7 @@
                                                                 </view>
                                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOu-Gi-deq">
                                                                     <rect key="frame" x="13" y="135" width="181" height="63"/>
-                                                                    <color key="backgroundColor" red="0.27450980390000002" green="0.25882352939999997" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="63" id="7fq-Bz-iYC"/>
                                                                     </constraints>
@@ -3166,6 +3168,7 @@
                                                                 </label>
                                                             </subviews>
                                                         </view>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="F78-xu-tO7" firstAttribute="centerY" secondItem="oOu-Gi-deq" secondAttribute="centerY" id="4Jd-oC-t5j"/>
                                                             <constraint firstItem="wvY-hp-8dI" firstAttribute="centerY" secondItem="gsx-iI-H44" secondAttribute="centerY" id="66c-di-5ET"/>

@@ -112,6 +112,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var items: [[String: AnyObject]] = []
     var itemOptions: [[String: AnyObject]] = []
+    var selectedItemId = ""
     
     // V D L
     
@@ -147,6 +148,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        menuManagementButton.addCornerRadiusToNavBarButton()
     }
     
     // V D A
@@ -198,6 +200,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         // add - edit section
         byCategoryView.layer.cornerRadius = 7
+        byCategoryView.layer.borderColor = UIColor.black.cgColor
+        byCategoryView.layer.borderWidth = 0.5
         allView.layer.cornerRadius = 7
         
         // item - image picker
@@ -369,7 +373,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     // MARK: - ACTIONS
     
     @objc func addItemButtonAction(_ sender: UIButton) {
-        if sender.tag > self.itemOptions.count {
+        if selectedItemId != "" {
             let shadowView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
             shadowView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
             
@@ -379,8 +383,17 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
             optionView.addShadow()
             shadowView.addSubview(optionView)
+            
+            if sender.tag < self.itemOptions.count {
+                let optionData = self.itemOptions[sender.tag]
+                optionView.updateFields(optionData: optionData, optionIndex: sender.tag+1, selectedItemId: selectedItemId)
+                
+            } else {
+                optionView.updateFields(optionData: nil, optionIndex: sender.tag+1, selectedItemId: selectedItemId)
+            }
+        } else {
+            Utils.showAlert(title: "Alert", message: "Please select Menu Item to add or edit Menu Options", onSucces: nil)
         }
-        
     }
     
     func getCategories() {
@@ -568,7 +581,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if indexPath.item < self.itemOptions.count {
                 
                 cell.addEditItemOptionsButton.setTitleColor(.white, for: .normal)
-                cell.addEditItemOptionsButton.backgroundColor = .red
+                cell.addEditItemOptionsButton.backgroundColor = customRed
                 cell.addEditItemOptionsButton.layer.masksToBounds = true
                 cell.addEditItemOptionsButton.layer.borderWidth = 0
                 cell.addEditItemOptionsButton.layer.borderColor = UIColor.clear.cgColor
@@ -578,7 +591,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 cell.addEditItemOptionsButton.setTitleColor(.black, for: .normal)
                 cell.addEditItemOptionsButton.backgroundColor = .white
                 cell.addEditItemOptionsButton.layer.masksToBounds = true
-                cell.addEditItemOptionsButton.layer.borderWidth = 2
+                cell.addEditItemOptionsButton.layer.borderWidth = 3
                 cell.addEditItemOptionsButton.layer.borderColor = UIColor.black.cgColor
             }
             
@@ -599,14 +612,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     // did select
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == itemCV {
-            
-            // show ItemOptionsView.xi
-        } else {
-            if collectionView == editMenuItemsCV {
-                if let itemId = items[indexPath.item]["itemId"] as? String {
-                    getItemOptions(itemID: itemId)
-                }
+        if collectionView == editMenuItemsCV {
+            if let itemId = items[indexPath.item]["itemId"] as? String {
+                selectedItemId = itemId
+                getItemOptions(itemID: itemId)
             }
         }
     }

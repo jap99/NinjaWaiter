@@ -37,7 +37,7 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
         cv1.delegate = self; cv1.dataSource = self
         cv1.reloadData()
         setupGestureRecognizers()
-        chooseTableView.layer.cornerRadius = 7.0
+        
         
 //        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 //        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
@@ -45,6 +45,11 @@ class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectio
 //        layout.minimumInteritemSpacing = 20
 //        layout.minimumLineSpacing = 20
 //        cv1!.collectionViewLayout = layout
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        chooseTableView.addCornerRadiusToNavBarButton()
     }
 
     func setupGestureRecognizers() {

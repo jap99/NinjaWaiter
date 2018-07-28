@@ -92,6 +92,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         updateStaffTV()
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        settingsButton.addCornerRadiusToNavBarButton()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         addStaffView.isHidden = true
     }

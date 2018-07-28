@@ -19,7 +19,9 @@ class FoodCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.contentView.layer.masksToBounds = true
-        self.fooddTitleBgView.layer.cornerRadius = 7
+        fooddTitleBgView.addCornerRadiusCellItems()
+        foodImageView.addCornerRadiusCellItems()
+        
     }
     
     func giveBorder(selected: Bool) {

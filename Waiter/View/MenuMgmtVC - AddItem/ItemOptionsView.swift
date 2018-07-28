@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class ItemOptionsView: UIView {
     
     @IBOutlet weak var topLabel: UILabel!
@@ -16,6 +17,10 @@ class ItemOptionsView: UIView {
     @IBOutlet weak var optionPrice: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    
+    var itemId = ""
+    var optionId = ""
+    var isEditingMode = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,18 +56,65 @@ class ItemOptionsView: UIView {
         
     }
     
+    func updateFields(optionData: [String: AnyObject]?, optionIndex: Int, selectedItemId:
+        String) {
+        self.itemId = selectedItemId
+        if let optionData = optionData {
+            if let optionId = optionData["key"] as? String {
+                self.optionId = optionId
+            }
+            
+            if self.optionId != "" {
+                isEditingMode = true
+                topLabel.text = "Edit Option \(optionIndex)"
+                
+                if let optionValue = optionData["value"] as? [String:AnyObject] {
+                    if let optionTitle = optionValue["optionTitle"] as? String {
+                        optionName.text = optionTitle
+                    }
+                    
+                    if let optionPrice = optionValue["optionPrice"] as? String {
+                        self.optionPrice.text = optionPrice
+                    }
+                }
+                
+            }
+        }
+        
+        if !isEditingMode {
+            topLabel.text = "Add New Option"
+            self.optionId = "itemOption\(optionIndex)"
+        }
+    }
+    
     @IBAction func cancelButton_Pressed(_ sender: UIButton) {
+        removeView()
+    }
+    
+    func removeView() {
         if let pView = self.superview {
             pView.removeFromSuperview()
         }
         self.removeFromSuperview()
-        //print("CANCEL BUTTON PRESSED")
     }
     
     @IBAction func saveButton_Pressed(_ sender: UIButton) {
         print("SAVE BUTTON PRESSED")
         
-       // DataService.instance.saveItemOption(itemUID: <#T##String#>, completion: <#T##(Bool) -> ()#>)
+        if let optionName = optionName.text, let optionPrice = optionPrice.text, optionName != "" && optionPrice != "" {
+            var optionData = [String: AnyObject]()
+            optionData["optionTitle"] = optionName as AnyObject
+            optionData["optionPrice"] = optionPrice as AnyObject
+            DataService.instance.addEditItemOption(itemId: itemId, optionId: optionId, optionValue: optionData)
+            
+            Utils.showAlert(title: "Success", message: "Updated Successfully", onSucces: {() in
+                self.removeView()
+            })
+        } else {
+            Utils.showAlert(title: "Alert", message: "Item name & price required", onSucces:nil)
+        }
+        
+        
     }
     
 }

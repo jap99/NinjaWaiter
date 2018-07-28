@@ -388,6 +388,7 @@ class DataService {
                 if let optionListDict = snapshot.value as? [String : AnyObject] {
                     for (k,v) in optionListDict {
                         var optionData = [String: AnyObject]()
+                        optionData["itemId"] = itemId as AnyObject
                         optionData["key"] = k as AnyObject
                         optionData["value"] = v
                         optionListArray.append(optionData)
@@ -396,6 +397,12 @@ class DataService {
                 callback?(optionListArray, nil)
             }
         }
+    }
+    
+    
+    func addEditItemOption(itemId: String, optionId: String, optionValue: [String: AnyObject]) {
+        
+       mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").child(optionId).updateChildValues(optionValue)
     }
     
     // SAVE TABLE NUMBERS

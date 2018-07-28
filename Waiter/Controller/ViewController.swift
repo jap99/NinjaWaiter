@@ -10,7 +10,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var cv1: UICollectionView!
     @IBOutlet weak var cv2: UICollectionView!
@@ -236,7 +236,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == cv2 {
+            let screenWidth = (UIScreen.main.bounds.width*0.67-40)/3-1
+            return CGSize(width: screenWidth, height: 212.0)
+        }
+        return CGSize(width: 189, height: 50)
+    }
     
     // MARK: - ACTIONS
     
