@@ -356,7 +356,7 @@ class DataService {
                     callback?(nil, nil)
                     return
                 } else {
-                    print(snapshot.value as! AnyObject)
+                    print(snapshot.value as AnyObject)
                     callback?((snapshot.value as! [String : AnyObject]), nil)
                 }
             }
@@ -367,9 +367,33 @@ class DataService {
                     callback?(nil, nil)
                     return
                 } else {
-                    print(snapshot.value as! AnyObject)
+                    print(snapshot.value as AnyObject)
                     callback?((snapshot.value as! [String : AnyObject]), nil)
                 }
+            }
+        }
+    }
+    
+    
+    
+    func getItemOption(itemId: String, callback: ((_ categories: [[String: AnyObject]]?, _ error: Error?) -> Void)?) {
+        
+        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").observe(.value) { (snapshot) in
+            
+            if !snapshot.exists() {
+                callback?(nil, nil)
+                return
+            } else {
+                var optionListArray = [[String: AnyObject]]()
+                if let optionListDict = snapshot.value as? [String : AnyObject] {
+                    for (k,v) in optionListDict {
+                        var optionData = [String: AnyObject]()
+                        optionData["key"] = k as AnyObject
+                        optionData["value"] = v
+                        optionListArray.append(optionData)
+                    }
+                }
+                callback?(optionListArray, nil)
             }
         }
     }

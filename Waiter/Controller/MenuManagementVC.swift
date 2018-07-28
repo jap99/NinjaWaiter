@@ -110,6 +110,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     let dropDown = DropDown()
     
+    var items: [[String: AnyObject]] = []
+    var itemOptions: [[String: AnyObject]] = []
     
     // V D L
     
@@ -118,6 +120,13 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.foodTextField.layer.cornerRadius = 7
         self.addCategoryView.layer.borderColor = UIColor.lightGray.cgColor
         self.addCategoryView.layer.borderWidth = 1.0
+        
+        editMenuItemsCV.delegate = self
+        editMenuItemsCV.dataSource = self
+        
+        itemCV.delegate = self
+        itemCV.dataSource = self
+        
         
         dropDown.anchorView = byCategoryView
         setupInterfaceIfSmallDevice()
@@ -195,7 +204,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
         
-        hideKeyboardWhenTappedAround()
+      //  hideKeyboardWhenTappedAround()
     }
     
     func setupInterfaceIfSmallDevice() {
@@ -293,8 +302,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    
-    var items: [[String: AnyObject]] = []
+
     func getCategoryItems(categoryName: String) {
         
         var categoryUID = ""
@@ -310,8 +318,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if let dict = dict {
                 if categoryUID != "" {
                     for item in dict {
+                        
                         if let itemDict = (item.value as? [String: AnyObject]) {
-                            self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                            var itemDetails = itemDict["itemDetails"]! as! [String: AnyObject]
+                            itemDetails["itemId"] = item.key as AnyObject
+                            self.items.append(itemDetails)
                         }
                     }
                 } else {
@@ -319,7 +330,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                         if let categoryItems = (categories.value as? [String: AnyObject]) {
                             for item in categoryItems {
                                 if let itemDict = (item.value as? [String: AnyObject]) {
-                                    self.items.append(itemDict["itemDetails"]! as! [String: AnyObject])
+                                    var itemDetails = itemDict["itemDetails"]! as! [String: AnyObject]
+                                    itemDetails["itemId"] = item.key as AnyObject
+                                    self.items.append(itemDetails)
                                 }
                             }
                         }
@@ -327,6 +340,19 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
             self.editMenuItemsCV.reloadData()
+        }
+    }
+    
+    
+    
+    func getItemOptions(itemID: String) {
+        print(itemID)
+        DataService.instance.getItemOption(itemId: itemID) { (dict, error) in
+            self.itemOptions = [[String: AnyObject]]()
+            if let dictArray = dict {
+                self.itemOptions = dictArray
+            }
+            self.itemCV.reloadData()
         }
     }
     
@@ -525,7 +551,26 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
             
             cell.configureCell(indexPath: indexPath)
-            cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+            cell.addEditItemOptionsButton.removeTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+            
+            if indexPath.item < self.itemOptions.count {
+                
+                cell.addEditItemOptionsButton.setTitleColor(.white, for: .normal)
+                cell.addEditItemOptionsButton.backgroundColor = .red
+                cell.addEditItemOptionsButton.layer.masksToBounds = true
+                cell.addEditItemOptionsButton.layer.borderWidth = 0
+                cell.addEditItemOptionsButton.layer.borderColor = UIColor.clear.cgColor
+                
+                cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+            } else {
+                cell.addEditItemOptionsButton.setTitleColor(.black, for: .normal)
+                cell.addEditItemOptionsButton.backgroundColor = .white
+                cell.addEditItemOptionsButton.layer.masksToBounds = true
+                cell.addEditItemOptionsButton.layer.borderWidth = 2
+                cell.addEditItemOptionsButton.layer.borderColor = UIColor.black.cgColor
+            }
+            
+            
             
             
             return cell
@@ -547,8 +592,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             // show ItemOptionsView.xib
             _ = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
         } else {
-            
-            
+            if collectionView == editMenuItemsCV {
+                if let itemId = items[indexPath.item]["itemId"] as? String {
+                    getItemOptions(itemID: itemId)
+                }
+            }
         }
     }
     
