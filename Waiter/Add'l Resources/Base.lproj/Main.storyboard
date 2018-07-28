@@ -2756,9 +2756,6 @@
                                                                     <state key="normal" title="1">
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
-                                                                    <connections>
-                                                                        <action selector="addEditItemButton_Pressed:" destination="QG5-w1-igF" eventType="touchUpInside" id="buo-sH-vHM"/>
-                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </view>

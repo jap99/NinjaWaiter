@@ -368,10 +368,19 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     // MARK: - ACTIONS
     
-    @objc func addItemButtonAction() {
-        let optionView = Bundle.main.loadNibNamed("ItemOptionsView", owner: self, options: nil)?.first as! UIView
-        optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
-        self.view.addSubview(optionView)
+    @objc func addItemButtonAction(_ sender: UIButton) {
+        if sender.tag > self.itemOptions.count {
+            let shadowView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+            shadowView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+            
+            self.view.addSubview(shadowView)
+            
+            let optionView = Bundle.main.loadNibNamed("ItemOptionsView", owner: self, options: nil)?.first as! ItemOptionsView
+            optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
+            optionView.addShadow()
+            shadowView.addSubview(optionView)
+        }
+        
     }
     
     func getCategories() {
@@ -550,8 +559,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         if collectionView == itemCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
             
+            cell.addEditItemOptionsButton.tag = indexPath.item
             cell.configureCell(indexPath: indexPath)
-            cell.addEditItemOptionsButton.removeTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+            cell.addEditItemOptionsButton.removeTarget(self, action: #selector(addItemButtonAction(_:)), for: .touchUpInside)
+            cell.addEditItemOptionsButton.addTarget(self, action: #selector(addItemButtonAction(_:)), for: .touchUpInside)
+            
             
             if indexPath.item < self.itemOptions.count {
                 
@@ -561,7 +573,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 cell.addEditItemOptionsButton.layer.borderWidth = 0
                 cell.addEditItemOptionsButton.layer.borderColor = UIColor.clear.cgColor
                 
-                cell.addEditItemOptionsButton.addTarget(self, action: #selector (addItemButtonAction), for: .allEvents)
+                
             } else {
                 cell.addEditItemOptionsButton.setTitleColor(.black, for: .normal)
                 cell.addEditItemOptionsButton.backgroundColor = .white
@@ -589,8 +601,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == itemCV {
             
-            // show ItemOptionsView.xib
-            _ = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
+            // show ItemOptionsView.xi
         } else {
             if collectionView == editMenuItemsCV {
                 if let itemId = items[indexPath.item]["itemId"] as? String {

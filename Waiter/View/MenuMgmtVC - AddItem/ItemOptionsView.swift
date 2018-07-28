@@ -19,13 +19,44 @@ class ItemOptionsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.borderWidth = 0.5
-        self.layer.cornerRadius = 10.0
+        
+        
+    }
+    
+    func addShadow() {
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = 3
         self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.cornerRadius = 10.0
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 10
+        self.layer.shadowOffset = CGSize(width: -1, height: -1)
+        
+        optionName.layer.masksToBounds = true
+        optionName.layer.borderWidth = 1
+        optionName.layer.borderColor = UIColor.lightGray.cgColor
+        optionName.layer.shadowColor = UIColor.black.cgColor
+        optionName.layer.cornerRadius = 6.0
+        //optionName.layer.shadowRadius = 5
+        //optionName.layer.shadowOffset = CGSize(width: -1, height: -1)
+        
+        optionPrice.layer.masksToBounds = true
+        optionPrice.layer.borderWidth = 1
+        optionPrice.layer.borderColor = UIColor.lightGray.cgColor
+        optionPrice.layer.cornerRadius = 6.0
+        //optionPrice.layer.shadowColor = UIColor.black.cgColor
+        //optionPrice.layer.shadowRadius = 5
+        optionPrice.layer.shadowOffset = CGSize(width: -1, height: -1)
+        
     }
     
     @IBAction func cancelButton_Pressed(_ sender: UIButton) {
-        print("CANCEL BUTTON PRESSED")
+        if let pView = self.superview {
+            pView.removeFromSuperview()
+        }
+        self.removeFromSuperview()
+        //print("CANCEL BUTTON PRESSED")
     }
     
     @IBAction func saveButton_Pressed(_ sender: UIButton) {
