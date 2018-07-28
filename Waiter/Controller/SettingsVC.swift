@@ -205,6 +205,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
+                print(dict)
+                
+                if let restaurantName = dict["restaurantName"] as? String {
+                    self.restaurantNameLabel.text = restaurantName.capitalized
+                }
+                
                 if let startingNumberTable = dict["tableStartNumber"],
                     let endingNumberTable = dict["tableEndNumber"] {
                     self.startingTextField.text = "\(startingNumberTable)"
