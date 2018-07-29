@@ -2643,14 +2643,14 @@
             <objects>
                 <viewController storyboardIdentifier="MenuManagementVC-ID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bJa-cx-TvK" customClass="MenuManagementVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xYt-do-Q8Z">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="3124"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2215"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-Fc-HCs">
-                                <rect key="frame" x="0.0" y="106" width="1024" height="3018"/>
+                                <rect key="frame" x="0.0" y="106" width="1024" height="2109"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qcz-BL-SRF">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="3318"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="2215"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ffH-ho-ZL3">
                                                 <rect key="frame" x="294" y="321" width="690" height="275"/>
@@ -2893,7 +2893,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fue-fI-NCi">
-                                                <rect key="frame" x="497" y="3240" width="30" height="30"/>
+                                                <rect key="frame" x="497" y="2137" width="30" height="30"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14o-ev-ilj" userLabel="ItemLabel">
                                                 <rect key="frame" x="40" y="711" width="67.5" height="41"/>
@@ -3439,7 +3439,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibW-yM-Xqy" userLabel="successSavedView">
-                                                <rect key="frame" x="764" y="666" width="220" height="60"/>
+                                                <rect key="frame" x="764" y="686" width="220" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Save Successful" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvi-wg-ggL">
                                                         <rect key="frame" x="8" y="10" width="204" height="40"/>
@@ -3595,7 +3595,7 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7A-Sk-mKf">
-                                                <rect key="frame" x="40" y="1585.5" width="804" height="1304.5"/>
+                                                <rect key="frame" x="40" y="1585.5" width="804" height="501.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hcU-P6-DuJ">
                                                     <size key="itemSize" width="267" height="239"/>
@@ -3700,7 +3700,7 @@
                                             <constraint firstItem="kAs-6f-HYK" firstAttribute="top" secondItem="Ugy-pV-KGu" secondAttribute="bottom" constant="36.5" id="K36-Js-rCq">
                                                 <variation key="widthClass=regular" constant="10"/>
                                             </constraint>
-                                            <constraint firstItem="fue-fI-NCi" firstAttribute="top" secondItem="L7A-Sk-mKf" secondAttribute="bottom" constant="350" id="Km6-RC-rvf"/>
+                                            <constraint firstItem="fue-fI-NCi" firstAttribute="top" secondItem="L7A-Sk-mKf" secondAttribute="bottom" constant="50" id="Km6-RC-rvf"/>
                                             <constraint firstItem="14o-ev-ilj" firstAttribute="leading" secondItem="yJr-zf-Cc6" secondAttribute="leading" id="Kvb-q6-Hnh"/>
                                             <constraint firstItem="XLQ-fC-KMO" firstAttribute="centerX" secondItem="fg8-DE-3iX" secondAttribute="centerX" id="LdT-6x-AY3"/>
                                             <constraint firstItem="jsU-Gc-mCi" firstAttribute="leading" secondItem="14o-ev-ilj" secondAttribute="leading" id="Lkz-C7-nY5"/>
@@ -3748,7 +3748,7 @@
                                             </constraint>
                                             <constraint firstItem="L7A-Sk-mKf" firstAttribute="leading" secondItem="fI8-nk-qHq" secondAttribute="leading" id="gUY-un-ELD"/>
                                             <constraint firstItem="IWD-z6-1iG" firstAttribute="leading" secondItem="taX-ke-Lqh" secondAttribute="leading" id="guF-D7-29z"/>
-                                            <constraint firstAttribute="height" constant="3318" id="h9j-6H-nuc"/>
+                                            <constraint firstAttribute="height" constant="2215" id="h9j-6H-nuc"/>
                                             <constraint firstItem="Vcx-sw-Qol" firstAttribute="top" secondItem="jsU-Gc-mCi" secondAttribute="bottom" constant="-50" id="ih3-ph-s4H"/>
                                             <constraint firstItem="ibW-yM-Xqy" firstAttribute="trailing" secondItem="irq-ex-yOE" secondAttribute="trailing" id="izD-8H-jH4"/>
                                             <constraint firstItem="kKT-Sr-EVq" firstAttribute="leading" secondItem="ynY-Uh-gtp" secondAttribute="leading" constant="-100" id="j40-xO-tfd"/>
@@ -3778,7 +3778,7 @@
                                                 <variation key="widthClass=regular" constant="200"/>
                                             </constraint>
                                             <constraint firstItem="21p-9z-rA7" firstAttribute="trailing" secondItem="dJU-V3-ddj" secondAttribute="trailing" id="xRZ-sq-oty"/>
-                                            <constraint firstItem="irq-ex-yOE" firstAttribute="top" secondItem="9Bg-6x-pXK" secondAttribute="bottom" constant="140" id="zGD-3r-8Ot"/>
+                                            <constraint firstItem="irq-ex-yOE" firstAttribute="top" secondItem="9Bg-6x-pXK" secondAttribute="bottom" constant="120" id="zGD-3r-8Ot"/>
                                         </constraints>
                                         <variation key="widthClass=regular">
                                             <mask key="constraints">
@@ -3793,7 +3793,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Qcz-BL-SRF" secondAttribute="bottom" id="DVI-0w-n3B"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qcz-BL-SRF" secondAttribute="bottom" constant="-106" id="DVI-0w-n3B"/>
                                     <constraint firstItem="Qcz-BL-SRF" firstAttribute="top" secondItem="xpv-Fc-HCs" secondAttribute="top" id="HYU-O8-Qjg"/>
                                     <constraint firstItem="Qcz-BL-SRF" firstAttribute="leading" secondItem="xpv-Fc-HCs" secondAttribute="leading" id="Ys3-Ov-QmW"/>
                                     <constraint firstAttribute="trailing" secondItem="Qcz-BL-SRF" secondAttribute="trailing" id="kh1-D0-nhC"/>
@@ -3975,7 +3975,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <size key="freeformSize" width="1024" height="3124"/>
+                    <size key="freeformSize" width="1024" height="2215"/>
                     <connections>
                         <outlet property="addButton" destination="vVy-rD-gUt" id="QVF-Pr-c95"/>
                         <outlet property="addCategoryButton" destination="fg8-DE-3iX" id="oe3-B9-Ug7"/>
@@ -4030,7 +4030,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDq-3p-nkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3036.9140625" y="-942.1875"/>
+            <point key="canvasLocation" x="3036.9140625" y="-942.578125"/>
         </scene>
         <!--Item Option PopupVC-->
         <scene sceneID="Xmh-6T-NrV">
