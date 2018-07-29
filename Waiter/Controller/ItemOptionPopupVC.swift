@@ -10,6 +10,7 @@ import UIKit
 
 class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var contentMainView: UIView!
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderButton: UIButton!
@@ -37,6 +38,11 @@ class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        contentMainView.layer.masksToBounds = true
+        contentMainView.layer.cornerRadius = 10
+        contentMainView.layer.borderColor = UIColor.white.cgColor
+        contentMainView.layer.borderWidth = 10
+        
         //itemImageView.addCornerRadiusCellItems()
         //orderButton.addCornerRadiusCellItems()
         
@@ -52,6 +58,11 @@ class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    
+    @IBAction func dismissButton_Pressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func orderButton_Pressed(_ sender: Any) {

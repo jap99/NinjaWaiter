@@ -243,12 +243,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         pc.menuItem = menuItem
                         
                         
-                        let screenFrame = UIScreen.main.bounds
-                        pc.modalPresentationStyle = .popover
-                        pc.preferredContentSize = CGSize(width: screenFrame.width*0.4, height: screenFrame.height*0.6)
-                        pc.popoverPresentationController?.delegate = self
-                        pc.popoverPresentationController?.sourceView = sourceView
-                        pc.popoverPresentationController?.sourceRect = sourceView.bounds
+                        
+                        pc.modalPresentationStyle = .overFullScreen
+//                        let screenFrame = UIScreen.main.bounds
+//                        pc.preferredContentSize = CGSize(width: screenFrame.width*0.4, height: screenFrame.height*0.6)
+//                        pc.popoverPresentationController?.delegate = self
+//                        pc.popoverPresentationController?.sourceView = sourceView
+//                        pc.popoverPresentationController?.sourceRect = sourceView.bounds
 
 
                         self.present(pc, animated: true, completion: nil)
