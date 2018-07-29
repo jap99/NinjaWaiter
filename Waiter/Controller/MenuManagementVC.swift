@@ -14,8 +14,6 @@ import DropDown
 
 class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var isFromSave = false
-    
     @IBOutlet weak var addLabel: UIView!
     @IBOutlet weak var itemCategoryLabel: UILabel!
     @IBOutlet weak var addCategoryLabel: UILabel!
@@ -34,7 +32,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var scrollSubview: UIView!
     
     // NAVIGATION BAR BUTTONS
-    
     @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var menuManagementButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
@@ -45,33 +42,26 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var itemSavedSuccess_View: UIView!
     @IBOutlet weak var itemEditedSuccessfully_View: UIView!
     
-    
     // (ADD) CATEGORY BUTTON & ITEM BUTTON
-    
     @IBOutlet weak var addCategoryButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
     
     // GET ITEMS
-    
     private var dbRef: DatabaseReference!
     private var itemRef: DatabaseReference!
     
     // TABLE VIEWS
-    
     @IBOutlet weak var categoryTV: UITableView!
     @IBOutlet weak var itemTV: UITableView!
     
     // THE SCROLL VIEW
-    
     @IBOutlet weak var mainScrollview: UIScrollView!
     
     // (SAVE) CATEGORY BUTTON & ITEM BUTTON
-    
     @IBOutlet weak var saveCategoryButton: UIButton!
     @IBOutlet weak var saveItemButton: UIButton!
     
     // THE 'ADD CATEGORY' POPOUP VIEW
-    
     @IBOutlet weak var addCategoryView: UIView!
     @IBOutlet weak var foodTextField: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
@@ -85,7 +75,6 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var plusSignItemImageView: UIImageView!
     
     // COLLECTION VIEW
-    
     @IBOutlet weak var itemCV: UICollectionView!
     
     // EDIT MENU ITEMS
@@ -98,53 +87,42 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var editMenuItemsCV: UICollectionView!
     
     // EXTRA OUTLETS CREATED IN ORDER TO CODE FOR SMALL DEVICES
-    
+    @IBOutlet weak var line1: UIView!
+    @IBOutlet weak var line2: UIView!
+    @IBOutlet weak var line1_topConstraint: NSLayoutConstraint!
     
     // VARIABLES
-    
     var categories = [Category]()
     var dictOfArrays = [String: [String]]()
     var index = 0
     var imagePicker: UIImagePickerController?
     var textField : UITextField?
-    
     let dropDown = DropDown()
-    
     var items: [[String: AnyObject]] = []
     var itemOptions: [[String: AnyObject]] = []
     var selectedItemId = ""
+    var isFromSave = false
     
     // V D L
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.foodTextField.layer.cornerRadius = 7
         self.addCategoryView.layer.borderColor = UIColor.lightGray.cgColor
         self.addCategoryView.layer.borderWidth = 1.0
-        
-        editMenuItemsCV.delegate = self
-        editMenuItemsCV.dataSource = self
-        
-        itemCV.delegate = self
-        itemCV.dataSource = self
-        
-        
+        editMenuItemsCV.delegate = self; editMenuItemsCV.dataSource = self
+        itemCV.delegate = self; itemCV.dataSource = self
         dropDown.anchorView = byCategoryView
         setupInterfaceIfSmallDevice()
         getCategories()
         setupVC()
-
         self.getCategoryItems(categoryName: "All")
-        
         dropDown.selectionAction = { [unowned self] (index: Int, categoryName: String) in
             self.filterCategoryLabel.text = categoryName
             self.getCategoryItems(categoryName: categoryName)
         }
-        
     }
     
     // V D L S
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
@@ -152,20 +130,18 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     // V D A
-    
     override func viewDidAppear(_ animated: Bool) {
         showAddCategoryView(false)
-        
         itemCV.reloadData();  itemTV.reloadData()
     }
     
     // V W A
-    
     override func viewWillAppear(_ animated: Bool) {
         itemSavedSuccess_View.isHidden = true
         categorySavedSuccess_View.isHidden = true
         itemEditedSuccessfully_View.isHidden = true 
     }
+    
     
     // MARK: - SETUP
     
@@ -207,36 +183,78 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         // item - image picker
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
-        
-      //  hideKeyboardWhenTappedAround()
     }
     
     func setupInterfaceIfSmallDevice() {
-        if UIScreen.main.bounds.width < 1030 {
-            let navBarViews: [String: UIView] = ["navBarView": navBarView, "backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
+        
+//        if UIScreen.main.bounds.width < 1030 {
             
-            navBarView.translatesAutoresizingMaskIntoConstraints = false
-            backButton.translatesAutoresizingMaskIntoConstraints = false
-            settingsButton.translatesAutoresizingMaskIntoConstraints = false
-            menuManagementButton.translatesAutoresizingMaskIntoConstraints = false
-            mainScrollview.translatesAutoresizingMaskIntoConstraints = false
-            scrollSubview.translatesAutoresizingMaskIntoConstraints = false
-            
-            let itemViews: [String: UIView] = ["tv": itemTvTopView]
-            
-            addImageButton.translatesAutoresizingMaskIntoConstraints = false
-            itemTvTopView.translatesAutoresizingMaskIntoConstraints = false
-            
-            let itemTopViews: [String: UIView] = ["availabilityL": itemAvailLabel, "breakfastL": itemBfLabel, "lunchL": itemLunchLbl, "dinnerL": itemDinLbl]
-            
-            NSLayoutConstraint.activate([
-                
-                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
-                NSLayoutConstraint.constraints(withVisualFormat: "H:[addCategoryB]-30-[tv]-30-|", options: [], metrics: nil, views: ["tv": categoryTV, "addCategoryB": addCategoryButton]),
-                NSLayoutConstraint.constraints(withVisualFormat: "[tv]-30-|", options: [], metrics: nil, views: itemViews),
-                NSLayoutConstraint.constraints(withVisualFormat: "[availabilityL]-105-[breakfastL]-45-[lunchL]-45-[dinnerL]-30-|", options: [], metrics: nil, views: itemTopViews)
-                ].flatMap{$0})
-        }
+//            let navBarViews: [String: UIView] = ["navBarView": navBarView, "backB": backButton, "settingsB": settingsButton, "menuManagementB": menuManagementButton]
+//            let itemTopViews: [String: UIView] = ["availabilityL": itemAvailLabel, "breakfastL": itemBfLabel, "lunchL": itemLunchLbl, "dinnerL": itemDinLbl]
+//            let itemViews: [String: UIView] = ["tv": itemTvTopView]
+//            //let svViews: [String: UIView] = ["scrollSubview": scrollSubview, "mainScrollview": mainScrollview]        // DELETE - used anchor notation instead
+//
+//            navBarView.translatesAutoresizingMaskIntoConstraints = false
+//            backButton.translatesAutoresizingMaskIntoConstraints = false
+//            settingsButton.translatesAutoresizingMaskIntoConstraints = false
+//            menuManagementButton.translatesAutoresizingMaskIntoConstraints = false
+//            mainScrollview.translatesAutoresizingMaskIntoConstraints = false
+//            scrollSubview.translatesAutoresizingMaskIntoConstraints = false
+//            addImageButton.translatesAutoresizingMaskIntoConstraints = false
+//            itemTvTopView.translatesAutoresizingMaskIntoConstraints = false
+//
+//            addLabel.translatesAutoresizingMaskIntoConstraints = false
+//            itemCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
+//            addCategoryButton.translatesAutoresizingMaskIntoConstraints = false
+//            saveItemButton.translatesAutoresizingMaskIntoConstraints = false
+//            itemLabel.translatesAutoresizingMaskIntoConstraints = false
+//            itemOptionsLbl.translatesAutoresizingMaskIntoConstraints = false
+//            itemCV.translatesAutoresizingMaskIntoConstraints = false
+//            editItemsLbl.translatesAutoresizingMaskIntoConstraints = false
+//            line1.translatesAutoresizingMaskIntoConstraints = false
+//            line2.translatesAutoresizingMaskIntoConstraints = false
+//            allView.translatesAutoresizingMaskIntoConstraints = false
+//            editMenuItemsCV.translatesAutoresizingMaskIntoConstraints = false
+//            scrollSubview.translatesAutoresizingMaskIntoConstraints = false
+//            mainScrollview.translatesAutoresizingMaskIntoConstraints = false
+//
+//
+//            let menuMgmtItems: [String: UIView] = ["addLabel": addLabel,
+//                                                   "itemCategoryLabel": itemCategoryLabel,
+//                                                   "addCategoryButton": addCategoryButton,
+//                                                   "itemLabel": itemLabel,
+//                                                   "addImageButton": addImageButton,
+//                                                   "saveItemButton": saveItemButton,
+//                                                   "itemOptionsLbl": itemOptionsLbl,
+//                                                   "itemCV": itemCV,
+//                                                   "editItemsLbl": editItemsLbl,
+//                                                   "line1": line1,
+//                                                   "line2": line2,
+//                                                   "allView": allView,
+//                                                   "editMenuItemsCV": editMenuItemsCV]
+//            NSLayoutConstraint.activate([
+//                NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[addLabel]-40-[itemCategoryLabel]-25-[addCategoryButton]-100-[line1(1@1000)]-80-[itemLabel]-25-[addImageButton]-35-[saveItemButton]-180-[itemOptionsLbl]-70-[itemCV]-150-[line2(1)]-90-[editItemsLbl]-30-[allView]-60-[editMenuItemsCV(375)]|", options: [], metrics: nil, views: menuMgmtItems),
+//
+//                NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[backB]-100-[settingsB]-100-[menuManagementB]-40-|", options: [], metrics: nil, views: navBarViews),
+//                NSLayoutConstraint.constraints(withVisualFormat: "H:[addCategoryB]-30-[tv]-30-|", options: [], metrics: nil, views: ["tv": categoryTV, "addCategoryB": addCategoryButton]),
+//                NSLayoutConstraint.constraints(withVisualFormat: "H:[tv]-30-|", options: [], metrics: nil, views: itemViews),
+//                NSLayoutConstraint.constraints(withVisualFormat: "H:[availabilityL]-105-[breakfastL]-45-[lunchL]-45-[dinnerL]-30-|", options: [], metrics: nil, views: itemTopViews)
+//
+//                ].flatMap{$0})
+//        }
+//
+//
+//        mainScrollview.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+//        mainScrollview.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+//        mainScrollview.topAnchor.constraint(equalTo: navBarView.bottomAnchor).isActive = true
+//        mainScrollview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+//
+//        scrollSubview.leadingAnchor.constraint(equalTo: mainScrollview.leadingAnchor).isActive = true
+//        scrollSubview.trailingAnchor.constraint(equalTo: mainScrollview.trailingAnchor).isActive = true
+//        scrollSubview.bottomAnchor.constraint(equalTo: mainScrollview.bottomAnchor).isActive = true
+//        scrollSubview.topAnchor.constraint(equalTo: mainScrollview.topAnchor).isActive = true
+//        scrollSubview.widthAnchor.constraint(equalTo: mainScrollview.widthAnchor).isActive = true
+//        scrollSubview.heightAnchor.constraint(equalToConstant: 3018).isActive = true
     }
     
     // MARK: - IBACTIONS

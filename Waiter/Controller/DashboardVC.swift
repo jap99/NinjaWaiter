@@ -21,12 +21,15 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var v1: UIView!
     @IBOutlet weak var v2: UIView!
     
+    @IBOutlet weak var orderingButton: RoundedButton!
+    
     var staffArray: [StaffMember]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         v1.layer.cornerRadius = 8
         v2.layer.cornerRadius = 8
+        orderingButton.clipsToBounds = true 
         settingsButton.isEnabled = _currentUser.type == .adamin
         hideKeyboardWhenTappedAround()
         if UIScreen.main.bounds.width < 1030 {
