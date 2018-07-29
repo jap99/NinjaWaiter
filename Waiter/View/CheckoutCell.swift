@@ -19,17 +19,25 @@ class CheckoutCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureCell(indexPath: IndexPath, cartDictionaries: [[String: AnyObject]]) {
-        let cartItem = cartDictionaries[indexPath.row]
-        xButton.accessibilityIdentifier = (cartItem["ItemID"] as! String)
-        self.itemDescriptionLabel?.text = (cartItem["itemName"] as! String)
-        self.itemPriceLabel?.text = "\(String(describing: cartItem["itemPrice"]!))"
+    func configureCell(indexPath: IndexPath, cartItem: CategoryItems) {
+        var itemName = "\(cartItem.itemName) (\(cartItem.itemPrice))"
+        var itemPrice = 0.0
         
-//        for (key, value) in cartDictionaries[indexPath.row] {
-//            let name = key
-//            let price = value
-//            self.itemDescriptionLabel?.text = name
-//            self.itemPriceLabel?.text = "\(price)"
-//        }
+        if let price = cartItem.itemPrice as? NSString {
+            itemPrice = itemPrice + price.doubleValue
+        }
+        
+        for option in cartItem.optionList {
+            if option.isOptionSelected {
+                itemName = "\(itemName)\n\(option.optionName) (\(option.optionPrice))"
+                if let price = option.optionPrice as? NSString {
+                    itemPrice = itemPrice + price.doubleValue
+                }
+            }
+        }
+        
+        xButton.accessibilityIdentifier = cartItem.itemId
+        self.itemDescriptionLabel?.text = itemName
+        self.itemPriceLabel?.text = "\(itemPrice)"
     }
 }

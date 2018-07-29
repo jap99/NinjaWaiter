@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ItemOptionDelegate {
+    func addItemToCart(menuItem: CategoryItems)
+}
+
 class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var contentMainView: UIView!
@@ -16,6 +20,7 @@ class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var orderButton: UIButton!
     
     var menuItem: CategoryItems = CategoryItems()
+    var delegate: ItemOptionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +71,11 @@ class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func orderButton_Pressed(_ sender: Any) {
-        
+        self.dismiss(animated: true, completion: {
+            if let delegate = self.delegate {
+                delegate.addItemToCart(menuItem: self.menuItem)
+            }
+        })
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,13 +93,14 @@ class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTitleCell", for: indexPath) as! MenuItemTitleCell
+            cell.nameLabel.text = menuItem.itemName
+            cell.priceLabel.text = menuItem.itemPrice
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemOptionCell", for: indexPath) as! MenuItemOptionCell
             
-            cell.nameLabel.text = menuItem.itemName
-            cell.priceLabel.text = menuItem.itemPrice
+            
             
             let optionData = menuItem.optionList[indexPath.row]
             
