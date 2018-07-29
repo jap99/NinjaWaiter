@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var menuData = [[String: [[String: [String: AnyObject]]]]]()
     var arrCategory = [CategoryDetail]()
     var currIndex = 0
-    var cart = [[String: AnyObject]]()
+    var cart = [CategoryItems]()
     var categoryType = CategoryType.none
     
     var discountPercentage = 0.0
@@ -52,6 +52,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tv.delegate = self; tv.dataSource = self
         cv1.delegate = self; cv1.dataSource = self
         cv2.delegate = self; cv2.dataSource = self
+        
+        tv.rowHeight = UITableViewAutomaticDimension
+        tv.estimatedRowHeight = 1000
         
 //        let layoutCV2 = UICollectionViewFlowLayout()
 //        layoutCV2.scrollDirection = .vertical
@@ -111,7 +114,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         checkoutCell.xButton.removeTarget(self, action: #selector(ViewController.removeItemFromCart(_:)), for: .touchUpInside)
         checkoutCell.xButton.addTarget(self, action: #selector(ViewController.removeItemFromCart(_:)), for: .touchUpInside)
         
-        checkoutCell.configureCell(indexPath: indexPath, cartDictionaries: cart)
+        checkoutCell.configureCell(indexPath: indexPath, cartItem: cart[indexPath.row])
         return checkoutCell
     }
     
@@ -122,7 +125,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 var i = 0
                 ItemLoop: for item in arrCategory[currIndex].categoryItemList {
                     if item.itemId == removeItemId {
-                        arrCategory[currIndex].categoryItemList[i].isSelected = false
+                        item.isSelected = false
                         break ItemLoop
                     }
                     i  += 1
@@ -213,7 +216,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
                 var i = 0
                 CartLoop: for cartItem in self.cart {
-                    if cartItem["ItemID"] as! String == itemId {
+                    if cartItem.itemId == itemId {
                         break CartLoop
                     }
                     i += 1
@@ -241,7 +244,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     if let pc = storyBoard.instantiateViewController(withIdentifier: "ItemOptionPopupVC") as? ItemOptionPopupVC {
                         pc.menuItem = menuItem
-                        
+                        pc.delegate = self
                         
                         
                         pc.modalPresentationStyle = .overFullScreen
@@ -255,7 +258,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self.present(pc, animated: true, completion: nil)
                     }
                 } else {
-                    self.additemToCart(menuItem: menuItem)
+                    self.addItemToCart(menuItem: menuItem)
                 }
             }
         }
@@ -265,18 +268,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return .none
     }
     
-    func additemToCart(menuItem: CategoryItems) {
-        let itemData: Dictionary<String, AnyObject> = [
-            "itemName" : menuItem.itemName as AnyObject,
-            "itemPrice" : menuItem.itemPrice as AnyObject,
-            "ItemID": menuItem.itemId as AnyObject
-        ]
-        menuItem.isSelected = true
-        self.cart.append(itemData)
-        self.cv2.reloadData()
-        self.tv.reloadData()
-        updateCartTotal()
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == cv2 {
@@ -337,7 +328,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var total = 0.0
         
         for cartItem in self.cart {
-            subTotal = subTotal + (cartItem["itemPrice"] as! NSString).doubleValue
+            if let price = cartItem.itemPrice as? NSString {
+                subTotal = subTotal + price.doubleValue
+            }
+
+            for option in cartItem.optionList {
+                if option.isOptionSelected {
+                    if let price = option.optionPrice as? NSString {
+                        subTotal = subTotal + price.doubleValue
+                    }
+                }
+            }
         }
         
         discount = subTotal * discountPercentage/100
@@ -430,3 +431,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 }
 
+
+extension ViewController: ItemOptionDelegate {
+    
+    func addItemToCart(menuItem: CategoryItems) {
+        menuItem.isSelected = true
+        self.cart.append(menuItem)
+        self.cv2.reloadData()
+        self.tv.reloadData()
+        updateCartTotal()
+    }
+}
