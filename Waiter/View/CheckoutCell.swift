@@ -20,7 +20,7 @@ class CheckoutCell: UITableViewCell {
     }
     
     func configureCell(indexPath: IndexPath, cartItem: CategoryItems) {
-        var itemName = "\(cartItem.itemName) (\(cartItem.itemPrice))"
+        var itemName = "\(cartItem.itemName)"
         var itemPrice = 0.0
         
         if let price = cartItem.itemPrice as? NSString {
@@ -29,7 +29,7 @@ class CheckoutCell: UITableViewCell {
         
         for option in cartItem.optionList {
             if option.isOptionSelected {
-                itemName = "\(itemName)\n\(option.optionName) (\(option.optionPrice))"
+                itemName = "\(itemName)\n  + \(option.optionName)"
                 if let price = option.optionPrice as? NSString {
                     itemPrice = itemPrice + price.doubleValue
                 }

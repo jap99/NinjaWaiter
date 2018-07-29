@@ -53,6 +53,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cv1.delegate = self; cv1.dataSource = self
         cv2.delegate = self; cv2.dataSource = self
         
+        tv.rowHeight = UITableViewAutomaticDimension
+        tv.estimatedRowHeight = 1000
+        
 //        let layoutCV2 = UICollectionViewFlowLayout()
 //        layoutCV2.scrollDirection = .vertical
 //        layoutCV2.minimumInteritemSpacing = 20
