@@ -15,6 +15,8 @@ class CategoryItems {
     var itemPrice = ""
     var isSelected = false
     
+    var optionList: [ItemOption] = [ItemOption]()
+    
     func convertFrom(item:ItemCoreData) {
         itemId = item.itemUID
         itemName = item.itemName
@@ -23,3 +25,13 @@ class CategoryItems {
         
     }
 }
+
+
+class ItemOption {
+    var itemId = ""
+    var optionId = ""
+    var optionName = ""
+    var optionPrice = ""
+    var isOptionSelected = false
+}
+

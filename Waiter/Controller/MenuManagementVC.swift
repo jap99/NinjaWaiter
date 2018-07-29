@@ -99,7 +99,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     var textField : UITextField?
     let dropDown = DropDown()
     var items: [[String: AnyObject]] = []
-    var itemOptions: [[String: AnyObject]] = []
+    var itemOptions: [ItemOption] = []
     var selectedItemId = ""
     var isFromSave = false
     
@@ -370,9 +370,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func getItemOptions(itemID: String) {
         print(itemID)
         DataService.instance.getItemOption(itemId: itemID) { (dict, error) in
-            self.itemOptions = [[String: AnyObject]]()
-            if let dictArray = dict {
-                self.itemOptions = dictArray
+            self.itemOptions = [ItemOption]()
+            if let optionArray = dict {
+                self.itemOptions = optionArray
             }
             self.itemCV.reloadData()
         }
@@ -404,10 +404,12 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             if sender.tag < self.itemOptions.count {
                 let optionData = self.itemOptions[sender.tag]
-                optionView.updateFields(optionData: optionData, optionIndex: sender.tag+1, selectedItemId: selectedItemId)
+                optionView.updateFields(optionData: optionData, optionIndex: sender.tag+1)
                 
             } else {
-                optionView.updateFields(optionData: nil, optionIndex: sender.tag+1, selectedItemId: selectedItemId)
+                var optionData = ItemOption()
+                optionData.itemId = selectedItemId
+                optionView.updateFields(optionData: optionData, optionIndex: sender.tag+1)
             }
         } else {
             Utils.showAlert(title: "Alert", message: "Please select Menu Item to add or edit Menu Options", onSucces: nil)

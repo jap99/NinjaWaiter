@@ -10,7 +10,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var cv1: UICollectionView!
     @IBOutlet weak var cv2: UICollectionView!
@@ -200,18 +200,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == cv2 {
+            
             arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
             
             let itemId = arrCategory[currIndex].categoryItemList[indexPath.row].itemId
             if arrCategory[currIndex].categoryItemList[indexPath.row].isSelected {
-                let itemPrice = arrCategory[currIndex].categoryItemList[indexPath.row].itemPrice
-                let itemName = arrCategory[currIndex].categoryItemList[indexPath.row].itemName
-                let itemData: Dictionary<String, AnyObject> = [
-                    "itemName" : itemName as AnyObject,
-                    "itemPrice" : itemPrice as AnyObject,
-                    "ItemID": itemId as AnyObject
-                ]
-                self.cart.append(itemData)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+                let menuItem: CategoryItems = arrCategory[currIndex].categoryItemList[indexPath.row]
+                menuItem.isSelected = false
+                self.getItemOptions(menuItem: menuItem, sourceView: cell.foodImageView)
+                
             } else {
                 var i = 0
                 CartLoop: for cartItem in self.cart {
@@ -230,11 +228,54 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if collectionView == cv2 {
+    func getItemOptions(menuItem: CategoryItems, sourceView: UIView) {
+        if menuItem.itemId != "" {
+            DataService.instance.getItemOption(itemId: menuItem.itemId) { (dict, error) in
+                if let optionArray = dict {
+                    menuItem.optionList = optionArray
+                }
+                
+                if menuItem.optionList.count > 0 {
+                    
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    
+                    if let pc = storyBoard.instantiateViewController(withIdentifier: "ItemOptionPopupVC") as? ItemOptionPopupVC {
+                        pc.menuItem = menuItem
+                        
+                        
+                        let screenFrame = UIScreen.main.bounds
+                        pc.modalPresentationStyle = .popover
+                        pc.preferredContentSize = CGSize(width: screenFrame.width*0.4, height: screenFrame.height*0.6)
+                        pc.popoverPresentationController?.delegate = self
+                        pc.popoverPresentationController?.sourceView = sourceView
+                        pc.popoverPresentationController?.sourceRect = sourceView.bounds
+
+
+                        self.present(pc, animated: true, completion: nil)
+                    }
+                } else {
+                    self.additemToCart(menuItem: menuItem)
+                }
+            }
         }
     }
     
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func additemToCart(menuItem: CategoryItems) {
+        let itemData: Dictionary<String, AnyObject> = [
+            "itemName" : menuItem.itemName as AnyObject,
+            "itemPrice" : menuItem.itemPrice as AnyObject,
+            "ItemID": menuItem.itemId as AnyObject
+        ]
+        menuItem.isSelected = true
+        self.cart.append(itemData)
+        self.cv2.reloadData()
+        self.tv.reloadData()
+        updateCartTotal()
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == cv2 {

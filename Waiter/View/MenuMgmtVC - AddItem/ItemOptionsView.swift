@@ -56,28 +56,19 @@ class ItemOptionsView: UIView {
         
     }
     
-    func updateFields(optionData: [String: AnyObject]?, optionIndex: Int, selectedItemId:
-        String) {
-        self.itemId = selectedItemId
-        if let optionData = optionData {
-            if let optionId = optionData["key"] as? String {
-                self.optionId = optionId
+    func updateFields(optionData: ItemOption, optionIndex: Int) {
+        self.itemId = optionData.itemId
+        if optionData.optionId != "" {
+            if optionData.optionId != "" {
+                self.optionId =  optionData.optionId
             }
             
             if self.optionId != "" {
                 isEditingMode = true
                 topLabel.text = "Edit Option \(optionIndex)"
                 
-                if let optionValue = optionData["value"] as? [String:AnyObject] {
-                    if let optionTitle = optionValue["optionTitle"] as? String {
-                        optionName.text = optionTitle
-                    }
-                    
-                    if let optionPrice = optionValue["optionPrice"] as? String {
-                        self.optionPrice.text = optionPrice
-                    }
-                }
-                
+                optionName.text = optionData.optionName
+                optionPrice.text = optionData.optionPrice
             }
         }
         

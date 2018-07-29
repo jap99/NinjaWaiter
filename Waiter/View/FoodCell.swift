@@ -34,10 +34,16 @@ class FoodCell: UICollectionViewCell {
             self.contentView.layer.backgroundColor = UIColor.white.cgColor
         }
     }
+}
+
+
+
+class MenuItemTitleCell: UITableViewCell {
     
-    
-    
-    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
 }
 
+
+class MenuItemOptionCell: MenuItemTitleCell {}

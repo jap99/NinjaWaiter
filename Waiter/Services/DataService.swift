@@ -376,7 +376,7 @@ class DataService {
     
     
     
-    func getItemOption(itemId: String, callback: ((_ categories: [[String: AnyObject]]?, _ error: Error?) -> Void)?) {
+    func getItemOption(itemId: String, callback: ((_ categories: [ItemOption]?, _ error: Error?) -> Void)?) {
         
         mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").observe(.value) { (snapshot) in
             
@@ -384,13 +384,22 @@ class DataService {
                 callback?(nil, nil)
                 return
             } else {
-                var optionListArray = [[String: AnyObject]]()
+                var optionListArray = [ItemOption]()
                 if let optionListDict = snapshot.value as? [String : AnyObject] {
                     for (k,v) in optionListDict {
-                        var optionData = [String: AnyObject]()
-                        optionData["itemId"] = itemId as AnyObject
-                        optionData["key"] = k as AnyObject
-                        optionData["value"] = v
+                        let optionData = ItemOption()
+                        optionData.itemId = itemId as String
+                        optionData.optionId = k as String
+                        if let optionValue = v as? [String: String] {
+                            if let title = optionValue["optionTitle"] {
+                                optionData.optionName = title
+                            }
+                            
+                            if let price = optionValue["optionPrice"] {
+                                optionData.optionPrice = price
+                            }
+                        }
+                        
                         optionListArray.append(optionData)
                     }
                 }
