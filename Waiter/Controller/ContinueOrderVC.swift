@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContinueOrderVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{//}, UIGestureRecognizerDelegate{
+class ContinueOrderVC: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate{//}, UIGestureRecognizerDelegate{
 
     @IBOutlet weak var cv1: UICollectionView!
     

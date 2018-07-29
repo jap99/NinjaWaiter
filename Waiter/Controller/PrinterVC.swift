@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PrinterVC: UIViewController {
+class PrinterVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

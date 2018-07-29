@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderSuccessVC: UIViewController {
+class OrderSuccessVC: BaseViewController {
 
     
     @IBOutlet weak var gifView: UIImageView!

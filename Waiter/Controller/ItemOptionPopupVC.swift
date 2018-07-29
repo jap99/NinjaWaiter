@@ -12,7 +12,7 @@ protocol ItemOptionDelegate {
     func addItemToCart(menuItem: CategoryItems)
 }
 
-class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemOptionPopupVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var contentMainView: UIView!
     @IBOutlet weak var itemImageView: UIImageView!
@@ -55,7 +55,9 @@ class ItemOptionPopupVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func getItemOptions(itemID: String) {
         if itemID != "" {
+            self.startIndicator()
             DataService.instance.getItemOption(itemId: itemID) { (dict, error) in
+                self.stopIndicator()
                 self.menuItem.optionList = [ItemOption]()
                 if let optionArray = dict {
                     self.menuItem.optionList = optionArray

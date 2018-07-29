@@ -10,7 +10,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
+class ViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var cv1: UICollectionView!
     @IBOutlet weak var cv2: UICollectionView!
@@ -201,7 +201,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func getItemOptions(menuItem: CategoryItems, sourceView: UIView) {
         if menuItem.itemId != "" {
+            self.startIndicator()
             DataService.instance.getItemOption(itemId: menuItem.itemId) { (dict, error) in
+                self.stopIndicator()
                 if let optionArray = dict {
                     menuItem.optionList = optionArray
                 }
@@ -215,7 +217,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         pc.delegate = self
                         
                         
-                        pc.modalPresentationStyle = .overFullScreen
+ //                       pc.modalPresentationStyle = .none
 //                        let screenFrame = UIScreen.main.bounds
 //                        pc.preferredContentSize = CGSize(width: screenFrame.width*0.4, height: screenFrame.height*0.6)
 //                        pc.popoverPresentationController?.delegate = self
@@ -249,7 +251,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func setupObjectsWithSettingsData() {
         
+        self.startIndicator()
         DataService.instance.getSettingsData { (dict, error) in
+            self.stopIndicator()
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
@@ -328,8 +332,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func getDataFromFirebase() {
+        self.startIndicator()
         DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { (arrayCategory) in
-            
+            self.stopIndicator()
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: self.categoryType)

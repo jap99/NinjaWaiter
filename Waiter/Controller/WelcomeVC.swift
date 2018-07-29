@@ -41,7 +41,7 @@ class AppUser {
 
 // CLASS
 
-class WelcomeVC: UIViewController {
+class WelcomeVC: BaseViewController {
 
     @IBOutlet weak var createNewRestaurantLabel: UILabel!
     @IBOutlet weak var createNewRestaurantButton: UIButton!
@@ -120,14 +120,16 @@ class WelcomeVC: UIViewController {
     
     func loginAPI() { 
             if loginModel.username.isEmpty == false && loginModel.password.isEmpty == false {
+                self.startIndicator()
                 AuthServices.instance.restaurantLogin(email:loginModel.username, password:loginModel.password) { (errMessage, user) in
                     if errMessage != nil {
+                        self.stopIndicator()
                     } else if let currentUser = user as? User {
                         // DataService.instance.getAvailabilityDataFromServer()
                         
                         _currentUser = AppUser(user:currentUser)
                         DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
-                            
+                            self.stopIndicator()
                             if let _ = obj.value as? String {
                                 _currentUser.type = .adamin
                             } else {

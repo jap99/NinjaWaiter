@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class DashboardVC: UIViewController {
+class DashboardVC: BaseViewController {
 
     @IBOutlet weak var breakfastButton: UIButton!
     @IBOutlet weak var lunchButton: UIButton!
@@ -40,7 +40,9 @@ class DashboardVC: UIViewController {
                 ].flatMap{$0})
         }
         if RESTAURANT_UID != nil {
+            self.startIndicator()
             DataService.instance.getSettingsData { (dict, error) in
+                self.stopIndicator()
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
@@ -48,8 +50,9 @@ class DashboardVC: UIViewController {
                 }
             }
             DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
-         
+         self.startIndicator()
         DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { (arrayCategory) in
+            self.stopIndicator()
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .breakfast)
@@ -57,6 +60,7 @@ class DashboardVC: UIViewController {
             _appDel.saveContext()
         }
         DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { (arrayCategory) in
+            self.stopIndicator()
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .lunch)
@@ -64,6 +68,7 @@ class DashboardVC: UIViewController {
             _appDel.saveContext()
         }
         DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { (arrayCategory) in
+            self.stopIndicator()
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .dinner)
@@ -78,7 +83,9 @@ class DashboardVC: UIViewController {
     
     func  fetchCategoryFromServer() { // won't need this in the future
         DispatchQueue.global(qos: .background).async {
+            self.startIndicator()
             DataService.instance.getCategoriesFromServer { (categories: [Category]?, error) in
+                self.stopIndicator()
                 guard let _ = error else {
                     return
                 }

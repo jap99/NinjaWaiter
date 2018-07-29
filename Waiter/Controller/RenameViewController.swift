@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RenameViewController: UIViewController {
+class RenameViewController: BaseViewController {
 
     
     override func viewDidLoad() {

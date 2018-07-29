@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     var staffArray = [StaffMember]()
     
@@ -197,7 +197,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupObjectsWithData() {
+        self.startIndicator()
         DataService.instance.getSettingsData { (dict, error) in
+            self.stopIndicator()
             if let error = error {
                 print(error.localizedDescription)
             } else if let dict = dict {
@@ -345,12 +347,15 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if staffArray.count < 10 {
             if emailTextField.text != nil && emailTextField.text! != "" && passwordTextField.text != nil && passwordTextField.text! != "" {
                 if (emailTextField.text?.count)! >= 8 {
+                    self.startIndicator()
                     AuthServices.instance.createStaffMember(staffEmail: emailTextField.text!, password: passwordTextField.text!) { (error, user) in
                         if let error = error {
+                            self.stopIndicator()
                             print("ERROR SAVING STAFF\(error.debugDescription)")
                         } else { // success
                             self.staffSavedSuccessful_View.isHidden = false
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                                self.stopIndicator()
                                 self.staffSavedSuccessful_View.isHidden = true
                             })
                             self.updateStaffTV()
@@ -506,7 +511,9 @@ extension SettingsVC :  WaiterCellProtocol {
     
     func deleteButtonClicked(_ sender: UIButton) {
         print("Delete account tap\(sender.tag)")
+       self.startIndicator()
         DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+        self.stopIndicator()
             if error == nil {
                 if self.staffArray[sender.tag].uid != "" {
                     let senderIndex = sender.tag

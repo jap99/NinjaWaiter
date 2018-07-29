@@ -45,6 +45,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NVActivityIndicatorView (4.3.0):
+    - NVActivityIndicatorView/Presenter (= 4.3.0)
+  - NVActivityIndicatorView/Presenter (4.3.0)
 
 DEPENDENCIES:
   - DropDown
@@ -54,9 +57,10 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Kingfisher
+  - NVActivityIndicatorView
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - DropDown
     - Firebase
     - FirebaseAnalytics
@@ -70,6 +74,7 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
+    - NVActivityIndicatorView
 
 SPEC CHECKSUMS:
   DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
@@ -85,7 +90,8 @@ SPEC CHECKSUMS:
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NVActivityIndicatorView: 963f62bf9f993fcf23218e55958e5b1761b9504c
 
-PODFILE CHECKSUM: bc0085995712036d752c197243b97b94d7b51858
+PODFILE CHECKSUM: 835721db03fdb1c24bdc4ea65e13d835b767899c
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

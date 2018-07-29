@@ -8,6 +8,7 @@ target 'Waiter' do
   # Pods for Waiter
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
+pod 'NVActivityIndicatorView'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Analytics'

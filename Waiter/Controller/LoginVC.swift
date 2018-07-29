@@ -17,7 +17,7 @@ class LoginModel {
     var password = ""
 }
 
-class LoginVC: UIViewController {
+class LoginVC: BaseViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -90,16 +90,19 @@ class LoginVC: UIViewController {
             LoginModel.instance.username = emailTextField.text!
             LoginModel.instance.password = passwordTextField.text!
             
+            self.startIndicator()
             AuthServices.instance.restaurantLogin(email: LoginModel.instance.username, password: LoginModel.instance.password) { (errMessage, user) in
                 
                 if errMessage != nil {
+                    self.stopIndicator()
                     print("Error logging in")
                     
                 } else if let currentUser = user as? User {
                     
                     _currentUser = AppUser(user:currentUser)
+                    self.startIndicator()
                     DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
-                        
+                        self.stopIndicator()
                         if let _ = admin.value as? String {
                             _currentUser.type = .adamin
                         } else {

@@ -17,7 +17,7 @@
         <!--DashboardVC-->
         <scene sceneID="itK-KO-feE">
             <objects>
-                <viewController storyboardIdentifier="DashboardVC-ID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j4U-re-yGh" customClass="DashboardVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardVC-ID" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j4U-re-yGh" customClass="DashboardVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3em-nv-uRq">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,7 +203,7 @@
         <!--Rename View Controller-->
         <scene sceneID="HIv-EI-ccG">
             <objects>
-                <viewController id="UZs-jw-NkB" customClass="RenameViewController" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="UZs-jw-NkB" customClass="RenameViewController" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ybj-OJ-hqV">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -759,7 +759,7 @@
         <!--Continue OrderVC-->
         <scene sceneID="aAn-XU-m6Y">
             <objects>
-                <viewController storyboardIdentifier="ContinueOrderVC-ID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yiY-Ml-Gct" customClass="ContinueOrderVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContinueOrderVC-ID" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yiY-Ml-Gct" customClass="ContinueOrderVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hol-S7-huw">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1323,7 +1323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKG-kG-caZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1358" y="-1546"/>
+            <point key="canvasLocation" x="1395" y="-1784"/>
         </scene>
         <!--Order SuccessVC-->
         <scene sceneID="Glo-aJ-ksY">
@@ -1605,12 +1605,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4a-Iy-9HM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194" y="-1784"/>
+            <point key="canvasLocation" x="76" y="-1784"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="CJt-aS-HZO">
             <objects>
-                <viewController storyboardIdentifier="SettingsVC-ID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ST4-oh-l6n" customClass="SettingsVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsVC-ID" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ST4-oh-l6n" customClass="SettingsVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wZ7-2N-TXX">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="2200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2641,7 +2641,7 @@
         <!--Menu ManagementVC-->
         <scene sceneID="Czb-rF-es3">
             <objects>
-                <viewController storyboardIdentifier="MenuManagementVC-ID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bJa-cx-TvK" customClass="MenuManagementVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuManagementVC-ID" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bJa-cx-TvK" customClass="MenuManagementVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xYt-do-Q8Z">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="2215"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4035,7 +4035,7 @@
         <!--Item Option PopupVC-->
         <scene sceneID="Xmh-6T-NrV">
             <objects>
-                <viewController storyboardIdentifier="ItemOptionPopupVC" id="lVy-Ij-JGy" customClass="ItemOptionPopupVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemOptionPopupVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="lVy-Ij-JGy" customClass="ItemOptionPopupVC" customModule="Waiter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="SLR-7f-KEV">
                         <rect key="frame" x="0.0" y="0.0" width="550" height="798"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4360,7 +4360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7p-P9-RbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3289" y="-2667"/>
+            <point key="canvasLocation" x="2916" y="-2191"/>
         </scene>
     </scenes>
     <resources>

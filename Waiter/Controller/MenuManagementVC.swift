@@ -12,7 +12,7 @@ import Firebase
 import DropDown
 
 
-class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var addLabel: UIView!
     @IBOutlet weak var itemCategoryLabel: UILabel!
@@ -304,7 +304,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         //        print("breakFast: \(breakFast)")
         
         if let name = itemNameTextField.text, let price = itemPriceTextField.text, dictOfArraysIsNotEmpty {
-            
+            self.startIndicator()
             DataService.instance.saveItem(itemName: name, itemPrice: price, itemImage: self.addImageButton.currentBackgroundImage, categoryDictOfArray:  dictOfArrays) { (success) in
                 
                 if success {
@@ -317,8 +317,11 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.itemTV.reloadData()
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                        self.stopIndicator()
                         self.itemSavedSuccess_View.isHidden = true
                     }) 
+                } else {
+                    self.stopIndicator()
                 }
             }
         }
@@ -335,8 +338,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         }
         
+        self.startIndicator()
         DataService.instance.getCategoryItems(categoryUID: categoryUID) { (dict, error) in
             self.items = [[String: AnyObject]]()
+            self.stopIndicator()
             if let dict = dict {
                 if categoryUID != "" {
                     for item in dict {
@@ -369,8 +374,10 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func getItemOptions(itemID: String) {
         print(itemID)
+        self.startIndicator()
         DataService.instance.getItemOption(itemId: itemID) { (dict, error) in
             self.itemOptions = [ItemOption]()
+            self.stopIndicator()
             if let optionArray = dict {
                 self.itemOptions = optionArray
             }
@@ -417,8 +424,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func getCategories() {
+        self.startIndicator()
         DataService.instance.getCategories { (categories: [Category]?, error) in
-            
+            self.stopIndicator()
             guard let error = error else {
                 
                 if let c = categories {
@@ -444,8 +452,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func saveCategory() {
         if let categoryName = foodTextField.text, categoryName.count > 0 {
-            
+            self.startIndicator()
             DataService.instance.saveCategory(categoryName: categoryName) { (success) in
+                self.stopIndicator()
                 if success {
                     self.foodTextField.text = ""
                     self.addCategoryView.isHidden = true
@@ -638,8 +647,7 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 getItemOptions(itemID: itemId)
             }
         }
-    }
-    
+    } 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == editMenuItemsCV {
@@ -683,7 +691,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let  okAction = UIAlertAction(title: "Okay", style: .default) { (action) in
             
+            self.startIndicator()
             DataService.instance.renameCategory(categoryUID: (self.categories[sender.tag].uid)!, updatedName: ac.textFields![0].text!, completion: { (update) in
+                self.stopIndicator()
             })
         }
         ac.addTextField { (textfield) in
@@ -697,7 +707,9 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @objc func deleteCategoryFunc(sender: UIButton) {
+        self.startIndicator()
         DataService.instance.deleteCategory(categoryUID: (self.categories[sender.tag].uid)!) { (success) in
+            self.stopIndicator()
             if success {
                 self.successfullyDeletedCategory_Alert()
             } else {
