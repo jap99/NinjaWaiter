@@ -643,11 +643,8 @@ class MenuManagementVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == editMenuItemsCV {
-            var screenWidth = (UIScreen.main.bounds.width/5) - 10
+            let screenWidth = ((UIScreen.main.bounds.width-220)/4) - 10
             
-            if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown || UIDevice.current.orientation == UIDeviceOrientation.portrait {
-                screenWidth = (UIScreen.main.bounds.width/4) - 10
-            }
             
             return CGSize(width: screenWidth, height: 212.0)
         }
