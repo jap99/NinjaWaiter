@@ -24,6 +24,30 @@ class CategoryItems {
         itemPrice = item.strPrice
         
     }
+    
+    func copyObject() -> CategoryItems {
+        var categoryItems = CategoryItems()
+        categoryItems.itemId = itemId
+        categoryItems.itemName = itemName
+        categoryItems.itemImage = itemImage
+        categoryItems.itemPrice = itemPrice
+        categoryItems.isSelected = true
+        
+        for option in optionList {
+            if option.isOptionSelected {
+                var item = ItemOption()
+                item.itemId = option.itemId
+                item.optionId = option.optionId
+                item.optionName = option.optionName
+                item.optionPrice = option.optionPrice
+                item.isOptionSelected = true
+                categoryItems.optionList.append(item)
+            }
+        }
+        
+        return categoryItems
+    }
+    
 }
 
 
