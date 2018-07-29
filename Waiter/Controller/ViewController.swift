@@ -121,22 +121,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func removeItemFromCart(_ sender: AnyObject) {
         if let btn = sender as? UIButton {
             if cart.count > btn.tag {
-                let removeItemId = sender.accessibilityIdentifier
-                var i = 0
-                ItemLoop: for item in arrCategory[currIndex].categoryItemList {
-                    if item.itemId == removeItemId {
-                        item.isSelected = false
-                        break ItemLoop
-                    }
-                    i  += 1
-                }
-                
                 cart.remove(at: btn.tag)
-                self.cv2.reloadData()
-                self.tv.reloadData()
+                updateCartTotal()
             }
         }
-        updateCartTotal()
     }
     
     // MARK: - COLLECTION VIEW
@@ -204,29 +192,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == cv2 {
             
-            arrCategory[currIndex].categoryItemList[indexPath.row].isSelected = !arrCategory[currIndex].categoryItemList[indexPath.row].isSelected
-            
-            let itemId = arrCategory[currIndex].categoryItemList[indexPath.row].itemId
-            if arrCategory[currIndex].categoryItemList[indexPath.row].isSelected {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
-                let menuItem: CategoryItems = arrCategory[currIndex].categoryItemList[indexPath.row]
-                menuItem.isSelected = false
-                self.getItemOptions(menuItem: menuItem, sourceView: cell.foodImageView)
-                
-            } else {
-                var i = 0
-                CartLoop: for cartItem in self.cart {
-                    if cartItem.itemId == itemId {
-                        break CartLoop
-                    }
-                    i += 1
-                }
-                self.cart.remove(at: i)
-            }
-            
-            self.cv2.reloadData()
-            self.tv.reloadData()
-            updateCartTotal()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
+            let menuItem: CategoryItems = arrCategory[currIndex].categoryItemList[indexPath.row]
+            self.getItemOptions(menuItem: menuItem, sourceView: cell.foodImageView)
             
         }
     }
@@ -356,6 +324,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tax2Label_Right.text = "+\(self.setround2Decimal(str: tax2))"
         totalLabel.text = "\(self.setround2Decimal(str: total))"
         
+        self.tv.reloadData()
     }
     
     func getDataFromFirebase() {
@@ -435,10 +404,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 extension ViewController: ItemOptionDelegate {
     
     func addItemToCart(menuItem: CategoryItems) {
-        menuItem.isSelected = true
-        self.cart.append(menuItem)
-        self.cv2.reloadData()
-        self.tv.reloadData()
+        
+        
+        self.cart.append(menuItem.copyObject())
         updateCartTotal()
     }
 }
