@@ -531,7 +531,10 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
             cell.parentVC = self
             
             if isFromSave {
-                self.isFromSave = false
+                if indexPath.row == self.categories.count-1 {
+                    self.isFromSave = false
+                }
+                
                 cell.breakfastSwitch.isOn = false
                 cell.lunchSwitch.isOn = false
                 cell.dinnerSwitch.isOn = false
