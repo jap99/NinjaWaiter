@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContinueOrderVC: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate{//}, UIGestureRecognizerDelegate{
+class ContinueOrderVC: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {//}, UIGestureRecognizerDelegate{
 
     @IBOutlet weak var cv1: UICollectionView!
     
@@ -184,6 +184,11 @@ class ContinueOrderVC: BaseViewController, UICollectionViewDataSource, UICollect
         return count
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let screenWidth = ((UIScreen.main.bounds.width*0.67-20)/4) - 20
+        return CGSize(width: screenWidth, height: screenWidth)
+    }
     
     
     
