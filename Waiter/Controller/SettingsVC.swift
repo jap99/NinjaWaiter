@@ -273,6 +273,12 @@ class SettingsVC: BaseViewController, UITableViewDelegate, UITableViewDataSource
     
     // MARK: - IBACTIONS
     
+    @IBAction func selectPrinterButton_Pressed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DiscoveryViewController-ID") as! DiscoveryViewController
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func backButton_Pressed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DashboardVC-ID") as! DashboardVC
         present(vc, animated: true, completion: nil)
@@ -532,4 +538,10 @@ extension SettingsVC :  WaiterCellProtocol {
     }
 }
 
+
+extension SettingsVC: DiscoveryViewDelegate {
+    func discoveryView(_ sendor:DiscoveryViewController, onSelectPrinterTarget target:String) {
+    
+    }
+}
 
