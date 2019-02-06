@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class DashboardVC: BaseViewController {
-
+    
     @IBOutlet weak var breakfastButton: UIButton!
     @IBOutlet weak var lunchButton: UIButton!
     @IBOutlet weak var dinnerButton: UIButton!
@@ -49,36 +49,123 @@ class DashboardVC: BaseViewController {
                     print(dict!)
                 }
             }
-            DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
-         self.startIndicator()
-        DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { (arrayCategory) in
-            self.stopIndicator()
-            for cat in arrayCategory {
-                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
-                category.updateWith(cat: cat, type: .breakfast)
-            }
-            _appDel.saveContext()
         }
+        DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
+        self.startIndicator()
+        
+        DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { [weak self] (arrayCategory) in
+            guard let selff = self else { return }
+            selff.stopIndicator()
+            guard let arrayCategory = arrayCategory else {
+                selff.breakfastButton.isEnabled = false
+                selff.breakfastButton.backgroundColor = customBlue
+                return
+            }
+            if arrayCategory.count > 0 { 
+                for cat in arrayCategory {
+                    let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+                    category.updateWith(cat: cat, type: .breakfast)
+                }
+                _appDel.saveContext()
+            } else {
+                selff.breakfastButton.isEnabled = true
+                selff.breakfastButton.backgroundColor = customRed
+            }
+        }
+        
         DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { (arrayCategory) in
             self.stopIndicator()
+            guard let arrayCategory = arrayCategory else {
+                return
+            }
+            if arrayCategory.count > 0 {
+                
+            } else {
+                
+            }
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .lunch)
             }
             _appDel.saveContext()
         }
+        
         DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { (arrayCategory) in
             self.stopIndicator()
+            guard let arrayCategory = arrayCategory else {
+                return
+            }
+            if arrayCategory.count > 0 {
+                
+            } else {
+                
+            }
             for cat in arrayCategory {
                 let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
                 category.updateWith(cat: cat, type: .dinner)
             }
             _appDel.saveContext()
         }
-
-        }
-       // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
-         
+        //        let predicate = NSPredicate(format: "categroyType == %@", argumentArray:[categoryType.rawValue])
+        //        let arrayCategory = CategoryEntity.fetchDataFromEntity(predicate: predicate, sortDescs: nil)
+        // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//        DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
+//        self.startIndicator()
+//
+//        DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { [weak self] (arrayCategory) in
+//            self?.stopIndicator()
+//            if arrayCategory.count > 0 {
+//                DispatchQueue.main.async {
+//                    self?.breakfastButton.isHidden = true
+//                }
+//
+//                for cat in arrayCategory {
+//                    let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+//                    category.updateWith(cat: cat, type: .breakfast)
+//                }
+//                _appDel.saveContext()
+//            } else {
+//                DispatchQueue.main.async {
+//                    self?.breakfastButton.isHidden = true
+//                }
+//
+//            }
+//        }
+//
+//        DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { (arrayCategory) in
+//            self.stopIndicator()
+//            if arrayCategory.count > 0 {
+//
+//            } else {
+//
+//            }
+//            for cat in arrayCategory {
+//                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+//                category.updateWith(cat: cat, type: .lunch)
+//            }
+//            _appDel.saveContext()
+//        }
+//        DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { (arrayCategory) in
+//            self.stopIndicator()
+//            if arrayCategory.count > 0 {
+//
+//            } else {
+//
+//            }
+//            for cat in arrayCategory {
+//                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+//                category.updateWith(cat: cat, type: .dinner)
+//            }
+//            _appDel.saveContext()
+//        }
+////        let predicate = NSPredicate(format: "categroyType == %@", argumentArray:[categoryType.rawValue])
+////        let arrayCategory = CategoryEntity.fetchDataFromEntity(predicate: predicate, sortDescs: nil)
+//        // let arrCat = CategoryEntity.fetchDataFromEntity(predicate: <#T##NSPredicate?#>, sortDescs: <#T##NSArray?#>)
+        super.viewWillAppear(true)
     }
     
     func  fetchCategoryFromServer() { // won't need this in the future
@@ -93,9 +180,6 @@ class DashboardVC: BaseViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-
     // MARK: - ACTIONS
     
     func goToViewController(menuData: Int) {
@@ -113,7 +197,7 @@ class DashboardVC: BaseViewController {
     }
     
     @IBAction func lunchButton_Pressed(_ sender: Any) {
-         let _ = Singleton.sharedInstance.availabilityData[0].lunch
+        let _ = Singleton.sharedInstance.availabilityData[0].lunch
         goToViewController(menuData: 1)
     }
     
@@ -124,7 +208,7 @@ class DashboardVC: BaseViewController {
     
     @IBAction func settingsButton_Pressed(_ sender: Any) {
         if _currentUser.type == .adamin {
-         
+            
             let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC-ID") as! SettingsVC
             if let staff = staffArray {
                 vc.staffArray = staff
@@ -140,7 +224,7 @@ class DashboardVC: BaseViewController {
         _userDefault.set(nil, forKey: kUsername)
         _userDefault.synchronize()
         let vc = self.storyboard?.instantiateViewController(withIdentifier:"WelcomeVC-ID")
-         _appDel.window?.rootViewController = vc
+        _appDel.window?.rootViewController = vc
     }
     
     

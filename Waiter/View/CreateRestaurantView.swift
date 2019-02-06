@@ -79,11 +79,11 @@ class CreateRestaurantView: UIView {
     
     func retry_Alert(errorMessage: String?) {
         
-        let alertController = UIAlertController(title: APP_NAME, message: errorMessage ?? DEFAULT_ERROR_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction) in
+        let alertController = UIAlertController(title: APP_NAME, message: errorMessage ?? DEFAULT_ERROR_MESSAGE, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
             self.removeFromSuperview()
         })
-        let retryAction = UIAlertAction(title: "Retry", style: UIAlertActionStyle.cancel, handler: { (action: UIAlertAction) in
+        let retryAction = UIAlertAction(title: "Retry", style: UIAlertAction.Style.cancel, handler: { (action: UIAlertAction) in
         })
         alertController.addAction(okAction)
         alertController.addAction(retryAction)

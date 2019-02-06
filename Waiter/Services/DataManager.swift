@@ -27,84 +27,61 @@ class DataManager: NSObject {
         return sharedManager
     }
     
-    func getCategoryList(order: String,completion: @escaping ([CategoryDetail]) -> Void) {
+    func getCategoryList(order: String,
+                         completion: @escaping ([CategoryDetail]?) -> Void) {
         self.ref.child("Restaurants").child(RESTAURANT_UID).child("Menu").child("Availability").child(order).child("Categories").observe(.value) { (snapshot) in
-            
-            let response = snapshot.value as? [String: Any] ?? [:]
-            
-            var arrCategory = [CategoryDetail] ()
-            
-            for data in response {
-                let Category = CategoryDetail()
-                
-                self.getCatName(key: data.key, completion: { (name) in
-                    
-                    Category.categoryId = data.key
-                    Category.categoryName = name
-                    if let cat_dict = data.value as? [String:Any] {
-                        
-                        for items in cat_dict {
-                            
-                            if let itemobj = items.value as? [String:Any] {
-                                
-                                var arrDetail = [CategoryItems]()
-                                
-                                for item in itemobj {
-                                    
-                                    if let itemDetail = item.value as? [String:Any] {
-                                        
-                                        if let Detail = itemDetail["itemDetails"] as? [String:Any] {
-                                            
-                                            let CatDetail = CategoryItems()
-                                            CatDetail.itemId = item.key
-                                            if let img_url = Detail["itemImageURL"] as? String {
-                                                
-                                                CatDetail.itemImage = img_url
-                                                
+            if let response = snapshot.value as? [String: Any] {
+                var arrCategory = [CategoryDetail] ()
+                for data in response {
+                    let Category = CategoryDetail()
+                    self.getCatName(key: data.key, completion: { (name) in
+                        Category.categoryId = data.key
+                        Category.categoryName = name
+                        if let cat_dict = data.value as? [String: Any] {
+                            for items in cat_dict {
+                                if let itemobj = items.value as? [String: Any] {
+                                    var arrDetail = [CategoryItems]()
+                                    for item in itemobj {
+                                        if let itemDetail = item.value as? [String: Any] {
+                                            if let Detail = itemDetail["itemDetails"] as? [String: Any] {
+                                                let CatDetail = CategoryItems()
+                                                CatDetail.itemId = item.key
+                                                if let img_url = Detail["itemImageURL"] as? String {
+                                                    CatDetail.itemImage = img_url
+                                                }
+                                                if let name = Detail["itemName"] as? String {
+                                                    CatDetail.itemName = name
+                                                }
+                                                if let price = Detail["itemPrice"] as? String {
+                                                    CatDetail.itemPrice = price
+                                                }
+                                                arrDetail.append(CatDetail)
                                             }
-                                            if let name = Detail["itemName"] as? String {
-                                                
-                                                CatDetail.itemName = name
-                                                
-                                            }
-                                            
-                                            if let price = Detail["itemPrice"] as? String {
-                                                
-                                                CatDetail.itemPrice = price
-                                                
-                                            }
-                                            arrDetail.append(CatDetail)
                                         }
                                     }
+                                    Category.categoryItemList = arrDetail
                                 }
-                                Category.categoryItemList = arrDetail
                             }
                         }
-                    }
-                    
-                    arrCategory.append(Category)
-                    
-                    if arrCategory.count == response.count {
-                        
-                        completion(arrCategory)
-                    }
-                })
+                        arrCategory.append(Category)
+                        if arrCategory.count == response.count {
+                            completion(arrCategory)
+                        }
+                    })
+                }
+            } else {
+                completion(nil)
             }
         }
     }
     
     func getCatName(key:String,completion: @escaping(String) -> Void) {
-        
         var catName = ""
         self.ref.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(key).observe(.value) { (snapshot) in
-            
             let response = snapshot.value as? String
-            
             if let cat = response {
-                
                 catName = cat
-            }
-            
+            } 
             completion(catName)
         }
     }

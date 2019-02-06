@@ -16,26 +16,28 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setup()
+    }
+    
+    func setup() {
         let screenBound = UIScreen.main.bounds
         let frame = CGRect(origin: CGPoint(x: screenBound.width/2-50, y: screenBound.height/2-50), size: CGSize(width: 60, height: 60))
-        activityIndicatorView = NVActivityIndicatorView(frame: frame,
-                                                        type: NVActivityIndicatorType(rawValue: 23)!)
+        activityIndicatorView = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballRotate)
         activityIndicatorView.color = UIColor.gray
         self.view.addSubview(activityIndicatorView)
-        
-        
     }
     
     func startIndicator() {
         self.view.isUserInteractionEnabled = false
-        self.view.bringSubview(toFront: activityIndicatorView)
+        self.view.bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.startAnimating()
     }
     
     func stopIndicator() {
         self.view.isUserInteractionEnabled = true
         activityIndicatorView.stopAnimating()
-        self.view.sendSubview(toBack: activityIndicatorView)
+        self.view.sendSubviewToBack(activityIndicatorView)
     }
+    
+    
 }

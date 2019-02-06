@@ -24,33 +24,33 @@ class ItemOptionPopupVC: BaseViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 1000
-        
-        tableView.reloadData()
-        
-        itemImageView.backgroundColor = UIColor.red
-        if menuItem.itemImage != "" {
-            itemImageView.kf.setImage(with:URL(string:menuItem.itemImage))
-        }
-        
-       // getItemOptions(itemID: menuItem.itemId)
+        setup1()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        setup2()
+    }
+    
+    func setup1() {
+        tableView.delegate = self; tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 1000
+        tableView.reloadData()
+        itemImageView.backgroundColor = UIColor.red
+        if menuItem.itemImage != "" {
+            itemImageView.kf.setImage(with:URL(string:menuItem.itemImage))
+        }
+        // getItemOptions(itemID: menuItem.itemId)
+    }
+    
+    func setup2() {
         contentMainView.layer.masksToBounds = true
         contentMainView.layer.cornerRadius = 10
         contentMainView.layer.borderColor = UIColor.white.cgColor
         contentMainView.layer.borderWidth = 10
-        
         //itemImageView.addCornerRadiusCellItems()
         //orderButton.addCornerRadiusCellItems()
-        
     }
     
     func getItemOptions(itemID: String) {
@@ -97,18 +97,12 @@ class ItemOptionPopupVC: BaseViewController, UITableViewDelegate, UITableViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemTitleCell", for: indexPath) as! MenuItemTitleCell
             cell.nameLabel.text = menuItem.itemName
             cell.priceLabel.text = menuItem.itemPrice
-            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemOptionCell", for: indexPath) as! MenuItemOptionCell
-            
-            
-            
             let optionData = menuItem.optionList[indexPath.row]
-            
             cell.nameLabel.text = optionData.optionName
             cell.priceLabel.text = optionData.optionPrice
-            
             if optionData.isOptionSelected {
                 cell.nameLabel.textColor = UIColor.white
                 cell.priceLabel.textColor = UIColor.white
@@ -117,8 +111,7 @@ class ItemOptionPopupVC: BaseViewController, UITableViewDelegate, UITableViewDat
                 cell.nameLabel.textColor = UIColor.black
                 cell.priceLabel.textColor = UIColor.black
                 cell.contentView.backgroundColor = UIColor.clear
-            }
-            
+            } 
             return cell
         }
     }

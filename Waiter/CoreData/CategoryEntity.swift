@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-enum CategoryType:String {
+enum CategoryType: String {
     case lunch = "Lunch"
     case dinner = "Dinner"
     case breakfast = "Breakfast"
@@ -38,22 +38,20 @@ class CategoryEntity: NSManagedObject, ParentManagedObject {
     @NSManaged var categroyType:String
     @NSManaged var itemList:NSSet
     
-    
-    func updateWith(cat:CategoryDetail,type:CategoryType) {
+    func updateWith(cat: CategoryDetail, type: CategoryType) {
         categoryUID = cat.categoryId
         categoryName = cat.categoryName
         categroyType = type.rawValue
-        
         var arrItems = [ItemCoreData]()
         for item in cat.categoryItemList {
             let newItem = ItemCoreData.createNewEntity(key:"itemUID", value:item.itemId as NSString)
-            newItem.updateWith(item:item)
+            newItem.updateWith(item: item)
             newItem.categoryUID = cat.categoryId
             newItem.category = self
             arrItems.append(newItem)
             //print(newItem.itemName, newItem.itemUID)
         }
-        itemList = NSSet(array:arrItems)
+        itemList = NSSet(array: arrItems)
         _appDel.saveContext()
     }
     

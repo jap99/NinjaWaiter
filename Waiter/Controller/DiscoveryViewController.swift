@@ -65,7 +65,7 @@ class DiscoveryViewController: UIViewController, UITableViewDataSource, UITableV
         let identifier = "basis-cell"
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: identifier)
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: identifier)
         }
         
         if indexPath.section == 0 {

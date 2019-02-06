@@ -198,21 +198,19 @@ class DataService {
     
     func saveCategory(categoryName: String, completion: @escaping (Bool) -> ()) {
         
-        let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORIES).child(FIR_CATEGORY).childByAutoId().key
-        
-        let category: Dictionary<String, AnyObject> = [
-            categoryUID: categoryName as AnyObject
-        ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(category) { (error, ref) in
-            
-            if let error = error {
-                print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
-                completion(false)
-            } else {
-                completion(true)
+        if let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORIES).child(FIR_CATEGORY).childByAutoId().key {
+            let category: Dictionary<String, AnyObject> = [categoryUID: categoryName as AnyObject ]
+            mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(category) { (error, ref) in
                 
+                if let error = error {
+                    print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
+                    completion(false)
+                } else {
+                    completion(true)
+                    
+                }
             }
-        }
+        } 
     }
     
     // GET CATEGORIES (1/2)
@@ -247,10 +245,12 @@ class DataService {
     
     func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
         
-        let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key
+        guard let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key else {
+            return
+        }
         
         if let itemImage = itemImage {
-            if let imageData = UIImageJPEGRepresentation(itemImage, 0.4) {
+            if let imageData = itemImage.jpegData(compressionQuality: 0.3) {
                 let imageName = NSUUID().uuidString
                 let storageRef = imagesStorageRef.child("\(imageName).jpeg")
                 

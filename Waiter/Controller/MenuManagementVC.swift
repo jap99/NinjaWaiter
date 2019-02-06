@@ -292,30 +292,24 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func saveButton_Pressed(_ sender: Any) { // save item
-        isFromSave = true 
-        
+        isFromSave = true
         let dictOfArraysIsNotEmpty: Bool =  dictOfArrays.filter { $0.value.count > 0 }.count > 0
-        
         //        let lunch = dictOfArrays.filter { $0.value.contains("Lunch") }.map{$0.key}
         //        let dinner = dictOfArrays.filter { $0.value.contains("Dinner") }.map{$0.key}
         //        let breakFast = dictOfArrays.filter { $0.value.contains("Breakfast") }.map{$0.key}
         //        print("lunch: \(lunch)")
         //        print("dinner: \(dinner)")
         //        print("breakFast: \(breakFast)")
-        
-        if let name = itemNameTextField.text, let price = itemPriceTextField.text, dictOfArraysIsNotEmpty {
+        if let name = itemNameTextField.text, name != "", let price = itemPriceTextField.text, price != "", dictOfArraysIsNotEmpty {
             self.startIndicator()
             DataService.instance.saveItem(itemName: name, itemPrice: price, itemImage: self.addImageButton.currentBackgroundImage, categoryDictOfArray:  dictOfArrays) { (success) in
-                
                 if success {
-                    
                     self.itemSavedSuccess_View.isHidden = false
                     self.itemNameTextField.text = ""
                     self.itemPriceTextField.text = ""
                     self.addImageButton.setBackgroundImage(nil, for: .normal)
                     self.addImageButton.backgroundColor = customRed
                     self.itemTV.reloadData()
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                         self.stopIndicator()
                         self.itemSavedSuccess_View.isHidden = true
@@ -324,12 +318,24 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
                     self.stopIndicator()
                 }
             }
+        } else {
+            print("Item not saved")
+            self.showError_ItemAddFailed()
         }
     }
     
-
+    @IBAction func allButton_Pressed(_ sender: Any) {
+    }
+    
+    @IBAction func byCategoryButton_Pressed(_ sender: Any) {
+        dropDown.show()
+    }
+    
+    
+    
+    // MARK: - ACTIONS
+    
     func getCategoryItems(categoryName: String) {
-        
         var categoryUID = ""
         CATLOOP: for x in self.categories {
             if x.name == categoryName {
@@ -337,7 +343,6 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
                 break CATLOOP
             }
         }
-        
         self.startIndicator()
         DataService.instance.getCategoryItems(categoryUID: categoryUID) { (dict, error) in
             self.items = [[String: AnyObject]]()
@@ -345,7 +350,6 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
             if let dict = dict {
                 if categoryUID != "" {
                     for item in dict {
-                        
                         if let itemDict = (item.value as? [String: AnyObject]) {
                             var itemDetails = itemDict["itemDetails"]! as! [String: AnyObject]
                             itemDetails["itemId"] = item.key as AnyObject
@@ -370,8 +374,6 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    
-    
     func getItemOptions(itemID: String) {
         print(itemID)
         self.startIndicator()
@@ -385,34 +387,18 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // ADD / EDIT MENU ITEMS
-    
-    @IBAction func allButton_Pressed(_ sender: Any) {
-    }
-    
-    @IBAction func byCategoryButton_Pressed(_ sender: Any) {
-        dropDown.show()
-    }
-    
-    
-    // MARK: - ACTIONS
-    
     @objc func addItemButtonAction(_ sender: UIButton) {
         if selectedItemId != "" {
             let shadowView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
             shadowView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            
             self.view.addSubview(shadowView)
-            
             let optionView = Bundle.main.loadNibNamed("ItemOptionsView", owner: self, options: nil)?.first as! ItemOptionsView
             optionView.frame = CGRect(x: 350, y: 150, width: optionView.frame.width, height: optionView.frame.height)
             optionView.addShadow()
             shadowView.addSubview(optionView)
-            
             if sender.tag < self.itemOptions.count {
                 let optionData = self.itemOptions[sender.tag]
                 optionView.updateFields(optionData: optionData, optionIndex: sender.tag+1)
-                
             } else {
                 var optionData = ItemOption()
                 optionData.itemId = selectedItemId
@@ -428,11 +414,8 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         DataService.instance.getCategories { (categories: [Category]?, error) in
             self.stopIndicator()
             guard let error = error else {
-                
                 if let c = categories {
-                    
                     self.categories = c
-                    
                     var categoryList = [String]()
                     categoryList.append("All")
                     for category in self.categories {
@@ -458,8 +441,7 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
                 if success {
                     self.foodTextField.text = ""
                     self.addCategoryView.isHidden = true
-                    self.categorySavedSuccess_View.isHidden = false
-                    
+                    self.categorySavedSuccess_View.isHidden = false 
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                         self.categorySavedSuccess_View.isHidden = true
                     })
@@ -484,98 +466,85 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
             cell.backgroundColor = customLightGray
         }
     }
+   
+    
+    
+    // MARK: - IMAGE PICKER
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if picker == imagePicker, let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.addImageButton.isEnabled = true
+            self.addImageButton.backgroundColor = .clear
+            self.addImageButton.setBackgroundImage(img, for: .normal)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
     
     
     
     // MARK: - TABLE VIEW
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if self.categoryTV == tableView {
-            
             return self.categories.count
-            
         } else {
-            
             return self.categories.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if self.categoryTV == tableView {
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
-            
             if self.categories.count > 0 {
-                
                 cell.categoryTitle.text = self.categories[indexPath.row].name
                 cell.renameButton.tag = indexPath.row
-                cell.deleteButton.tag = indexPath.row 
+                cell.deleteButton.tag = indexPath.row
                 cell.renameButton.addTarget(self, action: #selector(renameCategoryFunc), for: .allEvents)
                 cell.deleteButton.addTarget(self, action: #selector(deleteCategoryFunc), for: .allEvents)
             }
-            
             showWhiteGrayCells(indexPath: indexPath, cell: cell)
-            
             return cell
-            
         } else {
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
             cell.parentVC = self
-            
             if isFromSave {
                 if indexPath.row == self.categories.count-1 {
                     self.isFromSave = false
                 }
-                
                 cell.breakfastSwitch.isOn = false
                 cell.lunchSwitch.isOn = false
                 cell.dinnerSwitch.isOn = false
             }
-            
             cell.breakfastSwitch.tag = indexPath.row
             cell.lunchSwitch.tag = indexPath.row
             cell.dinnerSwitch.tag = indexPath.row
             if self.categories.count > 0 {
-                
                 cell.categoryTitle.text = self.categories[indexPath.row].name
             }
-            
             showWhiteGrayCells(indexPath: indexPath, cell: cell)
-            
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if itemTV == tableView {
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemCell", for: indexPath) as! AddItemCell
-            
             let selectedIndexUID = Singleton.sharedInstance.categoriesItems[indexPath.row].uid
-            
             var arrayOfAvailability = [String]()
-            
             if cell.breakfastSwitch.isOn {
                 arrayOfAvailability.append("Breakfast")
             } else {
                 //remove it from array
             }
-            
             if cell.lunchSwitch.isOn {
                 arrayOfAvailability.append("Lunch")
             } else {
                 //remove it from array
             }
-            
             if cell.dinnerSwitch.isOn {
                 arrayOfAvailability.append("Dinner")
                 cell.dinnerSwitch.isOn = true
@@ -585,10 +554,11 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
+    
     // MARK: - COLLECTION VIEW
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         if collectionView == itemCV {
             return 6
         } else if collectionView == editMenuItemsCV {
@@ -596,29 +566,21 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         } else {
             return 0
         }
-        
     }
     
-    // cell for
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == itemCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemOptionCell", for: indexPath) as! ItemOptionCell
-            
             cell.addEditItemOptionsButton.tag = indexPath.item
             cell.configureCell(indexPath: indexPath)
             cell.addEditItemOptionsButton.removeTarget(self, action: #selector(addItemButtonAction(_:)), for: .touchUpInside)
             cell.addEditItemOptionsButton.addTarget(self, action: #selector(addItemButtonAction(_:)), for: .touchUpInside)
-            
-            
             if indexPath.item < self.itemOptions.count {
-                
                 cell.addEditItemOptionsButton.setTitleColor(.white, for: .normal)
                 cell.addEditItemOptionsButton.backgroundColor = customRed
                 cell.addEditItemOptionsButton.layer.masksToBounds = true
                 cell.addEditItemOptionsButton.layer.borderWidth = 0
                 cell.addEditItemOptionsButton.layer.borderColor = UIColor.clear.cgColor
-                
-                
             } else {
                 cell.addEditItemOptionsButton.setTitleColor(.black, for: .normal)
                 cell.addEditItemOptionsButton.backgroundColor = .white
@@ -626,10 +588,6 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
                 cell.addEditItemOptionsButton.layer.borderWidth = 3
                 cell.addEditItemOptionsButton.layer.borderColor = UIColor.black.cgColor
             }
-            
-            
-            
-            
             return cell
         } else if collectionView == editMenuItemsCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as! FoodCell
@@ -642,7 +600,6 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // did select
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == editMenuItemsCV {
             if let itemId = items[indexPath.item]["itemId"] as? String {
@@ -650,76 +607,61 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
                 getItemOptions(itemID: itemId)
             }
         }
-    } 
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == editMenuItemsCV {
             let screenWidth = ((UIScreen.main.bounds.width-220)/4) - 10
-            
-            
             return CGSize(width: screenWidth, height: 212.0)
         }
         return CGSize(width: 122, height: 122)
     }
     
     
-    
-    // MARK: - IMAGE PICKER
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if picker == imagePicker, let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-            self.addImageButton.isEnabled = true
-            self.addImageButton.backgroundColor = .clear
-            self.addImageButton.setBackgroundImage(img, for: .normal)
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - ALERT CONTROLLERS
+    // MARK: - ALERTS
     
     func showError_CategoryAddFailed() {
         let alertController = UIAlertController(title: "Error", message: "There was an issue uploading your category. Please try again later.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { [unowned self] (action: UIAlertAction) in
             self.addCategoryView.isHidden = true
         })
-        
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
     
     @objc func renameCategoryFunc(sender: UIButton) {
-        
         let  ac = UIAlertController(title: "Rename Category", message: "", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let  okAction = UIAlertAction(title: "Okay", style: .default) { (action) in
-            
-            self.startIndicator()
-            DataService.instance.renameCategory(categoryUID: (self.categories[sender.tag].uid)!, updatedName: ac.textFields![0].text!, completion: { (update) in
-                self.stopIndicator()
+        let  okAction = UIAlertAction(title: "Okay", style: .default) { [weak self] (action) in
+            guard let selff = self else { return }
+            selff.startIndicator()
+            DataService.instance.renameCategory(categoryUID: (selff.categories[sender.tag].uid)!, updatedName: ac.textFields![0].text!, completion: { [weak self] (update) in
+                guard let selff = self else { return }
+                selff.stopIndicator()
             })
         }
-        ac.addTextField { (textfield) in
-            textfield.text = self.categories[sender.tag].name
-            print(self.categories[sender.tag].uid)
+        ac.addTextField { [weak self] (textfield) in
+            textfield.text = self?.categories[sender.tag].name
+            print(self?.categories[sender.tag].uid)
         }
         ac.addAction(okAction)
         ac.addAction(cancelAction)
         self.present(ac, animated: true, completion: nil)
-        
     }
     
     @objc func deleteCategoryFunc(sender: UIButton) {
         self.startIndicator()
-        DataService.instance.deleteCategory(categoryUID: (self.categories[sender.tag].uid)!) { (success) in
-            self.stopIndicator()
+        DataService.instance.deleteCategory(categoryUID: (self.categories[sender.tag].uid)!) { [weak self] (success) in
+            guard let selff = self else {
+                return
+            }
+            selff.stopIndicator()
             if success {
-                self.successfullyDeletedCategory_Alert()
+                selff.successfullyDeletedCategory_Alert()
             } else {
-                self.errorDeletingCategory_Alert()
+                selff.errorDeletingCategory_Alert()
             }
         }
-        
     }
     
     func successfullyDeletedCategory_Alert() {
@@ -744,6 +686,12 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func showError_ItemAddFailed() {
+        let alertController = UIAlertController(title: "Item Not Saved", message: "Make sure the item name, price & availability have been set before saving.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     
 }

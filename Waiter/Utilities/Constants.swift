@@ -11,7 +11,9 @@ import UIKit
  
 typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 
+
 // GLOBAL VARIABLES
+
 let APP_NAME = "Waiter App"
 var _currentUser = AppUser()
 var RESTAURANT_UID: String!
@@ -21,7 +23,9 @@ let kUsername = "kUsername"
 let kPassword = "kPassword"
 let _appDel = UIApplication.shared.delegate as! AppDelegate
 
+
 // NODES
+
 let FIR_RESTAURANTS = "Restaurants"
 let FIR_STAFF_MEMBERS = "Staff"
 let FIR_ADMINISTRATORS = "Administrators"
@@ -38,23 +42,29 @@ let FIR_BREAKFAST = "Breakfast"
 let FIR_LUNCH = "Lunch"
 let FIR_DINNER = "Dinner"
 
+
 // PRINT STATEMENTS
+
 let SUCCESSFUL_LOGIN = "SUCCESSFULLY LOGGED INTO FIREBASE"
 
+
 // USER FACING MESSAGES
+
 let DEFAULT_ERROR_MESSAGE = "There was error. We did not get data from the service."
 let CREATE_ACCOUNT_MESSAGE = "Congratulations, your account was successfully created!"
 
+
 // CELLS
+
 let WAITER_CELL = "waiterCell"
 let ADD_CATEGORY_CELL = "AddCategoryCell"
 let ADD_ITEM_CELL = "AddItemCell"
 
+
 // PATHS
+
 let databaseKey = "https://waiter-9249e.firebaseio.com/"
 let storageKey = "gs://waiter-9249e.appspot.com/"
-
-// COLORS
 
 let customBlue = UIColor(red: 26/255.0, green: 31/255.0, blue: 51/255.0, alpha: 1)
 let customLightGray = UIColor(red: 242/255.0, green: 243/255.0, blue: 247/255.0, alpha: 1)

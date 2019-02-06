@@ -9,6 +9,9 @@
 import UIKit
 
 class Utils: NSObject {
+    
+    // MARK: - ALERTS
+    
     class func showAlert(title: String, message: String, onSucces: (() -> Void)?) {
         if let topVC = UIApplication.getTopMostViewController() {
             let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -17,10 +20,10 @@ class Utils: NSObject {
                     onSucces()
                 }
             })
-            
             ac.addAction(ok)
-            
             topVC.present(ac, animated: true, completion: nil)
         }
     }
+    
+    
 }

@@ -31,7 +31,7 @@ class AuthServices {
                 
             } else if let user = result?.user {
                 
-                let restaurantUID = DataService.instance.mainRef.child(FIR_RESTAURANTS).childByAutoId().key
+                guard let restaurantUID = DataService.instance.mainRef.child(FIR_RESTAURANTS).childByAutoId().key else { return }
                 
                 RESTAURANT_UID = restaurantUID
                 

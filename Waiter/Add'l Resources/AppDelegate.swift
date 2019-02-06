@@ -17,14 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
 //            self.fetchCategoryFromServer()
         }
-
         return true
     }
 
@@ -74,7 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }() */
     
-    // MARK: - Core Data stack
+    
+    // MARK: - CORE DATA
     
     lazy var applicationDocumentsDirectory: URL = {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -86,11 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
-    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator =
-        {
+    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
             let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = self.applicationDocumentsDirectory.appendingPathComponent("Waiter.sqlite")
-            
+            let url = self.applicationDocumentsDirectory.appendingPathComponent("Waiter.sqlite") 
             do {
                 try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
             } catch {

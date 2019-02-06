@@ -293,7 +293,7 @@ class SettingsVC: BaseViewController, UITableViewDelegate, UITableViewDataSource
         if staffArray.count < 10 {
             addStaffView.isHidden = false
             cancelButton.isHidden = false
-            self.view.bringSubview(toFront: addStaffView)
+            self.view.bringSubviewToFront(addStaffView)
         } else {
             tooManyStaffMembers_Alert()
         } 
