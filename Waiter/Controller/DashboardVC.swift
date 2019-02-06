@@ -53,12 +53,14 @@ class DashboardVC: BaseViewController {
         DataService.instance.getAvailabilityDataFromServer()  // currently called in welcomeVC's loginAPI function
         self.startIndicator()
         
+        // BREAKFAST
+        
         DataManager.shared().getCategoryList(order:CategoryType.breakfast.rawValue) { [weak self] (arrayCategory) in
             guard let selff = self else { return }
             selff.stopIndicator()
             guard let arrayCategory = arrayCategory else {
                 selff.breakfastButton.isEnabled = false
-                selff.breakfastButton.backgroundColor = customBlue
+                selff.breakfastButton.backgroundColor = customRed2
                 return
             }
             if arrayCategory.count > 0 { 
@@ -73,38 +75,50 @@ class DashboardVC: BaseViewController {
             }
         }
         
-        DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { (arrayCategory) in
-            self.stopIndicator()
+        // LUNCH
+        
+        DataManager.shared().getCategoryList(order:CategoryType.lunch.rawValue) { [weak self] (arrayCategory) in
+            guard let selff = self else { return }
+            selff.stopIndicator()
             guard let arrayCategory = arrayCategory else {
+                selff.lunchButton.isEnabled = false
+                selff.lunchButton.backgroundColor = customRed2
                 return
             }
             if arrayCategory.count > 0 {
-                
+                for cat in arrayCategory {
+                    let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+                    category.updateWith(cat: cat, type: .lunch)
+                }
+                _appDel.saveContext()
             } else {
-                
+                selff.lunchButton.isEnabled = true
+                selff.lunchButton.backgroundColor = customRed
             }
-            for cat in arrayCategory {
-                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
-                category.updateWith(cat: cat, type: .lunch)
-            }
-            _appDel.saveContext()
+            
         }
         
-        DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { (arrayCategory) in
-            self.stopIndicator()
+        // DINNER
+        
+        DataManager.shared().getCategoryList(order:CategoryType.dinner.rawValue) { [weak self ](arrayCategory) in
+            guard let selff = self else { return }
+            selff.stopIndicator()
             guard let arrayCategory = arrayCategory else {
+                selff.dinnerButton.isEnabled = false
+                selff.dinnerButton.backgroundColor = customRed2
                 return
             }
             if arrayCategory.count > 0 {
-                
+                for cat in arrayCategory {
+                    let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
+                    category.updateWith(cat: cat, type: .dinner)
+                }
+                _appDel.saveContext()
             } else {
-                
+                selff.dinnerButton.isEnabled = true
+                selff.dinnerButton.backgroundColor = customRed
             }
-            for cat in arrayCategory {
-                let category = CategoryEntity.createNewEntity(key:"categoryUID", value:cat.categoryId as NSString)
-                category.updateWith(cat: cat, type: .dinner)
-            }
-            _appDel.saveContext()
+            
         }
         //        let predicate = NSPredicate(format: "categroyType == %@", argumentArray:[categoryType.rawValue])
         //        let arrayCategory = CategoryEntity.fetchDataFromEntity(predicate: predicate, sortDescs: nil)

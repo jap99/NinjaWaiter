@@ -69,4 +69,5 @@ let storageKey = "gs://waiter-9249e.appspot.com/"
 let customBlue = UIColor(red: 26/255.0, green: 31/255.0, blue: 51/255.0, alpha: 1)
 let customLightGray = UIColor(red: 242/255.0, green: 243/255.0, blue: 247/255.0, alpha: 1)
 let customRed = UIColor(red: 252/255.0, green: 55/255.0, blue: 104/255.0, alpha: 1)
+let customRed2 = UIColor(red: 222/255.0, green: 55/255.0, blue: 104/255.0, alpha: 0.5)
 let customGreen = UIColor(red: 112/255.0, green: 204/255.0, blue: 118/255.0, alpha: 1)
