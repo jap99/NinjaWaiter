@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,12 @@
 		9F8EABEF20AC74A50027EDFB /* Waiter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABED20AC74A50027EDFB /* Waiter.xcdatamodeld */; };
 		9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABF020AC74A60027EDFB /* Assets.xcassets */; };
 		9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */; };
+		9F91B6BE2386D63A004FE849 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6BD2386D63A004FE849 /* QRCode.swift */; };
+		9F91B6C02386D736004FE849 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6BF2386D736004FE849 /* Receipt.swift */; };
+		9F91B6C22386D76D004FE849 /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C12386D76D004FE849 /* Merchant.swift */; };
+		9F91B6C42386D834004FE849 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C32386D834004FE849 /* Customer.swift */; };
+		9F91B6C62386D84F004FE849 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C52386D84F004FE849 /* Checkin.swift */; };
+		9F91B6C82386D8DC004FE849 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C72386D8DC004FE849 /* Transaction.swift */; };
 		9FAA07F7237B1B43004F7CDF /* StripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA07F6237B1B43004F7CDF /* StripeService.swift */; };
 		9FAFDFA4210C716A007AA2D1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDFA3210C716A007AA2D1 /* Utils.swift */; };
 		9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBC0F520CA6495000BF369 /* Extensions.swift */; };
@@ -95,6 +101,7 @@
 		9F16826220CFD66600CFE4B1 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
 		9F2546C720D62C9900162133 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		9F2546C920D644E900162133 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9F32535E2386F7EA0081CB5F /* Waiter_Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Waiter_Bridge_Header.h; sourceTree = "<group>"; };
 		9F4A184220E63D270051C059 /* CategoryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItems.swift; sourceTree = "<group>"; };
 		9F4A184420E63D410051C059 /* CategoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetail.swift; sourceTree = "<group>"; };
 		9F4A184620E63D9D0051C059 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -116,6 +123,12 @@
 		9F8EABF020AC74A60027EDFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F8EABF320AC74A60027EDFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F8EABF520AC74A60027EDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F91B6BD2386D63A004FE849 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		9F91B6BF2386D736004FE849 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		9F91B6C12386D76D004FE849 /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
+		9F91B6C32386D834004FE849 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		9F91B6C52386D84F004FE849 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
+		9F91B6C72386D8DC004FE849 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		9FAA07F6237B1B43004F7CDF /* StripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeService.swift; sourceTree = "<group>"; };
 		9FAFDFA3210C716A007AA2D1 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9FCBC0F520CA6495000BF369 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -126,7 +139,6 @@
 		9FCD91BA211011080015EF78 /* ePOS2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ePOS2.h; sourceTree = "<group>"; };
 		9FCD91BB211011080015EF78 /* libepos2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libepos2.a; sourceTree = "<group>"; };
 		9FCD91BC211011080015EF78 /* ePOSEasySelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ePOSEasySelect.h; sourceTree = "<group>"; };
-		9FCD91BF211011430015EF78 /* Waiter_Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Waiter_Bridge_Header.h; sourceTree = "<group>"; };
 		9FCD91C1211013380015EF78 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		9FCD91C3211014960015EF78 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		9FCD91C521101D7D0015EF78 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -259,7 +271,6 @@
 				9FEA846C20B53A6A00C6DEE1 /* Add'l Resources */,
 				9F8EABF520AC74A60027EDFB /* Info.plist */,
 				9F4D4ECC20D4D8F0004F4C8A /* practice.swift */,
-				9FCD91BF211011430015EF78 /* Waiter_Bridge_Header.h */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -315,6 +326,11 @@
 				9F84AA5320DB46A600E6B2BB /* Availability.swift */,
 				9F4A184220E63D270051C059 /* CategoryItems.swift */,
 				9F4A184420E63D410051C059 /* CategoryDetail.swift */,
+				9F91B6BF2386D736004FE849 /* Receipt.swift */,
+				9F91B6C12386D76D004FE849 /* Merchant.swift */,
+				9F91B6C32386D834004FE849 /* Customer.swift */,
+				9F91B6C52386D84F004FE849 /* Checkin.swift */,
+				9F91B6C72386D8DC004FE849 /* Transaction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +366,7 @@
 				9F8EABF020AC74A60027EDFB /* Assets.xcassets */,
 				9FEA847220B544B700C6DEE1 /* ordered-animation.gif */,
 				9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */,
+				9F32535E2386F7EA0081CB5F /* Waiter_Bridge_Header.h */,
 			);
 			path = "Add'l Resources";
 			sourceTree = "<group>";
@@ -364,6 +381,7 @@
 				9F2546C720D62C9900162133 /* AppUser.swift */,
 				9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */,
 				9FAFDFA3210C716A007AA2D1 /* Utils.swift */,
+				9F91B6BD2386D63A004FE849 /* QRCode.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -539,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */,
+				9F91B6C62386D84F004FE849 /* Checkin.swift in Sources */,
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
 				9FAA07F7237B1B43004F7CDF /* StripeService.swift in Sources */,
@@ -547,6 +566,7 @@
 				9FF4190120CFF7A100EB56B6 /* DefaultsSerializable+BuiltIns.swift in Sources */,
 				9FCD91B1210DC11D0015EF78 /* BaseViewController.swift in Sources */,
 				9FD1DAC220E283B600F6AD0D /* RenameViewController.swift in Sources */,
+				9F91B6C42386D834004FE849 /* Customer.swift in Sources */,
 				9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */,
 				9F0228CC20D25C4F00550DAD /* Category.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
@@ -571,10 +591,12 @@
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,
+				9F91B6C82386D8DC004FE849 /* Transaction.swift in Sources */,
 				9FF4190320CFF7A100EB56B6 /* DefaultsSerializable.swift in Sources */,
 				9FD36FDF20E2B67F00B700D4 /* ItemCoreData.swift in Sources */,
 				9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */,
 				9FAFDFA4210C716A007AA2D1 /* Utils.swift in Sources */,
+				9F91B6BE2386D63A004FE849 /* QRCode.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
 				9FF4190220CFF7A100EB56B6 /* OptionalType.swift in Sources */,
@@ -594,7 +616,9 @@
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
 				9F4D4ECD20D4D8F0004F4C8A /* practice.swift in Sources */,
+				9F91B6C02386D736004FE849 /* Receipt.swift in Sources */,
 				9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */,
+				9F91B6C22386D76D004FE849 /* Merchant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,8 +791,9 @@
 				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/javidpoornasir/Desktop/2019/SW/My iOS/Waiter-2018/Waiter/Waiter_Bridge_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -798,8 +823,9 @@
 				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/javidpoornasir/Desktop/2019/SW/My iOS/Waiter-2018/Waiter/Waiter_Bridge_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
