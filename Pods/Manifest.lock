@@ -6,6 +6,9 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.2):
     - BoringSSL-GRPC/Interface (= 0.0.2)
   - BoringSSL-GRPC/Interface (0.0.2)
+  - CCValidator (1.0.2)
+  - Cosmos (20.0.1)
+  - DLParser (2.0.0)
   - DropDown (2.3.12)
   - Firebase/Analytics (5.16.0):
     - Firebase/Core
@@ -80,6 +83,18 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
+  - GoogleMobileVision/BarcodeDetector (1.6.0):
+    - GoogleMobileVision/Detector (~> 1.6)
+  - GoogleMobileVision/Detector (1.6.0):
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+    - Protobuf (~> 3.1)
+  - GoogleToolboxForMac/Defines (2.2.2)
+  - GoogleToolboxForMac/Logger (2.2.2):
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.2)":
+    - GoogleToolboxForMac/Defines (= 2.2.2)
   - GoogleUtilities/AppDelegateSwizzler (5.3.7):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -129,9 +144,29 @@ PODS:
   - Stripe (18.0.0)
   - SwiftKeychainWrapper (3.4.0)
   - VMaskTextField (1.0.8)
+  - ZDCChat (1.4.3):
+    - ZDCChat/API (= 1.4.3)
+    - ZDCChat/Localization (= 1.4.3)
+    - ZDCChat/UI (= 1.4.3)
+  - ZDCChat/API (1.4.3)
+  - ZDCChat/Localization (1.4.3)
+  - ZDCChat/UI (1.4.3):
+    - ZDCChat/API
+  - ZendeskSDK (3.0.1):
+    - ZendeskSDK/Providers (= 3.0.1)
+    - ZendeskSDK/UI (= 3.0.1)
+  - ZendeskSDK/Core (3.0.1)
+  - ZendeskSDK/Providers (3.0.1):
+    - ZendeskSDK/Core
+  - ZendeskSDK/UI (3.0.1):
+    - ZendeskSDK/Core
+    - ZendeskSDK/Providers
 
 DEPENDENCIES:
   - Alamofire
+  - CCValidator
+  - Cosmos (~> 20.0)
+  - DLParser (from `https://github.com/ajohnson388/DLParser-Swift.git`, tag `2.0.0`)
   - DropDown
   - Firebase/Analytics
   - Firebase/Auth
@@ -140,11 +175,14 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFunctions
+  - GoogleMobileVision/BarcodeDetector
   - Kingfisher
   - NVActivityIndicatorView
   - Stripe (= 18.0.0)
   - SwiftKeychainWrapper
   - VMaskTextField
+  - ZDCChat (= 1.4.3)
+  - ZendeskSDK (from `https://github.com/zendesk/zendesk_sdk_ios.git`, branch `3.0.1-swift5.1-GM`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -167,18 +205,42 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - BoringSSL-GRPC
+    - CCValidator
+    - Cosmos
     - FirebaseFirestore
     - FirebaseFunctions
+    - GoogleMobileVision
+    - GoogleToolboxForMac
     - "gRPC-C++"
     - gRPC-Core
     - Protobuf
     - Stripe
     - SwiftKeychainWrapper
     - VMaskTextField
+    - ZDCChat
+
+EXTERNAL SOURCES:
+  DLParser:
+    :git: https://github.com/ajohnson388/DLParser-Swift.git
+    :tag: 2.0.0
+  ZendeskSDK:
+    :branch: 3.0.1-swift5.1-GM
+    :git: https://github.com/zendesk/zendesk_sdk_ios.git
+
+CHECKOUT OPTIONS:
+  DLParser:
+    :git: https://github.com/ajohnson388/DLParser-Swift.git
+    :tag: 2.0.0
+  ZendeskSDK:
+    :commit: d31a64ab45945e8a4a9cdf0c8037a30274c270f5
+    :git: https://github.com/zendesk/zendesk_sdk_ios.git
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
+  CCValidator: 49175409dcd9da1a1bd8d7cc6db31d44a301da84
+  Cosmos: b47fddf2102bb48580cd3025d9ce0a5c658a65da
+  DLParser: da7e84bd0709e263fd4136011be6163fd896f0d7
   DropDown: 0bcc278799ec11a3d34ce1aac9367fbbaf5423d9
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
@@ -191,6 +253,8 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
   FirebaseStorage: 29075f874c2b3cf61e5221a62c4ceefc809e5412
   GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  GoogleMobileVision: 31cfb4319fd0c03d80105680abd9eae9da5e3b47
+  GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   "gRPC-C++": e76441995900ac90e9bd98644ab4733f12521edf
   gRPC-Core: 4028031ed2c5267cca0d846c876d8046b1ecb9b6
@@ -203,7 +267,9 @@ SPEC CHECKSUMS:
   Stripe: 8c9ac6b717a38ed4f373d4db9204cfe8c4120d65
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   VMaskTextField: e77fe33633f999c5c38e70bed0afece0625624a4
+  ZDCChat: eb076fde647e1204e8e7202063de989602a67727
+  ZendeskSDK: 07977c9aa708ea64461a1b18b7b3cfec3f496785
 
-PODFILE CHECKSUM: 30903e9f384c80b4d8c5a7ef9aa6bde73da3ef38
+PODFILE CHECKSUM: 38ed5d6387790b68c2cca6ae83aaa2d04e9c6d27
 
 COCOAPODS: 1.8.4
