@@ -28,12 +28,13 @@ class StaffMember {
         self.uid = uid
     }
     
+    
+    // MARK: - ACTIONS
+    
+    
     static func getStaffList(array: [[String: Any]], arrKey: [String]) -> [StaffMember] {
-        
         var staffMembers: [StaffMember] = []
-        
         for (index,a) in array.enumerated() {
-            
             if let email = a["staffEmail"] as? String,
                 let type = a["staffType"] as? String {
                 let staff = StaffMember(email: email, type: type)
@@ -46,25 +47,20 @@ class StaffMember {
     }
     
     static func getStaff(callback: ((_ dict: [String: Any]?, _ error: Error?) -> Void)?) {
-        _ = Database.database().reference().child(FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observe(.value) { (snapshot) in
-            
+        Database.database().reference().child(Constants.FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observe(.value) { (snapshot) in
             if !snapshot.exists() {
                 callback?(nil, nil)
                 return
             }
-            
             let restaurantUID = snapshot.value as! String
-            
-            Database.database().reference().child(FIR_RESTAURANTS).child(restaurantUID).observe(.value, with: { (snapshot) in
+            Database.database().reference().child(Constants.FIR_RESTAURANTS).child(restaurantUID).observe(.value, with: { (snapshot) in
                 if !snapshot.exists() {
                     callback?(nil, nil)
                     return
                 }
-                
                 var isSuccess = false
                 if let dictionary = snapshot.value as? [String: Any] {
                     if let staffDictionary = dictionary["Staff"] as? [String: Any] {
-                        
                         callback!(staffDictionary, nil)
 //                        let keyList = staffDictionary.keys
 //                        var allkeys = [String]()
@@ -89,15 +85,13 @@ class StaffMember {
     
     // should only be used for checking if admin is trying to get into SettingsVC from DashboardVC
     static func getStaffList(adminEmail: String, callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
-        _ = Database.database().reference().child(FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observe(.value) { (snapshot) in
-
+        Database.database().reference().child(Constants.FIR_ADMINISTRATORS).child(Auth.auth().currentUser!.uid).observe(.value) { (snapshot) in
             if !snapshot.exists() {
                 callback?(nil, nil)
                 return
             }
-
             let restaurantUID = snapshot.value as! String
-            Database.database().reference().child(FIR_RESTAURANTS).child(restaurantUID).observe(.value, with: { (snapshot) in
+            Database.database().reference().child(Constants.FIR_RESTAURANTS).child(restaurantUID).observe(.value, with: { (snapshot) in
                 if !snapshot.exists() {
                     callback?(nil, nil)
                     return
@@ -125,4 +119,10 @@ class StaffMember {
             })
         }
     }
+    
+    
+    
+    
+    
+    
 }

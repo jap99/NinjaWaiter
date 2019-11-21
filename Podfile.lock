@@ -126,7 +126,7 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.6.1)
   - NVActivityIndicatorView/Presenter (4.6.1)
   - Protobuf (3.10.0)
-  - Stripe (18.2.0)
+  - Stripe (18.0.0)
   - SwiftKeychainWrapper (3.4.0)
   - VMaskTextField (1.0.8)
 
@@ -142,7 +142,7 @@ DEPENDENCIES:
   - FirebaseFunctions
   - Kingfisher
   - NVActivityIndicatorView
-  - Stripe
+  - Stripe (= 18.0.0)
   - SwiftKeychainWrapper
   - VMaskTextField
 
@@ -200,10 +200,10 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
-  Stripe: a468d5f39703807e840fdfed39572ffad0aaf053
+  Stripe: 8c9ac6b717a38ed4f373d4db9204cfe8c4120d65
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   VMaskTextField: e77fe33633f999c5c38e70bed0afece0625624a4
 
-PODFILE CHECKSUM: b397754d8dc1bddb6c69371e40d0a71f44f6fced
+PODFILE CHECKSUM: 30903e9f384c80b4d8c5a7ef9aa6bde73da3ef38
 
 COCOAPODS: 1.8.4

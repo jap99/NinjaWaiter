@@ -126,9 +126,8 @@ class WelcomeVC: BaseViewController {
                         self.stopIndicator()
                     } else if let currentUser = user as? User {
                         // DataService.instance.getAvailabilityDataFromServer()
-                        
                         _currentUser = AppUser(user:currentUser)
-                        DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
+                        DataService.instance.mainRef.child(Constants.FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (obj) in
                             self.stopIndicator()
                             if let _ = obj.value as? String {
                                 _currentUser.type = .adamin
@@ -157,5 +156,8 @@ class WelcomeVC: BaseViewController {
             })
         }
     }
+    
+    
+    
 }
 

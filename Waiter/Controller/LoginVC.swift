@@ -101,7 +101,7 @@ class LoginVC: BaseViewController {
                     
                     _currentUser = AppUser(user:currentUser)
                     self.startIndicator()
-                    DataService.instance.mainRef.child(FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
+                    DataService.instance.mainRef.child(Constants.FIR_ADMINISTRATORS).child(_currentUser.uid).observe(.value, with: { (admin) in
                         self.stopIndicator()
                         if let _ = admin.value as? String {
                             _currentUser.type = .adamin

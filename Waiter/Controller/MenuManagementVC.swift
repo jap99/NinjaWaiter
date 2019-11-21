@@ -498,7 +498,7 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.categoryTV == tableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ADD_CATEGORY_CELL, for: indexPath) as! AddCategoryCell
             if self.categories.count > 0 {
                 cell.categoryTitle.text = self.categories[indexPath.row].name
                 cell.renameButton.tag = indexPath.row
@@ -509,7 +509,7 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
             showWhiteGrayCells(indexPath: indexPath, cell: cell)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ADD_ITEM_CELL, for: indexPath) as! AddItemCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ADD_ITEM_CELL, for: indexPath) as! AddItemCell
             cell.parentVC = self
             if isFromSave {
                 if indexPath.row == self.categories.count-1 {

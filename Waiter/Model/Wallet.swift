@@ -1,5 +1,5 @@
 //
-//  Transaction.swift
+//  Wallet.swift
 //  Waiter
 //
 //  Created by Javid Poornasir on 11/21/19.
@@ -9,12 +9,12 @@
 import Foundation
 
 
-class Transaction {
+class Wallet {
+    
     
     var id: String!
-    var receipt: Receipt!
-    var status: TransactionStatus = .saleStarted
-    var amount: Double = 0.00
-    var tip: Double = 0.00
+    
+    
+    
     
 }

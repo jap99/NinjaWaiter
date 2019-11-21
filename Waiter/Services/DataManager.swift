@@ -77,7 +77,7 @@ class DataManager: NSObject {
     
     func getCatName(key:String,completion: @escaping(String) -> Void) {
         var catName = ""
-        self.ref.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(key).observe(.value) { (snapshot) in
+        self.ref.child(Constants.FIR_RESTAURANTS).child(Constants.RESTAURANT_UID).child(Constants.FIR_MENU).child(Constants.FIR_CATEGORY).child(key).observe(.value) { (snapshot) in
             let response = snapshot.value as? String
             if let cat = response {
                 catName = cat

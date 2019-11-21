@@ -18,41 +18,29 @@ class AuthServices {
         return _instance
     }
     
+    
     // CREATE RESTAURANT
     
     func createRestaurant(adminEmail: String, restaurantName: String, password: String, onComplete: ((_ errMsg: String?, _ data: User?) -> Void)?) {
-        
         Auth.auth().createUser(withEmail: adminEmail, password: password, completion: { (result, error) in
-            
             if error != nil {
-                
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                onComplete?(DEFAULT_ERROR_MESSAGE, nil)
-                
+                onComplete?(Constants.DEFAULT_ERROR_MESSAGE, nil)
             } else if let user = result?.user {
-                
-                guard let restaurantUID = DataService.instance.mainRef.child(FIR_RESTAURANTS).childByAutoId().key else { return }
-                
+                guard let restaurantUID = DataService.instance.mainRef.child(Constants.FIR_RESTAURANTS).childByAutoId().key else { return }
                 RESTAURANT_UID = restaurantUID
-                
                 DataService.instance.saveToAdministratorsNode(adminUID: user.uid, restaurantUID: RESTAURANT_UID)
                 DataService.instance.saveToStaffNode(staffMemberUID: user.uid, restaurantUID: RESTAURANT_UID)
                 onComplete!(nil, user)
-                
                 DataService.instance.saveRestaurant(restaurantUID: restaurantUID, adminEmail: adminEmail, restaurantName: restaurantName)
-                     
                     Auth.auth().signIn(withEmail: adminEmail, password: password, completion: { (result, error) in
-                        
                         if error != nil {
-                            
                             self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                            RESTAURANT_UID = nil
-                            
+                            Constants.RESTAURANT_UID = nil
                         } else if let user = result?.user {
                             DataService.instance.saveStaffMember(staffMemberUID: user.uid, staffMemberEmail: adminEmail, staffMemberType: "Admin")
                             onComplete?(nil, user)
-                            
-                            print(SUCCESSFUL_LOGIN)
+                            print(Constants.SUCCESSFUL_LOGIN)
                             IS_USER_LOGGED_IN = true
                         }
                     })
@@ -60,49 +48,35 @@ class AuthServices {
         })
     }
     
+    
     // CREATE STAFF MEMBER
     
     func createStaffMember(staffEmail: String, password: String, onComplete: ((_ errMsg: String?, _ data: User?) -> Void)?) {
-        
         Auth.auth().createUser(withEmail: staffEmail, password: password, completion: { (result, error) in
-            
             if error != nil {
-                
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                
-                onComplete?(DEFAULT_ERROR_MESSAGE, nil)
-                
+                onComplete?(Constants.DEFAULT_ERROR_MESSAGE, nil)
             } else if error == nil {
-                
                 if let staffMember = result?.user {
-                    
                     DataService.instance.saveStaffMember(staffMemberUID: staffMember.uid, staffMemberEmail: staffMember.email!, staffMemberType: "Staff")
-                    
                     onComplete?(nil, staffMember)
-                    
                 } else {
-                    onComplete?(DEFAULT_ERROR_MESSAGE, nil)
+                    onComplete?(Constants.DEFAULT_ERROR_MESSAGE, nil)
                 }
             }
         })
     }
     
+    
     // LOGIN RESTAURANT
     
     func restaurantLogin(email: String, password: String, onComplete: Completion?) {
-        
         Auth.auth().signIn(withEmail: email, password: password, completion: { (result, error) in
-            
             if error != nil {                         // error
-                
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
                 RESTAURANT_UID = nil
-                
-                
             } else if let result = result {          // no error
-                
                 // get restaurant uid
-                
                 DataService.instance.getRestaurantUID(userUID: result.user.uid, completion: { (restID) in
                     RESTAURANT_UID = restID
                     IS_USER_LOGGED_IN = true
@@ -113,11 +87,9 @@ class AuthServices {
     }
     
     func staffMemberLogin() {
-        
     }
     
     func checkIfUserIsAnAdmin() {
-        
     }
     
     func logout() {

@@ -18,6 +18,15 @@
 		9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16826220CFD66600CFE4B1 /* AddItemCell.swift */; };
 		9F2546C820D62C9900162133 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2546C720D62C9900162133 /* AppUser.swift */; };
 		9F2546CA20D644E900162133 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2546C920D644E900162133 /* Settings.swift */; };
+		9F2714AE23871380004981EB /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714AD23871380004981EB /* Wallet.swift */; };
+		9F2714B0238713AD004981EB /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714AF238713AD004981EB /* Address.swift */; };
+		9F2714B223871415004981EB /* Birthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714B123871415004981EB /* Birthday.swift */; };
+		9F2714B423871467004981EB /* MerchantOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714B323871467004981EB /* MerchantOwner.swift */; };
+		9F2714B623871560004981EB /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714B523871560004981EB /* Restaurant.swift */; };
+		9F2714B8238715D0004981EB /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714B7238715D0004981EB /* TransactionStatus.swift */; };
+		9F2714BA238749BB004981EB /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714B9238749BB004981EB /* FirebaseService.swift */; };
+		9F2714BC23874A0B004981EB /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714BB23874A0B004981EB /* KeychainService.swift */; };
+		9F2714BF2387526B004981EB /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714BE2387526B004981EB /* UIImage+Ext.swift */; };
 		9F4A184320E63D270051C059 /* CategoryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184220E63D270051C059 /* CategoryItems.swift */; };
 		9F4A184520E63D410051C059 /* CategoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184420E63D410051C059 /* CategoryDetail.swift */; };
 		9F4A184720E63D9D0051C059 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184620E63D9D0051C059 /* DataManager.swift */; };
@@ -101,6 +110,15 @@
 		9F16826220CFD66600CFE4B1 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
 		9F2546C720D62C9900162133 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		9F2546C920D644E900162133 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		9F2714AD23871380004981EB /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		9F2714AF238713AD004981EB /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		9F2714B123871415004981EB /* Birthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Birthday.swift; sourceTree = "<group>"; };
+		9F2714B323871467004981EB /* MerchantOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantOwner.swift; sourceTree = "<group>"; };
+		9F2714B523871560004981EB /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		9F2714B7238715D0004981EB /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
+		9F2714B9238749BB004981EB /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		9F2714BB23874A0B004981EB /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		9F2714BE2387526B004981EB /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		9F32535E2386F7EA0081CB5F /* Waiter_Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Waiter_Bridge_Header.h; sourceTree = "<group>"; };
 		9F4A184220E63D270051C059 /* CategoryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItems.swift; sourceTree = "<group>"; };
 		9F4A184420E63D410051C059 /* CategoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetail.swift; sourceTree = "<group>"; };
@@ -222,6 +240,14 @@
 			path = "MenuMgmtVC - AddCategory";
 			sourceTree = "<group>";
 		};
+		9F2714BD2387525E004981EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F2714BE2387526B004981EB /* UIImage+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		9F79DAAE20D52AF8002D1743 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +286,7 @@
 		9F8EABE520AC74A50027EDFB /* Waiter */ = {
 			isa = PBXGroup;
 			children = (
+				9F32535E2386F7EA0081CB5F /* Waiter_Bridge_Header.h */,
 				9FCD91B8211011080015EF78 /* libs */,
 				9FD36FD720E2B57F00B700D4 /* CoreData */,
 				9F79DAAE20D52AF8002D1743 /* Singleton */,
@@ -331,6 +358,12 @@
 				9F91B6C32386D834004FE849 /* Customer.swift */,
 				9F91B6C52386D84F004FE849 /* Checkin.swift */,
 				9F91B6C72386D8DC004FE849 /* Transaction.swift */,
+				9F2714AD23871380004981EB /* Wallet.swift */,
+				9F2714AF238713AD004981EB /* Address.swift */,
+				9F2714B123871415004981EB /* Birthday.swift */,
+				9F2714B323871467004981EB /* MerchantOwner.swift */,
+				9F2714B523871560004981EB /* Restaurant.swift */,
+				9F2714B7238715D0004981EB /* TransactionStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,7 +399,6 @@
 				9F8EABF020AC74A60027EDFB /* Assets.xcassets */,
 				9FEA847220B544B700C6DEE1 /* ordered-animation.gif */,
 				9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */,
-				9F32535E2386F7EA0081CB5F /* Waiter_Bridge_Header.h */,
 			);
 			path = "Add'l Resources";
 			sourceTree = "<group>";
@@ -374,6 +406,7 @@
 		9FEA846D20B53FF300C6DEE1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				9F2714BD2387525E004981EB /* Extensions */,
 				9FF418F720CFF7A000EB56B6 /* Library */,
 				9FEA846E20B5400700C6DEE1 /* GifExtension.swift */,
 				9FEEFDC720C8E51600119A35 /* Constants.swift */,
@@ -393,6 +426,8 @@
 				9FEEFDCC20C8EABF00119A35 /* AuthServices.swift */,
 				9F4A184620E63D9D0051C059 /* DataManager.swift */,
 				9FAA07F6237B1B43004F7CDF /* StripeService.swift */,
+				9F2714B9238749BB004981EB /* FirebaseService.swift */,
+				9F2714BB23874A0B004981EB /* KeychainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -558,6 +593,7 @@
 			files = (
 				9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */,
 				9F91B6C62386D84F004FE849 /* Checkin.swift in Sources */,
+				9F2714B423871467004981EB /* MerchantOwner.swift in Sources */,
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
 				9FAA07F7237B1B43004F7CDF /* StripeService.swift in Sources */,
@@ -566,12 +602,15 @@
 				9FF4190120CFF7A100EB56B6 /* DefaultsSerializable+BuiltIns.swift in Sources */,
 				9FCD91B1210DC11D0015EF78 /* BaseViewController.swift in Sources */,
 				9FD1DAC220E283B600F6AD0D /* RenameViewController.swift in Sources */,
+				9F2714B0238713AD004981EB /* Address.swift in Sources */,
 				9F91B6C42386D834004FE849 /* Customer.swift in Sources */,
 				9F16826320CFD66600CFE4B1 /* AddItemCell.swift in Sources */,
 				9F0228CC20D25C4F00550DAD /* Category.swift in Sources */,
+				9F2714B223871415004981EB /* Birthday.swift in Sources */,
 				9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */,
 				9F84AA5420DB46A600E6B2BB /* Availability.swift in Sources */,
 				9FCD91C621101D7D0015EF78 /* MessageView.swift in Sources */,
+				9F2714AE23871380004981EB /* Wallet.swift in Sources */,
 				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
 				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
@@ -585,10 +624,12 @@
 				9F2546C820D62C9900162133 /* AppUser.swift in Sources */,
 				9FCD91AF210D637C0015EF78 /* ItemOptionPopupVC.swift in Sources */,
 				9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */,
+				9F2714BF2387526B004981EB /* UIImage+Ext.swift in Sources */,
 				9F67871220CC4CCD008E209F /* AddCategoryCell.swift in Sources */,
 				9FD36FDB20E2B62600B700D4 /* CategoryEntity.swift in Sources */,
 				9F2546CA20D644E900162133 /* Settings.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
+				9F2714BC23874A0B004981EB /* KeychainService.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,
 				9F91B6C82386D8DC004FE849 /* Transaction.swift in Sources */,
@@ -596,10 +637,13 @@
 				9FD36FDF20E2B67F00B700D4 /* ItemCoreData.swift in Sources */,
 				9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */,
 				9FAFDFA4210C716A007AA2D1 /* Utils.swift in Sources */,
+				9F2714B8238715D0004981EB /* TransactionStatus.swift in Sources */,
 				9F91B6BE2386D63A004FE849 /* QRCode.swift in Sources */,
+				9F2714BA238749BB004981EB /* FirebaseService.swift in Sources */,
 				9FEA845E20B5278B00C6DEE1 /* DashboardVC.swift in Sources */,
 				9FEA845820B519C800C6DEE1 /* FoodCell.swift in Sources */,
 				9FF4190220CFF7A100EB56B6 /* OptionalType.swift in Sources */,
+				9F2714B623871560004981EB /* Restaurant.swift in Sources */,
 				9F8EABEF20AC74A50027EDFB /* Waiter.xcdatamodeld in Sources */,
 				9FEA845A20B519DA00C6DEE1 /* SectionCell.swift in Sources */,
 				9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */,
@@ -775,7 +819,7 @@
 				DEVELOPMENT_TEAM = VWFZU9229C;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = Waiter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -789,7 +833,7 @@
 				PROVISIONING_PROFILE = "ee8a1d18-6bdf-40c6-b7c3-d2ecd82b6f29";
 				PROVISIONING_PROFILE_SPECIFIER = "waiter-dpp";
 				SWIFT_ENABLE_BATCH_MODE = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/javidpoornasir/Desktop/2019/SW/My iOS/Waiter-2018/Waiter/Waiter_Bridge_Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/javidpoornasir/Desktop/2019/SW/Dev/waiter '18/Waiter/Waiter_Bridge_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.2;
@@ -807,7 +851,7 @@
 				DEVELOPMENT_TEAM = VWFZU9229C;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = Waiter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -821,7 +865,7 @@
 				PROVISIONING_PROFILE = "ff3e62b7-670e-490c-8e83-a71c10176826";
 				PROVISIONING_PROFILE_SPECIFIER = "waiter-ppp";
 				SWIFT_ENABLE_BATCH_MODE = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/javidpoornasir/Desktop/2019/SW/My iOS/Waiter-2018/Waiter/Waiter_Bridge_Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/javidpoornasir/Desktop/2019/SW/Dev/waiter '18/Waiter/Waiter_Bridge_Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.2;

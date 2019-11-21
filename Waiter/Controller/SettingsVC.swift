@@ -386,7 +386,7 @@ class SettingsVC: BaseViewController, UITableViewDelegate, UITableViewDataSource
     // MARK: - TABLE VIEW (STAFF)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let waiterCell = tableView.dequeueReusableCell(withIdentifier: WAITER_CELL, for: indexPath) as? WaiterCell {
+        if let waiterCell = tableView.dequeueReusableCell(withIdentifier: Constants.WAITER_CELL, for: indexPath) as? WaiterCell {
             waiterCell.deleteAccountButton.tag = indexPath.row
             waiterCell.setData(staffList: staffArray, indexPath: indexPath)
             waiterCell.delegate = self
@@ -518,7 +518,7 @@ extension SettingsVC :  WaiterCellProtocol {
     func deleteButtonClicked(_ sender: UIButton) {
         print("Delete account tap\(sender.tag)")
        self.startIndicator()
-        DataService.instance.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
+        DataService.instance.mainRef.child(Constants.FIR_RESTAURANTS).child(Constants.RESTAURANT_UID).child(Constants.FIR_STAFF_MEMBERS).child(staffArray[sender.tag].uid).removeValue { (error, obj) in
         self.stopIndicator()
             if error == nil {
                 if self.staffArray[sender.tag].uid != "" {
