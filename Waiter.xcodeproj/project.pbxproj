@@ -52,6 +52,7 @@
 		9F91B6C42386D834004FE849 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C32386D834004FE849 /* Customer.swift */; };
 		9F91B6C62386D84F004FE849 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C52386D84F004FE849 /* Checkin.swift */; };
 		9F91B6C82386D8DC004FE849 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C72386D8DC004FE849 /* Transaction.swift */; };
+		9FA787A02387DA8300AC94CE /* QRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA7879F2387DA8300AC94CE /* QRService.swift */; };
 		9FAA07F7237B1B43004F7CDF /* StripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA07F6237B1B43004F7CDF /* StripeService.swift */; };
 		9FAFDFA4210C716A007AA2D1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDFA3210C716A007AA2D1 /* Utils.swift */; };
 		9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBC0F520CA6495000BF369 /* Extensions.swift */; };
@@ -147,6 +148,7 @@
 		9F91B6C32386D834004FE849 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		9F91B6C52386D84F004FE849 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
 		9F91B6C72386D8DC004FE849 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		9FA7879F2387DA8300AC94CE /* QRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRService.swift; sourceTree = "<group>"; };
 		9FAA07F6237B1B43004F7CDF /* StripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeService.swift; sourceTree = "<group>"; };
 		9FAFDFA3210C716A007AA2D1 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		9FCBC0F520CA6495000BF369 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				9FEA846C20B53A6A00C6DEE1 /* Add'l Resources */,
 				9F8EABF520AC74A60027EDFB /* Info.plist */,
 				9F4D4ECC20D4D8F0004F4C8A /* practice.swift */,
+				9FA7879F2387DA8300AC94CE /* QRService.swift */,
 			);
 			path = Waiter;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				9F4A184720E63D9D0051C059 /* DataManager.swift in Sources */,
 				9FD1DAC420E2B0E000F6AD0D /* kPParentManagedObject.swift in Sources */,
 				9FF4190020CFF7A100EB56B6 /* Defaults+Subscripts.swift in Sources */,
+				9FA787A02387DA8300AC94CE /* QRService.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
