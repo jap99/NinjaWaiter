@@ -11,6 +11,7 @@
 		9F0228CC20D25C4F00550DAD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0228CB20D25C4F00550DAD /* Category.swift */; };
 		9F0228CE20D25C7600550DAD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0228CD20D25C7600550DAD /* Item.swift */; };
 		9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F05893C20D4B842001C176D /* RoundedButton.swift */; };
+		9F078C72238C6E0A00030C7B /* Array+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F078C71238C6E0A00030C7B /* Array+ext.swift */; };
 		9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F16825920CFCD1700CFE4B1 /* CreateItem.xib */; };
 		9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */; };
 		9F16825E20CFD46400CFE4B1 /* ItemOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */; };
@@ -104,6 +105,7 @@
 		9F0228CB20D25C4F00550DAD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		9F0228CD20D25C7600550DAD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		9F05893C20D4B842001C176D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		9F078C71238C6E0A00030C7B /* Array+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ext.swift"; sourceTree = "<group>"; };
 		9F16825920CFCD1700CFE4B1 /* CreateItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateItem.xib; sourceTree = "<group>"; };
 		9F16825B20CFCD2300CFE4B1 /* CreateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItem.swift; sourceTree = "<group>"; };
 		9F16825D20CFD46400CFE4B1 /* ItemOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionsView.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				9F2714BE2387526B004981EB /* UIImage+Ext.swift */,
+				9F078C71238C6E0A00030C7B /* Array+ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,
+				9F078C72238C6E0A00030C7B /* Array+ext.swift in Sources */,
 				9F4D4ECD20D4D8F0004F4C8A /* practice.swift in Sources */,
 				9F91B6C02386D736004FE849 /* Receipt.swift in Sources */,
 				9FEA847920B630BB00C6DEE1 /* CreateRestaurantView.swift in Sources */,
