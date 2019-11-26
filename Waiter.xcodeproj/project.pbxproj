@@ -28,6 +28,12 @@
 		9F2714BA238749BB004981EB /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714B9238749BB004981EB /* FirebaseService.swift */; };
 		9F2714BC23874A0B004981EB /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714BB23874A0B004981EB /* KeychainService.swift */; };
 		9F2714BF2387526B004981EB /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2714BE2387526B004981EB /* UIImage+Ext.swift */; };
+		9F30F74A238D08AC00C6CE94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F30F749238D08AB00C6CE94 /* Assets.xcassets */; };
+		9F30F74C238D108F00C6CE94 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F30F74B238D108F00C6CE94 /* UIImageView+Ext.swift */; };
+		9F30F74E238D10B700C6CE94 /* NSDictionary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F30F74D238D10B700C6CE94 /* NSDictionary+Ext.swift */; };
+		9F30F750238D10CB00C6CE94 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F30F74F238D10CB00C6CE94 /* UIViewController+Ext.swift */; };
+		9F30F752238D10E400C6CE94 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F30F751238D10E400C6CE94 /* UIView+Ext.swift */; };
+		9F30F754238D122C00C6CE94 /* NSManagedObject+Exit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F30F753238D122C00C6CE94 /* NSManagedObject+Exit.swift */; };
 		9F4A184320E63D270051C059 /* CategoryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184220E63D270051C059 /* CategoryItems.swift */; };
 		9F4A184520E63D410051C059 /* CategoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184420E63D410051C059 /* CategoryDetail.swift */; };
 		9F4A184720E63D9D0051C059 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A184620E63D9D0051C059 /* DataManager.swift */; };
@@ -45,7 +51,6 @@
 		9F8EABE920AC74A50027EDFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABE820AC74A50027EDFB /* ViewController.swift */; };
 		9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABEA20AC74A50027EDFB /* Main.storyboard */; };
 		9F8EABEF20AC74A50027EDFB /* Waiter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EABED20AC74A50027EDFB /* Waiter.xcdatamodeld */; };
-		9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABF020AC74A60027EDFB /* Assets.xcassets */; };
 		9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */; };
 		9F91B6BE2386D63A004FE849 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6BD2386D63A004FE849 /* QRCode.swift */; };
 		9F91B6C02386D736004FE849 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6BF2386D736004FE849 /* Receipt.swift */; };
@@ -55,8 +60,7 @@
 		9F91B6C82386D8DC004FE849 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91B6C72386D8DC004FE849 /* Transaction.swift */; };
 		9FA787A02387DA8300AC94CE /* QRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA7879F2387DA8300AC94CE /* QRService.swift */; };
 		9FAA07F7237B1B43004F7CDF /* StripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA07F6237B1B43004F7CDF /* StripeService.swift */; };
-		9FAFDFA4210C716A007AA2D1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDFA3210C716A007AA2D1 /* Utils.swift */; };
-		9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCBC0F520CA6495000BF369 /* Extensions.swift */; };
+		9FAFDFA4210C716A007AA2D1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDFA3210C716A007AA2D1 /* Alert.swift */; };
 		9FCD91AF210D637C0015EF78 /* ItemOptionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD91AE210D637C0015EF78 /* ItemOptionPopupVC.swift */; };
 		9FCD91B1210DC11D0015EF78 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD91B0210DC11D0015EF78 /* BaseViewController.swift */; };
 		9FCD91B7211010640015EF78 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FCD91B6211010640015EF78 /* libxml2.2.tbd */; };
@@ -78,7 +82,6 @@
 		9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846320B52CF800C6DEE1 /* AddItemView.swift */; };
 		9FEA846620B5304400C6DEE1 /* ContinueOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */; };
 		9FEA846820B537A300C6DEE1 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846720B537A300C6DEE1 /* TableCell.swift */; };
-		9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA846E20B5400700C6DEE1 /* GifExtension.swift */; };
 		9FEA847120B5426600C6DEE1 /* OrderSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */; };
 		9FEA847320B544B800C6DEE1 /* ordered-animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA847220B544B700C6DEE1 /* ordered-animation.gif */; };
 		9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */; };
@@ -122,6 +125,12 @@
 		9F2714B9238749BB004981EB /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		9F2714BB23874A0B004981EB /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		9F2714BE2387526B004981EB /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		9F30F749238D08AB00C6CE94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F30F74B238D108F00C6CE94 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		9F30F74D238D10B700C6CE94 /* NSDictionary+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Ext.swift"; sourceTree = "<group>"; };
+		9F30F74F238D10CB00C6CE94 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		9F30F751238D10E400C6CE94 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		9F30F753238D122C00C6CE94 /* NSManagedObject+Exit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Exit.swift"; sourceTree = "<group>"; };
 		9F32535E2386F7EA0081CB5F /* Waiter_Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Waiter_Bridge_Header.h; sourceTree = "<group>"; };
 		9F4A184220E63D270051C059 /* CategoryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItems.swift; sourceTree = "<group>"; };
 		9F4A184420E63D410051C059 /* CategoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetail.swift; sourceTree = "<group>"; };
@@ -141,7 +150,6 @@
 		9F8EABE820AC74A50027EDFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9F8EABEB20AC74A50027EDFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F8EABEE20AC74A50027EDFB /* Waiter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Waiter.xcdatamodel; sourceTree = "<group>"; };
-		9F8EABF020AC74A60027EDFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F8EABF320AC74A60027EDFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F8EABF520AC74A60027EDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F91B6BD2386D63A004FE849 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
@@ -152,8 +160,7 @@
 		9F91B6C72386D8DC004FE849 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		9FA7879F2387DA8300AC94CE /* QRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRService.swift; sourceTree = "<group>"; };
 		9FAA07F6237B1B43004F7CDF /* StripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeService.swift; sourceTree = "<group>"; };
-		9FAFDFA3210C716A007AA2D1 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		9FCBC0F520CA6495000BF369 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9FAFDFA3210C716A007AA2D1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		9FCD91AE210D637C0015EF78 /* ItemOptionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemOptionPopupVC.swift; sourceTree = "<group>"; };
 		9FCD91B0210DC11D0015EF78 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9FCD91B6211010640015EF78 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
@@ -177,7 +184,6 @@
 		9FEA846320B52CF800C6DEE1 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		9FEA846520B5304400C6DEE1 /* ContinueOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueOrderVC.swift; sourceTree = "<group>"; };
 		9FEA846720B537A300C6DEE1 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
-		9FEA846E20B5400700C6DEE1 /* GifExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
 		9FEA847020B5426600C6DEE1 /* OrderSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessVC.swift; sourceTree = "<group>"; };
 		9FEA847220B544B700C6DEE1 /* ordered-animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ordered-animation.gif"; sourceTree = "<group>"; };
 		9FEA847420B54C1400C6DEE1 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
@@ -249,6 +255,11 @@
 			children = (
 				9F2714BE2387526B004981EB /* UIImage+Ext.swift */,
 				9F078C71238C6E0A00030C7B /* Array+ext.swift */,
+				9F30F74B238D108F00C6CE94 /* UIImageView+Ext.swift */,
+				9F30F74D238D10B700C6CE94 /* NSDictionary+Ext.swift */,
+				9F30F74F238D10CB00C6CE94 /* UIViewController+Ext.swift */,
+				9F30F751238D10E400C6CE94 /* UIView+Ext.swift */,
+				9F30F753238D122C00C6CE94 /* NSManagedObject+Exit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -351,6 +362,7 @@
 		9FEA846A20B537CA00C6DEE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F2546C720D62C9900162133 /* AppUser.swift */,
 				9FEEFDD220C8FD8F00119A35 /* StaffMember.swift */,
 				9F0228CB20D25C4F00550DAD /* Category.swift */,
 				9F0228CD20D25C7600550DAD /* Item.swift */,
@@ -400,9 +412,9 @@
 			children = (
 				9F4AC17F2104305D00D6B29B /* GoogleService-Info.plist */,
 				9F4F8A6820DC060F0071E06E /* waiter.gif */,
+				9F30F749238D08AB00C6CE94 /* Assets.xcassets */,
 				9F8EABE620AC74A50027EDFB /* AppDelegate.swift */,
 				9F8EABEA20AC74A50027EDFB /* Main.storyboard */,
-				9F8EABF020AC74A60027EDFB /* Assets.xcassets */,
 				9FEA847220B544B700C6DEE1 /* ordered-animation.gif */,
 				9F8EABF220AC74A60027EDFB /* LaunchScreen.storyboard */,
 			);
@@ -414,12 +426,9 @@
 			children = (
 				9F2714BD2387525E004981EB /* Extensions */,
 				9FF418F720CFF7A000EB56B6 /* Library */,
-				9FEA846E20B5400700C6DEE1 /* GifExtension.swift */,
 				9FEEFDC720C8E51600119A35 /* Constants.swift */,
-				9FCBC0F520CA6495000BF369 /* Extensions.swift */,
-				9F2546C720D62C9900162133 /* AppUser.swift */,
 				9FD1DAC320E2B0E000F6AD0D /* kPParentManagedObject.swift */,
-				9FAFDFA3210C716A007AA2D1 /* Utils.swift */,
+				9FAFDFA3210C716A007AA2D1 /* Alert.swift */,
 				9F91B6BD2386D63A004FE849 /* QRCode.swift */,
 			);
 			path = Utilities;
@@ -541,7 +550,7 @@
 			files = (
 				9F8EABF420AC74A60027EDFB /* LaunchScreen.storyboard in Resources */,
 				9F4AC1802104305D00D6B29B /* GoogleService-Info.plist in Resources */,
-				9F8EABF120AC74A60027EDFB /* Assets.xcassets in Resources */,
+				9F30F74A238D08AC00C6CE94 /* Assets.xcassets in Resources */,
 				9F16825A20CFCD1700CFE4B1 /* CreateItem.xib in Resources */,
 				9F8EABEC20AC74A50027EDFB /* Main.storyboard in Resources */,
 				9F16826020CFD47B00CFE4B1 /* ItemOptionsView.xib in Resources */,
@@ -620,6 +629,7 @@
 				9F2714B423871467004981EB /* MerchantOwner.swift in Sources */,
 				9FEA846420B52CF800C6DEE1 /* AddItemView.swift in Sources */,
 				9F16825C20CFCD2300CFE4B1 /* CreateItem.swift in Sources */,
+				9F30F74E238D10B700C6CE94 /* NSDictionary+Ext.swift in Sources */,
 				9FAA07F7237B1B43004F7CDF /* StripeService.swift in Sources */,
 				9FEA845C20B51ABF00C6DEE1 /* CheckoutCell.swift in Sources */,
 				9FCD91C4211014970015EF78 /* DiscoveryViewController.swift in Sources */,
@@ -637,14 +647,13 @@
 				9F2714AE23871380004981EB /* Wallet.swift in Sources */,
 				9F67871420CC4CEB008E209F /* MenuManagementVC.swift in Sources */,
 				9FEEFDCF20C8FB1300119A35 /* WaiterCell.swift in Sources */,
-				9FEA846F20B5400700C6DEE1 /* GifExtension.swift in Sources */,
 				9FEA847520B54C1400C6DEE1 /* WelcomeVC.swift in Sources */,
 				9F4A184320E63D270051C059 /* CategoryItems.swift in Sources */,
+				9F30F754238D122C00C6CE94 /* NSManagedObject+Exit.swift in Sources */,
 				9FF4190420CFF7A100EB56B6 /* Defaults.swift in Sources */,
 				9F84AA5020DB338000E6B2BB /* ItemOptionCell.swift in Sources */,
 				9FEEFDCA20C8E5F100119A35 /* DataService.swift in Sources */,
 				9FEA846020B5280300C6DEE1 /* LoginVC.swift in Sources */,
-				9FCBC0F620CA6495000BF369 /* Extensions.swift in Sources */,
 				9F2546C820D62C9900162133 /* AppUser.swift in Sources */,
 				9FCD91AF210D637C0015EF78 /* ItemOptionPopupVC.swift in Sources */,
 				9FEEFDD120C8FB3500119A35 /* SettingsVC.swift in Sources */,
@@ -653,6 +662,7 @@
 				9FD36FDB20E2B62600B700D4 /* CategoryEntity.swift in Sources */,
 				9F2546CA20D644E900162133 /* Settings.swift in Sources */,
 				9FEEFDD320C8FD8F00119A35 /* StaffMember.swift in Sources */,
+				9F30F750238D10CB00C6CE94 /* UIViewController+Ext.swift in Sources */,
 				9F2714BC23874A0B004981EB /* KeychainService.swift in Sources */,
 				9FEEFDC820C8E51600119A35 /* Constants.swift in Sources */,
 				9FF418FF20CFF7A100EB56B6 /* DefaultsKeys.swift in Sources */,
@@ -660,7 +670,7 @@
 				9FF4190320CFF7A100EB56B6 /* DefaultsSerializable.swift in Sources */,
 				9FD36FDF20E2B67F00B700D4 /* ItemCoreData.swift in Sources */,
 				9F05893D20D4B842001C176D /* RoundedButton.swift in Sources */,
-				9FAFDFA4210C716A007AA2D1 /* Utils.swift in Sources */,
+				9FAFDFA4210C716A007AA2D1 /* Alert.swift in Sources */,
 				9F2714B8238715D0004981EB /* TransactionStatus.swift in Sources */,
 				9F91B6BE2386D63A004FE849 /* QRCode.swift in Sources */,
 				9F2714BA238749BB004981EB /* FirebaseService.swift in Sources */,
@@ -681,6 +691,8 @@
 				9FD1DAC420E2B0E000F6AD0D /* kPParentManagedObject.swift in Sources */,
 				9FF4190020CFF7A100EB56B6 /* Defaults+Subscripts.swift in Sources */,
 				9FA787A02387DA8300AC94CE /* QRService.swift in Sources */,
+				9F30F752238D10E400C6CE94 /* UIView+Ext.swift in Sources */,
+				9F30F74C238D108F00C6CE94 /* UIImageView+Ext.swift in Sources */,
 				9FEEFDCD20C8EABF00119A35 /* AuthServices.swift in Sources */,
 				9FEDA94720CBD55A00201775 /* PrinterVC.swift in Sources */,
 				9F8EABE720AC74A50027EDFB /* AppDelegate.swift in Sources */,

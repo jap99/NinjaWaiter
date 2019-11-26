@@ -29,7 +29,7 @@ class DataManager: NSObject {
     
     func getCategoryList(order: String,
                          completion: @escaping ([CategoryDetail]?) -> Void) {
-        self.ref.child("Restaurants").child(RESTAURANT_UID).child("Menu").child("Availability").child(order).child("Categories").observe(.value) { (snapshot) in
+        self.ref.child("Restaurants").child(DataService.RESTAURANT_UID).child("Menu").child("Availability").child(order).child("Categories").observe(.value) { (snapshot) in
             if let response = snapshot.value as? [String: Any] {
                 var arrCategory = [CategoryDetail] ()
                 for data in response {

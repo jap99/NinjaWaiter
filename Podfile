@@ -16,7 +16,7 @@ target 'Waiter' do
     pod 'Firebase/Firestore'
     pod 'Kingfisher'
     pod 'DropDown'
-    pod 'Stripe', '18.0.0'
+    pod 'Stripe'#, '18.0.0'
     pod 'Alamofire'
     pod 'VMaskTextField'
     pod 'DropDown'

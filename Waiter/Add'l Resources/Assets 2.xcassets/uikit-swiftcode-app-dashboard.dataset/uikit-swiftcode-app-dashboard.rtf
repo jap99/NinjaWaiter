@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 HelveticaNeue-Bold;}
+{\colortbl;\red255\green255\blue255;\red53\green53\blue53;}
+{\*\expandedcolortbl;;\cssrgb\c27059\c27059\c27059;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\fs40 \cf2 App Dashboard\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\fs24 \cf2 The screen that appears every time the app is exited and launched after the 1st login upon installation.  
+\f1\b \
+
+\f0\b0 \
+
+\f1\b Dashboard\
+-\
+
+\f0\b0 let chooseYourUsageTy = UILabel()\
+chooseYourUsageTy.text = "Choose Your Usage Type"\
+chooseYourUsageTy.font = UIFont(name: "Helvetica-Light", size:65)\
+chooseYourUsageTy.textColor = UIColor(red: 0.71, green: 0.72, blue: 0.77, alpha: 1)\
+chooseYourUsageTy.textAlignment = .center\
+chooseYourUsageTy.numberOfLines = 0\
+\
+let ordering = UILabel()\
+ordering.text = "Ordering"\
+ordering.font = UIFont(name: "Helvetica-Bold", size:31)\
+ordering.textColor = UIColor(red: 0.92, green: 0.93, blue: 0.96, alpha: 1)\
+ordering.textAlignment = .center\
+ordering.numberOfLines = 0\
+\
+let bREAKFAST = UILabel()\
+bREAKFAST.text = "Breakfast".uppercased()\
+bREAKFAST.font = UIFont(name: "Helvetica-Bold", size:31)\
+bREAKFAST.textColor = UIColor(red: 0.96, green: 0.96, blue: 0.98, alpha: 1)\
+bREAKFAST.textAlignment = .center\
+bREAKFAST.numberOfLines = 0\
+\
+
+\f1\b Login Screen to Settings 
+\f0\b0 (this screen is only required if the user is logged out sumhow, its not necessary to prompt the user for this screen every time when clicked from app dashboard) \
+-\
+let loginforSettings = UILabel()\
+loginforSettings.text = "Login for Settings"\
+loginforSettings.font = UIFont(name: "Helvetica-Light", size:65)\
+loginforSettings.textColor = UIColor(red: 0.71, green: 0.72, blue: 0.77, alpha: 1)\
+loginforSettings.textAlignment = .center\
+loginforSettings.numberOfLines = 0\
+\
+let email = UILabel()\
+email.text = "Email"\
+email.font = UIFont(name: "Helvetica-Light", size:24)\
+email.textColor = UIColor(red: 0.71, green: 0.72, blue: 0.77, alpha: 1)\
+email.numberOfLines = 0\
+\
+let resetPassword? = UILabel()\
+resetPassword?.text = "Reset Password?"\
+resetPassword?.font = UIFont(name: "Helvetica-Bold", size:24)\
+resetPassword?.textColor = UIColor(red: 0.71, green: 0.72, blue: 0.77, alpha: 1)\
+resetPassword?.numberOfLines = 0\
+\
+let lOGIN = UILabel()\
+lOGIN.text = "Login".uppercased()\
+lOGIN.font = UIFont(name: "Helvetica-Bold", size:24)\
+lOGIN.textColor = UIColor(red: 1, green: 0.2, blue: 0.4, alpha: 1)\
+lOGIN.numberOfLines = 0\
+
+\f1\b \
+}

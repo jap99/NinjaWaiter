@@ -16,7 +16,6 @@ typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 
 let APP_NAME = "Waiter App"
 var _currentUser = AppUser()
-var RESTAURANT_UID: String!
 var IS_USER_LOGGED_IN = false
 let _userDefault = UserDefaults.standard
 let kUsername = "kUsername"

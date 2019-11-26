@@ -60,7 +60,7 @@ final class DataService {
     
     let APP_NAME = "Waiter App"
     var _currentUser = AppUser()
-    var RESTAURANT_UID: String!
+    static var RESTAURANT_UID: String!
     var IS_USER_LOGGED_IN = false
     let _userDefault = UserDefaults.standard
     let kUsername = "kUsername"
@@ -224,6 +224,15 @@ final class DataService {
         }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     
     // MARK: - KEYCHAIN SERVICES
     
@@ -289,84 +298,44 @@ final class DataService {
     }
     
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     
+    // MARK: - GET
     
     
+    // GET SETTINGS DATA
     
-    
-    
-    
-    
-    
-    
-    // SAVE RESTAURANT & ADMIN - TO RESTAURANT NODE & SETTINGS
-    
-    func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
-        let restaurantData: Dictionary<String, AnyObject> = [
-            "restaurantName": restaurantName as AnyObject,
-            "adminEmail": adminEmail as AnyObject   
-        ]
-        
-        mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).setValue(restaurantData)
-    }
-    
-    // SAVE ADMIN - TO ADMINISTRATORS NODE
-    
-    func saveToAdministratorsNode(adminUID: String, restaurantUID: String) {
-        
-        let adminData: Dictionary<String, AnyObject> = [
-            adminUID: restaurantUID as AnyObject
-        ]
-        
-        mainRef.child(FIR_ADMINISTRATORS).updateChildValues(adminData)
-    }
-    
-    // SAVE STAFF - TO RESTAURANT NODE
-    
-    func saveStaffMember(staffMemberUID: String, staffMemberEmail: String, staffMemberType: String) {
-        let lowercasedStaffEmail = staffMemberEmail.lowercased()
-        let staffMemberData: Dictionary<String, AnyObject> = [
-            "staffEmail": lowercasedStaffEmail as AnyObject,
-            "staffType": staffMemberType as AnyObject
-        ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData) { (error, ref) in
-            if let error = error {
-                print(error.localizedDescription)
+    func getSettingsData(callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) { // Includes table numbers
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_SETTINGS).observe(.value) { (snapshot) in
+            if !snapshot.exists() {
+                callback?(nil, nil)
+                return
             } else {
-                self.saveToStaffNode(staffMemberUID: staffMemberUID, restaurantUID: self.RESTAURANT_UID)
+                Singleton.sharedInstance.settingsData = Settings.shared.parseSettingData(snapshot: snapshot)
+                callback?((snapshot.value as! [String : AnyObject]), nil)
             }
         }
     }
     
-    // SAVE STAFF - TO MAIN STAFF NODE
+    // GET AVAILABILITY - BREAKFAST, LUNCH, DINNER
     
-    func saveToStaffNode(staffMemberUID: String, restaurantUID: String) {
-        let data: Dictionary<String, String> = [
-            staffMemberUID: restaurantUID
-        ]
-        mainRef.child(FIR_STAFF_MEMBERS).updateChildValues(data)
+    func getAvailabilityDataFromServer() {
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                let availability = Availability(dict:snapshot)
+                Singleton.sharedInstance.availabilityData = [availability]
+            }
+        }
     }
-    
-    //    func getStaff(callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
-    //        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).observeSingleEvent(of: .value) { (snapshot) in
-    //            if let dict = snapshot.value as? [String: Any] {
-    //                if let staffDict = dict["Staff"] as? [String: Any] {
-    //                    let keysList = staffDict.keys
-    //                    var allKeys = [String]()
-    //                    var staffDictionaryArray: [[String: Any]] = []
-    //                    for key in keyList {
-    //                        if let staffMemberDictionary = staffDict[key] as? [String: Any] {
-    //                            allKeys.append(key)
-    //                            staffDictionaryArray.append(staffMemberDictionary)
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    
-    
+     
     // GET RESTAURANT UID
     
     func getRestaurantUID(userUID: String, completion:@escaping ((_ restD:String?) -> ())) {
@@ -385,7 +354,7 @@ final class DataService {
         let categoryData: Dictionary<String, AnyObject> = [
             categoryUID: updatedName as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(categoryData) { (error, ref) in
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(categoryData) { (error, ref) in
             if error != nil {
                 print(error?.localizedDescription ?? "ERROR RENAMING CATEGORY")
             } else {
@@ -394,29 +363,27 @@ final class DataService {
         }
     }
     
-    
     // DELETE CATEGORY
     
     func deleteCategory(categoryUID: String, completion: @escaping (Bool) -> ()) {
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).removeValue { (error, reference) in
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).child(categoryUID).removeValue { (error, reference) in
             if let error = error {
                 print(error.localizedDescription)
-            } else {  self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_BREAKFAST).child(self.FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
+            } else {  self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_BREAKFAST).child(self.FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
                 if let error = error {
                     print("BREAKFAST - ERROR REMOVING CATEGORY: \(error.localizedDescription)")
                 } else {
                     print("REMOVED CATEGORY FROM BREAKFAST NODE")
                 }
                 }
-                self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_LUNCH).child(self.FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
+                self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_LUNCH).child(self.FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
                     if let error = error {
                         print("LUNCH - ERROR REMOVING CATEGORY: \(error.localizedDescription)")
                     } else {
                         print("REMOVED CATEGORY FROM LUNCH NODE")
                     }
-                    
                 }
-                self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_DINNER).child(self.FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
+                self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_DINNER).child(self.FIR_CATEGORIES).child(categoryUID).removeValue { (error, reference) in
                     if let error = error {
                         print("DINNER - ERROR REMOVING CATEGORY: \(error.localizedDescription)")
                     } else {
@@ -430,9 +397,9 @@ final class DataService {
     // SAVE CATEGORY - TO RESTAURANT NODE
     
     func saveCategory(categoryName: String, completion: @escaping (Bool) -> ()) {
-        if let categoryUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORIES).child(FIR_CATEGORY).childByAutoId().key {
+        if let categoryUID = mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORIES).child(FIR_CATEGORY).childByAutoId().key {
             let category: Dictionary<String, AnyObject> = [categoryUID: categoryName as AnyObject ]
-            mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(category) { (error, ref) in
+            mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).updateChildValues(category) { (error, ref) in
                 if let error = error {
                     print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
                     completion(false)
@@ -446,7 +413,7 @@ final class DataService {
     // GET CATEGORIES (1/2)
     
     func getCategories(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
             if !snapshot.exists() {
                 callback?(nil, nil)
                 return
@@ -459,7 +426,7 @@ final class DataService {
     // GET CATEGORIES (2/2)
     
     func getCategoriesFromServer(callback: ((_ categories: [Category]?, _ error: Error?) -> Void)?) {
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_CATEGORY).observe(.value) { (snapshot) in
             if !snapshot.exists() {
                 callback?(nil, nil)
                 return
@@ -468,10 +435,70 @@ final class DataService {
         }
     }
     
+     
+    // GET ITEMS FROM CATEGORY
+    
+    func getCategoryItems(categoryUID: String, callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) {
+        if categoryUID != "" {
+            mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(categoryUID).observe(.value) { (snapshot) in
+                if !snapshot.exists() {
+                    callback?(nil, nil)
+                    return
+                } else {
+                    print(snapshot.value as AnyObject)
+                    callback?((snapshot.value as! [String : AnyObject]), nil)
+                }
+            }
+        } else {
+            mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").observe(.value) { (snapshot) in
+                if !snapshot.exists() {
+                    callback?(nil, nil)
+                    return
+                } else {
+                    print(snapshot.value as AnyObject)
+                    callback?((snapshot.value as! [String : AnyObject]), nil)
+                }
+            }
+        }
+    }
+    
+    // GET ITEM OPTION
+    
+    func getItemOption(itemId: String, callback: ((_ categories: [ItemOption]?, _ error: Error?) -> Void)?) {  mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").observe(.value) { (snapshot) in
+        if !snapshot.exists() {
+            callback?(nil, nil)
+            return
+        } else {
+            var optionListArray = [ItemOption]()
+            if let optionListDict = snapshot.value as? [String : AnyObject] {
+                for (k,v) in optionListDict {
+                    let optionData = ItemOption()
+                    optionData.itemId = itemId as String
+                    optionData.optionId = k as String
+                    if let optionValue = v as? [String: String] {
+                        if let title = optionValue["optionTitle"] {
+                            optionData.optionName = title
+                        }
+                        if let price = optionValue["optionPrice"] {
+                            optionData.optionPrice = price
+                        }
+                    }
+                    optionListArray.append(optionData)
+                }
+            }
+            callback?(optionListArray, nil)
+        }
+        }
+    }
+    
+    
+    // MARK: - CREATE / ADD / SAVE
+    
+    
     // SAVE ITEM - #1
     
     func saveItem(itemName: String, itemPrice: String, itemImage: UIImage?, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
-        guard let itemUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key else {
+        guard let itemUID = mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).childByAutoId().key else {
             return
         }
         if let itemImage = itemImage {
@@ -514,7 +541,7 @@ final class DataService {
     // SAVE ITEM - #2
     
     func saveData(itemUID: String, item: Dictionary<String, AnyObject>, categoryDictOfArray: [String: [String]], completion: @escaping (Bool) -> ()) {
-        self.mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
+        self.mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child(itemUID).updateChildValues(item) { (error, ref) in
             if let _ = error {
                 completion(false)
             } else {
@@ -524,33 +551,28 @@ final class DataService {
                 let categoryUIDs = categoryDictOfArray.keys
                 for category in categoryUIDs {
                     print(category)
-                    self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child("CategoryDetails").child(category).child(itemUID).updateChildValues(itemDetailsNode) { (error, ref) in
-                        
+                    self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child("CategoryDetails").child(category).child(itemUID).updateChildValues(itemDetailsNode) { (error, ref) in
                         if let error = error {
                             print("ERROR CREATING IMAGE IN DATABASE --- ERROR DESCRIPTION: \(error.localizedDescription)")
                             completion(false)
-                            
                         } else {
-                            
                             let breakfastCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Breakfast") }.map{$0.key}
                             let lunchCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Lunch") }.map{$0.key}
                             let dinnerCategoryUIDs = categoryDictOfArray.filter { $0.value.contains("Dinner") }.map{$0.key}
-                            
                             var arrBreakFast: [String: Any]
                             var arrlunch: [String: Any]
                             var arrDinner: [String: Any]
-                            
                             if let breakfastCategoryUIDsKey = breakfastCategoryUIDs.first {
                                 arrBreakFast = [itemUID: itemDetailsNode]
-                                self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_BREAKFAST).child(self.FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(self.FIR_ITEMS).updateChildValues(arrBreakFast)
+                                self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_BREAKFAST).child(self.FIR_CATEGORIES).child(breakfastCategoryUIDsKey).child(self.FIR_ITEMS).updateChildValues(arrBreakFast)
                             }
                             if let lunchCategoryUIDsKey = lunchCategoryUIDs.first {
                                 arrlunch = [itemUID: itemDetailsNode]
-                                self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_LUNCH).child(self.FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(self.FIR_ITEMS).updateChildValues(arrlunch)
+                                self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_LUNCH).child(self.FIR_CATEGORIES).child(lunchCategoryUIDsKey).child(self.FIR_ITEMS).updateChildValues(arrlunch)
                             }
                             if let dinnerCategoryUIDsKey = dinnerCategoryUIDs.first {
                                 arrDinner = [itemUID: itemDetailsNode]
-                                self.mainRef.child(self.FIR_RESTAURANTS).child(self.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_DINNER).child(self.FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(self.FIR_ITEMS).updateChildValues(arrDinner)
+                                self.mainRef.child(self.FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(self.FIR_MENU).child(self.FIR_AVAILABILITY).child(self.FIR_DINNER).child(self.FIR_CATEGORIES).child(dinnerCategoryUIDsKey).child(self.FIR_ITEMS).updateChildValues(arrDinner)
                             }
                             completion(true)
                         }
@@ -559,71 +581,75 @@ final class DataService {
             }
         }
     }
-    
-    
-    // GET ITEMS FROM CATEGORY
-    
-    func getCategoryItems(categoryUID: String, callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) {
-        if categoryUID != "" {
-            mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").child(categoryUID).observe(.value) { (snapshot) in
-                
-                if !snapshot.exists() {
-                    callback?(nil, nil)
-                    return
-                } else {
-                    print(snapshot.value as AnyObject)
-                    callback?((snapshot.value as! [String : AnyObject]), nil)
-                }
-            }
-        } else {
-            mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("CategoryDetails").observe(.value) { (snapshot) in
-                if !snapshot.exists() {
-                    callback?(nil, nil)
-                    return
-                } else {
-                    print(snapshot.value as AnyObject)
-                    callback?((snapshot.value as! [String : AnyObject]), nil)
-                }
-            }
-        }
-    }
-    
-    
-    // GET ITEM OPTION
-    
-    func getItemOption(itemId: String, callback: ((_ categories: [ItemOption]?, _ error: Error?) -> Void)?) {  mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").observe(.value) { (snapshot) in
-        if !snapshot.exists() {
-            callback?(nil, nil)
-            return
-        } else {
-            var optionListArray = [ItemOption]()
-            if let optionListDict = snapshot.value as? [String : AnyObject] {
-                for (k,v) in optionListDict {
-                    let optionData = ItemOption()
-                    optionData.itemId = itemId as String
-                    optionData.optionId = k as String
-                    if let optionValue = v as? [String: String] {
-                        if let title = optionValue["optionTitle"] {
-                            optionData.optionName = title
-                        }
-                        if let price = optionValue["optionPrice"] {
-                            optionData.optionPrice = price
-                        }
-                    }
-                    optionListArray.append(optionData)
-                }
-            }
-            callback?(optionListArray, nil)
-        }
-        }
-    }
-    
+ 
+    // SAVE RESTAURANT & ADMIN - TO RESTAURANT NODE & SETTINGS
+      
+      func saveRestaurant(restaurantUID: String, adminEmail: String, restaurantName: String) {
+          let restaurantData: Dictionary<String, AnyObject> = [
+              "restaurantName": restaurantName as AnyObject,
+              "adminEmail": adminEmail as AnyObject
+          ]
+          mainRef.child(FIR_RESTAURANTS).child(restaurantUID).child(FIR_SETTINGS).setValue(restaurantData)
+      }
+      
+      // SAVE ADMIN - TO ADMINISTRATORS NODE
+      
+      func saveToAdministratorsNode(adminUID: String, restaurantUID: String) {
+          let adminData: Dictionary<String, AnyObject> = [
+              adminUID: restaurantUID as AnyObject
+          ]
+          mainRef.child(FIR_ADMINISTRATORS).updateChildValues(adminData)
+      }
+      
+      // SAVE STAFF - TO RESTAURANT NODE
+      
+      func saveStaffMember(staffMemberUID: String, staffMemberEmail: String, staffMemberType: String) {
+          let lowercasedStaffEmail = staffMemberEmail.lowercased()
+          let staffMemberData: Dictionary<String, AnyObject> = [
+              "staffEmail": lowercasedStaffEmail as AnyObject,
+              "staffType": staffMemberType as AnyObject
+          ]
+          mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_STAFF_MEMBERS).child(staffMemberUID).updateChildValues(staffMemberData) { (error, ref) in
+              if let error = error {
+                  print(error.localizedDescription)
+              } else {
+                  self.saveToStaffNode(staffMemberUID: staffMemberUID, restaurantUID: DataService.RESTAURANT_UID)
+              }
+          }
+      }
+      
+      // SAVE STAFF - TO MAIN STAFF NODE
+      
+      func saveToStaffNode(staffMemberUID: String, restaurantUID: String) {
+          let data: Dictionary<String, String> = [
+              staffMemberUID: restaurantUID
+          ]
+          mainRef.child(FIR_STAFF_MEMBERS).updateChildValues(data)
+      }
+      
+      //    func getStaff(callback: ((_ staffMembers: [StaffMember]?, _ error: Error?) -> Void)?) {
+      //        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_STAFF_MEMBERS).observeSingleEvent(of: .value) { (snapshot) in
+      //            if let dict = snapshot.value as? [String: Any] {
+      //                if let staffDict = dict["Staff"] as? [String: Any] {
+      //                    let keysList = staffDict.keys
+      //                    var allKeys = [String]()
+      //                    var staffDictionaryArray: [[String: Any]] = []
+      //                    for key in keyList {
+      //                        if let staffMemberDictionary = staffDict[key] as? [String: Any] {
+      //                            allKeys.append(key)
+      //                            staffDictionaryArray.append(staffMemberDictionary)
+      //                        }
+      //                    }
+      //                }
+      //            }
+      //        }
+      //    }
+      
     
     // ADD ITEM OPTION
     
-    func addEditItemOption(itemId: String, optionId: String, optionValue: [String: AnyObject]) {  mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").child(optionId).updateChildValues(optionValue)
+    func addEditItemOption(itemId: String, optionId: String, optionValue: [String: AnyObject]) {  mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_MENU).child("Items").child(itemId).child("itemDetails").child("itemOption").child(optionId).updateChildValues(optionValue)
     }
-    
     
     // SAVE TABLE NUMBERS
     
@@ -632,43 +658,14 @@ final class DataService {
             "tableStartNumber": tableStartNumber as AnyObject,
             "tableEndNumber": tableEndNumber as AnyObject
         ]
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(data)
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(data)
     }
-    
     
     // SAVE TAXES & DISCOUNTS
     
     func saveTaxesAndDiscounts(settings: [String: AnyObject]) {
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(settings)
+        mainRef.child(FIR_RESTAURANTS).child(DataService.RESTAURANT_UID).child(FIR_SETTINGS).updateChildValues(settings)
     }
-    
-    
-    // GET SETTINGS DATA
-    
-    func getSettingsData(callback: ((_ categories: [String: AnyObject]?, _ error: Error?) -> Void)?) { // Includes table numbers
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_SETTINGS).observe(.value) { (snapshot) in
-            if !snapshot.exists() {
-                callback?(nil, nil)
-                return
-            } else {
-                Singleton.sharedInstance.settingsData = Settings.shared.parseSettingData(snapshot: snapshot)
-                callback?((snapshot.value as! [String : AnyObject]), nil)
-            }
-        }
-    }
-    
-    
-    // GET AVAILABILITY - BREAKFAST, LUNCH, DINNER
-    
-    func getAvailabilityDataFromServer() {
-        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_AVAILABILITY).observe(.value) { (snapshot: DataSnapshot) in
-            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                let availability = Availability(dict:snapshot)
-                Singleton.sharedInstance.availabilityData = [availability]
-            }
-        }
-    }
-    
     
     // SAVE ITEM OPTION
     
@@ -677,6 +674,7 @@ final class DataService {
         //        let itemOptionUID = mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).child().childByAutoId().key
         //        mainRef.child(FIR_RESTAURANTS).child(RESTAURANT_UID).child(FIR_MENU).child(FIR_ITEMS).update
     }
+    
     
     
     

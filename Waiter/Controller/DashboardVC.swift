@@ -39,7 +39,7 @@ class DashboardVC: BaseViewController {
                 NSLayoutConstraint.constraints(withVisualFormat: "V:|-65-[l]-50-[v]", options: [], metrics: nil, views: ["l": topLabel, "v":containerView])
                 ].flatMap{$0})
         }
-        if RESTAURANT_UID != nil {
+        if DataService.RESTAURANT_UID != nil {
             self.startIndicator()
             DataService.instance.getSettingsData { (dict, error) in
                 self.stopIndicator()

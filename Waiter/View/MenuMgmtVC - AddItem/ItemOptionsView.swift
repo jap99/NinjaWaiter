@@ -98,11 +98,11 @@ class ItemOptionsView: UIView {
             optionData["optionPrice"] = optionPrice as AnyObject
             DataService.instance.addEditItemOption(itemId: itemId, optionId: optionId, optionValue: optionData)
             
-            Utils.showAlert(title: "Success", message: "Updated Successfully", onSucces: {() in
+            Alert.showAlert(title: "Success", message: "Updated Successfully", onSucces: {() in
                 self.removeView()
             })
         } else {
-            Utils.showAlert(title: "Alert", message: "Item name & price required", onSucces:nil)
+            Alert.showAlert(title: "Alert", message: "Item name & price required", onSucces:nil)
         }
         
         

@@ -10,7 +10,7 @@ import UIKit
 import FirebaseStorage
 import Firebase
 import DropDown
-
+import FirebaseDatabase
 
 class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -405,7 +405,7 @@ class MenuManagementVC: BaseViewController, UITableViewDelegate, UITableViewData
                 optionView.updateFields(optionData: optionData, optionIndex: sender.tag+1)
             }
         } else {
-            Utils.showAlert(title: "Alert", message: "Please select Menu Item to add or edit Menu Options", onSucces: nil)
+            Alert.showAlert(title: "Alert", message: "Please select Menu Item to add or edit Menu Options", onSucces: nil)
         }
     }
     

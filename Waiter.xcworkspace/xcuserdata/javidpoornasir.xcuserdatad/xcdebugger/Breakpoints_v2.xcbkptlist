@@ -287,10 +287,10 @@
             timestampString = "571153943.779235"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "loginAPI()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -304,27 +304,10 @@
             timestampString = "571153943.779497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C9E152C8-E518-49B6-83F1-D7757984C259"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Waiter/Services/DataService.swift"
-            timestampString = "571160156.207677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "383"
-            endingLineNumber = "383"
-            landmarkName = "DataService"
-            landmarkType = "3">
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "loginAPI()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -358,23 +341,6 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "viewDidLayoutSubviews()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AF3CD8AB-00E1-4664-A808-895557C83F0E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Waiter/Services/DataService.swift"
-            timestampString = "571160156.2079459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
-            landmarkName = "renameCategory(categoryUID:updatedName:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

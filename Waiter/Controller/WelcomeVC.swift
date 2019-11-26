@@ -17,11 +17,17 @@ enum UserType: String {
 }
 
 
-class AppUser {
+// CLASS
+
+
+final class AppUser {
+    
     var email = ""
     var name = ""
     var type = UserType.staff
     var uid = ""
+    
+    // MARK: - INIT
     
     init() { }
     
@@ -29,15 +35,15 @@ class AppUser {
         if let email = user.email {
             self.email = email
         }
-        
         if let name = user.displayName {
             self.name = name
         }
-        
         self.uid = user.uid
-        
     }
+    
+    
 }
+
 
 // CLASS
 
@@ -55,6 +61,7 @@ class WelcomeVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         setupGestureRecognizers()
         self.newRestaurantPopup = CreateRestaurantView.loadViewFromNib(viewController: self)
     }
@@ -145,7 +152,7 @@ class WelcomeVC: BaseViewController {
     }
     
     func staffListAPI() {
-        if RESTAURANT_UID != nil {
+        if DataService.RESTAURANT_UID != nil {
             StaffMember.getStaffList(adminEmail: loginModel.username, callback: { (staffArray, error) in
                 if error != nil {
                 } else { // no error

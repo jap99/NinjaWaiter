@@ -28,9 +28,9 @@ class AuthServices {
                 onComplete?(Constants.DEFAULT_ERROR_MESSAGE, nil)
             } else if let user = result?.user {
                 guard let restaurantUID = DataService.instance.mainRef.child(Constants.FIR_RESTAURANTS).childByAutoId().key else { return }
-                RESTAURANT_UID = restaurantUID
-                DataService.instance.saveToAdministratorsNode(adminUID: user.uid, restaurantUID: RESTAURANT_UID)
-                DataService.instance.saveToStaffNode(staffMemberUID: user.uid, restaurantUID: RESTAURANT_UID)
+                DataService.RESTAURANT_UID = restaurantUID
+                DataService.instance.saveToAdministratorsNode(adminUID: user.uid, restaurantUID: DataService.RESTAURANT_UID)
+                DataService.instance.saveToStaffNode(staffMemberUID: user.uid, restaurantUID: DataService.RESTAURANT_UID)
                 onComplete!(nil, user)
                 DataService.instance.saveRestaurant(restaurantUID: restaurantUID, adminEmail: adminEmail, restaurantName: restaurantName)
                     Auth.auth().signIn(withEmail: adminEmail, password: password, completion: { (result, error) in
@@ -74,11 +74,11 @@ class AuthServices {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (result, error) in
             if error != nil {                         // error
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
-                RESTAURANT_UID = nil
+                DataService.RESTAURANT_UID = nil
             } else if let result = result {          // no error
                 // get restaurant uid
                 DataService.instance.getRestaurantUID(userUID: result.user.uid, completion: { (restID) in
-                    RESTAURANT_UID = restID
+                    DataService.RESTAURANT_UID = restID
                     IS_USER_LOGGED_IN = true
                     onComplete?(nil, result.user)
                 })
@@ -93,7 +93,7 @@ class AuthServices {
     }
     
     func logout() {
-        RESTAURANT_UID = nil
+        DataService.RESTAURANT_UID = nil
     }
     
     func handleFirebaseError(error: NSError, onComplete: ((_ errMsg: String?, _ data: User?) -> Void)?) {
