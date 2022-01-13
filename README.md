@@ -4,4 +4,6 @@ This iOS application provides restaurants with the ability to upload their break
 
 Waiter can authenticate into their account in order to take a customer's orders.
 
+
+
 ----------------------------------- PARTIAL CODE -----------------------------------
